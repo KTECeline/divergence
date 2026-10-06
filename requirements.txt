@@ -1,0 +1,27 @@
+# Divergence — Phase 1 dependencies (MalSkillBench-only pipeline)
+# Python 3.11
+
+# Core ML pipeline
+# transformers pinned <5: setfit 1.1.x breaks on transformers 5.x
+# (removed transformers.training_args.default_logdir)
+transformers>=4.41,<5
+sentence-transformers>=3.0
+setfit>=1.1
+scikit-learn>=1.4
+pandas>=2.2
+numpy>=1.26
+
+# Statistics (McNemar's test for Experiment 1)
+statsmodels>=0.14
+
+# EDA / notebooks / figures
+jupyter
+matplotlib>=3.8
+seaborn>=0.13
+
+# Testing
+pytest>=8.0
+
+# Phase 2 (uncomment when setting up the OpenClaw/AGT sandbox)
+# docker>=7.0
+# agent-governance-toolkit[full]
