@@ -1,0 +1,3737 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "00_toy_demo.py",
+      "file_type": "code",
+      "source_file": "notebooks/00_toy_demo.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "notebooks_00_toy_demo",
+      "community": 24,
+      "norm_label": "00_toy_demo.py"
+    },
+    {
+      "label": "Tiny standalone demo of the CORE IDEA behind Divergence: turn text into numbers",
+      "file_type": "rationale",
+      "source_file": "notebooks/00_toy_demo.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "notebooks_00_toy_demo_rationale_1",
+      "community": 24,
+      "norm_label": "tiny standalone demo of the core idea behind divergence: turn text into numbers"
+    },
+    {
+      "label": "demo_pipeline.py",
+      "file_type": "code",
+      "source_file": "sandbox/demo_pipeline.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "sandbox_demo_pipeline",
+      "community": 10,
+      "norm_label": "demo_pipeline.py"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "sandbox/demo_pipeline.py",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "sandbox_demo_pipeline_main",
+      "community": 10,
+      "norm_label": "main()"
+    },
+    {
+      "label": "Experiment 7 live demo pipeline (Phase 2).  Runs a skill inside the OpenClaw/AGT",
+      "file_type": "rationale",
+      "source_file": "sandbox/demo_pipeline.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "sandbox_demo_pipeline_rationale_1",
+      "community": 10,
+      "norm_label": "experiment 7 live demo pipeline (phase 2).  runs a skill inside the openclaw/agt"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "src/__init__.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_init",
+      "community": 33,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "src/baselines/__init__.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_baselines_init",
+      "community": 27,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "agt_only.py",
+      "file_type": "code",
+      "source_file": "src/baselines/agt_only.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_baselines_agt_only",
+      "community": 11,
+      "norm_label": "agt_only.py"
+    },
+    {
+      "label": "predict()",
+      "file_type": "code",
+      "source_file": "src/baselines/agt_only.py",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "src_baselines_agt_only_predict",
+      "community": 11,
+      "norm_label": "predict()"
+    },
+    {
+      "label": "Baseline: AGT-only (non-trained). Build order item 11.  Decision from AGT's own",
+      "file_type": "rationale",
+      "source_file": "src/baselines/agt_only.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_baselines_agt_only_rationale_1",
+      "community": 11,
+      "norm_label": "baseline: agt-only (non-trained). build order item 11.  decision from agt's own"
+    },
+    {
+      "label": "behaviour_only.py",
+      "file_type": "code",
+      "source_file": "src/baselines/behaviour_only.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_baselines_behaviour_only",
+      "community": 12,
+      "norm_label": "behaviour_only.py"
+    },
+    {
+      "label": "predict()",
+      "file_type": "code",
+      "source_file": "src/baselines/behaviour_only.py",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "src_baselines_behaviour_only_predict",
+      "community": 12,
+      "norm_label": "predict()"
+    },
+    {
+      "label": "Baseline: behaviour-only (non-trained). Build order item 11.  Uses the observed",
+      "file_type": "rationale",
+      "source_file": "src/baselines/behaviour_only.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_baselines_behaviour_only_rationale_1",
+      "community": 12,
+      "norm_label": "baseline: behaviour-only (non-trained). build order item 11.  uses the observed"
+    },
+    {
+      "label": "llm_as_judge.py",
+      "file_type": "code",
+      "source_file": "src/baselines/llm_as_judge.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_baselines_llm_as_judge",
+      "community": 13,
+      "norm_label": "llm_as_judge.py"
+    },
+    {
+      "label": "predict()",
+      "file_type": "code",
+      "source_file": "src/baselines/llm_as_judge.py",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "src_baselines_llm_as_judge_predict",
+      "community": 13,
+      "norm_label": "predict()"
+    },
+    {
+      "label": "Baseline: LLM-as-judge (non-trained). Build order item 11.  Prompts an LLM to ju",
+      "file_type": "rationale",
+      "source_file": "src/baselines/llm_as_judge.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_baselines_llm_as_judge_rationale_1",
+      "community": 13,
+      "norm_label": "baseline: llm-as-judge (non-trained). build order item 11.  prompts an llm to ju"
+    },
+    {
+      "label": "text_only.py",
+      "file_type": "code",
+      "source_file": "src/baselines/text_only.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_baselines_text_only",
+      "community": 14,
+      "norm_label": "text_only.py"
+    },
+    {
+      "label": "predict()",
+      "file_type": "code",
+      "source_file": "src/baselines/text_only.py",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "src_baselines_text_only_predict",
+      "community": 14,
+      "norm_label": "predict()"
+    },
+    {
+      "label": "Baseline: text-only (non-trained). Build order item 11.  Uses the declared skill",
+      "file_type": "rationale",
+      "source_file": "src/baselines/text_only.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_baselines_text_only_rationale_1",
+      "community": 14,
+      "norm_label": "baseline: text-only (non-trained). build order item 11.  uses the declared skill"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "src/calibration/__init__.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_calibration_init",
+      "community": 28,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "logistic_calibrator.py",
+      "file_type": "code",
+      "source_file": "src/calibration/logistic_calibrator.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_calibration_logistic_calibrator",
+      "community": 5,
+      "norm_label": "logistic_calibrator.py"
+    },
+    {
+      "label": "LogisticCalibrator",
+      "file_type": "code",
+      "source_file": "src/calibration/logistic_calibrator.py",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "src_calibration_logistic_calibrator_logisticcalibrator",
+      "community": 5,
+      "norm_label": "logisticcalibrator"
+    },
+    {
+      "label": ".fit()",
+      "file_type": "code",
+      "source_file": "src/calibration/logistic_calibrator.py",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "src_calibration_logistic_calibrator_logisticcalibrator_fit",
+      "community": 5,
+      "norm_label": ".fit()"
+    },
+    {
+      "label": ".predict_proba()",
+      "file_type": "code",
+      "source_file": "src/calibration/logistic_calibrator.py",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "src_calibration_logistic_calibrator_logisticcalibrator_predict_proba",
+      "community": 5,
+      "norm_label": ".predict_proba()"
+    },
+    {
+      "label": ".save()",
+      "file_type": "code",
+      "source_file": "src/calibration/logistic_calibrator.py",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "src_calibration_logistic_calibrator_logisticcalibrator_save",
+      "community": 5,
+      "norm_label": ".save()"
+    },
+    {
+      "label": ".load()",
+      "file_type": "code",
+      "source_file": "src/calibration/logistic_calibrator.py",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "src_calibration_logistic_calibrator_logisticcalibrator_load",
+      "community": 5,
+      "norm_label": ".load()"
+    },
+    {
+      "label": "Logistic regression calibration layer (pipeline Step 6).  Build order item 9. Fi",
+      "file_type": "rationale",
+      "source_file": "src/calibration/logistic_calibrator.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_calibration_logistic_calibrator_rationale_1",
+      "community": 5,
+      "norm_label": "logistic regression calibration layer (pipeline step 6).  build order item 9. fi"
+    },
+    {
+      "label": "Probability that the skill is suspicious.",
+      "file_type": "rationale",
+      "source_file": "src/calibration/logistic_calibrator.py",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "src_calibration_logistic_calibrator_rationale_15",
+      "community": 5,
+      "norm_label": "probability that the skill is suspicious."
+    },
+    {
+      "label": "config.py",
+      "file_type": "code",
+      "source_file": "src/config.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_config",
+      "community": 7,
+      "norm_label": "config.py"
+    },
+    {
+      "label": "Central configuration: paths, model names, thresholds, seeds.  Every module read",
+      "file_type": "rationale",
+      "source_file": "src/config.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_config_rationale_1",
+      "community": 7,
+      "norm_label": "central configuration: paths, model names, thresholds, seeds.  every module read"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "src/data/__init__.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_data_init",
+      "community": 29,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "control_sets.py",
+      "file_type": "code",
+      "source_file": "src/data/control_sets.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_data_control_sets",
+      "community": 0,
+      "norm_label": "control_sets.py"
+    },
+    {
+      "label": "build_proxy_labelling_sheet()",
+      "file_type": "code",
+      "source_file": "src/data/control_sets.py",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "src_data_control_sets_build_proxy_labelling_sheet",
+      "community": 0,
+      "norm_label": "build_proxy_labelling_sheet()"
+    },
+    {
+      "label": "build_swapped_description_set()",
+      "file_type": "code",
+      "source_file": "src/data/control_sets.py",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "src_data_control_sets_build_swapped_description_set",
+      "community": 0,
+      "norm_label": "build_swapped_description_set()"
+    },
+    {
+      "label": "build_disclosed_payload_set()",
+      "file_type": "code",
+      "source_file": "src/data/control_sets.py",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "src_data_control_sets_build_disclosed_payload_set",
+      "community": 0,
+      "norm_label": "build_disclosed_payload_set()"
+    },
+    {
+      "label": "Build the control sets that separate inconsistency from maliciousness.  Used by",
+      "file_type": "rationale",
+      "source_file": "src/data/control_sets.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_data_control_sets_rationale_1",
+      "community": 0,
+      "norm_label": "build the control sets that separate inconsistency from maliciousness.  used by"
+    },
+    {
+      "label": "Sample n malicious skills into a CSV for hand-labelling.      Columns: sample_id",
+      "file_type": "rationale",
+      "source_file": "src/data/control_sets.py",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "src_data_control_sets_rationale_14",
+      "community": 0,
+      "norm_label": "sample n malicious skills into a csv for hand-labelling.      columns: sample_id"
+    },
+    {
+      "label": "Benign trace paired with a different benign skill's description.      Inconsiste",
+      "file_type": "rationale",
+      "source_file": "src/data/control_sets.py",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "src_data_control_sets_rationale_25",
+      "community": 0,
+      "norm_label": "benign trace paired with a different benign skill's description.      inconsiste"
+    },
+    {
+      "label": "Malicious trace paired with a description that honestly states the payload.",
+      "file_type": "rationale",
+      "source_file": "src/data/control_sets.py",
+      "source_location": "L35",
+      "_origin": "ast",
+      "id": "src_data_control_sets_rationale_35",
+      "community": 0,
+      "norm_label": "malicious trace paired with a description that honestly states the payload."
+    },
+    {
+      "label": "loader.py",
+      "file_type": "code",
+      "source_file": "src/data/loader.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_data_loader",
+      "community": 0,
+      "norm_label": "loader.py"
+    },
+    {
+      "label": "load_malskillbench()",
+      "file_type": "code",
+      "source_file": "src/data/loader.py",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "src_data_loader_load_malskillbench",
+      "community": 0,
+      "norm_label": "load_malskillbench()"
+    },
+    {
+      "label": "Load and parse the raw MalSkillBench dataset into SkillSample objects.  Build or",
+      "file_type": "rationale",
+      "source_file": "src/data/loader.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_data_loader_rationale_1",
+      "community": 0,
+      "norm_label": "load and parse the raw malskillbench dataset into skillsample objects.  build or"
+    },
+    {
+      "label": "Parse the raw MalSkillBench files into a list of SkillSample.",
+      "file_type": "rationale",
+      "source_file": "src/data/loader.py",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "src_data_loader_rationale_12",
+      "community": 0,
+      "norm_label": "parse the raw malskillbench files into a list of skillsample."
+    },
+    {
+      "label": "schema.py",
+      "file_type": "code",
+      "source_file": "src/data/schema.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_data_schema",
+      "community": 0,
+      "norm_label": "schema.py"
+    },
+    {
+      "label": "SkillSample",
+      "file_type": "code",
+      "source_file": "src/data/schema.py",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "src_data_schema_skillsample",
+      "community": 0,
+      "norm_label": "skillsample"
+    },
+    {
+      "label": "Schema for a single skill sample parsed from MalSkillBench.  Build order item 2",
+      "file_type": "rationale",
+      "source_file": "src/data/schema.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_data_schema_rationale_1",
+      "community": 0,
+      "norm_label": "schema for a single skill sample parsed from malskillbench.  build order item 2"
+    },
+    {
+      "label": "One skill: its declared description, observed action trace, and labels.",
+      "file_type": "rationale",
+      "source_file": "src/data/schema.py",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "src_data_schema_rationale_12",
+      "community": 0,
+      "norm_label": "one skill: its declared description, observed action trace, and labels."
+    },
+    {
+      "label": "splitter.py",
+      "file_type": "code",
+      "source_file": "src/data/splitter.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_data_splitter",
+      "community": 0,
+      "norm_label": "splitter.py"
+    },
+    {
+      "label": "make_splits()",
+      "file_type": "code",
+      "source_file": "src/data/splitter.py",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "src_data_splitter_make_splits",
+      "community": 0,
+      "norm_label": "make_splits()"
+    },
+    {
+      "label": "Split MalSkillBench into fine-tune / calibration / held-out test splits.  Build",
+      "file_type": "rationale",
+      "source_file": "src/data/splitter.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_data_splitter_rationale_1",
+      "community": 0,
+      "norm_label": "split malskillbench into fine-tune / calibration / held-out test splits.  build"
+    },
+    {
+      "label": "Create and persist the three leakage-free splits.",
+      "file_type": "rationale",
+      "source_file": "src/data/splitter.py",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "src_data_splitter_rationale_13",
+      "community": 0,
+      "norm_label": "create and persist the three leakage-free splits."
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "src/embedding/__init__.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_embedding_init",
+      "community": 30,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "encoder.py",
+      "file_type": "code",
+      "source_file": "src/embedding/encoder.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_embedding_encoder",
+      "community": 7,
+      "norm_label": "encoder.py"
+    },
+    {
+      "label": "Encoder",
+      "file_type": "code",
+      "source_file": "src/embedding/encoder.py",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "src_embedding_encoder_encoder",
+      "community": 7,
+      "norm_label": "encoder"
+    },
+    {
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "src/embedding/encoder.py",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "src_embedding_encoder_encoder_init",
+      "community": 7,
+      "norm_label": ".__init__()"
+    },
+    {
+      "label": ".encode()",
+      "file_type": "code",
+      "source_file": "src/embedding/encoder.py",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "src_embedding_encoder_encoder_encode",
+      "community": 7,
+      "norm_label": ".encode()"
+    },
+    {
+      "label": "Sentence-BERT load + encode wrapper (pipeline Steps 1 and 3).  Build order item",
+      "file_type": "rationale",
+      "source_file": "src/embedding/encoder.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_embedding_encoder_rationale_1",
+      "community": 7,
+      "norm_label": "sentence-bert load + encode wrapper (pipeline steps 1 and 3).  build order item"
+    },
+    {
+      "label": "Thin wrapper around a sentence-transformers model.      Loads either the pretrai",
+      "file_type": "rationale",
+      "source_file": "src/embedding/encoder.py",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "src_embedding_encoder_rationale_11",
+      "community": 7,
+      "norm_label": "thin wrapper around a sentence-transformers model.      loads either the pretrai"
+    },
+    {
+      "label": "finetune_setfit.py",
+      "file_type": "code",
+      "source_file": "src/embedding/finetune_setfit.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_embedding_finetune_setfit",
+      "community": 15,
+      "norm_label": "finetune_setfit.py"
+    },
+    {
+      "label": "finetune()",
+      "file_type": "code",
+      "source_file": "src/embedding/finetune_setfit.py",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "src_embedding_finetune_setfit_finetune",
+      "community": 15,
+      "norm_label": "finetune()"
+    },
+    {
+      "label": "SetFit few-shot contrastive fine-tuning of the embedding model (Step 0).  Build",
+      "file_type": "rationale",
+      "source_file": "src/embedding/finetune_setfit.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_embedding_finetune_setfit_rationale_1",
+      "community": 15,
+      "norm_label": "setfit few-shot contrastive fine-tuning of the embedding model (step 0).  build"
+    },
+    {
+      "label": "similarity.py",
+      "file_type": "code",
+      "source_file": "src/embedding/similarity.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_embedding_similarity",
+      "community": 9,
+      "norm_label": "similarity.py"
+    },
+    {
+      "label": "consistency_score()",
+      "file_type": "code",
+      "source_file": "src/embedding/similarity.py",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "src_embedding_similarity_consistency_score",
+      "community": 9,
+      "norm_label": "consistency_score()"
+    },
+    {
+      "label": "Cosine similarity scoring between description and enriched-trace vectors (pipeli",
+      "file_type": "rationale",
+      "source_file": "src/embedding/similarity.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_embedding_similarity_rationale_1",
+      "community": 9,
+      "norm_label": "cosine similarity scoring between description and enriched-trace vectors (pipeli"
+    },
+    {
+      "label": "cosine_similarity(Vector_A, Vector_B) -> score in [0, 1].",
+      "file_type": "rationale",
+      "source_file": "src/embedding/similarity.py",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "src_embedding_similarity_rationale_7",
+      "community": 9,
+      "norm_label": "cosine_similarity(vector_a, vector_b) -> score in [0, 1]."
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "src/evaluator/__init__.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_evaluator_init",
+      "community": 31,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "divergence_evaluator.py",
+      "file_type": "code",
+      "source_file": "src/evaluator/divergence_evaluator.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_evaluator_divergence_evaluator",
+      "community": 4,
+      "norm_label": "divergence_evaluator.py"
+    },
+    {
+      "label": "DivergenceResult",
+      "file_type": "code",
+      "source_file": "src/evaluator/divergence_evaluator.py",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "src_evaluator_divergence_evaluator_divergenceresult",
+      "community": 4,
+      "norm_label": "divergenceresult"
+    },
+    {
+      "label": "DivergenceEvaluator",
+      "file_type": "code",
+      "source_file": "src/evaluator/divergence_evaluator.py",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "src_evaluator_divergence_evaluator_divergenceevaluator",
+      "community": 4,
+      "norm_label": "divergenceevaluator"
+    },
+    {
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "src/evaluator/divergence_evaluator.py",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "src_evaluator_divergence_evaluator_divergenceevaluator_init",
+      "community": 4,
+      "norm_label": ".__init__()"
+    },
+    {
+      "label": ".evaluate()",
+      "file_type": "code",
+      "source_file": "src/evaluator/divergence_evaluator.py",
+      "source_location": "L37",
+      "_origin": "ast",
+      "id": "src_evaluator_divergence_evaluator_divergenceevaluator_evaluate",
+      "community": 4,
+      "norm_label": ".evaluate()"
+    },
+    {
+      "label": "DivergenceEvaluator \u2014 the AGT-pattern evaluator wrapping the full pipeline.  Bui",
+      "file_type": "rationale",
+      "source_file": "src/evaluator/divergence_evaluator.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_evaluator_divergence_evaluator_rationale_1",
+      "community": 4,
+      "norm_label": "divergenceevaluator \u2014 the agt-pattern evaluator wrapping the full pipeline.  bui"
+    },
+    {
+      "label": "Wraps pipeline Steps 1-6: encode description, enrich + encode trace,     cosine",
+      "file_type": "rationale",
+      "source_file": "src/evaluator/divergence_evaluator.py",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "src_evaluator_divergence_evaluator_rationale_27",
+      "community": 4,
+      "norm_label": "wraps pipeline steps 1-6: encode description, enrich + encode trace,     cosine"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "src/experiments/__init__.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_experiments_init",
+      "community": 32,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "exp1_baseline_comparison.py",
+      "file_type": "code",
+      "source_file": "src/experiments/exp1_baseline_comparison.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_experiments_exp1_baseline_comparison",
+      "community": 16,
+      "norm_label": "exp1_baseline_comparison.py"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "src/experiments/exp1_baseline_comparison.py",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "src_experiments_exp1_baseline_comparison_main",
+      "community": 16,
+      "norm_label": "main()"
+    },
+    {
+      "label": "Experiment 1: baseline comparison + McNemar's test. Build order item 12.  Compar",
+      "file_type": "rationale",
+      "source_file": "src/experiments/exp1_baseline_comparison.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_experiments_exp1_baseline_comparison_rationale_1",
+      "community": 16,
+      "norm_label": "experiment 1: baseline comparison + mcnemar's test. build order item 12.  compar"
+    },
+    {
+      "label": "exp2_ablation.py",
+      "file_type": "code",
+      "source_file": "src/experiments/exp2_ablation.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_experiments_exp2_ablation",
+      "community": 17,
+      "norm_label": "exp2_ablation.py"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "src/experiments/exp2_ablation.py",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "src_experiments_exp2_ablation_main",
+      "community": 17,
+      "norm_label": "main()"
+    },
+    {
+      "label": "Experiment 2: ablation study. Build order item 13.  Ablates structural flags and",
+      "file_type": "rationale",
+      "source_file": "src/experiments/exp2_ablation.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_experiments_exp2_ablation_rationale_1",
+      "community": 17,
+      "norm_label": "experiment 2: ablation study. build order item 13.  ablates structural flags and"
+    },
+    {
+      "label": "exp2b_finetune_ablation.py",
+      "file_type": "code",
+      "source_file": "src/experiments/exp2b_finetune_ablation.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_experiments_exp2b_finetune_ablation",
+      "community": 18,
+      "norm_label": "exp2b_finetune_ablation.py"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "src/experiments/exp2b_finetune_ablation.py",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "src_experiments_exp2b_finetune_ablation_main",
+      "community": 18,
+      "norm_label": "main()"
+    },
+    {
+      "label": "Experiment 2b: fine-tuning delta. Build order item 13.  Measures the improvement",
+      "file_type": "rationale",
+      "source_file": "src/experiments/exp2b_finetune_ablation.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_experiments_exp2b_finetune_ablation_rationale_1",
+      "community": 18,
+      "norm_label": "experiment 2b: fine-tuning delta. build order item 13.  measures the improvement"
+    },
+    {
+      "label": "exp3_attack_type_breakdown.py",
+      "file_type": "code",
+      "source_file": "src/experiments/exp3_attack_type_breakdown.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_experiments_exp3_attack_type_breakdown",
+      "community": 19,
+      "norm_label": "exp3_attack_type_breakdown.py"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "src/experiments/exp3_attack_type_breakdown.py",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "src_experiments_exp3_attack_type_breakdown_main",
+      "community": 19,
+      "norm_label": "main()"
+    },
+    {
+      "label": "Experiment 3: attack-type breakdown. Build order item 14.  Performance broken do",
+      "file_type": "rationale",
+      "source_file": "src/experiments/exp3_attack_type_breakdown.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_experiments_exp3_attack_type_breakdown_rationale_1",
+      "community": 19,
+      "norm_label": "experiment 3: attack-type breakdown. build order item 14.  performance broken do"
+    },
+    {
+      "label": "exp4_embedding_model_comparison.py",
+      "file_type": "code",
+      "source_file": "src/experiments/exp4_embedding_model_comparison.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_experiments_exp4_embedding_model_comparison",
+      "community": 20,
+      "norm_label": "exp4_embedding_model_comparison.py"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "src/experiments/exp4_embedding_model_comparison.py",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "src_experiments_exp4_embedding_model_comparison_main",
+      "community": 20,
+      "norm_label": "main()"
+    },
+    {
+      "label": "Experiment 4 (optional/bonus): embedding model comparison.  Build order item 15.",
+      "file_type": "rationale",
+      "source_file": "src/experiments/exp4_embedding_model_comparison.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_experiments_exp4_embedding_model_comparison_rationale_1",
+      "community": 20,
+      "norm_label": "experiment 4 (optional/bonus): embedding model comparison.  build order item 15."
+    },
+    {
+      "label": "exp5_control_experiments.py",
+      "file_type": "code",
+      "source_file": "src/experiments/exp5_control_experiments.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_experiments_exp5_control_experiments",
+      "community": 21,
+      "norm_label": "exp5_control_experiments.py"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "src/experiments/exp5_control_experiments.py",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "src_experiments_exp5_control_experiments_main",
+      "community": 21,
+      "norm_label": "main()"
+    },
+    {
+      "label": "Experiment 5: inconsistency vs maliciousness controls. Build order item 15.  Tes",
+      "file_type": "rationale",
+      "source_file": "src/experiments/exp5_control_experiments.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_experiments_exp5_control_experiments_rationale_1",
+      "community": 21,
+      "norm_label": "experiment 5: inconsistency vs maliciousness controls. build order item 15.  tes"
+    },
+    {
+      "label": "exp6_holdout_generalisation.py",
+      "file_type": "code",
+      "source_file": "src/experiments/exp6_holdout_generalisation.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_experiments_exp6_holdout_generalisation",
+      "community": 22,
+      "norm_label": "exp6_holdout_generalisation.py"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "src/experiments/exp6_holdout_generalisation.py",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "src_experiments_exp6_holdout_generalisation_main",
+      "community": 22,
+      "norm_label": "main()"
+    },
+    {
+      "label": "Experiment 6: held-out category generalisation. Build order item 16.  Tests whet",
+      "file_type": "rationale",
+      "source_file": "src/experiments/exp6_holdout_generalisation.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_experiments_exp6_holdout_generalisation_rationale_1",
+      "community": 22,
+      "norm_label": "experiment 6: held-out category generalisation. build order item 16.  tests whet"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "src/preprocessing/__init__.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_preprocessing_init",
+      "community": 34,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "structural_flags.py",
+      "file_type": "code",
+      "source_file": "src/preprocessing/structural_flags.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_preprocessing_structural_flags",
+      "community": 3,
+      "norm_label": "structural_flags.py"
+    },
+    {
+      "label": "StructuralFlags",
+      "file_type": "code",
+      "source_file": "src/preprocessing/structural_flags.py",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "src_preprocessing_structural_flags_structuralflags",
+      "community": 3,
+      "norm_label": "structuralflags"
+    },
+    {
+      "label": ".as_list()",
+      "file_type": "code",
+      "source_file": "src/preprocessing/structural_flags.py",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "src_preprocessing_structural_flags_structuralflags_as_list",
+      "community": 3,
+      "norm_label": ".as_list()"
+    },
+    {
+      "label": ".raised()",
+      "file_type": "code",
+      "source_file": "src/preprocessing/structural_flags.py",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "src_preprocessing_structural_flags_structuralflags_raised",
+      "community": 3,
+      "norm_label": ".raised()"
+    },
+    {
+      "label": "compute_structural_flags()",
+      "file_type": "code",
+      "source_file": "src/preprocessing/structural_flags.py",
+      "source_location": "L30",
+      "_origin": "ast",
+      "id": "src_preprocessing_structural_flags_compute_structural_flags",
+      "community": 3,
+      "norm_label": "compute_structural_flags()"
+    },
+    {
+      "label": "Structural red-flag rules (pipeline Step 5, Option 2 \u2014 no ML).  Build order item",
+      "file_type": "rationale",
+      "source_file": "src/preprocessing/structural_flags.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_preprocessing_structural_flags_rationale_1",
+      "community": 3,
+      "norm_label": "structural red-flag rules (pipeline step 5, option 2 \u2014 no ml).  build order item"
+    },
+    {
+      "label": "Names of the flags that fired, for the evaluator's result object.",
+      "file_type": "rationale",
+      "source_file": "src/preprocessing/structural_flags.py",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "src_preprocessing_structural_flags_rationale_26",
+      "community": 3,
+      "norm_label": "names of the flags that fired, for the evaluator's result object."
+    },
+    {
+      "label": "Run the three rule-based red-flag checks on a description/trace pair.",
+      "file_type": "rationale",
+      "source_file": "src/preprocessing/structural_flags.py",
+      "source_location": "L31",
+      "_origin": "ast",
+      "id": "src_preprocessing_structural_flags_rationale_31",
+      "community": 3,
+      "norm_label": "run the three rule-based red-flag checks on a description/trace pair."
+    },
+    {
+      "label": "trace_to_text.py",
+      "file_type": "code",
+      "source_file": "src/preprocessing/trace_to_text.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_preprocessing_trace_to_text",
+      "community": 6,
+      "norm_label": "trace_to_text.py"
+    },
+    {
+      "label": "trace_to_enriched_text()",
+      "file_type": "code",
+      "source_file": "src/preprocessing/trace_to_text.py",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "src_preprocessing_trace_to_text_trace_to_enriched_text",
+      "community": 6,
+      "norm_label": "trace_to_enriched_text()"
+    },
+    {
+      "label": "Enriched trace-to-text conversion (pipeline Step 2, Option 1).  Build order item",
+      "file_type": "rationale",
+      "source_file": "src/preprocessing/trace_to_text.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_preprocessing_trace_to_text_rationale_1",
+      "community": 6,
+      "norm_label": "enriched trace-to-text conversion (pipeline step 2, option 1).  build order item"
+    },
+    {
+      "label": "Convert a raw action trace into enriched descriptive text.      Example output:",
+      "file_type": "rationale",
+      "source_file": "src/preprocessing/trace_to_text.py",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "src_preprocessing_trace_to_text_rationale_15",
+      "community": 6,
+      "norm_label": "convert a raw action trace into enriched descriptive text.      example output:"
+    },
+    {
+      "label": "test_evaluator.py",
+      "file_type": "code",
+      "source_file": "tests/test_evaluator.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_test_evaluator",
+      "community": 4,
+      "norm_label": "test_evaluator.py"
+    },
+    {
+      "label": "test_result_object_shape()",
+      "file_type": "code",
+      "source_file": "tests/test_evaluator.py",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "tests_test_evaluator_test_result_object_shape",
+      "community": 4,
+      "norm_label": "test_result_object_shape()"
+    },
+    {
+      "label": "Unit tests for DivergenceEvaluator (build order item 16).",
+      "file_type": "rationale",
+      "source_file": "tests/test_evaluator.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_test_evaluator_rationale_1",
+      "community": 4,
+      "norm_label": "unit tests for divergenceevaluator (build order item 16)."
+    },
+    {
+      "label": "test_structural_flags.py",
+      "file_type": "code",
+      "source_file": "tests/test_structural_flags.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_test_structural_flags",
+      "community": 3,
+      "norm_label": "test_structural_flags.py"
+    },
+    {
+      "label": "test_not_yet_implemented()",
+      "file_type": "code",
+      "source_file": "tests/test_structural_flags.py",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "tests_test_structural_flags_test_not_yet_implemented",
+      "community": 3,
+      "norm_label": "test_not_yet_implemented()"
+    },
+    {
+      "label": "test_flags_raised_names()",
+      "file_type": "code",
+      "source_file": "tests/test_structural_flags.py",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "tests_test_structural_flags_test_flags_raised_names",
+      "community": 3,
+      "norm_label": "test_flags_raised_names()"
+    },
+    {
+      "label": "Unit tests for structural red-flag rules (build order item 16).  Cover hand-craf",
+      "file_type": "rationale",
+      "source_file": "tests/test_structural_flags.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_test_structural_flags_rationale_1",
+      "community": 3,
+      "norm_label": "unit tests for structural red-flag rules (build order item 16).  cover hand-craf"
+    },
+    {
+      "label": "test_trace_to_text.py",
+      "file_type": "code",
+      "source_file": "tests/test_trace_to_text.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_test_trace_to_text",
+      "community": 6,
+      "norm_label": "test_trace_to_text.py"
+    },
+    {
+      "label": "test_not_yet_implemented()",
+      "file_type": "code",
+      "source_file": "tests/test_trace_to_text.py",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "tests_test_trace_to_text_test_not_yet_implemented",
+      "community": 6,
+      "norm_label": "test_not_yet_implemented()"
+    },
+    {
+      "label": "Unit tests for enriched trace-to-text conversion (build order item 16).  Write t",
+      "file_type": "rationale",
+      "source_file": "tests/test_trace_to_text.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_test_trace_to_text_rationale_1",
+      "community": 6,
+      "norm_label": "unit tests for enriched trace-to-text conversion (build order item 16).  write t"
+    },
+    {
+      "label": "smoke_test.py",
+      "file_type": "code",
+      "source_file": "vendor/smoke_test.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "vendor_smoke_test",
+      "community": 26,
+      "norm_label": "smoke_test.py"
+    },
+    {
+      "label": "One-skill smoke test: prove the DockerSandbox capture mechanism actually works e",
+      "file_type": "rationale",
+      "source_file": "vendor/smoke_test.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "vendor_smoke_test_rationale_1",
+      "community": 26,
+      "norm_label": "one-skill smoke test: prove the dockersandbox capture mechanism actually works e"
+    },
+    {
+      "label": "CLAUDE.md",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "claude",
+      "community": 1,
+      "norm_label": "claude.md"
+    },
+    {
+      "label": "graphify",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "claude_graphify",
+      "community": 1,
+      "norm_label": "graphify"
+    },
+    {
+      "label": "DIVERGENCE v8",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "claude_divergence_v8",
+      "community": 1,
+      "norm_label": "divergence v8"
+    },
+    {
+      "label": "What Changed From v7.0 (read this first)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "claude_what_changed_from_v7_0_read_this_first",
+      "community": 1,
+      "norm_label": "what changed from v7.0 (read this first)"
+    },
+    {
+      "label": "Updated Section 5 Equivalent \u2014 How Divergence Integrates With AGT (v8)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L35",
+      "_origin": "ast",
+      "id": "claude_updated_section_5_equivalent_how_divergence_integrates_with_agt_v8",
+      "community": 1,
+      "norm_label": "updated section 5 equivalent \u2014 how divergence integrates with agt (v8)"
+    },
+    {
+      "label": "The precedent this design follows",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L37",
+      "_origin": "ast",
+      "id": "claude_the_precedent_this_design_follows",
+      "community": 1,
+      "norm_label": "the precedent this design follows"
+    },
+    {
+      "label": "The integration flow (v8)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L62",
+      "_origin": "ast",
+      "id": "claude_the_integration_flow_v8",
+      "community": 1,
+      "norm_label": "the integration flow (v8)"
+    },
+    {
+      "label": "What this is, precisely \u2014 and what it is not",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L92",
+      "_origin": "ast",
+      "id": "claude_what_this_is_precisely_and_what_it_is_not",
+      "community": 1,
+      "norm_label": "what this is, precisely \u2014 and what it is not"
+    },
+    {
+      "label": "Technical grounding (for 2.4.3.4)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L95",
+      "_origin": "ast",
+      "id": "claude_technical_grounding_for_2_4_3_4",
+      "community": 1,
+      "norm_label": "technical grounding (for 2.4.3.4)"
+    },
+    {
+      "label": "Updated Methodology Statement (v8)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L105",
+      "_origin": "ast",
+      "id": "claude_updated_methodology_statement_v8",
+      "community": 1,
+      "norm_label": "updated methodology statement (v8)"
+    },
+    {
+      "label": "Updated Dataset Statement (v8)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L113",
+      "_origin": "ast",
+      "id": "claude_updated_dataset_statement_v8",
+      "community": 1,
+      "norm_label": "updated dataset statement (v8)"
+    },
+    {
+      "label": "Updated Survey Statement (v8)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L130",
+      "_origin": "ast",
+      "id": "claude_updated_survey_statement_v8",
+      "community": 1,
+      "norm_label": "updated survey statement (v8)"
+    },
+    {
+      "label": "Reference Library Additions (v8)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L147",
+      "_origin": "ast",
+      "id": "claude_reference_library_additions_v8",
+      "community": 1,
+      "norm_label": "reference library additions (v8)"
+    },
+    {
+      "label": "AGT technical sources (new)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L149",
+      "_origin": "ast",
+      "id": "claude_agt_technical_sources_new",
+      "community": 1,
+      "norm_label": "agt technical sources (new)"
+    },
+    {
+      "label": "Methodology sources (new, from Chapter 3 restructure)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L154",
+      "_origin": "ast",
+      "id": "claude_methodology_sources_new_from_chapter_3_restructure",
+      "community": 1,
+      "norm_label": "methodology sources (new, from chapter 3 restructure)"
+    },
+    {
+      "label": "Chapter 2 additions confirmed still needed (from earlier session, unchanged)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L161",
+      "_origin": "ast",
+      "id": "claude_chapter_2_additions_confirmed_still_needed_from_earlier_session_unchanged",
+      "community": 1,
+      "norm_label": "chapter 2 additions confirmed still needed (from earlier session, unchanged)"
+    },
+    {
+      "label": "What Was NOT Changed From v7",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L170",
+      "_origin": "ast",
+      "id": "claude_what_was_not_changed_from_v7",
+      "community": 1,
+      "norm_label": "what was not changed from v7"
+    },
+    {
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "readme",
+      "community": 2,
+      "norm_label": "readme.md"
+    },
+    {
+      "label": "Divergence",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "readme_divergence",
+      "community": 2,
+      "norm_label": "divergence"
+    },
+    {
+      "label": "Setup",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "readme_setup",
+      "community": 2,
+      "norm_label": "setup"
+    },
+    {
+      "label": "Dataset",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "readme_dataset",
+      "community": 2,
+      "norm_label": "dataset"
+    },
+    {
+      "label": "Project layout",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L30",
+      "_origin": "ast",
+      "id": "readme_project_layout",
+      "community": 2,
+      "norm_label": "project layout"
+    },
+    {
+      "label": "Methodology",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L40",
+      "_origin": "ast",
+      "id": "readme_methodology",
+      "community": 2,
+      "norm_label": "methodology"
+    },
+    {
+      "label": "Structure.md",
+      "file_type": "document",
+      "source_file": "Structure.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "structure",
+      "community": 2,
+      "norm_label": "structure.md"
+    },
+    {
+      "label": "Divergence \u2014 Architecture & Build Plan",
+      "file_type": "document",
+      "source_file": "Structure.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "structure_divergence_architecture_build_plan",
+      "community": 2,
+      "norm_label": "divergence \u2014 architecture & build plan"
+    },
+    {
+      "label": "1. One-sentence description",
+      "file_type": "document",
+      "source_file": "Structure.md",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "structure_1_one_sentence_description",
+      "community": 2,
+      "norm_label": "1. one-sentence description"
+    },
+    {
+      "label": "2. Current phase",
+      "file_type": "document",
+      "source_file": "Structure.md",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "structure_2_current_phase",
+      "community": 2,
+      "norm_label": "2. current phase"
+    },
+    {
+      "label": "3. Project directory structure",
+      "file_type": "document",
+      "source_file": "Structure.md",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "structure_3_project_directory_structure",
+      "community": 2,
+      "norm_label": "3. project directory structure"
+    },
+    {
+      "label": "4. Per-skill pipeline (runtime flow)",
+      "file_type": "document",
+      "source_file": "Structure.md",
+      "source_location": "L114",
+      "_origin": "ast",
+      "id": "structure_4_per_skill_pipeline_runtime_flow",
+      "community": 2,
+      "norm_label": "4. per-skill pipeline (runtime flow)"
+    },
+    {
+      "label": "5. One-time setup pipeline (Step 0, runs once before deployment)",
+      "file_type": "document",
+      "source_file": "Structure.md",
+      "source_location": "L154",
+      "_origin": "ast",
+      "id": "structure_5_one_time_setup_pipeline_step_0_runs_once_before_deployment",
+      "community": 2,
+      "norm_label": "5. one-time setup pipeline (step 0, runs once before deployment)"
+    },
+    {
+      "label": "6. Build order (Phase 1, MalSkillBench only)",
+      "file_type": "document",
+      "source_file": "Structure.md",
+      "source_location": "L167",
+      "_origin": "ast",
+      "id": "structure_6_build_order_phase_1_malskillbench_only",
+      "community": 2,
+      "norm_label": "6. build order (phase 1, malskillbench only)"
+    },
+    {
+      "label": "7. Build order (Phase 2, once Phase 1 is stable)",
+      "file_type": "document",
+      "source_file": "Structure.md",
+      "source_location": "L188",
+      "_origin": "ast",
+      "id": "structure_7_build_order_phase_2_once_phase_1_is_stable",
+      "community": 2,
+      "norm_label": "7. build order (phase 2, once phase 1 is stable)"
+    },
+    {
+      "label": "8. Key naming/citation anchors to keep consistent in code + report",
+      "file_type": "document",
+      "source_file": "Structure.md",
+      "source_location": "L199",
+      "_origin": "ast",
+      "id": "structure_8_key_naming_citation_anchors_to_keep_consistent_in_code_report",
+      "community": 2,
+      "norm_label": "8. key naming/citation anchors to keep consistent in code + report"
+    },
+    {
+      "label": "9. Notes for Claude Code",
+      "file_type": "document",
+      "source_file": "Structure.md",
+      "source_location": "L209",
+      "_origin": "ast",
+      "id": "structure_9_notes_for_claude_code",
+      "community": 2,
+      "norm_label": "9. notes for claude code"
+    },
+    {
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "data/raw/malskillbench/README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "data_raw_malskillbench_readme",
+      "community": 23,
+      "norm_label": "readme.md"
+    },
+    {
+      "label": "MalSkillBench (raw)",
+      "file_type": "document",
+      "source_file": "data/raw/malskillbench/README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "data_raw_malskillbench_readme_malskillbench_raw",
+      "community": 23,
+      "norm_label": "malskillbench (raw)"
+    },
+    {
+      "label": "instructions_for_record.md",
+      "file_type": "document",
+      "source_file": "instructions_for_record.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "instructions_for_record",
+      "community": 36,
+      "norm_label": "instructions_for_record.md"
+    },
+    {
+      "label": "1. Real internet is unreachable \u2192 should fail or time out",
+      "file_type": "document",
+      "source_file": "instructions_for_record.md",
+      "source_location": "L94",
+      "_origin": "ast",
+      "id": "instructions_for_record_1_real_internet_is_unreachable_should_fail_or_time_out",
+      "community": 36,
+      "norm_label": "1. real internet is unreachable \u2192 should fail or time out"
+    },
+    {
+      "label": "2. Any domain resolves to INetSim \u2192 should return INetSim's fake page",
+      "file_type": "document",
+      "source_file": "instructions_for_record.md",
+      "source_location": "L96",
+      "_origin": "ast",
+      "id": "instructions_for_record_2_any_domain_resolves_to_inetsim_should_return_inetsim_s_fake_page",
+      "community": 36,
+      "norm_label": "2. any domain resolves to inetsim \u2192 should return inetsim's fake page"
+    },
+    {
+      "label": "3. The proxy adds the key \u2192 should return JSON about your key, not a 401 error",
+      "file_type": "document",
+      "source_file": "instructions_for_record.md",
+      "source_location": "L98",
+      "_origin": "ast",
+      "id": "instructions_for_record_3_the_proxy_adds_the_key_should_return_json_about_your_key_not_a_401_error",
+      "community": 36,
+      "norm_label": "3. the proxy adds the key \u2192 should return json about your key, not a 401 error"
+    },
+    {
+      "label": "4. Every other path is blocked \u2192 should return 403",
+      "file_type": "document",
+      "source_file": "instructions_for_record.md",
+      "source_location": "L100",
+      "_origin": "ast",
+      "id": "instructions_for_record_4_every_other_path_is_blocked_should_return_403",
+      "community": 36,
+      "norm_label": "4. every other path is blocked \u2192 should return 403"
+    },
+    {
+      "label": "citations.md",
+      "file_type": "document",
+      "source_file": "notes/citations.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "notes_citations",
+      "community": 8,
+      "norm_label": "citations.md"
+    },
+    {
+      "label": "Citation notes (drafted, not yet placed in the report)",
+      "file_type": "document",
+      "source_file": "notes/citations.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "notes_citations_citation_notes_drafted_not_yet_placed_in_the_report",
+      "community": 8,
+      "norm_label": "citation notes (drafted, not yet placed in the report)"
+    },
+    {
+      "label": "ClawHub Security Signals \u2014 motivating evidence (not used as data)",
+      "file_type": "document",
+      "source_file": "notes/citations.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "notes_citations_clawhub_security_signals_motivating_evidence_not_used_as_data",
+      "community": 8,
+      "norm_label": "clawhub security signals \u2014 motivating evidence (not used as data)"
+    },
+    {
+      "label": "Phase 1 trace capture \u2014 OpenCode-as-agent-proxy (methodology/scope note)",
+      "file_type": "document",
+      "source_file": "notes/citations.md",
+      "source_location": "L42",
+      "_origin": "ast",
+      "id": "notes_citations_phase_1_trace_capture_opencode_as_agent_proxy_methodology_scope_note",
+      "community": 8,
+      "norm_label": "phase 1 trace capture \u2014 opencode-as-agent-proxy (methodology/scope note)"
+    },
+    {
+      "label": "roadmap.md",
+      "file_type": "document",
+      "source_file": "notes/roadmap.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "notes_roadmap",
+      "community": 35,
+      "norm_label": "roadmap.md"
+    },
+    {
+      "label": "Divergence \u2014 roadmap from sandbox to submission (written 2026-10-19)",
+      "file_type": "document",
+      "source_file": "notes/roadmap.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "notes_roadmap_divergence_roadmap_from_sandbox_to_submission_written_2026_10_19",
+      "community": 35,
+      "norm_label": "divergence \u2014 roadmap from sandbox to submission (written 2026-10-19)"
+    },
+    {
+      "label": "End goal",
+      "file_type": "document",
+      "source_file": "notes/roadmap.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "notes_roadmap_end_goal",
+      "community": 35,
+      "norm_label": "end goal"
+    },
+    {
+      "label": "Key point: the sandbox is on the critical path now",
+      "file_type": "document",
+      "source_file": "notes/roadmap.md",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "notes_roadmap_key_point_the_sandbox_is_on_the_critical_path_now",
+      "community": 35,
+      "norm_label": "key point: the sandbox is on the critical path now"
+    },
+    {
+      "label": "Stages (CRISP-DM phase in brackets)",
+      "file_type": "document",
+      "source_file": "notes/roadmap.md",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "notes_roadmap_stages_crisp_dm_phase_in_brackets",
+      "community": 35,
+      "norm_label": "stages (crisp-dm phase in brackets)"
+    },
+    {
+      "label": "Stage 1 \u2014 Finish the sandbox *(Data Understanding)*",
+      "file_type": "document",
+      "source_file": "notes/roadmap.md",
+      "source_location": "L30",
+      "_origin": "ast",
+      "id": "notes_roadmap_stage_1_finish_the_sandbox_data_understanding",
+      "community": 35,
+      "norm_label": "stage 1 \u2014 finish the sandbox *(data understanding)*"
+    },
+    {
+      "label": "Stage 2 \u2014 Generate traces *(Data Understanding \u2192 Preparation)*",
+      "file_type": "document",
+      "source_file": "notes/roadmap.md",
+      "source_location": "L37",
+      "_origin": "ast",
+      "id": "notes_roadmap_stage_2_generate_traces_data_understanding_preparation",
+      "community": 35,
+      "norm_label": "stage 2 \u2014 generate traces *(data understanding \u2192 preparation)*"
+    },
+    {
+      "label": "Stage 3 \u2014 Prepare the data *(Data Preparation)*",
+      "file_type": "document",
+      "source_file": "notes/roadmap.md",
+      "source_location": "L46",
+      "_origin": "ast",
+      "id": "notes_roadmap_stage_3_prepare_the_data_data_preparation",
+      "community": 35,
+      "norm_label": "stage 3 \u2014 prepare the data *(data preparation)*"
+    },
+    {
+      "label": "Stage 4 \u2014 Build the model step by step *(Modelling)*",
+      "file_type": "document",
+      "source_file": "notes/roadmap.md",
+      "source_location": "L55",
+      "_origin": "ast",
+      "id": "notes_roadmap_stage_4_build_the_model_step_by_step_modelling",
+      "community": 35,
+      "norm_label": "stage 4 \u2014 build the model step by step *(modelling)*"
+    },
+    {
+      "label": "Stage 5 \u2014 Evaluate *(Evaluation)*. Held-out test split only",
+      "file_type": "document",
+      "source_file": "notes/roadmap.md",
+      "source_location": "L64",
+      "_origin": "ast",
+      "id": "notes_roadmap_stage_5_evaluate_evaluation_held_out_test_split_only",
+      "community": 35,
+      "norm_label": "stage 5 \u2014 evaluate *(evaluation)*. held-out test split only"
+    },
+    {
+      "label": "Stage 6 \u2014 Deploy in AGT *(Deployment)*",
+      "file_type": "document",
+      "source_file": "notes/roadmap.md",
+      "source_location": "L75",
+      "_origin": "ast",
+      "id": "notes_roadmap_stage_6_deploy_in_agt_deployment",
+      "community": 35,
+      "norm_label": "stage 6 \u2014 deploy in agt *(deployment)*"
+    },
+    {
+      "label": "Stage 7 \u2014 Write up",
+      "file_type": "document",
+      "source_file": "notes/roadmap.md",
+      "source_location": "L84",
+      "_origin": "ast",
+      "id": "notes_roadmap_stage_7_write_up",
+      "community": 35,
+      "norm_label": "stage 7 \u2014 write up"
+    },
+    {
+      "label": "If you're short on time, cut in this order",
+      "file_type": "document",
+      "source_file": "notes/roadmap.md",
+      "source_location": "L90",
+      "_origin": "ast",
+      "id": "notes_roadmap_if_you_re_short_on_time_cut_in_this_order",
+      "community": 35,
+      "norm_label": "if you're short on time, cut in this order"
+    },
+    {
+      "label": "setup_notes.md",
+      "file_type": "document",
+      "source_file": "sandbox/setup_notes.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "sandbox_setup_notes",
+      "community": 25,
+      "norm_label": "setup_notes.md"
+    },
+    {
+      "label": "Phase 2 \u2014 OpenClaw/AGT sandbox setup notes",
+      "file_type": "document",
+      "source_file": "sandbox/setup_notes.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "sandbox_setup_notes_phase_2_openclaw_agt_sandbox_setup_notes",
+      "community": 25,
+      "norm_label": "phase 2 \u2014 openclaw/agt sandbox setup notes"
+    },
+    {
+      "label": "Sandbox build log",
+      "file_type": "document",
+      "source_file": "sandbox/setup_notes.md",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "sandbox_setup_notes_sandbox_build_log",
+      "community": 25,
+      "norm_label": "sandbox build log"
+    },
+    {
+      "label": "Why a VM (design rationale \u2014 for report \u00a74.2 / \u00a74.5)",
+      "file_type": "document",
+      "source_file": "sandbox/setup_notes.md",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "sandbox_setup_notes_why_a_vm_design_rationale_for_report_4_2_4_5",
+      "community": 25,
+      "norm_label": "why a vm (design rationale \u2014 for report \u00a74.2 / \u00a74.5)"
+    },
+    {
+      "label": "Environment (recorded 2026-10-19)",
+      "file_type": "document",
+      "source_file": "sandbox/setup_notes.md",
+      "source_location": "L47",
+      "_origin": "ast",
+      "id": "sandbox_setup_notes_environment_recorded_2026_10_19",
+      "community": 25,
+      "norm_label": "environment (recorded 2026-10-19)"
+    },
+    {
+      "label": "Step A \u2014 Copy MalSkillBench into the VM (run on the Mac)",
+      "file_type": "document",
+      "source_file": "sandbox/setup_notes.md",
+      "source_location": "L66",
+      "_origin": "ast",
+      "id": "sandbox_setup_notes_step_a_copy_malskillbench_into_the_vm_run_on_the_mac",
+      "community": 25,
+      "norm_label": "step a \u2014 copy malskillbench into the vm (run on the mac)"
+    },
+    {
+      "label": "Step B \u2014 Install Docker Engine inside the VM",
+      "file_type": "document",
+      "source_file": "sandbox/setup_notes.md",
+      "source_location": "L96",
+      "_origin": "ast",
+      "id": "sandbox_setup_notes_step_b_install_docker_engine_inside_the_vm",
+      "community": 25,
+      "norm_label": "step b \u2014 install docker engine inside the vm"
+    },
+    {
+      "label": "Step C \u2014 Unpack MalSkillBench and build the sandbox image (inside the VM)",
+      "file_type": "document",
+      "source_file": "sandbox/setup_notes.md",
+      "source_location": "L156",
+      "_origin": "ast",
+      "id": "sandbox_setup_notes_step_c_unpack_malskillbench_and_build_the_sandbox_image_inside_the_vm",
+      "community": 25,
+      "norm_label": "step c \u2014 unpack malskillbench and build the sandbox image (inside the vm)"
+    },
+    {
+      "label": "Step D \u2014 Sealed Docker network (inside the VM)",
+      "file_type": "document",
+      "source_file": "sandbox/setup_notes.md",
+      "source_location": "L198",
+      "_origin": "ast",
+      "id": "sandbox_setup_notes_step_d_sealed_docker_network_inside_the_vm",
+      "community": 25,
+      "norm_label": "step d \u2014 sealed docker network (inside the vm)"
+    },
+    {
+      "label": "Step E \u2014 INetSim fake internet (inside the VM)",
+      "file_type": "document",
+      "source_file": "sandbox/setup_notes.md",
+      "source_location": "L219",
+      "_origin": "ast",
+      "id": "sandbox_setup_notes_step_e_inetsim_fake_internet_inside_the_vm",
+      "community": 25,
+      "norm_label": "step e \u2014 inetsim fake internet (inside the vm)"
+    },
+    {
+      "label": "Step E2 \u2014 Fake DNS with dnsmasq (inside the VM)",
+      "file_type": "document",
+      "source_file": "sandbox/setup_notes.md",
+      "source_location": "L260",
+      "_origin": "ast",
+      "id": "sandbox_setup_notes_step_e2_fake_dns_with_dnsmasq_inside_the_vm",
+      "community": 25,
+      "norm_label": "step e2 \u2014 fake dns with dnsmasq (inside the vm)"
+    },
+    {
+      "label": "Step F \u2014 LLM egress proxy that holds the API key (inside the VM)",
+      "file_type": "document",
+      "source_file": "sandbox/setup_notes.md",
+      "source_location": "L296",
+      "_origin": "ast",
+      "id": "sandbox_setup_notes_step_f_llm_egress_proxy_that_holds_the_api_key_inside_the_vm",
+      "community": 25,
+      "norm_label": "step f \u2014 llm egress proxy that holds the api key (inside the vm)"
+    },
+    {
+      "label": "Isolation checks (2026-10-19)",
+      "file_type": "document",
+      "source_file": "sandbox/setup_notes.md",
+      "source_location": "L353",
+      "_origin": "ast",
+      "id": "sandbox_setup_notes_isolation_checks_2026_10_19",
+      "community": 25,
+      "norm_label": "isolation checks (2026-10-19)"
+    },
+    {
+      "label": "Step G \u2014 Patch the MalSkillBench runner (`Core/verification/sandbox.py`)",
+      "file_type": "document",
+      "source_file": "sandbox/setup_notes.md",
+      "source_location": "L367",
+      "_origin": "ast",
+      "id": "sandbox_setup_notes_step_g_patch_the_malskillbench_runner_core_verification_sandbox_py",
+      "community": 25,
+      "norm_label": "step g \u2014 patch the malskillbench runner (`core/verification/sandbox.py`)"
+    },
+    {
+      "label": "LLM choice for the agent (OpenCode) \u2014 researched 2026-10-19",
+      "file_type": "document",
+      "source_file": "sandbox/setup_notes.md",
+      "source_location": "L389",
+      "_origin": "ast",
+      "id": "sandbox_setup_notes_llm_choice_for_the_agent_opencode_researched_2026_10_19",
+      "community": 25,
+      "norm_label": "llm choice for the agent (opencode) \u2014 researched 2026-10-19"
+    },
+    {
+      "label": "Pending",
+      "file_type": "document",
+      "source_file": "sandbox/setup_notes.md",
+      "source_location": "L416",
+      "_origin": "ast",
+      "id": "sandbox_setup_notes_pending",
+      "community": 25,
+      "norm_label": "pending"
+    }
+  ],
+  "links": [
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "notebooks/00_toy_demo.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "notebooks_00_toy_demo_rationale_1",
+      "target": "notebooks_00_toy_demo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/demo_pipeline.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "sandbox_demo_pipeline",
+      "target": "sandbox_demo_pipeline_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/demo_pipeline.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "sandbox_demo_pipeline_rationale_1",
+      "target": "sandbox_demo_pipeline",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/baselines/agt_only.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_baselines_agt_only",
+      "target": "src_baselines_agt_only_predict",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/baselines/agt_only.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_baselines_agt_only_rationale_1",
+      "target": "src_baselines_agt_only",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/baselines/behaviour_only.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_baselines_behaviour_only",
+      "target": "src_baselines_behaviour_only_predict",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/baselines/behaviour_only.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_baselines_behaviour_only_rationale_1",
+      "target": "src_baselines_behaviour_only",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/baselines/llm_as_judge.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_baselines_llm_as_judge",
+      "target": "src_baselines_llm_as_judge_predict",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/baselines/llm_as_judge.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_baselines_llm_as_judge_rationale_1",
+      "target": "src_baselines_llm_as_judge",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/baselines/text_only.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_baselines_text_only",
+      "target": "src_baselines_text_only_predict",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/baselines/text_only.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_baselines_text_only_rationale_1",
+      "target": "src_baselines_text_only",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/calibration/logistic_calibrator.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_calibration_logistic_calibrator",
+      "target": "src_calibration_logistic_calibrator_logisticcalibrator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/calibration/logistic_calibrator.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_calibration_logistic_calibrator_rationale_1",
+      "target": "src_calibration_logistic_calibrator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/calibration/logistic_calibrator.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_calibration_logistic_calibrator_logisticcalibrator",
+      "target": "src_calibration_logistic_calibrator_logisticcalibrator_fit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/calibration/logistic_calibrator.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "src_calibration_logistic_calibrator_logisticcalibrator",
+      "target": "src_calibration_logistic_calibrator_logisticcalibrator_load",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/calibration/logistic_calibrator.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "src_calibration_logistic_calibrator_logisticcalibrator",
+      "target": "src_calibration_logistic_calibrator_logisticcalibrator_predict_proba",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/calibration/logistic_calibrator.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "src_calibration_logistic_calibrator_logisticcalibrator",
+      "target": "src_calibration_logistic_calibrator_logisticcalibrator_save",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/calibration/logistic_calibrator.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "src_calibration_logistic_calibrator_rationale_15",
+      "target": "src_calibration_logistic_calibrator_logisticcalibrator_predict_proba",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/config.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_config_rationale_1",
+      "target": "src_config",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/loader.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_data_loader",
+      "target": "src_config",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/embedding/encoder.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_embedding_encoder",
+      "target": "src_config",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/control_sets.py",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "src_data_control_sets",
+      "target": "src_data_control_sets_build_disclosed_payload_set",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/control_sets.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_data_control_sets",
+      "target": "src_data_control_sets_build_proxy_labelling_sheet",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/control_sets.py",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "src_data_control_sets",
+      "target": "src_data_control_sets_build_swapped_description_set",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/control_sets.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_data_control_sets",
+      "target": "src_data_schema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/control_sets.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_data_control_sets",
+      "target": "src_data_schema_skillsample",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/control_sets.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_data_control_sets_rationale_1",
+      "target": "src_data_control_sets",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/control_sets.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_data_control_sets_build_proxy_labelling_sheet",
+      "target": "src_data_schema_skillsample",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/control_sets.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "src_data_control_sets_rationale_14",
+      "target": "src_data_control_sets_build_proxy_labelling_sheet",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/control_sets.py",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "src_data_control_sets_build_swapped_description_set",
+      "target": "src_data_schema_skillsample",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/control_sets.py",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "src_data_control_sets_rationale_25",
+      "target": "src_data_control_sets_build_swapped_description_set",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/control_sets.py",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "src_data_control_sets_build_disclosed_payload_set",
+      "target": "src_data_schema_skillsample",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/control_sets.py",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "src_data_control_sets_rationale_35",
+      "target": "src_data_control_sets_build_disclosed_payload_set",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/loader.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_data_loader",
+      "target": "src_data_loader_load_malskillbench",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/loader.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_data_loader",
+      "target": "src_data_schema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/loader.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_data_loader",
+      "target": "src_data_schema_skillsample",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/loader.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_data_loader_rationale_1",
+      "target": "src_data_loader",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/loader.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_data_loader_load_malskillbench",
+      "target": "src_data_schema_skillsample",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/loader.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "src_data_loader_rationale_12",
+      "target": "src_data_loader_load_malskillbench",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/schema.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_data_schema",
+      "target": "src_data_schema_skillsample",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/schema.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_data_schema_rationale_1",
+      "target": "src_data_schema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/splitter.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_data_splitter",
+      "target": "src_data_schema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/schema.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "src_data_schema_rationale_12",
+      "target": "src_data_schema_skillsample",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/splitter.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_data_splitter",
+      "target": "src_data_schema_skillsample",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/splitter.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "src_data_splitter_make_splits",
+      "target": "src_data_schema_skillsample",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/splitter.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "src_data_splitter",
+      "target": "src_data_splitter_make_splits",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/splitter.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_data_splitter_rationale_1",
+      "target": "src_data_splitter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/splitter.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_data_splitter_rationale_13",
+      "target": "src_data_splitter_make_splits",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/embedding/encoder.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_embedding_encoder",
+      "target": "src_embedding_encoder_encoder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/embedding/encoder.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_embedding_encoder_rationale_1",
+      "target": "src_embedding_encoder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/embedding/encoder.py",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "src_embedding_encoder_encoder",
+      "target": "src_embedding_encoder_encoder_encode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/embedding/encoder.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "src_embedding_encoder_encoder",
+      "target": "src_embedding_encoder_encoder_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/embedding/encoder.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_embedding_encoder_rationale_11",
+      "target": "src_embedding_encoder_encoder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/embedding/finetune_setfit.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_embedding_finetune_setfit",
+      "target": "src_embedding_finetune_setfit_finetune",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/embedding/finetune_setfit.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_embedding_finetune_setfit_rationale_1",
+      "target": "src_embedding_finetune_setfit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/embedding/similarity.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_embedding_similarity",
+      "target": "src_embedding_similarity_consistency_score",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/embedding/similarity.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_embedding_similarity_rationale_1",
+      "target": "src_embedding_similarity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/embedding/similarity.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_embedding_similarity_rationale_7",
+      "target": "src_embedding_similarity_consistency_score",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/divergence_evaluator.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "src_evaluator_divergence_evaluator",
+      "target": "src_evaluator_divergence_evaluator_divergenceevaluator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/divergence_evaluator.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "src_evaluator_divergence_evaluator",
+      "target": "src_evaluator_divergence_evaluator_divergenceresult",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/divergence_evaluator.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_evaluator_divergence_evaluator_rationale_1",
+      "target": "src_evaluator_divergence_evaluator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_evaluator.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "tests_test_evaluator",
+      "target": "src_evaluator_divergence_evaluator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/divergence_evaluator.py",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "src_evaluator_divergence_evaluator_divergenceevaluator_evaluate",
+      "target": "src_evaluator_divergence_evaluator_divergenceresult",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_evaluator.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "tests_test_evaluator",
+      "target": "src_evaluator_divergence_evaluator_divergenceresult",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_evaluator.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "tests_test_evaluator_test_result_object_shape",
+      "target": "src_evaluator_divergence_evaluator_divergenceresult",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/divergence_evaluator.py",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "src_evaluator_divergence_evaluator_divergenceevaluator",
+      "target": "src_evaluator_divergence_evaluator_divergenceevaluator_evaluate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/divergence_evaluator.py",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "src_evaluator_divergence_evaluator_divergenceevaluator",
+      "target": "src_evaluator_divergence_evaluator_divergenceevaluator_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/divergence_evaluator.py",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "src_evaluator_divergence_evaluator_rationale_27",
+      "target": "src_evaluator_divergence_evaluator_divergenceevaluator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/experiments/exp1_baseline_comparison.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_experiments_exp1_baseline_comparison",
+      "target": "src_experiments_exp1_baseline_comparison_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/experiments/exp1_baseline_comparison.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_experiments_exp1_baseline_comparison_rationale_1",
+      "target": "src_experiments_exp1_baseline_comparison",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/experiments/exp2_ablation.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_experiments_exp2_ablation",
+      "target": "src_experiments_exp2_ablation_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/experiments/exp2_ablation.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_experiments_exp2_ablation_rationale_1",
+      "target": "src_experiments_exp2_ablation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/experiments/exp2b_finetune_ablation.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_experiments_exp2b_finetune_ablation",
+      "target": "src_experiments_exp2b_finetune_ablation_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/experiments/exp2b_finetune_ablation.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_experiments_exp2b_finetune_ablation_rationale_1",
+      "target": "src_experiments_exp2b_finetune_ablation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/experiments/exp3_attack_type_breakdown.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_experiments_exp3_attack_type_breakdown",
+      "target": "src_experiments_exp3_attack_type_breakdown_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/experiments/exp3_attack_type_breakdown.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_experiments_exp3_attack_type_breakdown_rationale_1",
+      "target": "src_experiments_exp3_attack_type_breakdown",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/experiments/exp4_embedding_model_comparison.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_experiments_exp4_embedding_model_comparison",
+      "target": "src_experiments_exp4_embedding_model_comparison_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/experiments/exp4_embedding_model_comparison.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_experiments_exp4_embedding_model_comparison_rationale_1",
+      "target": "src_experiments_exp4_embedding_model_comparison",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/experiments/exp5_control_experiments.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "src_experiments_exp5_control_experiments",
+      "target": "src_experiments_exp5_control_experiments_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/experiments/exp5_control_experiments.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_experiments_exp5_control_experiments_rationale_1",
+      "target": "src_experiments_exp5_control_experiments",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/experiments/exp6_holdout_generalisation.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "src_experiments_exp6_holdout_generalisation",
+      "target": "src_experiments_exp6_holdout_generalisation_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/experiments/exp6_holdout_generalisation.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_experiments_exp6_holdout_generalisation_rationale_1",
+      "target": "src_experiments_exp6_holdout_generalisation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preprocessing/structural_flags.py",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "src_preprocessing_structural_flags",
+      "target": "src_preprocessing_structural_flags_compute_structural_flags",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preprocessing/structural_flags.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_preprocessing_structural_flags",
+      "target": "src_preprocessing_structural_flags_structuralflags",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preprocessing/structural_flags.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_preprocessing_structural_flags_rationale_1",
+      "target": "src_preprocessing_structural_flags",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_structural_flags.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "tests_test_structural_flags",
+      "target": "src_preprocessing_structural_flags",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preprocessing/structural_flags.py",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "src_preprocessing_structural_flags_compute_structural_flags",
+      "target": "src_preprocessing_structural_flags_structuralflags",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preprocessing/structural_flags.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "src_preprocessing_structural_flags_structuralflags",
+      "target": "src_preprocessing_structural_flags_structuralflags_as_list",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preprocessing/structural_flags.py",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "src_preprocessing_structural_flags_structuralflags",
+      "target": "src_preprocessing_structural_flags_structuralflags_raised",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_structural_flags.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "tests_test_structural_flags",
+      "target": "src_preprocessing_structural_flags_structuralflags",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_structural_flags.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "tests_test_structural_flags_test_flags_raised_names",
+      "target": "src_preprocessing_structural_flags_structuralflags",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preprocessing/structural_flags.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "src_preprocessing_structural_flags_rationale_26",
+      "target": "src_preprocessing_structural_flags_structuralflags_raised",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preprocessing/structural_flags.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "src_preprocessing_structural_flags_rationale_31",
+      "target": "src_preprocessing_structural_flags_compute_structural_flags",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_structural_flags.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "tests_test_structural_flags",
+      "target": "src_preprocessing_structural_flags_compute_structural_flags",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_structural_flags.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "tests_test_structural_flags_test_not_yet_implemented",
+      "target": "src_preprocessing_structural_flags_compute_structural_flags",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preprocessing/trace_to_text.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "src_preprocessing_trace_to_text",
+      "target": "src_preprocessing_trace_to_text_trace_to_enriched_text",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preprocessing/trace_to_text.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_preprocessing_trace_to_text_rationale_1",
+      "target": "src_preprocessing_trace_to_text",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trace_to_text.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "tests_test_trace_to_text",
+      "target": "src_preprocessing_trace_to_text",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preprocessing/trace_to_text.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "src_preprocessing_trace_to_text_rationale_15",
+      "target": "src_preprocessing_trace_to_text_trace_to_enriched_text",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trace_to_text.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "tests_test_trace_to_text",
+      "target": "src_preprocessing_trace_to_text_trace_to_enriched_text",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trace_to_text.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "tests_test_trace_to_text_test_not_yet_implemented",
+      "target": "src_preprocessing_trace_to_text_trace_to_enriched_text",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_evaluator.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "tests_test_evaluator",
+      "target": "tests_test_evaluator_test_result_object_shape",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_evaluator.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tests_test_evaluator_rationale_1",
+      "target": "tests_test_evaluator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_structural_flags.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "tests_test_structural_flags",
+      "target": "tests_test_structural_flags_test_flags_raised_names",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_structural_flags.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "tests_test_structural_flags",
+      "target": "tests_test_structural_flags_test_not_yet_implemented",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_structural_flags.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tests_test_structural_flags_rationale_1",
+      "target": "tests_test_structural_flags",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trace_to_text.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "tests_test_trace_to_text",
+      "target": "tests_test_trace_to_text_test_not_yet_implemented",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trace_to_text.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tests_test_trace_to_text_rationale_1",
+      "target": "tests_test_trace_to_text",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "vendor/smoke_test.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "vendor_smoke_test_rationale_1",
+      "target": "vendor_smoke_test",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "claude",
+      "target": "claude_divergence_v8",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "claude",
+      "target": "claude_graphify",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L147",
+      "weight": 1.0,
+      "source": "claude_divergence_v8",
+      "target": "claude_reference_library_additions_v8",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L113",
+      "weight": 1.0,
+      "source": "claude_divergence_v8",
+      "target": "claude_updated_dataset_statement_v8",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L105",
+      "weight": 1.0,
+      "source": "claude_divergence_v8",
+      "target": "claude_updated_methodology_statement_v8",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "claude_divergence_v8",
+      "target": "claude_updated_section_5_equivalent_how_divergence_integrates_with_agt_v8",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L130",
+      "weight": 1.0,
+      "source": "claude_divergence_v8",
+      "target": "claude_updated_survey_statement_v8",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "claude_divergence_v8",
+      "target": "claude_what_changed_from_v7_0_read_this_first",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L170",
+      "weight": 1.0,
+      "source": "claude_divergence_v8",
+      "target": "claude_what_was_not_changed_from_v7",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L95",
+      "weight": 1.0,
+      "source": "claude_updated_section_5_equivalent_how_divergence_integrates_with_agt_v8",
+      "target": "claude_technical_grounding_for_2_4_3_4",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L62",
+      "weight": 1.0,
+      "source": "claude_updated_section_5_equivalent_how_divergence_integrates_with_agt_v8",
+      "target": "claude_the_integration_flow_v8",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "claude_updated_section_5_equivalent_how_divergence_integrates_with_agt_v8",
+      "target": "claude_the_precedent_this_design_follows",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L92",
+      "weight": 1.0,
+      "source": "claude_updated_section_5_equivalent_how_divergence_integrates_with_agt_v8",
+      "target": "claude_what_this_is_precisely_and_what_it_is_not",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L149",
+      "weight": 1.0,
+      "source": "claude_reference_library_additions_v8",
+      "target": "claude_agt_technical_sources_new",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L161",
+      "weight": 1.0,
+      "source": "claude_reference_library_additions_v8",
+      "target": "claude_chapter_2_additions_confirmed_still_needed_from_earlier_session_unchanged",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L154",
+      "weight": 1.0,
+      "source": "claude_reference_library_additions_v8",
+      "target": "claude_methodology_sources_new_from_chapter_3_restructure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "readme",
+      "target": "readme_divergence",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "readme",
+      "target": "structure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "readme_divergence",
+      "target": "readme_dataset",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "readme_divergence",
+      "target": "readme_methodology",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "readme_divergence",
+      "target": "readme_project_layout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "readme_divergence",
+      "target": "readme_setup",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Structure.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "structure",
+      "target": "structure_divergence_architecture_build_plan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Structure.md",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "structure_divergence_architecture_build_plan",
+      "target": "structure_1_one_sentence_description",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Structure.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "structure_divergence_architecture_build_plan",
+      "target": "structure_2_current_phase",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Structure.md",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "structure_divergence_architecture_build_plan",
+      "target": "structure_3_project_directory_structure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Structure.md",
+      "source_location": "L114",
+      "weight": 1.0,
+      "source": "structure_divergence_architecture_build_plan",
+      "target": "structure_4_per_skill_pipeline_runtime_flow",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Structure.md",
+      "source_location": "L154",
+      "weight": 1.0,
+      "source": "structure_divergence_architecture_build_plan",
+      "target": "structure_5_one_time_setup_pipeline_step_0_runs_once_before_deployment",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Structure.md",
+      "source_location": "L167",
+      "weight": 1.0,
+      "source": "structure_divergence_architecture_build_plan",
+      "target": "structure_6_build_order_phase_1_malskillbench_only",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Structure.md",
+      "source_location": "L188",
+      "weight": 1.0,
+      "source": "structure_divergence_architecture_build_plan",
+      "target": "structure_7_build_order_phase_2_once_phase_1_is_stable",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Structure.md",
+      "source_location": "L199",
+      "weight": 1.0,
+      "source": "structure_divergence_architecture_build_plan",
+      "target": "structure_8_key_naming_citation_anchors_to_keep_consistent_in_code_report",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Structure.md",
+      "source_location": "L209",
+      "weight": 1.0,
+      "source": "structure_divergence_architecture_build_plan",
+      "target": "structure_9_notes_for_claude_code",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "data/raw/malskillbench/README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "data_raw_malskillbench_readme",
+      "target": "data_raw_malskillbench_readme_malskillbench_raw",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "instructions_for_record.md",
+      "source_location": "L94",
+      "weight": 1.0,
+      "source": "instructions_for_record",
+      "target": "instructions_for_record_1_real_internet_is_unreachable_should_fail_or_time_out",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "instructions_for_record.md",
+      "source_location": "L96",
+      "weight": 1.0,
+      "source": "instructions_for_record",
+      "target": "instructions_for_record_2_any_domain_resolves_to_inetsim_should_return_inetsim_s_fake_page",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "instructions_for_record.md",
+      "source_location": "L98",
+      "weight": 1.0,
+      "source": "instructions_for_record",
+      "target": "instructions_for_record_3_the_proxy_adds_the_key_should_return_json_about_your_key_not_a_401_error",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "instructions_for_record.md",
+      "source_location": "L100",
+      "weight": 1.0,
+      "source": "instructions_for_record",
+      "target": "instructions_for_record_4_every_other_path_is_blocked_should_return_403",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "notes/citations.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "notes_citations",
+      "target": "notes_citations_citation_notes_drafted_not_yet_placed_in_the_report",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "notes/citations.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "notes_citations_citation_notes_drafted_not_yet_placed_in_the_report",
+      "target": "notes_citations_clawhub_security_signals_motivating_evidence_not_used_as_data",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "notes/citations.md",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "notes_citations_citation_notes_drafted_not_yet_placed_in_the_report",
+      "target": "notes_citations_phase_1_trace_capture_opencode_as_agent_proxy_methodology_scope_note",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "notes/roadmap.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "notes_roadmap",
+      "target": "notes_roadmap_divergence_roadmap_from_sandbox_to_submission_written_2026_10_19",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "notes/roadmap.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "notes_roadmap_divergence_roadmap_from_sandbox_to_submission_written_2026_10_19",
+      "target": "notes_roadmap_end_goal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "notes/roadmap.md",
+      "source_location": "L90",
+      "weight": 1.0,
+      "source": "notes_roadmap_divergence_roadmap_from_sandbox_to_submission_written_2026_10_19",
+      "target": "notes_roadmap_if_you_re_short_on_time_cut_in_this_order",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "notes/roadmap.md",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "notes_roadmap_divergence_roadmap_from_sandbox_to_submission_written_2026_10_19",
+      "target": "notes_roadmap_key_point_the_sandbox_is_on_the_critical_path_now",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "notes/roadmap.md",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "notes_roadmap_divergence_roadmap_from_sandbox_to_submission_written_2026_10_19",
+      "target": "notes_roadmap_stages_crisp_dm_phase_in_brackets",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "notes/roadmap.md",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "notes_roadmap_stages_crisp_dm_phase_in_brackets",
+      "target": "notes_roadmap_stage_1_finish_the_sandbox_data_understanding",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "notes/roadmap.md",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "notes_roadmap_stages_crisp_dm_phase_in_brackets",
+      "target": "notes_roadmap_stage_2_generate_traces_data_understanding_preparation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "notes/roadmap.md",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "notes_roadmap_stages_crisp_dm_phase_in_brackets",
+      "target": "notes_roadmap_stage_3_prepare_the_data_data_preparation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "notes/roadmap.md",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "notes_roadmap_stages_crisp_dm_phase_in_brackets",
+      "target": "notes_roadmap_stage_4_build_the_model_step_by_step_modelling",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "notes/roadmap.md",
+      "source_location": "L64",
+      "weight": 1.0,
+      "source": "notes_roadmap_stages_crisp_dm_phase_in_brackets",
+      "target": "notes_roadmap_stage_5_evaluate_evaluation_held_out_test_split_only",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "notes/roadmap.md",
+      "source_location": "L75",
+      "weight": 1.0,
+      "source": "notes_roadmap_stages_crisp_dm_phase_in_brackets",
+      "target": "notes_roadmap_stage_6_deploy_in_agt_deployment",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "notes/roadmap.md",
+      "source_location": "L84",
+      "weight": 1.0,
+      "source": "notes_roadmap_stages_crisp_dm_phase_in_brackets",
+      "target": "notes_roadmap_stage_7_write_up",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/setup_notes.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "sandbox_setup_notes",
+      "target": "sandbox_setup_notes_phase_2_openclaw_agt_sandbox_setup_notes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/setup_notes.md",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "sandbox_setup_notes_phase_2_openclaw_agt_sandbox_setup_notes",
+      "target": "sandbox_setup_notes_sandbox_build_log",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/setup_notes.md",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "sandbox_setup_notes_sandbox_build_log",
+      "target": "sandbox_setup_notes_environment_recorded_2026_10_19",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/setup_notes.md",
+      "source_location": "L353",
+      "weight": 1.0,
+      "source": "sandbox_setup_notes_sandbox_build_log",
+      "target": "sandbox_setup_notes_isolation_checks_2026_10_19",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/setup_notes.md",
+      "source_location": "L389",
+      "weight": 1.0,
+      "source": "sandbox_setup_notes_sandbox_build_log",
+      "target": "sandbox_setup_notes_llm_choice_for_the_agent_opencode_researched_2026_10_19",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/setup_notes.md",
+      "source_location": "L416",
+      "weight": 1.0,
+      "source": "sandbox_setup_notes_sandbox_build_log",
+      "target": "sandbox_setup_notes_pending",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/setup_notes.md",
+      "source_location": "L66",
+      "weight": 1.0,
+      "source": "sandbox_setup_notes_sandbox_build_log",
+      "target": "sandbox_setup_notes_step_a_copy_malskillbench_into_the_vm_run_on_the_mac",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/setup_notes.md",
+      "source_location": "L96",
+      "weight": 1.0,
+      "source": "sandbox_setup_notes_sandbox_build_log",
+      "target": "sandbox_setup_notes_step_b_install_docker_engine_inside_the_vm",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/setup_notes.md",
+      "source_location": "L156",
+      "weight": 1.0,
+      "source": "sandbox_setup_notes_sandbox_build_log",
+      "target": "sandbox_setup_notes_step_c_unpack_malskillbench_and_build_the_sandbox_image_inside_the_vm",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/setup_notes.md",
+      "source_location": "L198",
+      "weight": 1.0,
+      "source": "sandbox_setup_notes_sandbox_build_log",
+      "target": "sandbox_setup_notes_step_d_sealed_docker_network_inside_the_vm",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/setup_notes.md",
+      "source_location": "L260",
+      "weight": 1.0,
+      "source": "sandbox_setup_notes_sandbox_build_log",
+      "target": "sandbox_setup_notes_step_e2_fake_dns_with_dnsmasq_inside_the_vm",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/setup_notes.md",
+      "source_location": "L219",
+      "weight": 1.0,
+      "source": "sandbox_setup_notes_sandbox_build_log",
+      "target": "sandbox_setup_notes_step_e_inetsim_fake_internet_inside_the_vm",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/setup_notes.md",
+      "source_location": "L296",
+      "weight": 1.0,
+      "source": "sandbox_setup_notes_sandbox_build_log",
+      "target": "sandbox_setup_notes_step_f_llm_egress_proxy_that_holds_the_api_key_inside_the_vm",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/setup_notes.md",
+      "source_location": "L367",
+      "weight": 1.0,
+      "source": "sandbox_setup_notes_sandbox_build_log",
+      "target": "sandbox_setup_notes_step_g_patch_the_malskillbench_runner_core_verification_sandbox_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/setup_notes.md",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "sandbox_setup_notes_sandbox_build_log",
+      "target": "sandbox_setup_notes_why_a_vm_design_rationale_for_report_4_2_4_5",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "built_at_commit": "75abf63874f210ba685d2c7185e42c67f993b05c"
+}

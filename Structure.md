@@ -15,7 +15,7 @@ A mostly-pretrained, lightly fine-tuned ML layer that sits on top of AGT and sco
 ## 2. Current phase
 
 **Phase 1 (now):** Build and validate the full pipeline against MalSkillBench alone. No OpenClaw/AGT dependency needed yet.
-**Phase 2 (later):** Set up OpenClaw + AGT sandbox, capture supplementary traces, fold into hybrid dataset, run live demo (Experiment 5).
+**Phase 2 (later):** Set up OpenClaw + AGT sandbox, capture supplementary traces, fold into hybrid dataset, run live demo (Experiment 7).
 
 Do not block Phase 1 work on Phase 2 setup — pipeline must run standalone first (safety-net principle from the build guide).
 
@@ -44,7 +44,8 @@ divergence/
 │   ├── data/
 │   │   ├── loader.py                   # load + parse MalSkillBench
 │   │   ├── splitter.py                 # fine-tune / calibration / held-out split logic
-│   │   └── schema.py                   # dataclass/pydantic schema for a "skill sample"
+│   │   ├── schema.py                   # dataclass/pydantic schema for a "skill sample"
+│   │   └── control_sets.py             # Exp 5 control sets (proxy sheet, swapped, disclosed)
 │   │
 │   ├── preprocessing/
 │   │   ├── trace_to_text.py            # Option 1: enriched trace -> text conversion
@@ -72,7 +73,9 @@ divergence/
 │       ├── exp2_ablation.py
 │       ├── exp2b_finetune_ablation.py
 │       ├── exp3_attack_type_breakdown.py
-│       └── exp4_embedding_model_comparison.py   # optional/bonus
+│       ├── exp4_embedding_model_comparison.py   # optional/bonus
+│       ├── exp5_control_experiments.py          # inconsistency vs maliciousness controls
+│       └── exp6_holdout_generalisation.py       # held-out behaviour class / attack vector
 │
 ├── notebooks/
 │   ├── 01_data_understanding.ipynb     # EDA: class balance, taxonomy distribution
@@ -89,11 +92,13 @@ divergence/
 │   ├── exp2_ablation_results.csv
 │   ├── exp2b_finetune_delta.csv
 │   ├── exp3_attack_breakdown.csv
+│   ├── exp5_controls.csv
+│   ├── exp6_holdout.csv
 │   └── figures/
 │
 ├── sandbox/                            # Phase 2: OpenClaw/AGT integration
 │   ├── setup_notes.md
-│   └── demo_pipeline.py                # Experiment 5 live demo
+│   └── demo_pipeline.py                # Experiment 7 live demo
 │
 ├── tests/
 │   ├── test_trace_to_text.py
@@ -175,8 +180,10 @@ This mirrors AGT's own `PromptDefenseEvaluator` shape (`.score`, `.missing`, `.c
 - [ ] **12. Experiment 1** — baseline comparison + McNemar's test, held-out test split only
 - [ ] **13. Experiment 2 / 2b** — ablations (structural flags, trace enrichment, fine-tuning delta)
 - [ ] **14. Experiment 3** — attack-type breakdown across taxonomy
-- [ ] **15. (Optional) Experiment 4** — embedding model comparison
-- [ ] **16. Tests** — unit tests for trace-to-text and structural flags especially (these are your custom logic, most likely to have edge-case bugs)
+- [ ] **15. Experiment 5** — control experiments (`src/data/control_sets.py` + `exp5_control_experiments.py`): proxy-validity hand-labelling, swapped-description (benign, inconsistent), disclosed-payload (malicious, consistent)
+- [ ] **16. Experiment 6** — held-out generalisation: leave-one-behaviour-class-out + cross attack vector (Code Injection ↔ Prompt Injection, Mixed excluded)
+- [ ] **17. (Optional) Experiment 4** — embedding model comparison
+- [ ] **18. Tests** — unit tests for trace-to-text and structural flags especially (these are your custom logic, most likely to have edge-case bugs)
 
 ## 7. Build order (Phase 2, once Phase 1 is stable)
 
@@ -184,7 +191,7 @@ This mirrors AGT's own `PromptDefenseEvaluator` shape (`.score`, `.missing`, `.c
 - [ ] Capture supplementary skill traces from your own sandbox
 - [ ] Fold supplementary traces into hybrid dataset (`data/supplementary/`)
 - [ ] Re-run key experiments on hybrid dataset, compare to MalSkillBench-only results
-- [ ] Build live demo pipeline (`sandbox/demo_pipeline.py`) — Experiment 5
+- [ ] Build live demo pipeline (`sandbox/demo_pipeline.py`) — Experiment 7
 - [ ] Wire `DivergenceEvaluator` into AGT's actual pre-policy evaluator hook
 
 ---

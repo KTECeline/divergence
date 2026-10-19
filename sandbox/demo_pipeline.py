@@ -1,4 +1,4 @@
-"""Experiment 5 live demo pipeline (Phase 2).
+"""Experiment 7 live demo pipeline (Phase 2).
 
 Runs a skill inside the OpenClaw/AGT sandbox, captures its audit log, and
 feeds it through DivergenceEvaluator, surfacing the result alongside AGT's
