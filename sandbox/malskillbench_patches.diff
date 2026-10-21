@@ -1,0 +1,153 @@
+# MalSkillBench runner patches for the Divergence sealed sandbox.
+# Upstream commit: 06e083125d5ec5dd7a189dfedadfe587a70635b9 (Add citation to README)
+# Apply from vendor/MalSkillBench: git apply ../../sandbox/malskillbench_patches.diff
+# Every change is also marked 'NOTE (patched)' in the source. See sandbox/setup_notes.md Step G.
+diff --git a/Core/verification/docker/Dockerfile b/Core/verification/docker/Dockerfile
+index 224fb0702f..844f94b5c9 100644
+--- a/Core/verification/docker/Dockerfile
++++ b/Core/verification/docker/Dockerfile
+@@ -3,7 +3,7 @@ FROM node:20-slim
+ # Install system tools: Python, strace, inotify, and utilities
+ RUN apt-get update && apt-get install -y --no-install-recommends \
+     python3 python3-pip python3-venv \
+-    strace inotify-tools procps curl ca-certificates \
++    strace inotify-tools procps curl ca-certificates ripgrep \
+     iputils-ping dnsutils net-tools \
+     && rm -rf /var/lib/apt/lists/*
+ 
+diff --git a/Core/verification/sandbox.py b/Core/verification/sandbox.py
+index 8a975cbb9c..ece7bfaaba 100644
+--- a/Core/verification/sandbox.py
++++ b/Core/verification/sandbox.py
+@@ -8,6 +8,7 @@ import json
+ import logging
+ import os
+ import re
++import shutil
+ import subprocess
+ import sys
+ import tempfile
+@@ -16,7 +17,33 @@ from typing import Dict, List, Tuple
+ 
+ DOCKER_IMAGE = "malskillbench/verification-sandbox"
+ DOCKER_DIR = Path(__file__).parent / "docker"
++# NOTE (patched): isolation for running malicious skills inside the dvg-lab VM.
++# Upstream used --network host and passed the LLM API key into the container.
++# Containers now join an --internal Docker network whose only reachable hosts
++# are INetSim (fake internet), a dnsmasq DNS sinkhole, and an egress proxy that
++# injects the real key, so the key never enters the container.
++# See Divergence/sandbox/setup_notes.md (Steps D-G).
++SANDBOX_NETWORK = os.environ.get("DVG_SANDBOX_NETWORK", "dvg-isolated")
++SANDBOX_DNS = os.environ.get("DVG_SANDBOX_DNS", "172.30.0.4")
++CONTAINER_API_KEY = "injected-by-proxy"
++# NOTE (patched): upstream wrote each run's evidence into <skill_dir>/_runtime/
++# and mounted the whole skill_dir into the next container, so the agent could
++# read the previous run's trigger, output and logs (seen in the 12306 smoke
++# test). The container now gets a clean copy without these bookkeeping files,
++# and runtime logs are kept outside the dataset.
++NON_SKILL_FILES = {
++    "_meta.json", "_runtime", "_evidence.json", "_agent_raw.jsonl",
++    # Generation-time labels (expected behaviour, IOCs, provenance): would hand
++    # the agent the answer key if a skill folder ever contained them.
++    "_expected.json", "_indicators.json", "_provenance.json",
++}
++if SANDBOX_NETWORK in ("host", "bridge", "default"):
++    raise RuntimeError(
++        f"Refusing to run skills on Docker network '{SANDBOX_NETWORK}': "
++        "it has internet access. Use the --internal network (dvg-isolated)."
++    )
+ PROJECT_ROOT = Path(__file__).parent.parent.parent
++RUNTIME_LOG_ROOT = PROJECT_ROOT / "Logs" / "runtime"  # see NON_SKILL_FILES note
+ # Evidence scratch lives on the project disk (/home2 / sdb), NOT /tmp (sda).
+ # Strace logs run 10-100 MB per skill; writing them to the system disk
+ # contends with SSH/pty/other-users' home I/O and visibly degrades responsiveness.
+@@ -181,6 +208,20 @@ class DockerSandbox:
+         ) as tmp_dir:
+             tmp_evidence = Path(tmp_dir) / "evidence"
+             tmp_evidence.mkdir()
++            # Container root runs with --cap-drop ALL (no CAP_DAC_OVERRIDE), so
++            # it can only write here if the directory is world-writable.
++            tmp_evidence.chmod(0o777)
++            clean_skill = Path(tmp_dir) / "skill"
++            shutil.copytree(
++                skill_dir, clean_skill,
++                ignore=lambda d, names: (
++                    [n for n in names if n in NON_SKILL_FILES]
++                    + [n for n in names if n.startswith("._") or n == ".DS_Store"]
++                    if Path(d) == skill_dir
++                    # macOS metadata files (AppleDouble, Finder) at any depth
++                    else [n for n in names if n.startswith("._") or n == ".DS_Store"]
++                ),
++            )
+             safe_name = re.sub(r"[^a-zA-Z0-9_.-]", "_", skill_dir.name)
+             container_name = f"malskillbench_verify_{safe_name}"[:63]
+ 
+@@ -216,8 +257,12 @@ class DockerSandbox:
+                     json.dump(opencode_cfg, f)
+                 provider_model = f"local-model/{self.model}"
+             else:
+-                opencode_cfg_path = None
+-                provider_model = f"openai/{self.model}"
++                # Direct OpenAI access would need the real key inside the
++                # container, which the isolated setup forbids.
++                raise RuntimeError(
++                    "No api_base configured. Point the 'custom' provider at the "
++                    "egress proxy (http://llm-proxy:8080/api/v1)."
++                )
+ 
+             result: Dict
+             try:
+@@ -226,20 +271,30 @@ class DockerSandbox:
+                     "docker", "run", "--rm",
+                     "--name", container_name,
+                     "--label", f"malskillbench_run_id={run_id}",
+-                    "--network", "host",
+-                    "-v", f"{skill_dir.resolve()}:/workspace/skill:ro",
++                    "--network", SANDBOX_NETWORK,
++                    "--dns", SANDBOX_DNS,
++                    "-v", f"{clean_skill.resolve()}:/workspace/skill:ro",
+                     "-v", f"{tmp_evidence.resolve()}:/tmp/evidence",
+-                    "-e", f"OPENAI_API_KEY={self.api_key}",
++                    "-e", f"OPENAI_API_KEY={CONTAINER_API_KEY}",
+                     "-e", f"OPENAI_MODEL={provider_model}",
+                     "-e", f"TRIGGER_PROMPT={trigger_prompt}",
+                     "-e", f"EXEC_TIMEOUT={self.timeout}",
+-                    "--cap-add", "SYS_PTRACE",
++                    "--cap-drop", "ALL",
++                    "--cap-add", "SYS_PTRACE",  # strace needs it
++                    "--security-opt", "no-new-privileges",
++                    "--pids-limit", "256",
+                     "--memory", "4g",
+                     "--cpus", "2",
+                 ]
+-                # Mount opencode.json for local model config
++                # Mount opencode.json for local model config.
++                # NOTE (patched): the installed opencode-ai CLI (v1.18.9) reads
++                # project-local config from <cwd>/.opencode/opencode.json, not
++                # <cwd>/opencode.json. The upstream mount path is stale relative
++                # to whatever opencode-ai version this now installs (Dockerfile
++                # pins no version), so the custom Ollama provider was silently
++                # never being read. Mount to the path the CLI actually uses.
+                 if opencode_cfg_path:
+-                    cmd.extend(["-v", f"{opencode_cfg_path.resolve()}:/workspace/opencode.json:ro"])
++                    cmd.extend(["-v", f"{opencode_cfg_path.resolve()}:/workspace/.opencode/opencode.json:ro"])
+                 cmd.append(DOCKER_IMAGE)
+                 proc = subprocess.run(
+                     cmd, capture_output=True, text=True,
+@@ -654,14 +709,13 @@ class DockerSandbox:
+     @staticmethod
+     def _persist_runtime_logs(tmp_evidence: Path, skill_dir: Path, trigger_prompt: str) -> None:
+         """
+-        Mirror the ephemeral sandbox evidence dir into <skill_dir>/_runtime/ so the
++        Mirror the ephemeral sandbox evidence dir into Logs/runtime/<split>/<skill>/ so the
+         full opencode execution trace survives for manual post-hoc inspection.
+         Overwrites any previous _runtime/ from a prior verify run so contents
+         always correspond to the same run as the sibling _evidence.json.
+         """
+         import gzip
+-        import shutil
+-        runtime_dir = skill_dir / "_runtime"
++        runtime_dir = RUNTIME_LOG_ROOT / skill_dir.parent.name / skill_dir.name
+         if runtime_dir.exists():
+             shutil.rmtree(runtime_dir)
+         runtime_dir.mkdir(parents=True, exist_ok=True)

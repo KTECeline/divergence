@@ -72,6 +72,26 @@ your core dataset. `Structure.md` §2 now says this (updated 2026-10-21).
   (move it into `src/data/loader.py` in Stage 3)
 - EDA notebook: class balance, taxonomy coverage, trace length
 
+**Stage 3 progress (2026-10-21)**
+- [x] `src/preprocessing/normalise_trace.py`: tool calls are the ordered backbone;
+      strace effects attributed to the bash call through the process tree
+      (95.5 % of bash calls matched); agent text and OpenCode's own activity dropped
+- [x] `src/data/outcome.py`: behaviour signals + provisional outcome (replaces
+      batch_run.py's heuristic, which counted `pip`/`diff` as "ran skill code")
+- [x] `src/data/loader.py` -> `data/processed/samples.jsonl` (2,003 runs; strips the
+      generator marker found in 888 malicious SKILL.md files and 0 benign ones)
+- [x] `src/data/splitter.py`: group_key + identical-description union-find,
+      StratifiedGroupKFold -> 802 / 400 / 800, leakage check passes; 1 run
+      excluded (no description)
+- [x] `src/data/review_sheet.py` -> `data/processed/review/` (181 rows: 71 A, 110 B)
+- [x] tests: 26 pass
+- [ ] **Hand review (you)** -> final labels -> decide the positive class
+- [ ] EDA notebook
+- **Key finding:** the agent ran shipped scripts for 111/142 benign but 15/431
+  malicious skills, and declined for security reasons in ~740 of 1,003
+  malicious runs. Real payload behaviour is rare (rules: ~62 candidates).
+  How to get enough positives is an open decision (see the 2026-10-21 notes).
+
 ### Stage 4 — Build the model step by step *(Modelling)*
 Build in this order, and get each piece working before adding the next:
 1. `trace_to_text.py` (+ unit tests, collision check)

@@ -35,5 +35,9 @@
   "33": "__init__.py",
   "34": "__init__.py",
   "35": "Stages (CRISP-DM phase in brackets)",
-  "36": "instructions_for_record.md"
+  "36": "instructions_for_record.md",
+  "37": "batch_run.py",
+  "38": "pilot_run.py",
+  "39": "compare.py",
+  "40": "comparison.md"
 }

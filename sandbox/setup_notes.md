@@ -366,6 +366,11 @@ docker exec llm-proxy grep -c 'Bearer sk-or-' /etc/nginx/conf.d/default.conf  # 
 
 ### Step G — Patch the MalSkillBench runner (`Core/verification/sandbox.py`)
 
+> The full patch is saved as `sandbox/malskillbench_patches.diff` (upstream commit
+> `06e083125d`), because `vendor/MalSkillBench/` is git-ignored and its own `.git`
+> history was removed on 2026-10-21 to free 705 MB. The diff was checked against the
+> patched files with `git apply --check -R` before removal.
+
 **Purpose:** the upstream runner was written for a trusted research server. It
 gave every skill container the host's network (real internet) and copied the
 LLM API key into the container's environment. The patch connects it to the

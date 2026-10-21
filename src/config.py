@@ -17,6 +17,17 @@ STRUCTURAL_FLAGS_DIR = PROCESSED_DIR / "structural_flags"
 SPLITS_DIR = PROCESSED_DIR / "splits"
 SUPPLEMENTARY_DIR = DATA_DIR / "supplementary"  # Phase 2
 
+# MalSkillBench ships skills only; it lives under vendor/ next to its runner.
+MALSKILLBENCH_DIR = PROJECT_ROOT / "vendor" / "MalSkillBench"
+SKILLS_DIR = MALSKILLBENCH_DIR / "Dataset" / "Skills"
+INVENTORY_PATH = SKILLS_DIR / "malware" / "_source_inventory.txt"
+
+# Behaviour traces produced in the sealed sandbox (Stage 2, vendor/batch_run.py)
+TRACES_DIR = DATA_DIR / "raw" / "traces" / "batch_out"
+TRACES_SUMMARY_PATH = TRACES_DIR / "summary.csv"
+SAMPLES_PATH = PROCESSED_DIR / "samples.jsonl"
+REVIEW_DIR = PROCESSED_DIR / "review"
+
 MODELS_DIR = PROJECT_ROOT / "models"
 FINETUNED_EMBEDDING_DIR = MODELS_DIR / "finetuned_embedding"
 CALIBRATION_MODEL_PATH = MODELS_DIR / "calibration_model.pkl"
@@ -28,6 +39,9 @@ FIGURES_DIR = RESULTS_DIR / "figures"
 FINETUNE_SPLIT_PATH = SPLITS_DIR / "finetune.jsonl"
 CALIBRATION_SPLIT_PATH = SPLITS_DIR / "calibration.jsonl"
 HELD_OUT_TEST_SPLIT_PATH = SPLITS_DIR / "held_out_test.jsonl"
+SPLIT_ASSIGNMENT_PATH = SPLITS_DIR / "split_assignment.csv"
+# Group-aware 5-fold assignment: 2 folds fine-tune, 1 calibration, 2 test (40/20/40)
+SPLIT_FOLDS = {"finetune": (0, 1), "calibration": (2,), "held_out_test": (3, 4)}
 
 # --- Models ----------------------------------------------------------------
 # Pretrained Sentence-BERT base model (used directly in the pretrained-only

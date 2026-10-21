@@ -1,16 +1,16 @@
 # Graph Report - Divergence  (2026-10-21)
 
 ## Corpus Check
-- 50 files · ~18,588 words
+- 2062 files · ~242,718,659 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 224 nodes · 212 edges · 41 communities (24 shown, 17 thin omitted)
+- 337 nodes · 443 edges · 48 communities (28 shown, 20 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `8219e72c`
+- Built from commit: `c8183b8e`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -48,39 +48,46 @@
 - [[_COMMUNITY_pilot_run.py|pilot_run.py]]
 - [[_COMMUNITY_compare.py|compare.py]]
 - [[_COMMUNITY_comparison|comparison.md]]
+- [[_COMMUNITY_loader.py|loader.py]]
+- [[_COMMUNITY_test_outcome.py|test_outcome.py]]
+- [[_COMMUNITY_make_sample.py|make_sample.py]]
+- [[_COMMUNITY_make_handcheck.py|make_handcheck.py]]
+- [[_COMMUNITY_score_handcheck.py|score_handcheck.py]]
+- [[_COMMUNITY_score_handcheck.py|score_handcheck.py]]
+- [[_COMMUNITY_README|README.md]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `Sandbox build log` - 18 edges
-2. `SkillSample` - 10 edges
-3. `Divergence — Architecture & Build Plan` - 10 edges
-4. `DIVERGENCE v8` - 8 edges
-5. `Stages (CRISP-DM phase in brackets)` - 8 edges
-6. `StructuralFlags` - 6 edges
-7. `LogisticCalibrator` - 5 edges
-8. `compute_structural_flags()` - 5 edges
-9. `main()` - 5 edges
-10. `Updated Section 5 Equivalent — How Divergence Integrates With AGT (v8)` - 5 edges
+1. `SkillSample` - 20 edges
+2. `normalise()` - 19 edges
+3. `Sandbox build log` - 19 edges
+4. `signals()` - 11 edges
+5. `build_samples()` - 10 edges
+6. `Divergence — Architecture & Build Plan` - 10 edges
+7. `parse_skill_md()` - 9 edges
+8. `provisional_outcome()` - 9 edges
+9. `parse_execve_argv()` - 9 edges
+10. `attribution_coverage()` - 9 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `test_flags_raised_names()` --calls--> `StructuralFlags`  [EXTRACTED]
-  tests/test_structural_flags.py → src/preprocessing/structural_flags.py
-- `test_not_yet_implemented()` --calls--> `compute_structural_flags()`  [EXTRACTED]
-  tests/test_structural_flags.py → src/preprocessing/structural_flags.py
-- `test_result_object_shape()` --calls--> `DivergenceResult`  [EXTRACTED]
-  tests/test_evaluator.py → src/evaluator/divergence_evaluator.py
-- `test_not_yet_implemented()` --calls--> `trace_to_enriched_text()`  [EXTRACTED]
-  tests/test_trace_to_text.py → src/preprocessing/trace_to_text.py
-- `build_proxy_labelling_sheet()` --references--> `SkillSample`  [EXTRACTED]
-  src/data/control_sets.py → src/data/schema.py
+- `test_group_keys_tie_variants_together()` --calls--> `group_key()`  [EXTRACTED]
+  tests/test_loader.py → src/data/loader.py
+- `test_missing_opening_dashes()` --calls--> `split_frontmatter()`  [EXTRACTED]
+  tests/test_loader.py → src/data/loader.py
+- `test_generator_marker_stripped()` --calls--> `parse_skill_md()`  [EXTRACTED]
+  tests/test_loader.py → src/data/loader.py
+- `test_horizontal_rule_is_not_frontmatter()` --calls--> `parse_skill_md()`  [EXTRACTED]
+  tests/test_loader.py → src/data/loader.py
+- `test_normal_frontmatter()` --calls--> `parse_skill_md()`  [EXTRACTED]
+  tests/test_loader.py → src/data/loader.py
 
 ## Import Cycles
 - None detected.
 
-## Communities (41 total, 17 thin omitted)
+## Communities (48 total, 20 thin omitted)
 
 ### Community 0 - "SkillSample"
 Cohesion: 0.13
-Nodes (17): Central configuration: paths, model names, thresholds, seeds.  Every module read, build_disclosed_payload_set(), build_proxy_labelling_sheet(), build_swapped_description_set(), Build the control sets that separate inconsistency from maliciousness.  Used by, Sample n malicious skills into a CSV for hand-labelling.      Columns: sample_id, Benign trace paired with a different benign skill's description.      Inconsiste, Malicious trace paired with a description that honestly states the payload. (+9 more)
+Nodes (26): build_disclosed_payload_set(), build_proxy_labelling_sheet(), build_swapped_description_set(), Build the control sets that separate inconsistency from maliciousness.  Used by, Sample n malicious skills into a CSV for hand-labelling.      Columns: sample_id, Benign trace paired with a different benign skill's description.      Inconsiste, Malicious trace paired with a description that honestly states the payload., Schema for one skill run: a MalSkillBench skill plus the trace it produced.  Mal (+18 more)
 
 ### Community 1 - "DIVERGENCE v8"
 Cohesion: 0.12
@@ -107,8 +114,8 @@ Cohesion: 0.38
 Nodes (5): Enriched trace-to-text conversion (pipeline Step 2, Option 1).  Build order item, Convert a raw action trace into enriched descriptive text.      Example output:, trace_to_enriched_text(), Unit tests for enriched trace-to-text conversion (build order item 16).  Write t, test_not_yet_implemented()
 
 ### Community 7 - "Encoder"
-Cohesion: 0.33
-Nodes (3): Encoder, Sentence-BERT load + encode wrapper (pipeline Steps 1 and 3).  Build order item, Thin wrapper around a sentence-transformers model.      Loads either the pretrai
+Cohesion: 0.16
+Nodes (9): Central configuration: paths, model names, thresholds, seeds.  Every module read, load_samples(), final_text(), build_sheet(), Build the hand-review sheet that turns provisional outcomes into labels.  Priori, _row(), Encoder, Sentence-BERT load + encode wrapper (pipeline Steps 1 and 3).  Build order item (+1 more)
 
 ### Community 8 - "Citation notes (drafted, not yet placed in the report)"
 Cohesion: 0.50
@@ -120,7 +127,7 @@ Nodes (3): consistency_score(), Cosine similarity scoring between description an
 
 ### Community 25 - "setup_notes.md"
 Cohesion: 0.10
-Nodes (19): Environment (recorded 2026-10-19), Isolation checks (2026-10-19), LLM choice for the agent (OpenCode) — researched 2026-10-19, Pending, Phase 2 — OpenClaw/AGT sandbox setup notes, Sandbox build log, Step A — Copy MalSkillBench into the VM (run on the Mac), Step B — Install Docker Engine inside the VM (+11 more)
+Nodes (20): Environment (recorded 2026-10-19), Isolation checks (2026-10-19), LLM choice for the agent (OpenCode) — researched 2026-10-19, Pending, Phase 2 — OpenClaw/AGT sandbox setup notes, Sandbox build log, Step A — Copy MalSkillBench into the VM (run on the Mac), Step B — Install Docker Engine inside the VM (+12 more)
 
 ### Community 35 - "Stages (CRISP-DM phase in brackets)"
 Cohesion: 0.15
@@ -131,32 +138,52 @@ Cohesion: 0.40
 Nodes (4): 1. Real internet is unreachable → should fail or time out, 2. Any domain resolves to INetSim → should return INetSim's fake page, 3. The proxy adds the key → should return JSON about your key, not a 401 error, 4. Every other path is blocked → should return 403
 
 ### Community 37 - "batch_run.py"
-Cohesion: 0.25
-Nodes (10): build_sample(), classify_outcome(), group_key(), main(), Stage 2 batch trace generation.  Drives a stratified sample of MalSkillBench ski, Interleaved, stratified sample. Malicious strata = 108 generated cells     (prop, Split-grouping key: generated variants share a base name; wild samples     share, Cumulative USD spent on the OpenRouter key, read via the egress proxy.     Retur (+2 more)
+Cohesion: 0.14
+Nodes (18): build_sample(), classify_outcome(), group_key(), main(), Stage 2 batch trace generation.  Drives a stratified sample of MalSkillBench ski, Interleaved, stratified sample. Malicious strata = 108 generated cells     (prop, Split-grouping key: generated variants share a base name; wild samples     share, Cumulative USD spent on the OpenRouter key, read via the egress proxy.     Retur (+10 more)
 
 ### Community 38 - "pilot_run.py"
-Cohesion: 0.33
-Nodes (8): Path, load_inventory(), main(), pick_sample(), Pilot run: drive a small, stratified sample of MalSkillBench skills through the, name -> {source, vector, behaviour, insertion} (taxonomy only for GENERATED)., skill_name(), summarise()
+Cohesion: 0.10
+Nodes (36): attribution_coverage(), _bash_roots(), _is_noise_read(), _is_noise_write(), _match_bash_calls(), normalise(), _open_mode(), _owner() (+28 more)
 
 ### Community 39 - "compare.py"
 Cohesion: 0.67
 Nodes (3): load_runs(), main(), Agent-model comparison for the trace-generation pilot (report Ch. 4.2).  Inputs
 
+### Community 41 - "loader.py"
+Cohesion: 0.16
+Nodes (20): build_samples(), first_paragraph(), group_key(), load_inventory(), parse_skill_md(), Path, Build one SkillSample per sandbox run and save them to samples.jsonl.  Sources:, (name, description, body, description_source) from a SKILL.md,     tolerant of b (+12 more)
+
+### Community 42 - "test_outcome.py"
+Cohesion: 0.24
+Nodes (17): provisional_outcome(), Observed-behaviour signals and a provisional outcome for each run.  A MalSkillBe, One coarse bucket per run, for the review sheet. Order matters., Execs that RUN a file shipped with the skill (not ones that view it).      skill, Behaviour signals for one run (normalised actions + raw result)., signals(), skill_script_execs(), _actions() (+9 more)
+
+### Community 43 - "make_sample.py"
+Cohesion: 0.50
+Nodes (3): Build a blind hand-check sample of observed-outcome labels (Stage 3, step 0).  R, One line, optionally truncated, and neutralised for spreadsheet formulas., safe()
+
+### Community 44 - "make_handcheck.py"
+Cohesion: 0.67
+Nodes (3): actions(), main(), Build the blinded hand-check sheet for the Stage 2 outcome labels.  Run from the
+
 ## Knowledge Gaps
-- **61 isolated node(s):** `graphify`, `What Changed From v7.0 (read this first)`, `The precedent this design follows`, `The integration flow (v8)`, `What this is, precisely — and what it is not` (+56 more)
+- **63 isolated node(s):** `graphify`, `What Changed From v7.0 (read this first)`, `The precedent this design follows`, `The integration flow (v8)`, `What this is, precisely — and what it is not` (+58 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **17 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **20 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **What connects `Tiny standalone demo of the CORE IDEA behind Divergence: turn text into numbers`, `Agent-model comparison for the trace-generation pilot (report Ch. 4.2).  Inputs`, `Experiment 7 live demo pipeline (Phase 2).  Runs a skill inside the OpenClaw/AGT` to the rest of the system?**
-  _111 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Why does `SkillSample` connect `SkillSample` to `loader.py`, `Encoder`?**
+  _High betweenness centrality (0.035) - this node is a cross-community bridge._
+- **Why does `normalise()` connect `pilot_run.py` to `loader.py`?**
+  _High betweenness centrality (0.025) - this node is a cross-community bridge._
+- **Why does `build_samples()` connect `loader.py` to `SkillSample`, `test_outcome.py`, `pilot_run.py`?**
+  _High betweenness centrality (0.016) - this node is a cross-community bridge._
+- **What connects `Build a blind hand-check sample of observed-outcome labels (Stage 3, step 0).  R`, `One line, optionally truncated, and neutralised for spreadsheet formulas.`, `Compare your hand labels with the automatic outcome labels.  Usage:  python3 sco` to the rest of the system?**
+  _144 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `SkillSample` be split into smaller, more focused modules?**
-  _Cohesion score 0.12554112554112554 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.12903225806451613 - nodes in this community are weakly interconnected._
 - **Should `DIVERGENCE v8` be split into smaller, more focused modules?**
   _Cohesion score 0.11764705882352941 - nodes in this community are weakly interconnected._
 - **Should `Divergence — Architecture & Build Plan` be split into smaller, more focused modules?**
   _Cohesion score 0.11764705882352941 - nodes in this community are weakly interconnected._
-- **Should `setup_notes.md` be split into smaller, more focused modules?**
-  _Cohesion score 0.1 - nodes in this community are weakly interconnected._

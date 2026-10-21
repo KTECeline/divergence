@@ -200,8 +200,8 @@
     "semantic_hash": ""
   },
   "Structure.md": {
-    "mtime": 1791420533.832606,
-    "ast_hash": "c96295524d4ac4c5963d5476cc7988a2",
+    "mtime": 1792544608.4326608,
+    "ast_hash": "689c252e6a1cb138707e10ea1b59a0de",
     "semantic_hash": ""
   },
   "data/raw/malskillbench/README.md": {
@@ -220,8 +220,8 @@
     "semantic_hash": ""
   },
   "sandbox/setup_notes.md": {
-    "mtime": 1792422822.1438756,
-    "ast_hash": "49eb8c6a68248853a5d001f188b0500c",
+    "mtime": 1792506508.4483669,
+    "ast_hash": "37230b5f3767f65e0dcc69499005bfee",
     "semantic_hash": ""
   },
   "instructions_for_record.md": {
@@ -230,8 +230,28 @@
     "semantic_hash": ""
   },
   "notes/roadmap.md": {
-    "mtime": 1792422828.8130205,
-    "ast_hash": "474e7b589c40102ddf880376f09753b2",
+    "mtime": 1792503022.004352,
+    "ast_hash": "470978a761d2a4f167311327347c8e16",
+    "semantic_hash": ""
+  },
+  "results/pilot_agent_model/compare.py": {
+    "mtime": 1792502099.6492093,
+    "ast_hash": "83dc0081dada4d01fbf01f0ae6aab653",
+    "semantic_hash": ""
+  },
+  "vendor/batch_run.py": {
+    "mtime": 1792544590.7850034,
+    "ast_hash": "d611a66fe90a2159a235a63719c7820d",
+    "semantic_hash": ""
+  },
+  "vendor/pilot_run.py": {
+    "mtime": 1792506470.5998852,
+    "ast_hash": "fe8baeac46d32d6eca783e979fed0600",
+    "semantic_hash": ""
+  },
+  "results/pilot_agent_model/comparison.md": {
+    "mtime": 1792502105.5576963,
+    "ast_hash": "6b60c255bef0781584c38bdb942a8bda",
     "semantic_hash": ""
   }
 }
