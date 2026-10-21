@@ -22,15 +22,15 @@ MalSkillBench ships **skills** (`SKILL.md` + scripts), not **traces**.
 `Logs/` is empty and no strace or audit output is included. The "behaviour"
 half of every (description, behaviour) pair has to be produced by running the
 skills in the VM sandbox. So the sandbox isn't a Phase 2 extra: it produces
-your core dataset. `Structure.md` §2 ("no sandbox needed for Phase 1") needs
-updating to say this.
+your core dataset. `Structure.md` §2 now says this (updated 2026-10-21).
 
 ## Stages (CRISP-DM phase in brackets)
 
 ### Stage 1 — Finish the sandbox *(Data Understanding)*
 - [x] VM, Docker, sealed network, INetSim, fake DNS, key proxy, runner patch
 - [ ] Smoke test on the benign skill `12306`
-- [ ] Model pilot: 10 benign + 10 malicious skills. Fix the model and provider and record them
+- [x] Agent-model pilot (done 2026-10-20, DeepSeek V4.1 Flash chosen): the same 20 skills × 3 agent LLMs (`pilot_run.py --model …`),
+      compared on criteria fixed in advance → choose one, justify it in Ch. 4.2 (Data Collection)
 - **Done when:** a malicious skill run shows its payload in strace, and that
   activity only reached INetSim.
 
@@ -46,6 +46,12 @@ updating to say this.
   rate is a finding in its own right; report it, don't hide it
 - Copy the evidence back to the Mac → `data/raw/traces/`
 - **Done when:** about 2,000 usable (description, trace, label, taxonomy) records exist.
+- **Done 2026-10-21.** 2,003 runs (1,003 malicious across all 108 cells + 179
+  wild, 1,000 benign), 0 escapes, in `data/raw/traces/` (archive SHA-256 in
+  setup_notes Step K). Provisional outcomes: malicious 358 proceeded / 519
+  declined / 113 no execution; benign 720 attempted / 240 no execution;
+  31 error_or_hang. Only ~36 % of malicious runs show the payload behaviour,
+  so Stage 3 labels runs by what was observed.
 
 ### Stage 3 — Prepare the data *(Data Preparation)*
 - `loader.py`: SKILL.md description + evidence JSON → `schema.py` record
@@ -54,11 +60,16 @@ updating to say this.
 - **Group-aware split first** (viva priority #1). Keep generated variants of the
   same base skill (e.g. `…__CI_B4`, `…__PI_B10`) in one split, otherwise
   near-duplicates leak across splits
-- **Find where the taxonomy labels live.** Only 1,300 malicious folders encode
-  them in the name (`__CI_` 575, `__PI_` 395, `__MIXED_` 330, plus a behaviour
-  code such as `B4`). The other 2,645 (e.g. `0x-swap`) have only `SKILL.md`, with
-  no label in the name and no `_meta.json`. Check the paper / repo for a label file
-  before relying on the "108 cells"
+- **Taxonomy labels → `Dataset/Skills/malware/_source_inventory.txt`** (found
+  2026-10-20). Each line is `SOURCE  name  <-  origin`. For GENERATED samples the
+  origin path holds the full taxonomy, e.g.
+  `generated_malicious/PI/B5/full_camouflage_…` = vector / behaviour class /
+  insertion strategy. Counts match the paper: GENERATED 3,214 (CI 1,346 · PI 1,300 ·
+  MIXED 568), WILD 703, TEST 27, with exactly **108 distinct cells**. The folder-name
+  suffix (`__CI_B4`) only marks duplicates and isn't the label source; most
+  generated samples have no suffix. WILD samples only carry an author. **Exclude
+  the 27 TEST samples** from the dataset. Parser: `load_inventory()` in `vendor/pilot_run.py`
+  (move it into `src/data/loader.py` in Stage 3)
 - EDA notebook: class balance, taxonomy coverage, trace length
 
 ### Stage 4 — Build the model step by step *(Modelling)*
@@ -78,8 +89,14 @@ Build in this order, and get each piece working before adding the next:
 - Exp 5: controls (swapped description, disclosed payload). Divergence ≠ malice
 - Exp 6: held-out behaviour class / attack vector. Generalisation
 - Failure analysis: 20–30 errors, grouped by cause
-- (Proposed scope tiering, still waiting for your OK: merge Exp 3 into Exp 1,
-  make Exp 4 optional.)
+- **Exp 4 (embedding model comparison) is now CORE, not optional.** The APU
+  guideline (CSDA Ch. 4.5 "Model Building with Technique 1…4", Ch. 5.2
+  "Evaluation of Model ABC / XYZ…") expects several models to be built and
+  compared, with a justification for the final choice. Compare at least 3
+  sentence encoders (e.g. MiniLM, MPNet, a BGE/E5-class model), each pretrained
+  vs SetFit-fine-tuned, on the same split, and justify the winner on accuracy,
+  calibration and inference speed.
+- (Still proposed: merge Exp 3 into Exp 1.)
 
 ### Stage 6 — Deploy in AGT *(Deployment)*
 - Install AGT in the VM with a **pinned** version
@@ -97,5 +114,5 @@ Build in this order, and get each piece working before adding the next:
   production. Don't use "multimodal". The survey counts as design validation.
 
 ## If you're short on time, cut in this order
-Exp 4 → latency table → Exp 3 (fold it into Exp 1) → OpenClaw cross-source test
+latency table → Exp 3 (fold it into Exp 1) → OpenClaw cross-source test
 (keep the demo). **Never cut** the leakage-free split, Exp 1, Exp 2/2b or the demo.
