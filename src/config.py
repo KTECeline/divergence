@@ -26,11 +26,24 @@ INVENTORY_PATH = SKILLS_DIR / "malware" / "_source_inventory.txt"
 TRACES_DIR = DATA_DIR / "raw" / "traces" / "batch_out"
 TRACES_SUMMARY_PATH = TRACES_DIR / "summary.csv"
 SAMPLES_PATH = PROCESSED_DIR / "samples.jsonl"
+
+# Direct-execution traces (Stage 3, sandbox/direct_exec): the skill's own
+# scripts run with no agent, so payloads fire without the agent's refusal.
+DIRECT_TRACES_DIR = DATA_DIR / "raw" / "traces" / "direct_out"
+DIRECT_SAMPLES_PATH = PROCESSED_DIR / "samples_direct.jsonl"
+
+# Instructed-agent traces (Stage 3, sandbox/instructed_agent): the ~361
+# prose-only malicious skills re-run with a low-refusal, tool-capable model and
+# a compliant sandbox-analysis prompt, so prose-instruction payloads (which only
+# an agent can trigger) surface. These ARE agent runs, so the agent outcome
+# rules apply; they share each skill's sample_id, hence its split.
+INSTRUCTED_TRACES_DIR = DATA_DIR / "raw" / "traces" / "instructed_out"
+INSTRUCTED_SAMPLES_PATH = PROCESSED_DIR / "samples_instructed.jsonl"
 REVIEW_DIR = PROCESSED_DIR / "review"
 
 MODELS_DIR = PROJECT_ROOT / "models"
 FINETUNED_EMBEDDING_DIR = MODELS_DIR / "finetuned_embedding"
-CALIBRATION_MODEL_PATH = MODELS_DIR / "calibration_model.pkl"
+CALIBRATION_MODEL_PATH = MODELS_DIR / "calibration_model.json"
 
 RESULTS_DIR = PROJECT_ROOT / "results"
 FIGURES_DIR = RESULTS_DIR / "figures"

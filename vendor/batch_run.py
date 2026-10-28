@@ -207,9 +207,16 @@ def main():
                     help="stop when projected next-run cost would exceed the remaining budget by this much")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--price", type=float, nargs=3, default=(0.11, 0.0034, 0.34))
+    ap.add_argument("--only", type=Path, help="file of <malware|benign>/<skill> ids: run just these, in order")
+    ap.add_argument("--out", type=Path, default=OUT_DIR, help="output folder (use a new one per experiment)")
     args = ap.parse_args()
 
-    sample = build_sample(args.target, args.seed)
+    if args.only:
+        ids = [ln.strip() for ln in args.only.read_text(encoding="utf-8").splitlines()
+               if ln.strip() and not ln.startswith("#")]
+        sample = [(lab, "listed", nm, SKILLS_DIR / lab / nm) for lab, nm in (i.split("/", 1) for i in ids)]
+    else:
+        sample = build_sample(args.target, args.seed)
     if args.dry_run:
         from collections import Counter
         c = Counter(lab for lab, *_ in sample)
@@ -219,8 +226,9 @@ def main():
         print("  ...")
         return
 
-    OUT_DIR.mkdir(exist_ok=True)
-    summary_path = OUT_DIR / "summary.csv"
+    out_dir = args.out
+    out_dir.mkdir(exist_ok=True)
+    summary_path = out_dir / "summary.csv"
     done = set()
     if summary_path.exists():
         with open(summary_path, newline="", encoding="utf-8") as f:
@@ -275,7 +283,7 @@ def main():
         spent_after = read_spend_usd()
         row["spend_after_usd"] = round(spent_after, 5) if spent_after >= 0 else ""
 
-        res_path = OUT_DIR / "results" / lab / f"{skill_dir.name}.json"
+        res_path = out_dir / "results" / lab / f"{skill_dir.name}.json"
         res_path.parent.mkdir(parents=True, exist_ok=True)
         res_path.write_text(json.dumps(result, indent=2, default=str), encoding="utf-8")
         new_file = not summary_path.exists()

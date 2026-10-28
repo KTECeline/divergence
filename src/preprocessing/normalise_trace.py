@@ -31,7 +31,7 @@ job of structural_flags.py and trace_to_text.py (Stage 4).
 import re
 from pathlib import PurePosixPath
 
-SKILL_DIRS = ("/workspace/.opencode/skills/target-skill", "/workspace/skill")
+SKILL_DIRS = ("/workspace/.opencode/skills/target-skill", "/workspace/skill", "/workspace/run")
 SANDBOX_DNS = ("127.0.0.11", "172.30.0.4")  # Docker's resolver and the fakedns sinkhole
 LLM_PROXY = "172.30.0.3"
 
@@ -192,35 +192,32 @@ def _owner(pid: str, parent: dict[str, str], root_of: dict[str, int], cache: dic
     return found
 
 
-def normalise(result: dict) -> list[dict]:
-    """Ordered, de-duplicated action list for one run (see module docstring)."""
-    calls = _tool_calls(result)
-    pevents = result.get("process_events") or []
-    parent = _process_tree(pevents)
-    call_root = _match_bash_calls(calls, _bash_roots(pevents))
-    root_of = {pid: i for i, pid in call_root.items()}
-    cache: dict = {}
+# execs that are the harness itself, never skill behaviour (direct mode only).
+_EXEC_NOISE = ("timeout", "env", "dirname", "basename")
 
-    # OS-level effects grouped by the tool call that caused them
-    effects: dict[int, list[tuple[str, str, str]]] = {}
 
-    def add(pid, action, target, status):
-        i = _owner(str(pid), parent, root_of, cache)
-        if i is not None:
-            effects.setdefault(i, []).append((action, target, status))
+def _os_events(result: dict, skip_exec_pids=frozenset(), drop_harness=False):
+    """Yield (pid, action, target, status) for every OS-level effect in the
+    strace evidence: process execs, file reads/writes/deletes, DNS and network
+    connects, with the same noise filtering used in both execution modes.
 
-    for p in pevents:
+    skip_exec_pids   pids whose execve IS a tool call (agent mode), so skipped.
+    drop_harness     also drop the direct-mode driver's own wrapper execs."""
+    for p in result.get("process_events") or []:
         if p.get("syscall") != "execve":
             continue
         pid = str(p.get("pid"))
-        if pid in root_of:
+        if pid in skip_exec_pids:
             continue  # the bash -c itself is the tool call
         argv = parse_execve_argv(p.get("args", ""))
         if not argv:
             continue
+        if drop_harness and (PurePosixPath(argv[0]).name in _EXEC_NOISE
+                             or any("/tmp/evidence/" in a for a in argv)):
+            continue
         target = " ".join(_skill_relative(a) for a in argv)[:200]
         # -1 here is usually an <unfinished> exec, not a failure; keep as ok
-        add(pid, "process_exec", target, "ok")
+        yield pid, "process_exec", target, "ok"
 
     for f in result.get("file_events") or []:
         sc, path = f.get("syscall"), f.get("path") or ""
@@ -229,20 +226,20 @@ def normalise(result: dict) -> list[dict]:
         ok = isinstance(f.get("return"), int) and f["return"] >= 0
         if sc in ("unlinkat", "unlink", "rmdir"):
             if not _is_noise_write(path):
-                add(f.get("pid"), "file_delete", _skill_relative(path), "ok" if ok else "failed")
+                yield f.get("pid"), "file_delete", _skill_relative(path), "ok" if ok else "failed"
             continue
         if sc in ("mkdirat", "mkdir"):
             continue
         mode = _open_mode(f.get("args", ""))
         if mode == "write" and not _is_noise_write(path):
-            add(f.get("pid"), "file_write", _skill_relative(path), "ok" if ok else "failed")
+            yield f.get("pid"), "file_write", _skill_relative(path), "ok" if ok else "failed"
         elif mode == "read" and not _is_noise_read(path):
-            add(f.get("pid"), "file_read", _skill_relative(path), "ok" if ok else "failed")
+            yield f.get("pid"), "file_read", _skill_relative(path), "ok" if ok else "failed"
 
     for n in result.get("network_events") or []:
         pid = n.get("pid")
         for d in n.get("dns_domains") or []:
-            add(pid, "dns_lookup", d, "ok")
+            yield pid, "dns_lookup", d, "ok"
         if n.get("syscall") not in ("connect", "sendto", "sendmsg"):
             continue
         m = _INET.search(n.get("args", ""))
@@ -253,8 +250,86 @@ def normalise(result: dict) -> list[dict]:
             continue
         ret = n.get("return")
         ok = isinstance(ret, int) and ret >= 0
-        add(pid, "network_connect", f"{ip}:{port}", "ok" if ok else "failed")
+        yield pid, "network_connect", f"{ip}:{port}", "ok" if ok else "failed"
 
+
+def _direct_actions(result: dict) -> list[dict]:
+    """Action list for a direct-execution run (no agent, no tool calls): the
+    skill's scripts were run straight under strace, so actions come only from
+    the OS events, ordered by pid (pids grow monotonically in the short-lived
+    container, so pid order ~ start order). Each distinct pid is one step."""
+    rows = [(str(pid) if pid is not None else "", action, target, status)
+            for pid, action, target, status in _os_events(result, drop_harness=True)]
+    rows.sort(key=lambda r: (int(r[0]) if r[0].isdigit() else 1 << 62))
+    actions, seen = [], set()
+    step_of, step = {}, -1
+    for pid, action, target, status in rows:
+        if pid not in step_of:
+            step += 1
+            step_of[pid] = step
+        key = (action, target)
+        if key in seen:
+            continue
+        seen.add(key)
+        actions.append({"seq": len(actions), "step": step_of[pid], "source": "process",
+                        "tool": "script", "action": action, "target": target, "status": status})
+    return actions
+
+
+def tool_action(tool: str, inp: dict) -> tuple[str, str] | None:
+    """(action, target) for one agent tool call, or None for planning tools
+    (todowrite etc.) that have no effect on the system. Shared with the AGT
+    adapter, so a trace rebuilt from AGT's audit log matches this one."""
+    if tool == "skill":
+        return "skill_load", str(inp.get("name", ""))
+    if tool == "bash":
+        return "command", str(inp.get("command", ""))[:300]
+    if tool == "read":
+        return "file_read", _skill_relative(str(inp.get("filePath", "")))
+    if tool in ("write", "edit"):
+        return "file_write", _skill_relative(str(inp.get("filePath", "")))
+    if tool in ("glob", "grep"):
+        return "file_search", f"{inp.get('pattern', '')} in {_skill_relative(str(inp.get('path') or '.'))}"
+    if tool == "webfetch":
+        return "web_fetch", str(inp.get("url", ""))
+    if tool == "task":
+        return "subagent", str(inp.get("description", ""))[:120]
+    return None
+
+
+def tool_calls(result: dict) -> list[dict]:
+    """The agent's raw tool calls in order: {tool, input, status}."""
+    return _tool_calls(result)
+
+
+def call_effects(result: dict) -> dict[int, list[tuple[str, str, str]]]:
+    """OS-level events grouped by the index of the tool call that caused them,
+    de-duplicated per call: {call_index: [(action, target, status), ...]}."""
+    calls = _tool_calls(result)
+    pevents = result.get("process_events") or []
+    parent = _process_tree(pevents)
+    call_root = _match_bash_calls(calls, _bash_roots(pevents))
+    root_of = {pid: i for i, pid in call_root.items()}
+    cache: dict = {}
+    effects: dict[int, list[tuple[str, str, str]]] = {}
+    seen: set[tuple[int, str, str]] = set()
+    for pid, action, target, status in _os_events(result, skip_exec_pids=set(root_of)):
+        i = _owner(str(pid), parent, root_of, cache)
+        if i is not None and (i, action, target) not in seen:
+            seen.add((i, action, target))
+            effects.setdefault(i, []).append((action, target, status))
+    return effects
+
+
+def normalise(result: dict) -> list[dict]:
+    """Ordered, de-duplicated action list for one run (see module docstring).
+
+    Agent mode uses the tool calls as the backbone. A direct-execution run has
+    no tool calls, so its actions are read straight from the strace events."""
+    calls = _tool_calls(result)
+    if not calls:
+        return _direct_actions(result)
+    effects = call_effects(result)
     actions: list[dict] = []
 
     def emit(step, source, tool, action, target, status):
@@ -262,31 +337,12 @@ def normalise(result: dict) -> list[dict]:
                         "action": action, "target": target, "status": status})
 
     for i, c in enumerate(calls):
-        tool, inp, st = c["tool"], c["input"], c["status"]
-        if tool == "skill":
-            emit(i, "tool", tool, "skill_load", str(inp.get("name", "")), st)
-        elif tool == "bash":
-            emit(i, "tool", tool, "command", str(inp.get("command", ""))[:300], st)
-        elif tool == "read":
-            emit(i, "tool", tool, "file_read", _skill_relative(str(inp.get("filePath", ""))), st)
-        elif tool in ("write", "edit"):
-            emit(i, "tool", tool, "file_write", _skill_relative(str(inp.get("filePath", ""))), st)
-        elif tool in ("glob", "grep"):
-            target = f"{inp.get('pattern', '')} in {_skill_relative(str(inp.get('path') or '.'))}"
-            emit(i, "tool", tool, "file_search", target, st)
-        elif tool == "webfetch":
-            emit(i, "tool", tool, "web_fetch", str(inp.get("url", "")), st)
-        elif tool == "task":
-            emit(i, "tool", tool, "subagent", str(inp.get("description", ""))[:120], st)
-        else:
+        mapped = tool_action(c["tool"], c["input"])
+        if mapped is None:
             continue  # todowrite etc.: planning, no effect on the system
-        seen = set()
+        emit(i, "tool", c["tool"], *mapped, c["status"])
         for action, target, status in effects.get(i, []):
-            key = (action, target)
-            if key in seen:
-                continue
-            seen.add(key)
-            emit(i, "process", tool, action, target, status)
+            emit(i, "process", c["tool"], action, target, status)
     return actions
 
 

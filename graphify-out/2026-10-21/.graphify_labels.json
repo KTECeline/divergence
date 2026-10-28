@@ -39,5 +39,12 @@
   "37": "batch_run.py",
   "38": "pilot_run.py",
   "39": "compare.py",
-  "40": "comparison.md"
+  "40": "comparison.md",
+  "41": "loader.py",
+  "42": "test_outcome.py",
+  "43": "make_sample.py",
+  "44": "make_handcheck.py",
+  "45": "score_handcheck.py",
+  "46": "score_handcheck.py",
+  "47": "README.md"
 }

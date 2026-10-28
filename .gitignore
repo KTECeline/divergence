@@ -7,6 +7,7 @@ dist/
 
 # ---- Virtual environments ----
 .venv/
+.venv-agt/
 venv/
 env/
 .venv/bin/

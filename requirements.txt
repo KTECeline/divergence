@@ -22,6 +22,8 @@ seaborn>=0.13
 # Testing
 pytest>=8.0
 
-# Phase 2 (uncomment when setting up the OpenClaw/AGT sandbox)
+# AGT integration (DivergencePluginInstaller, audit log). Pinned: AGT renames packages between releases.
+agent-governance-toolkit-core==4.1.0
+
+# Phase 2 sandbox control (only inside the VM)
 # docker>=7.0
-# agent-governance-toolkit[full]

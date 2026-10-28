@@ -33,6 +33,7 @@ class SkillSample:
 
     group_key: str = ""  # split grouping: variants of one skill share a key
     has_scripts: bool = False
+    execution_mode: str = "agent"  # "agent" (Stage 2) or "direct" (Stage 3, no agent)
     observed_outcome: str = ""  # provisional, from src/data/outcome.py
     signals: dict = field(default_factory=dict)  # behaviour signals behind it
     timed_out: bool = False

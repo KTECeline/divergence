@@ -16,6 +16,74 @@ trace capture procedure.
 
 ---
 
+## AGT check (2026-10-26) — what AGT 4.1.0 actually provides
+
+**Install (Mac, separate env, no malware run):**
+`python3.11 -m venv .venv-agt && .venv-agt/bin/pip install "agent-governance-toolkit[full]==4.1.0"`
+(pinned; latest on PyPI at the time; `.venv-agt/` is gitignored). Installs the split packages
+`agent-governance-toolkit-{core,cli,integrations,protocols}` 4.1.0. Findings come from reading the
+installed source, not the README.
+
+**Audit log (verified):** `agentmesh.governance.audit.AuditLog` writes `AuditEntry` rows into a
+`MerkleAuditChain` (`previous_hash` / `entry_hash`). Fields: `event_type`, `agent_did`, `action`,
+`resource`, `data` (sanitised), `outcome` (success / failure / denied / error), `policy_decision`,
+`matched_rule`, `arguments_hash` (SHA-256 of the arguments; the raw arguments are NOT stored),
+`trace_id`, `session_id`, `sandbox_id`, timestamps. A second, simpler `agent_os.audit_logger.AuditEntry`
+exists (`event_type, agent_id, action, decision, reason, latency_ms, metadata`).
+
+**Granularity (verified, the key finding):** AGT intercepts at the TOOL-CALL boundary
+(`agent_os.integrations.base` → `ToolCallRequest(tool_name, …)`). `action` and `resource` are whatever
+the agent integration passes. AGT does not record OS-level behaviour: `agent_sandbox` isolates code
+(Docker, `seccomp=default`), and its own scanner docstring says it "does not replace runtime process
+monitoring, seccomp, or eBPF tracing". So there is no AGT OS-event vocabulary to map syscalls onto.
+
+**Effect on Divergence (dev splits, flags kept on tool-call events only):**
+agent 3/5 → 1/5 POS caught; **direct 27/45 → 0/45** (no agent, so no tool calls at all);
+instructed 40/44 → 40/44 (the agent typed the payload command itself). AGT's log sees
+"ran `python3 script.py`", not what the script then did. → Divergence's input must be the AGT audit
+log PLUS the sandbox's OS-level events (strace), attached to the tool call that caused them, which is
+what `normalise_trace.py` already does. Report this as a gap Divergence fills, and measure it
+("AGT-visible only" vs full trace).
+
+**Adapter needed in Stage 6:** AGT tool-call entry → Divergence tool-layer event
+(`action` tool name → `command` / `file_read` / `file_write` / `web_fetch` / …, `resource` → `target`,
+`outcome` success → `ok`; any unmapped tool name → `unknown`). Check what the OpenClaw integration
+actually puts in `resource` (whether the command text is kept); otherwise only `arguments_hash` exists.
+
+**Corrections to the v8 project notes (verified against 4.1.0 code):**
+- Policy decisions are `ALLOW / DENY / AUDIT / ESCALATE / DEFER` (`agent_os.base_agent.PolicyDecision`).
+  `MODIFY` and `STEP_UP` appear nowhere in the installed code. (The ACS spec docs may differ; check them
+  before citing a five-verdict schema.)
+- `PromptDefenseEvaluator` is real: `from agent_compliance.prompt_defense import PromptDefenseEvaluator`
+  (there is no `agent_governance` module). `evaluate(prompt)` returns `PromptDefenseReport` with
+  `grade, score (0–100), defended, total, coverage, missing, findings, prompt_hash, evaluated_at`.
+  There is no `.compliance` dict; there is a `to_compliance_violation()` method.
+- Merkle-chained audit log: confirmed.
+- Agent Marketplace: `agentmesh.marketplace` exists (plugin manifest, signing, trusted keys, registry,
+  installer, sandbox). No trust *score* was found in it; check before citing "trust scoring".
+- OpenClaw: AGT code refers to "the openclaw plugin", but it is not in the Python packages; find it in
+  the GitHub repo (likely a separate package) during Stage 6.
+
+**Integration point (checked 2026-10-26):** AGT 4.1.0 has **no registration hook for third-party
+evaluators**. `PromptDefenseEvaluator` is called by user code, and the per-tool-call hooks
+(`pre_execute`, `before_tool_call`) gate single calls at runtime, not a whole skill before install.
+`agentmesh.marketplace.installer.PluginInstaller.install()` runs a fixed list: Ed25519 signature →
+dependencies → manifest write → static AST scan for restricted imports. So Divergence is integrated as
+`src/evaluator/agt_installer.py::DivergencePluginInstaller(PluginInstaller)`: `install()` requires a
+Divergence assessment of the skill's trial runs, raises `DivergenceEscalation` (AGT decision
+`escalate`) on FLAG until `approve()`, then calls AGT's own `install()` unchanged. Report wording:
+"extends AGT's marketplace installer", not "registered as an AGT evaluator". AGT has no OpenCode
+integration either, so `agt_adapter.record_trial` writes each raw OpenCode tool call into AGT's real
+`AuditLog` (raw input kept in `data`, which AGT stores unchanged).
+
+**Parity (verified):** all 308 labelled runs, recorded into a real AGT `AuditLog` and rebuilt by the
+adapter, give traces identical to the dataset's `normalise()` output (agent 53, direct 135,
+instructed 120; Merkle chain valid). The live demo refuses to score a run that fails this check.
+Image per mode must match the dataset: direct = `dvg/sandbox-synthetic`, instructed and agent = the
+default MalSkillBench image (`sandbox/demo_trial.sh` does this).
+
+---
+
 ## Sandbox build log
 
 ### Why a VM (design rationale — for report §4.2 / §4.5)
@@ -390,6 +458,15 @@ sealed room built in Steps D–F. Every change is marked `NOTE (patched)` in the
 
 Settings can be overridden with the `DVG_SANDBOX_NETWORK` / `DVG_SANDBOX_DNS`
 environment variables. The defaults are the safe values.
+
+**Stage 3 additions (2026-10-23), marked `NOTE (patched, Stage 3)` in the code:**
+two more environment hooks, both no-ops unless set, so Stage 2 stays reproducible.
+| Env var | Effect | Used by |
+|---|---|---|
+| `DVG_SANDBOX_IMAGE` | Which image to run (default unchanged) | synthetic-user image `dvg/sandbox-synthetic` — `sandbox/synthetic_user/` |
+| `DVG_DIRECT_ENTRYPOINT` | Mounts the given script and runs it via `--entrypoint` instead of OpenCode | direct-execution mode — `sandbox/direct_exec/` |
+These are not in `malskillbench_patches.diff` (that file predates them); the
+code comments are the record. See `sandbox/direct_exec/README.md`.
 
 ### LLM choice for the agent (OpenCode) — researched 2026-10-19
 

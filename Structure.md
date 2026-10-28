@@ -61,50 +61,69 @@ divergence/
 │   │   └── logistic_calibrator.py      # Step 6: logistic regression combiner
 │   │
 │   ├── evaluator/
-│   │   └── divergence_evaluator.py     # DivergenceEvaluator class (AGT-pattern shape)
+│   │   ├── divergence_evaluator.py     # DivergenceEvaluator class (AGT-pattern shape)
+│   │   ├── agt_adapter.py              # AGT AuditEntry (+ per-call OS events) -> Divergence trace; parity check
+│   │   └── agt_installer.py            # DivergencePluginInstaller: AGT PluginInstaller + Divergence pre-install check
+│   │
+│   ├── evaluation/
+│   │   └── metrics.py                  # point metrics, group-bootstrap CIs, McNemar
 │   │
 │   ├── baselines/
 │   │   ├── agt_only.py
 │   │   ├── behaviour_only.py
+│   │   ├── capability_overlap.py       # declared vs observed capability sets (Jaccard), no ML
 │   │   ├── text_only.py
 │   │   └── llm_as_judge.py
 │   │
 │   └── experiments/
 │       ├── exp1_baseline_comparison.py
+│       ├── exp1b_skill_level.py               # flag-if-any per skill, from exp1 predictions (no refit)
+│       ├── exp1c_llm_judge.py                 # LLM-as-judge rows (local Ollama: qwen2.5:7b, llama3.1:8b, llama3.2:3b)
+│       ├── exp1d_capability_overlap.py        # capability-overlap baseline row
 │       ├── exp2_ablation.py
 │       ├── exp2b_finetune_ablation.py
 │       ├── exp3_attack_type_breakdown.py
-│       ├── exp4_embedding_model_comparison.py   # optional/bonus
+│       ├── exp4_embedding_model_comparison.py   # core (APU guideline): 4 encoders x pretrained/fine-tuned
 │       ├── exp5_control_experiments.py          # inconsistency vs maliciousness controls
 │       └── exp6_holdout_generalisation.py       # held-out behaviour class / attack vector
 │
 ├── notebooks/
 │   ├── 01_data_understanding.ipynb     # EDA: class balance, taxonomy distribution
-│   ├── 02_trace_to_text_dev.ipynb      # template development/testing
-│   ├── 03_structural_flags_dev.ipynb   # flag rule development/testing
-│   └── 04_results_analysis.ipynb
+│   ├── 02_baseline_pretrained.ipynb    # pretrained SBERT + cosine, flat trace text
+│   ├── 03_trace_to_text_enriched.ipynb # enriched template development/testing
+│   ├── 04_structural_flags.ipynb       # flag rule development/testing
+│   ├── 05_setfit_finetune.ipynb        # SetFit-style contrastive fine-tune
+│   ├── 06_calibration.ipynb            # logistic calibration layer
+│   └── 07_results_analysis.ipynb       # Exp 1 on the locked test split (+ Exp 2/2b preview, AGT gap)
 │
 ├── models/
 │   ├── finetuned_embedding/            # saved SetFit-fine-tuned model
-│   └── calibration_model.pkl           # saved logistic regression
+│   └── calibration_model.json           # saved logistic regression
 │
 ├── results/
 │   ├── exp1_results.csv
-│   ├── exp2_ablation_results.csv
-│   ├── exp2b_finetune_delta.csv
-│   ├── exp3_attack_breakdown.csv
+│   ├── exp1_skill_level.csv                  # + exp1_skill_predictions.csv
+│   ├── exp1_capability_overlap.csv           # Exp 1d: no-ML declared-vs-observed baseline
+│   ├── exp1_llm_judge.csv                    # + exp1_llm_judge_predictions.csv, llm_judge/<model>.jsonl (cached answers)
+│   ├── exp2_ablation_results.csv             # + exp2_predictions.csv
+│   ├── exp2b_finetune_delta.csv              # + exp2b_text_delta.csv (flat vs enriched, paired)
+│   ├── exp3_attack_breakdown.csv             # + exp3_cv_predictions.csv (out-of-fold cache)
+│   ├── exp4_embedding_models.csv             # + exp4_predictions.csv
 │   ├── exp5_controls.csv
 │   ├── exp6_holdout.csv
 │   └── figures/
 │
 ├── sandbox/                            # Phase 1 trace sandbox notes; Phase 2 OpenClaw/AGT integration
 │   ├── setup_notes.md
-│   └── demo_pipeline.py                # Experiment 7 live demo
+│   ├── demo_trial.sh                   # Exp 7: capture one skill's trial runs in the VM (same runners/images as dataset)
+│   └── demo_pipeline.py                # Exp 7: AGT marketplace demo on the Mac (assess -> escalate/install)
 │
 ├── tests/
 │   ├── test_trace_to_text.py
 │   ├── test_structural_flags.py
-│   └── test_evaluator.py
+│   ├── test_evaluator.py
+│   ├── test_metrics.py                 # paired AUC-difference bootstrap (Exp 2b)
+│   └── test_capability_overlap.py
 │
 ├── requirements.txt
 └── README.md
@@ -159,7 +178,7 @@ This mirrors AGT's own `PromptDefenseEvaluator` shape (`.score`, `.missing`, `.c
 2. Fine-tune Sentence-BERT via SetFit contrastive objective on fine-tune split
    -> saved as models/finetuned_embedding/
 3. Fit logistic regression calibration layer on calibration split
-   -> saved as models/calibration_model.pkl
+   -> saved as models/calibration_model.json
 4. Both artifacts loaded once, reused for every skill scanned afterward
 ```
 
@@ -171,19 +190,19 @@ This mirrors AGT's own `PromptDefenseEvaluator` shape (`.score`, `.missing`, `.c
 - [ ] **2. Data loader** (`src/data/loader.py`) — parse MalSkillBench into your schema (description, trace, label, taxonomy tags)
 - [ ] **3. Data understanding EDA** (`notebooks/01_data_understanding.ipynb`) — class balance (3,944 malicious / 4,000 benign), taxonomy distribution across the 108 cells, sample trace inspection
 - [ ] **4. Data splitter** (`src/data/splitter.py`) — fine-tune / calibration / held-out test, no leakage
-- [ ] **5. Trace-to-text conversion** (`src/preprocessing/trace_to_text.py`) — enriched rule-based template; this is your biggest engineering task, build + test iteratively in `notebooks/02_trace_to_text_dev.ipynb`
-- [ ] **6. Structural flag rules** (`src/preprocessing/structural_flags.py`) — three boolean flags, test against hand-crafted cases in `notebooks/03_structural_flags_dev.ipynb`
+- [ ] **5. Trace-to-text conversion** (`src/preprocessing/trace_to_text.py`) — enriched rule-based template; this is your biggest engineering task, build + test iteratively in `notebooks/03_trace_to_text_enriched.ipynb`
+- [ ] **6. Structural flag rules** (`src/preprocessing/structural_flags.py`) — three boolean flags, test against hand-crafted cases in `notebooks/04_structural_flags.ipynb`
 - [ ] **7. Pretrained-only pipeline** (encoder + similarity, no fine-tune yet) — confirm end-to-end run works; this is your safety net
 - [ ] **8. SetFit fine-tune** (`src/embedding/finetune_setfit.py`) — run on fine-tune split, save model, log loss curve
 - [ ] **9. Calibration layer** (`src/calibration/logistic_calibrator.py`) — fit on calibration split
-- [ ] **10. DivergenceEvaluator class** (`src/evaluator/divergence_evaluator.py`) — wraps steps 1–6 into the AGT-pattern `.evaluate()` interface
-- [ ] **11. Baselines** — AGT-only, behaviour-only, text-only, LLM-as-judge (all non-trained)
-- [ ] **12. Experiment 1** — baseline comparison + McNemar's test, held-out test split only
-- [ ] **13. Experiment 2 / 2b** — ablations (structural flags, trace enrichment, fine-tuning delta)
-- [ ] **14. Experiment 3** — attack-type breakdown across taxonomy
-- [ ] **15. Experiment 5** — control experiments (`src/data/control_sets.py` + `exp5_control_experiments.py`): proxy-validity hand-labelling, swapped-description (benign, inconsistent), disclosed-payload (malicious, consistent)
-- [ ] **16. Experiment 6** — held-out generalisation: leave-one-behaviour-class-out + cross attack vector (Code Injection ↔ Prompt Injection, Mixed excluded)
-- [ ] **17. (Optional) Experiment 4** — embedding model comparison
+- [x] **10. DivergenceEvaluator class** (`src/evaluator/divergence_evaluator.py`) — wraps steps 1–6 into the AGT-pattern `.evaluate()` interface
+- [x] **11. Baselines** — AGT-only, behaviour-only, text-only, LLM-as-judge (all non-trained; text-only is TF-IDF + LR, necessarily trained). LLM-as-judge = local Ollama, 3 models (exp1c); capability overlap (exp1d)
+- [x] **12. Experiment 1** (+ 1b skill-level, 1c LLM-as-judge) — baseline comparison + McNemar's test, held-out test split only
+- [x] **13. Experiment 2 / 2b** — ablations (structural flags, trace enrichment, fine-tuning delta) — done (exp2_ablation_results.csv, exp2b_finetune_delta.csv, exp2b_text_delta.csv)
+- [x] **14. Experiment 3** — attack-type breakdown across taxonomy — done (exp3_attack_breakdown.csv: A. locked test split, B. all runs 5-fold CV)
+- [x] **15. Experiment 5** — control experiments (`src/data/control_sets.py` + `exp5_control_experiments.py`): proxy-validity hand-labelling, swapped-description (benign, inconsistent), disclosed-payload (malicious, consistent) — 5b/5c done (exp5_controls.csv); 5a sheet built (data/processed/controls/proxy_labelling_sheet.csv), awaiting hand labels
+- [x] **16. Experiment 6** — held-out generalisation: leave-one-behaviour-class-out + cross attack vector (Code Injection ↔ Prompt Injection, Mixed excluded) — done (exp6_holdout.csv; 16 fresh models on pooled runs, main model untouched)
+- [x] **17. Experiment 4** (core, APU guideline) — embedding model comparison — done (exp4_embedding_models.csv)
 - [ ] **18. Tests** — unit tests for trace-to-text and structural flags especially (these are your custom logic, most likely to have edge-case bugs)
 
 ## 7. Build order (Phase 2, once Phase 1 is stable)
@@ -192,8 +211,8 @@ This mirrors AGT's own `PromptDefenseEvaluator` shape (`.score`, `.missing`, `.c
 - [ ] Capture supplementary skill traces from your own sandbox
 - [ ] Fold supplementary traces into hybrid dataset (`data/supplementary/`)
 - [ ] Re-run key experiments on hybrid dataset, compare to MalSkillBench-only results
-- [ ] Build live demo pipeline (`sandbox/demo_pipeline.py`) — Experiment 7
-- [ ] Wire `DivergenceEvaluator` into AGT's actual pre-policy evaluator hook
+- [x] Build live demo pipeline (`sandbox/demo_pipeline.py`) — Experiment 7 (runs on captured traces; fresh VM capture via `sandbox/demo_trial.sh`)
+- [x] Wire `DivergenceEvaluator` into AGT — AGT 4.1.0 has no evaluator hook, so `DivergencePluginInstaller` subclasses AGT's `PluginInstaller` (Divergence runs before AGT's own install checks)
 
 ---
 

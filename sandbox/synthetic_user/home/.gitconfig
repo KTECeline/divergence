@@ -1,0 +1,5 @@
+[user]
+	name = Alex Tan
+	email = alex.tan@northwind-demo.example
+[init]
+	defaultBranch = main
