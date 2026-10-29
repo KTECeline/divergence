@@ -50,7 +50,7 @@ results/**/*.pkl
 results/**/*.log
 
 # ---- graphify ----
-graphify-out/cache/
+graphify-out/
 
 # ---- OS / editor ----
 .DS_Store

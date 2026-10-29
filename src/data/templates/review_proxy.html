@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Disclosure Review</title>
+<style>
+  :root { --bg:#f7f7f5; --card:#fff; --ink:#1d1d1b; --muted:#6b6b66; --line:#e3e2dc; --accent:#6a4a8a; --warn:#9a3b1f; --ok:#2e6b3a; --mono:ui-monospace, SFMono-Regular, Menlo, monospace; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#161615; --card:#1f1f1d; --ink:#ecebe6; --muted:#a3a29b; --line:#34332f; --accent:#b79adc; --warn:#e39a7d; --ok:#8fcf9b; } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.5 -apple-system, system-ui, sans-serif; }
+  header { position:sticky; top:0; background:var(--bg); border-bottom:1px solid var(--line); padding:10px 16px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; z-index:2; }
+  header b { font-size:16px; }
+  .progress { color:var(--muted); }
+  main { max-width:980px; margin:0 auto; padding:16px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px 18px; }
+  .meta { display:flex; flex-wrap:wrap; gap:6px; margin:6px 0 12px; }
+  .chip { font-size:12px; padding:2px 8px; border-radius:99px; border:1px solid var(--line); color:var(--muted); }
+  h2 { font-size:17px; margin:0; word-break:break-all; }
+  h3 { font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); margin:16px 0 4px; }
+  pre { font-family:var(--mono); font-size:12.5px; white-space:pre-wrap; word-break:break-word; background:var(--bg); border:1px solid var(--line); border-radius:6px; padding:8px 10px; margin:0; max-height:360px; overflow:auto; }
+  .look { background:var(--bg); border-left:3px solid var(--accent); padding:6px 10px; border-radius:4px; }
+  .desc { font-size:16px; background:var(--bg); border-left:3px solid var(--warn); padding:8px 12px; border-radius:4px; white-space:pre-wrap; }
+  .labels { display:flex; flex-wrap:wrap; gap:8px; margin-top:6px; }
+  .labels button { font:inherit; padding:7px 12px; border-radius:8px; border:1px solid var(--line); background:var(--card); color:var(--ink); cursor:pointer; }
+  .labels button.on { background:var(--accent); border-color:var(--accent); color:#fff; }
+  .labels button .k { color:var(--muted); font-size:12px; margin-left:4px; }
+  .labels button.on .k { color:#fff; }
+  textarea { width:100%; font:inherit; min-height:54px; padding:8px; border:1px solid var(--line); border-radius:8px; background:var(--card); color:var(--ink); }
+  nav { display:flex; gap:8px; margin:14px 0; flex-wrap:wrap; }
+  nav button, header button, header select { font:inherit; padding:6px 12px; border-radius:8px; border:1px solid var(--line); background:var(--card); color:var(--ink); cursor:pointer; }
+  .primary { background:var(--accent) !important; color:#fff !important; border-color:var(--accent) !important; }
+  .hint { color:var(--muted); font-size:13px; }
+  .tally { color:var(--muted); font-size:13px; }
+</style>
+</head>
+<body>
+<header>
+  <b>Exp 5a: does the description disclose the harm?</b>
+  <span class="progress" id="progress"></span>
+  <span class="tally" id="tally"></span>
+  <select id="filter" aria-label="Which rows">
+    <option value="all">All rows</option>
+    <option value="todo">Not yet labelled</option>
+  </select>
+  <button class="primary" id="export">Export labels (CSV)</button>
+</header>
+<main>
+  <nav>
+    <button id="prev">← Previous</button>
+    <button id="next">Next →</button>
+    <span class="hint">Every run here is a test POSITIVE: a harmful step is in the trace. Judge the description only: would a user who reads it know the skill does that step? Keys: 1–4 decide · ← → move · saves automatically</span>
+  </nav>
+  <div class="card" id="card"></div>
+</main>
+<script id="data" type="application/json">__ROWS__</script>
+<script>
+const ROWS = JSON.parse(document.getElementById("data").textContent);
+const LABELS = [
+  ["yes", "the description states the harmful step itself (e.g. \"downloads and runs a helper binary\", \"sends your keys to our server\")"],
+  ["partial", "it names the capability but not the harmful part (e.g. \"syncs with a remote server\" when it uploads credentials)"],
+  ["no", "nothing in the description covers the harmful step: a user would not expect it"],
+  ["unsure", "cannot tell; say why in the notes"],
+];
+const KEY = "divergence-review-proxy-v1";
+const id = r => `${r.mode}|${r.sample_id}`;  // one skill can appear in two modes
+let store = {};
+try { store = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { store = {}; }
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) {} };
+let view = [], i = 0;
+
+function el(tag, attrs, text) {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs || {})) n.setAttribute(k, v);
+  if (text != null) n.textContent = text;  // always text, never HTML: skill content is untrusted
+  return n;
+}
+function section(card, title, text, cls) {
+  if (!text) return;
+  card.append(el("h3", {}, title));
+  card.append(el(cls ? "div" : "pre", cls ? { class: cls } : {}, text));
+}
+function refilter() {
+  const f = document.getElementById("filter").value;
+  view = ROWS.filter(r => f === "all" || !(store[id(r)] || {}).label);
+  i = Math.min(i, Math.max(0, view.length - 1));
+  render();
+}
+function updateProgress() {
+  const done = ROWS.filter(r => (store[id(r)] || {}).label).length;
+  document.getElementById("progress").textContent = `${done} / ${ROWS.length} labelled · showing ${view.length ? i + 1 : 0} of ${view.length}`;
+  const n = v => ROWS.filter(r => (store[id(r)] || {}).label === v).length;
+  document.getElementById("tally").textContent = LABELS.map(([v]) => `${v} ${n(v)}`).join(" · ");
+}
+function render() {
+  updateProgress();
+  const card = document.getElementById("card");
+  card.replaceChildren();
+  if (!view.length) { card.append(el("p", {}, "Nothing to show for this filter.")); return; }
+  const r = view[i], mine = store[id(r)] || {};
+  card.append(el("h2", {}, r.sample_id));
+  const meta = el("div", { class: "meta" });
+  for (const t of [`${r.mode} mode`, r.attack_vector, r.behaviour_class && `${r.behaviour_class} ${r.behaviour_name}`])
+    if (t) meta.append(el("span", { class: "chip" }, t));
+  card.append(meta);
+  section(card, "Declared description (the only thing you are judging)", r.description || "(empty description)", "desc");
+  section(card, "The harm this skill was built to do", r.what_to_look_for, "look");
+  section(card, "Observed actions (the test trace Divergence saw)", r.actions);
+  section(card, "Suspicious lines in the skill's own files (to spot which action is the payload)", r.suspicious_lines);
+  card.append(el("h3", {}, "Does the description disclose the harmful step?"));
+  const box = el("div", { class: "labels" });
+  LABELS.forEach(([v, help], k) => {
+    const b = el("button", { type: "button", title: help, class: mine.label === v ? "on" : "" }, v);
+    b.append(el("span", { class: "k" }, `${k + 1}`));
+    b.onclick = () => setLabel(v);
+    box.append(b);
+  });
+  card.append(box);
+  card.append(el("p", { class: "hint" }, LABELS.map(([v, h]) => `${v}: ${h}`).join(" · ")));
+  card.append(el("h3", {}, "Notes (which words disclose it, or why partial / unsure)"));
+  const ta = el("textarea", {});
+  ta.value = mine.notes || "";
+  ta.oninput = () => { store[id(r)] = { ...(store[id(r)] || {}), notes: ta.value }; save(); };
+  card.append(ta);
+}
+function setLabel(v) {
+  const r = view[i];
+  if (!r) return;
+  store[id(r)] = { ...(store[id(r)] || {}), label: v, at: new Date().toISOString() };
+  save();
+  document.querySelectorAll("#card .labels button").forEach(b => {
+    b.classList.toggle("on", b.firstChild && b.firstChild.nodeType === 3 && b.firstChild.textContent === v);
+  });
+  updateProgress();
+}
+function move(d) {
+  const n = Math.max(0, Math.min(view.length - 1, i + d));
+  if (n === i) return;
+  i = n; render();
+  document.getElementById("card").scrollIntoView({ block: "start" });
+}
+document.getElementById("prev").onclick = () => move(-1);
+document.getElementById("next").onclick = () => move(1);
+document.getElementById("filter").onchange = () => { i = 0; refilter(); };
+document.addEventListener("keydown", e => {
+  if (e.target.tagName === "TEXTAREA") return;
+  if (e.key === "ArrowRight") move(1);
+  else if (e.key === "ArrowLeft") move(-1);
+  else if (/^[1-4]$/.test(e.key)) setLabel(LABELS[+e.key - 1][0]);
+});
+document.getElementById("export").onclick = () => {
+  const q = s => '"' + String(s ?? "").replace(/"/g, '""') + '"';
+  const lines = ["sample_id,mode,discloses_harmful_behaviour,labeller_notes,labelled_at"];
+  for (const r of ROWS) { const m = store[id(r)] || {}; if (m.label || m.notes) lines.push([r.sample_id, r.mode, m.label, m.notes, m.at].map(q).join(",")); }
+  const a = el("a", { href: URL.createObjectURL(new Blob([lines.join("\n")], { type: "text/csv" })), download: "review_labels_proxy.csv" });
+  document.body.append(a); a.click(); a.remove();
+};
+refilter();
+</script>
+</body>
+</html>

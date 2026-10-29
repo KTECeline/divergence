@@ -16,11 +16,7 @@
   "14": "Encoder",
   "15": "LogisticCalibrator",
   "16": "exp1_baseline_comparison.py",
-  "17": "exp2_ablation.py",
-  "18": "exp2b_finetune_ablation.py",
   "19": "exp3_attack_type_breakdown.py",
-  "20": "exp4_embedding_model_comparison.py",
-  "22": "exp6_holdout_generalisation.py",
   "23": "README.md",
   "24": "00_toy_demo.py",
   "25": "setup_notes.md",
@@ -37,7 +33,6 @@
   "36": "instructions_for_record.md",
   "37": "batch_run.py",
   "38": "pilot_run.py",
-  "39": ".evaluate_batch",
   "40": "comparison.md",
   "41": "test_outcome.py",
   "42": "test_outcome.py",
@@ -54,9 +49,7 @@
   "53": "load_samples",
   "54": "Instructed-agent mode (Stage 3, third execution mode)",
   "55": "run_instructed.py",
-  "56": "pair_dataset",
   "57": "SkillAssessment",
   "58": "__init__.py",
-  "59": "DivergenceResult",
-  "61": "config.py"
+  "59": "DivergenceResult"
 }
