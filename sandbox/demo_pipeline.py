@@ -39,10 +39,9 @@ from agentmesh.marketplace.signing import PluginSigner  # noqa: E402
 
 from src.config import DATA_DIR, RESULTS_DIR, SKILLS_DIR  # noqa: E402
 from src.data.loader import parse_skill_md  # noqa: E402
-from src.evaluator.agt_adapter import check_parity, record_trial  # noqa: E402
-from src.evaluator.agt_installer import DivergenceEscalation, DivergencePluginInstaller, TrialRun  # noqa: E402
+from src.evaluator.agt_installer import DivergenceEscalation, DivergencePluginInstaller  # noqa: E402
+from src.evaluator.trial_runner import load_trial_runs  # noqa: E402
 
-MODE_DIRS = {"direct": "direct_out", "instructed": "instructed_out", "agent": "batch_out"}
 AUTHOR = "demo-publisher"
 DEMO_DIR = RESULTS_DIR / "demo"
 
@@ -53,20 +52,8 @@ def plugin_name(folder: str) -> str:
 
 def trial_runs(traces_root: Path, label: str, folder: str, modes: list[str], audit_log: AuditLog):
     """TrialRuns for every mode that has a captured result, after the parity check."""
-    runs, parity = [], {}
-    for mode in modes:
-        f = traces_root / MODE_DIRS[mode] / "results" / label / f"{folder}.json"
-        if not f.exists():
-            continue
-        result = json.loads(f.read_text(encoding="utf-8"))
-        entries, os_events = record_trial(audit_log, f"did:dvg:trial:{mode}:{plugin_name(folder)}", result,
-                                          trace_id=f"{label}/{folder}/{mode}")
-        ok, msg = check_parity(result, entries, os_events)
-        parity[mode] = msg
-        if not ok:
-            raise SystemExit(f"PARITY FAILED for {label}/{folder} [{mode}]: {msg}")
-        runs.append(TrialRun(mode, entries, os_events))
-    return runs, parity
+    t = load_trial_runs(traces_root, label, folder, modes, audit_log, agent_name=plugin_name(folder))
+    return t.runs, t.parity
 
 
 def main():

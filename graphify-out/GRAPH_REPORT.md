@@ -1,16 +1,16 @@
-# Graph Report - Divergence  (2026-10-29)
+# Graph Report - Divergence  (2026-11-06)
 
 ## Corpus Check
-- 3041 files · ~273,600,852 words
+- 3044 files · ~273,603,125 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 748 nodes · 1454 edges · 53 communities (41 shown, 12 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 22 edges (avg confidence: 0.54)
+- 795 nodes · 1600 edges · 54 communities (42 shown, 12 thin omitted)
+- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 36 edges (avg confidence: 0.57)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `2db71a69`
+- Built from commit: `643788f4`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -32,6 +32,8 @@
 - [[_COMMUNITY_Encoder|Encoder]]
 - [[_COMMUNITY_LogisticCalibrator|LogisticCalibrator]]
 - [[_COMMUNITY_exp1_baseline_comparison.py|exp1_baseline_comparison.py]]
+- [[_COMMUNITY_config.py|config.py]]
+- [[_COMMUNITY_pair_dataset|pair_dataset]]
 - [[_COMMUNITY_exp3_attack_type_breakdown.py|exp3_attack_type_breakdown.py]]
 - [[_COMMUNITY_README|README.md]]
 - [[_COMMUNITY_00_toy_demo.py|00_toy_demo.py]]
@@ -57,7 +59,6 @@
 - [[_COMMUNITY_Instructed-agent mode (Stage 3, third execution mode)|Instructed-agent mode (Stage 3, third execution mode)]]
 - [[_COMMUNITY_run_instructed.py|run_instructed.py]]
 - [[_COMMUNITY_SkillAssessment|SkillAssessment]]
-- [[_COMMUNITY_DivergenceResult|DivergenceResult]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `compute_structural_flags()` - 35 edges
@@ -67,9 +68,9 @@
 5. `DivergenceEvaluator` - 22 edges
 6. `trace_to_enriched_text()` - 20 edges
 7. `point_metrics()` - 19 edges
-8. `Sandbox build log` - 19 edges
-9. `load_labelled_dataset()` - 18 edges
-10. `mcnemar_test()` - 18 edges
+8. `DivergencePluginInstaller` - 19 edges
+9. `LimaTrialRunner` - 19 edges
+10. `Sandbox build log` - 19 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `FakeEncoder` --uses--> `LogisticCalibrator`  [INFERRED]
@@ -78,19 +79,19 @@
   tests/test_evaluator.py → src/evaluation/metrics.py
 - `FakeEncoder` --uses--> `DivergenceResult`  [INFERRED]
   tests/test_evaluator.py → src/evaluator/divergence_evaluator.py
+- `FakeEncoder` --uses--> `DivergenceEvaluator`  [INFERRED]
+  tests/test_evaluator.py → src/evaluator/divergence_evaluator.py
 - `main()` --calls--> `parse_skill_md()`  [EXTRACTED]
   sandbox/demo_pipeline.py → src/data/loader.py
-- `test_format_trace_collapses_repeats_and_caps_length()` --calls--> `format_trace()`  [EXTRACTED]
-  tests/test_llm_judge.py → src/baselines/llm_as_judge.py
 
 ## Import Cycles
 - None detected.
 
-## Communities (53 total, 12 thin omitted)
+## Communities (54 total, 12 thin omitted)
 
 ### Community 0 - "SkillSample"
-Cohesion: 0.11
-Nodes (31): predict(), Baseline: behaviour-only (non-trained). Build order item 11.  Uses the observed, How many of the three rules fire on the behaviour alone (0-3); used for ranking., score(), declared(), observed(), predict(), Baseline: capability overlap (non-trained, no embedding).  Turns both sides into (+23 more)
+Cohesion: 0.07
+Nodes (43): predict(), Baseline: behaviour-only (non-trained). Build order item 11.  Uses the observed, How many of the three rules fire on the behaviour alone (0-3); used for ranking., score(), declared(), observed(), predict(), Baseline: capability overlap (non-trained, no embedding).  Turns both sides into (+35 more)
 
 ### Community 1 - "DIVERGENCE v8"
 Cohesion: 0.12
@@ -105,16 +106,16 @@ Cohesion: 0.11
 Nodes (37): flat_masked_text(), Flat text without the sandbox artefacts: connections to the sinkhole IP (the DNS, _area(), _describe_exec(), _endpoint_words(), _host(), _in_skill(), _Phrase (+29 more)
 
 ### Community 4 - "divergence_evaluator.py"
-Cohesion: 0.06
-Nodes (58): ndarray, Baseline: text-only. Build order item 11.  Uses the declared skill description a, TextOnlyBaseline, Central configuration: paths, model names, thresholds, seeds.  Every module read, load_labelled_dataset(), Merge the hand reviews into ONE labelled dataset for modelling.  Each execution, Rows of labelled_dataset.jsonl, optionally only those in the given splits., Sentence-BERT load + encode wrapper (pipeline Steps 1 and 3).  Build order item (+50 more)
+Cohesion: 0.20
+Nodes (14): mcnemar_test(), paired_auc_delta_ci(), point_metrics(), Metrics shared by the experiments: point metrics, group bootstrap intervals, McN, AUC ranks by `score` (higher = more suspicious); F1/P/R/accuracy use the 0/1 `ve, Exact McNemar's test on the runs where exactly one system is right.      b = A r, AUC(b) - AUC(a) on the same runs, with a group-bootstrap interval.      Both sys, main() (+6 more)
 
 ### Community 5 - "LogisticCalibrator"
 Cohesion: 0.07
 Nodes (27): All Hyperparameters, Bias, Risks and Limitations, BibTeX, Citation, Direct Usage (Sentence Transformers), Direct Usage (Transformers), Downstream Usage (Sentence Transformers), Framework Versions (+19 more)
 
 ### Community 6 - "trace_to_enriched_text"
-Cohesion: 0.19
-Nodes (12): _as_dict(), from_agt_audit_log(), is_divergence_trace(), Turn an AGT audit log into the action list the Divergence pipeline reads.  AGT 4, An AuditEntry (pydantic model) or an already-dumped dict., True when the log is already in Divergence's normalised format., AGT audit entries (+ the sandbox's OS events) -> Divergence action list.      os, Accept either format: a normalised Divergence trace passes through unchanged. (+4 more)
+Cohesion: 0.07
+Nodes (41): predict(), Baseline: AGT-only (non-trained). Build order item 11.  Decision from AGT's own, score(), agt_visible(), _as_dict(), check_parity(), from_agt_audit_log(), is_divergence_trace() (+33 more)
 
 ### Community 8 - "Citation notes (drafted, not yet placed in the report)"
 Cohesion: 0.50
@@ -125,32 +126,40 @@ Cohesion: 0.27
 Nodes (9): consistency_score(), consistency_scores(), ndarray, Cosine similarity scoring between description and enriched-trace vectors (pipeli, cosine_similarity(Vector_A, Vector_B) -> score in [0, 1]., Row-wise consistency_score for two (n, d) arrays of paired vectors., Unit tests for the cosine consistency score (pipeline Step 4)., test_batch_matches_single() (+1 more)
 
 ### Community 10 - "demo_pipeline.py"
-Cohesion: 0.20
+Cohesion: 0.22
 Nodes (4): LogisticCalibrator, ndarray, Probability that each skill run is suspicious (inconsistent)., Learned weight per feature (log-odds per unit); negative = pushes towards ALLOW.
 
 ### Community 11 - "agt_only.py"
 Cohesion: 0.18
-Nodes (13): feature_row(), Logistic regression calibration layer (pipeline Step 6).  Build order item 9. Fi, DivergenceEvaluator — the AGT-pattern evaluator wrapping the full pipeline.  Bui, Plain-language explanation built from the same numbers that made the verdict., _reasoning(), Names of the flags that fired, for the evaluator's result object., StructuralFlags, fitted() (+5 more)
+Nodes (17): cv_auc(), finetune(), ndarray, SentenceTransformer, SetFit few-shot contrastive fine-tuning of the embedding model (Step 0).  Build, Fine-tune a fresh copy of the base encoder; returns it and the logged loss per s, Consistency score in [0, 1] for each row (high = consistent)., Mean held-out-fold AUC inside the given rows, folds grouped by skill so variants (+9 more)
 
 ### Community 13 - "llm_as_judge.py"
-Cohesion: 0.09
-Nodes (36): format_trace(), LLMJudge, parse(), predict(), Path, Baseline: LLM-as-judge (non-trained). Build order item 11.  A local LLM (Ollama,, 0/1 verdict for one labelled-dataset row., One line per action; repeated identical lines collapsed; capped at MAX_LINES. (+28 more)
+Cohesion: 0.05
+Nodes (46): RuntimeError, format_trace(), LLMJudge, parse(), predict(), Path, Baseline: LLM-as-judge (non-trained). Build order item 11.  A local LLM (Ollama,, 0/1 verdict for one labelled-dataset row. (+38 more)
 
 ### Community 14 - "Encoder"
 Cohesion: 0.22
-Nodes (5): Encoder, ndarray, Thin wrapper around a sentence-transformers model.      Loads either the pretrai, Longer inputs are truncated by the model, so later text is unseen., One unit-length vector per text, so a dot product is the cosine.
+Nodes (12): load_labelled_dataset(), Merge the hand reviews into ONE labelled dataset for modelling.  Each execution, Rows of labelled_dataset.jsonl, optionally only those in the given splits., group_bootstrap_ci(), Percentile intervals for AUC and F1, resampling skill groups with replacement., main(), DataFrame, Experiment 1c: the LLM-as-judge baseline, on the held-out test split.  Local Oll (+4 more)
 
 ### Community 15 - "LogisticCalibrator"
-Cohesion: 0.22
-Nodes (13): DivergenceEvaluator, Wraps pipeline Steps 1-6: encode description, enrich + encode trace,     cosine, calibrator(), evaluator(), FakeEncoder, Unit tests for the AGT adapter, DivergenceEvaluator (build order item 10) and th, Same vector for every text -> consistency score 1.0., test_agt_evidence_and_json() (+5 more)
+Cohesion: 0.21
+Nodes (13): _calibrated(), _group(), main(), DataFrame, ndarray, Experiment 1: baseline comparison + McNemar's test. Build order item 12.  Compar, One row per system: point metrics, group-bootstrap 95% CIs, McNemar vs Divergenc, AUC inside each execution mode, which removes the mode confound (POS rate differ (+5 more)
 
 ### Community 16 - "exp1_baseline_comparison.py"
-Cohesion: 0.38
-Nodes (6): predict(), Baseline: AGT-only (non-trained). Build order item 11.  Decision from AGT's own, score(), agt_visible(), Only the tool-call layer: what AGT's own audit log would contain., test_os_events_attach_after_their_entry()
+Cohesion: 0.35
+Nodes (10): breakdown(), cell_metrics(), cv_predictions(), main(), DataFrame, ndarray, Experiment 3: attack-type breakdown. Build order item 14.  Performance broken do, One row per run: the cells it belongs to. Benign / wild runs get their own cell (+2 more)
+
+### Community 17 - "config.py"
+Cohesion: 0.22
+Nodes (4): ndarray, Baseline: text-only. Build order item 11.  Uses the declared skill description a, TextOnlyBaseline, Central configuration: paths, model names, thresholds, seeds.  Every module read
+
+### Community 18 - "pair_dataset"
+Cohesion: 0.46
+Nodes (7): Dataset, pair_dataset(), Unit tests for the contrastive fine-tuning pairs (build order item 8).  The labe, row(), test_label_direction(), test_pairs_use_description_and_enriched_trace(), test_text_function_is_swappable_for_the_ablation()
 
 ### Community 19 - "exp3_attack_type_breakdown.py"
-Cohesion: 0.10
-Nodes (34): Dataset, cv_auc(), finetune(), pair_dataset(), SentenceTransformer, SetFit few-shot contrastive fine-tuning of the embedding model (Step 0).  Build, Fine-tune a fresh copy of the base encoder; returns it and the logged loss per s, Mean held-out-fold AUC inside the given rows, folds grouped by skill so variants (+26 more)
+Cohesion: 0.25
+Nodes (12): feature_row(), Logistic regression calibration layer (pipeline Step 6).  Build order item 9. Fi, features(), group(), held_out_folds(), main(), metrics(), ndarray (+4 more)
 
 ### Community 25 - "setup_notes.md"
 Cohesion: 0.09
@@ -205,12 +214,8 @@ Cohesion: 0.43
 Nodes (6): main(), Path, Stage 3 instructed-agent runner (third execution mode).  Some malicious skills c, Reuse batch_run's spend reader if present; else return -1 (no cap)., read_ids(), read_spend_usd()
 
 ### Community 57 - "SkillAssessment"
-Cohesion: 0.07
-Nodes (32): MarketplaceError, PluginInstaller, main(), plugin_name(), AuditLog, Path, Experiment 7 live demo: Divergence as a pre-install check inside AGT's marketpla, TrialRuns for every mode that has a captured result, after the parity check. (+24 more)
-
-### Community 59 - "DivergenceResult"
-Cohesion: 0.21
-Nodes (7): DivergenceResult, Score one skill run.          audit_log: AGT AuditEntry objects/dicts, or an alr, evaluate() for many (description, audit_log[, os_events]) runs, encoding in one, Deterministic JSON (sorted keys), like PromptDefenseReport.to_json()., The result as evidence for AGT's policy decision (Divergence does not decide it), The original stub test, kept: the v8 four-field shape still constructs on its ow, test_result_object_shape()
+Cohesion: 0.05
+Nodes (60): MarketplaceError, PluginInstaller, main(), plugin_name(), AuditLog, Path, Experiment 7 live demo: Divergence as a pre-install check inside AGT's marketpla, TrialRuns for every mode that has a captured result, after the parity check. (+52 more)
 
 ## Knowledge Gaps
 - **112 isolated node(s):** `demo_trial.sh script`, `DVG_MSB_ROOT`, `entrypoint_direct.sh script`, `graphify`, `What Changed From v7.0 (read this first)` (+107 more)
@@ -220,17 +225,17 @@ Nodes (7): DivergenceResult, Score one skill run.          audit_log: AGT AuditE
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `build_dataset()` connect `batch_run.py` to `divergence_evaluator.py`, `load_samples`?**
-  _High betweenness centrality (0.048) - this node is a cross-community bridge._
-- **Why does `compute_structural_flags()` connect `SkillSample` to `divergence_evaluator.py`, `agt_only.py`, `llm_as_judge.py`, `exp1_baseline_comparison.py`, `exp3_attack_type_breakdown.py`, `DivergenceResult`?**
+- **Why does `build_dataset()` connect `batch_run.py` to `load_samples`, `Encoder`?**
+  _High betweenness centrality (0.046) - this node is a cross-community bridge._
+- **Why does `DivergenceEvaluator` connect `llm_as_judge.py` to `SkillSample`, `trace_to_enriched_text`, `demo_pipeline.py`, `LogisticCalibrator`, `SkillAssessment`?**
   _High betweenness centrality (0.040) - this node is a cross-community bridge._
+- **Why does `compute_structural_flags()` connect `SkillSample` to `trace_to_enriched_text`, `agt_only.py`, `llm_as_judge.py`, `LogisticCalibrator`, `exp3_attack_type_breakdown.py`?**
+  _High betweenness centrality (0.038) - this node is a cross-community bridge._
 - **Are the 4 inferred relationships involving `LogisticCalibrator` (e.g. with `StructuralFlags` and `DivergenceEvaluator`) actually correct?**
   _`LogisticCalibrator` has 4 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 8 inferred relationships involving `DivergenceEvaluator` (e.g. with `DivergenceEscalation` and `DivergencePluginInstaller`) actually correct?**
   _`DivergenceEvaluator` has 8 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `Tiny standalone demo of the CORE IDEA behind Divergence: turn text into numbers`, `Agent-model comparison for the trace-generation pilot (report Ch. 4.2).  Inputs`, `Experiment 7 live demo: Divergence as a pre-install check inside AGT's marketpla` to the rest of the system?**
-  _280 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _290 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `SkillSample` be split into smaller, more focused modules?**
-  _Cohesion score 0.10526315789473684 - nodes in this community are weakly interconnected._
-- **Should `DIVERGENCE v8` be split into smaller, more focused modules?**
-  _Cohesion score 0.11764705882352941 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.0726764500349406 - nodes in this community are weakly interconnected._

@@ -11,7 +11,10 @@ skill's sandbox trial runs, then hands over to AGT's own checks unchanged.
 AGT's import scan reads the code; Divergence adds a dynamic, behavioural check
 against the manifest's declared description.
 
-Flow:
+Flow (Option B, one call):
+    installer.request_install(name, skill_dir)   # trial_runner runs the skill in the
+                                                 # sandbox, then assess() + install()
+Flow (step by step, trial runs captured beforehand):
     installer.assess(name, trial_runs)   # trial runs from the sealed sandbox
     installer.install(name)              # FLAG -> DivergenceEscalation unless approved
     installer.approve(name, reviewer)    # a human reviewer accepts the flagged skill
@@ -27,6 +30,7 @@ runs. This rule was fixed before any skill-level result was computed.
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from agentmesh.exceptions import MarketplaceError as AgentMeshMarketplaceError
 from agentmesh.governance.audit import AuditLog
 from agentmesh.marketplace import MarketplaceError
 from agentmesh.marketplace.installer import PluginInstaller
@@ -86,12 +90,15 @@ class SkillAssessment:
 
 class DivergencePluginInstaller(PluginInstaller):
     def __init__(self, plugins_dir: Path, registry, trusted_keys=None, *,
-                 evaluator: DivergenceEvaluator | None = None, audit_log: AuditLog | None = None):
+                 evaluator: DivergenceEvaluator | None = None, audit_log: AuditLog | None = None,
+                 trial_runner=None):
         super().__init__(plugins_dir, registry, trusted_keys)
+        self.trial_runner = trial_runner  # see src/evaluator/trial_runner.py
         self.evaluator = evaluator or DivergenceEvaluator()
         self.audit_log = audit_log or AuditLog()
         self._assessments: dict[str, SkillAssessment] = {}
         self._approved: set[str] = set()
+        self.trials: dict = {}  # name -> trial_runner.Trial of the last request_install
 
     def assess(self, name: str, trial_runs: list[TrialRun], version: str | None = None) -> SkillAssessment:
         """Score the skill's trial runs against the description in its registry manifest."""
@@ -106,6 +113,30 @@ class DivergencePluginInstaller(PluginInstaller):
                            outcome="denied" if a.verdict == VERDICT_FLAG else "success",
                            policy_decision=AGT_DECISION[a.verdict])
         return a
+
+    @property
+    def assessments(self) -> dict[str, SkillAssessment]:
+        return dict(self._assessments)
+
+    def request_install(self, name: str, skill_dir: Path, version: str | None = None, *,
+                        verify: bool = True) -> Path:
+        """Option B: one install request = sandbox trial -> Divergence -> AGT install.
+
+        Raises DivergenceEscalation if the trial's behaviour diverged from the
+        description; after a human approve(), call install(name) to finish.
+        """
+        if self.trial_runner is None:
+            raise MarketplaceError("request_install needs a trial_runner (e.g. LimaTrialRunner)")
+        try:  # fail before spending a sandbox run on an unknown skill
+            self._registry.get_plugin(name, version)
+        except AgentMeshMarketplaceError as e:
+            # AGT 4.1.0 has two unrelated MarketplaceError classes (registry vs marketplace
+            # package); re-raise as the one this installer's errors derive from
+            raise MarketplaceError(str(e)) from e
+        trial = self.trial_runner.run(name, Path(skill_dir), self.audit_log)
+        self.trials[name] = trial
+        self.assess(name, trial.runs, version)
+        return self.install(name, version, verify=verify)
 
     def approve(self, name: str, reviewer: str) -> None:
         """A human reviewer accepts a flagged skill after reading the evidence."""

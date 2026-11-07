@@ -77,7 +77,7 @@
       "label": "plugin_name()",
       "file_type": "code",
       "source_file": "sandbox/demo_pipeline.py",
-      "source_location": "L50",
+      "source_location": "L49",
       "_origin": "ast",
       "id": "sandbox_demo_pipeline_plugin_name",
       "community": 57,
@@ -87,7 +87,7 @@
       "label": "trial_runs()",
       "file_type": "code",
       "source_file": "sandbox/demo_pipeline.py",
-      "source_location": "L54",
+      "source_location": "L53",
       "_origin": "ast",
       "id": "sandbox_demo_pipeline_trial_runs",
       "community": 57,
@@ -117,7 +117,7 @@
       "label": "main()",
       "file_type": "code",
       "source_file": "sandbox/demo_pipeline.py",
-      "source_location": "L72",
+      "source_location": "L59",
       "_origin": "ast",
       "id": "sandbox_demo_pipeline_main",
       "community": 57,
@@ -137,9 +137,9 @@
       "label": "TrialRuns for every mode that has a captured result, after the parity check.",
       "file_type": "rationale",
       "source_file": "sandbox/demo_pipeline.py",
-      "source_location": "L55",
+      "source_location": "L54",
       "_origin": "ast",
-      "id": "sandbox_demo_pipeline_rationale_55",
+      "id": "sandbox_demo_pipeline_rationale_54",
       "community": 57,
       "norm_label": "trialruns for every mode that has a captured result, after the parity check."
     },
@@ -175,7 +175,7 @@
       "label": "DVG_MSB_ROOT",
       "file_type": "code",
       "source_file": "sandbox/demo_trial.sh",
-      "source_location": "L23",
+      "source_location": "L26",
       "metadata": {
         "language": "bash",
         "kind": "code"
@@ -324,6 +324,46 @@
       "norm_label": "stage 3 direct-execution runner.  runs each listed skill's own scripts directly"
     },
     {
+      "label": "install_skill.py",
+      "file_type": "code",
+      "source_file": "sandbox/install_skill.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "sandbox_install_skill",
+      "community": 57,
+      "norm_label": "install_skill.py"
+    },
+    {
+      "label": "plugin_name()",
+      "file_type": "code",
+      "source_file": "sandbox/install_skill.py",
+      "source_location": "L50",
+      "_origin": "ast",
+      "id": "sandbox_install_skill_plugin_name",
+      "community": 57,
+      "norm_label": "plugin_name()"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "sandbox/install_skill.py",
+      "source_location": "L54",
+      "_origin": "ast",
+      "id": "sandbox_install_skill_main",
+      "community": 57,
+      "norm_label": "main()"
+    },
+    {
+      "label": "Option B: one install request -> sandbox trial -> Divergence -> AGT install / es",
+      "file_type": "rationale",
+      "source_file": "sandbox/install_skill.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "sandbox_install_skill_rationale_1",
+      "community": 57,
+      "norm_label": "option b: one install request -> sandbox trial -> divergence -> agt install / es"
+    },
+    {
       "label": "run_instructed.py",
       "file_type": "code",
       "source_file": "sandbox/instructed_agent/run_instructed.py",
@@ -460,7 +500,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_baselines_agt_only",
-      "community": 16,
+      "community": 6,
       "norm_label": "agt_only.py"
     },
     {
@@ -470,7 +510,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "src_baselines_agt_only_score",
-      "community": 16,
+      "community": 6,
       "norm_label": "score()"
     },
     {
@@ -480,7 +520,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "src_baselines_agt_only_predict",
-      "community": 16,
+      "community": 6,
       "norm_label": "predict()"
     },
     {
@@ -490,7 +530,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_baselines_agt_only_rationale_1",
-      "community": 16,
+      "community": 6,
       "norm_label": "baseline: agt-only (non-trained). build order item 11.  decision from agt's own"
     },
     {
@@ -740,7 +780,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_baselines_text_only",
-      "community": 4,
+      "community": 17,
       "norm_label": "text_only.py"
     },
     {
@@ -750,7 +790,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "src_baselines_text_only_textonlybaseline",
-      "community": 4,
+      "community": 17,
       "norm_label": "textonlybaseline"
     },
     {
@@ -760,7 +800,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "src_baselines_text_only_textonlybaseline_init",
-      "community": 4,
+      "community": 17,
       "norm_label": ".__init__()"
     },
     {
@@ -770,7 +810,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "src_baselines_text_only_textonlybaseline_fit",
-      "community": 4,
+      "community": 17,
       "norm_label": ".fit()"
     },
     {
@@ -780,7 +820,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "src_baselines_text_only_textonlybaseline_predict_proba",
-      "community": 4,
+      "community": 17,
       "norm_label": ".predict_proba()"
     },
     {
@@ -790,7 +830,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_baselines_text_only_py_ndarray",
-      "community": 4,
+      "community": 17,
       "norm_label": "ndarray"
     },
     {
@@ -800,7 +840,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "src_baselines_text_only_textonlybaseline_predict",
-      "community": 4,
+      "community": 17,
       "norm_label": ".predict()"
     },
     {
@@ -810,7 +850,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_baselines_text_only_rationale_1",
-      "community": 4,
+      "community": 17,
       "norm_label": "baseline: text-only. build order item 11.  uses the declared skill description a"
     },
     {
@@ -830,7 +870,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_calibration_logistic_calibrator",
-      "community": 11,
+      "community": 19,
       "norm_label": "logistic_calibrator.py"
     },
     {
@@ -840,7 +880,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "src_calibration_logistic_calibrator_feature_row",
-      "community": 11,
+      "community": 19,
       "norm_label": "feature_row()"
     },
     {
@@ -920,7 +960,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "src_calibration_logistic_calibrator_logisticcalibrator_load",
-      "community": 10,
+      "community": 13,
       "norm_label": ".load()"
     },
     {
@@ -930,7 +970,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_calibration_logistic_calibrator_rationale_1",
-      "community": 11,
+      "community": 19,
       "norm_label": "logistic regression calibration layer (pipeline step 6).  build order item 9. fi"
     },
     {
@@ -960,7 +1000,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_config",
-      "community": 4,
+      "community": 17,
       "norm_label": "config.py"
     },
     {
@@ -970,7 +1010,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_config_rationale_1",
-      "community": 4,
+      "community": 17,
       "norm_label": "central configuration: paths, model names, thresholds, seeds.  every module read"
     },
     {
@@ -1340,7 +1380,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_data_merge_labels",
-      "community": 4,
+      "community": 14,
       "norm_label": "merge_labels.py"
     },
     {
@@ -1380,7 +1420,7 @@
       "source_location": "L87",
       "_origin": "ast",
       "id": "src_data_merge_labels_load_labelled_dataset",
-      "community": 4,
+      "community": 14,
       "norm_label": "load_labelled_dataset()"
     },
     {
@@ -1390,7 +1430,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_data_merge_labels_rationale_1",
-      "community": 4,
+      "community": 14,
       "norm_label": "merge the hand reviews into one labelled dataset for modelling.  each execution"
     },
     {
@@ -1400,7 +1440,7 @@
       "source_location": "L88",
       "_origin": "ast",
       "id": "src_data_merge_labels_rationale_88",
-      "community": 4,
+      "community": 14,
       "norm_label": "rows of labelled_dataset.jsonl, optionally only those in the given splits."
     },
     {
@@ -1960,7 +2000,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_embedding_encoder",
-      "community": 4,
+      "community": 13,
       "norm_label": "encoder.py"
     },
     {
@@ -1970,7 +2010,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_embedding_encoder_encoder",
-      "community": 14,
+      "community": 13,
       "norm_label": "encoder"
     },
     {
@@ -1980,7 +2020,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "src_embedding_encoder_encoder_init",
-      "community": 14,
+      "community": 13,
       "norm_label": ".__init__()"
     },
     {
@@ -1990,7 +2030,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "src_embedding_encoder_encoder_max_tokens",
-      "community": 14,
+      "community": 13,
       "norm_label": ".max_tokens()"
     },
     {
@@ -2000,7 +2040,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "src_embedding_encoder_encoder_n_tokens",
-      "community": 14,
+      "community": 13,
       "norm_label": ".n_tokens()"
     },
     {
@@ -2010,7 +2050,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "src_embedding_encoder_encoder_encode",
-      "community": 14,
+      "community": 13,
       "norm_label": ".encode()"
     },
     {
@@ -2020,7 +2060,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_embedding_encoder_py_ndarray",
-      "community": 14,
+      "community": 13,
       "norm_label": "ndarray"
     },
     {
@@ -2030,7 +2070,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_embedding_encoder_rationale_1",
-      "community": 4,
+      "community": 13,
       "norm_label": "sentence-bert load + encode wrapper (pipeline steps 1 and 3).  build order item"
     },
     {
@@ -2040,7 +2080,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_embedding_encoder_rationale_14",
-      "community": 14,
+      "community": 13,
       "norm_label": "thin wrapper around a sentence-transformers model.      loads either the pretrai"
     },
     {
@@ -2050,7 +2090,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "src_embedding_encoder_rationale_27",
-      "community": 14,
+      "community": 13,
       "norm_label": "longer inputs are truncated by the model, so later text is unseen."
     },
     {
@@ -2060,7 +2100,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "src_embedding_encoder_rationale_34",
-      "community": 14,
+      "community": 13,
       "norm_label": "one unit-length vector per text, so a dot product is the cosine."
     },
     {
@@ -2070,7 +2110,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_embedding_finetune_setfit",
-      "community": 19,
+      "community": 11,
       "norm_label": "finetune_setfit.py"
     },
     {
@@ -2080,7 +2120,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "src_embedding_finetune_setfit_pair_dataset",
-      "community": 19,
+      "community": 18,
       "norm_label": "pair_dataset()"
     },
     {
@@ -2090,7 +2130,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "dataset",
-      "community": 19,
+      "community": 18,
       "norm_label": "dataset"
     },
     {
@@ -2100,7 +2140,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "src_embedding_finetune_setfit_finetune",
-      "community": 19,
+      "community": 11,
       "norm_label": "finetune()"
     },
     {
@@ -2110,7 +2150,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_embedding_finetune_setfit_py_sentencetransformer",
-      "community": 19,
+      "community": 11,
       "norm_label": "sentencetransformer"
     },
     {
@@ -2120,7 +2160,7 @@
       "source_location": "L62",
       "_origin": "ast",
       "id": "src_embedding_finetune_setfit_score",
-      "community": 4,
+      "community": 11,
       "norm_label": "score()"
     },
     {
@@ -2130,7 +2170,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_embedding_finetune_setfit_py_ndarray",
-      "community": 4,
+      "community": 11,
       "norm_label": "ndarray"
     },
     {
@@ -2140,7 +2180,7 @@
       "source_location": "L68",
       "_origin": "ast",
       "id": "src_embedding_finetune_setfit_cv_auc",
-      "community": 19,
+      "community": 11,
       "norm_label": "cv_auc()"
     },
     {
@@ -2150,7 +2190,7 @@
       "source_location": "L82",
       "_origin": "ast",
       "id": "src_embedding_finetune_setfit_save",
-      "community": 19,
+      "community": 11,
       "norm_label": "save()"
     },
     {
@@ -2160,7 +2200,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_embedding_finetune_setfit_rationale_1",
-      "community": 19,
+      "community": 11,
       "norm_label": "setfit few-shot contrastive fine-tuning of the embedding model (step 0).  build"
     },
     {
@@ -2170,7 +2210,7 @@
       "source_location": "L47",
       "_origin": "ast",
       "id": "src_embedding_finetune_setfit_rationale_47",
-      "community": 19,
+      "community": 11,
       "norm_label": "fine-tune a fresh copy of the base encoder; returns it and the logged loss per s"
     },
     {
@@ -2180,7 +2220,7 @@
       "source_location": "L63",
       "_origin": "ast",
       "id": "src_embedding_finetune_setfit_rationale_63",
-      "community": 4,
+      "community": 11,
       "norm_label": "consistency score in [0, 1] for each row (high = consistent)."
     },
     {
@@ -2190,7 +2230,7 @@
       "source_location": "L70",
       "_origin": "ast",
       "id": "src_embedding_finetune_setfit_rationale_70",
-      "community": 19,
+      "community": 11,
       "norm_label": "mean held-out-fold auc inside the given rows, folds grouped by skill so variants"
     },
     {
@@ -2300,7 +2340,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "src_evaluation_metrics_group_bootstrap_ci",
-      "community": 4,
+      "community": 14,
       "norm_label": "group_bootstrap_ci()"
     },
     {
@@ -2350,7 +2390,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "src_evaluation_metrics_rationale_32",
-      "community": 4,
+      "community": 14,
       "norm_label": "percentile intervals for auc and f1, resampling skill groups with replacement."
     },
     {
@@ -2440,7 +2480,7 @@
       "source_location": "L93",
       "_origin": "ast",
       "id": "src_evaluator_agt_adapter_agt_visible",
-      "community": 16,
+      "community": 6,
       "norm_label": "agt_visible()"
     },
     {
@@ -2450,7 +2490,7 @@
       "source_location": "L98",
       "_origin": "ast",
       "id": "src_evaluator_agt_adapter_record_trial",
-      "community": 57,
+      "community": 6,
       "norm_label": "record_trial()"
     },
     {
@@ -2460,7 +2500,7 @@
       "source_location": "L120",
       "_origin": "ast",
       "id": "src_evaluator_agt_adapter_check_parity",
-      "community": 57,
+      "community": 6,
       "norm_label": "check_parity()"
     },
     {
@@ -2520,7 +2560,7 @@
       "source_location": "L94",
       "_origin": "ast",
       "id": "src_evaluator_agt_adapter_rationale_94",
-      "community": 16,
+      "community": 6,
       "norm_label": "only the tool-call layer: what agt's own audit log would contain."
     },
     {
@@ -2530,7 +2570,7 @@
       "source_location": "L99",
       "_origin": "ast",
       "id": "src_evaluator_agt_adapter_rationale_99",
-      "community": 57,
+      "community": 6,
       "norm_label": "record one sandbox trial run in agt's auditlog, as an agt integration would."
     },
     {
@@ -2540,7 +2580,7 @@
       "source_location": "L121",
       "_origin": "ast",
       "id": "src_evaluator_agt_adapter_rationale_121",
-      "community": 57,
+      "community": 6,
       "norm_label": "does the trace rebuilt from agt's log equal the dataset's normalise() trace?"
     },
     {
@@ -2557,7 +2597,7 @@
       "label": "DivergenceEscalation",
       "file_type": "code",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L42",
+      "source_location": "L46",
       "_origin": "ast",
       "id": "src_evaluator_agt_installer_divergenceescalation",
       "community": 57,
@@ -2577,7 +2617,7 @@
       "label": ".__init__()",
       "file_type": "code",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L45",
+      "source_location": "L49",
       "_origin": "ast",
       "id": "src_evaluator_agt_installer_divergenceescalation_init",
       "community": 57,
@@ -2587,7 +2627,7 @@
       "label": "TrialRun",
       "file_type": "code",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L52",
+      "source_location": "L56",
       "_origin": "ast",
       "id": "src_evaluator_agt_installer_trialrun",
       "community": 57,
@@ -2597,7 +2637,7 @@
       "label": "SkillAssessment",
       "file_type": "code",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L60",
+      "source_location": "L64",
       "_origin": "ast",
       "id": "src_evaluator_agt_installer_skillassessment",
       "community": 57,
@@ -2607,7 +2647,7 @@
       "label": ".caught_by()",
       "file_type": "code",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L66",
+      "source_location": "L70",
       "_origin": "ast",
       "id": "src_evaluator_agt_installer_skillassessment_caught_by",
       "community": 57,
@@ -2617,7 +2657,7 @@
       "label": ".verdict()",
       "file_type": "code",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L70",
+      "source_location": "L74",
       "_origin": "ast",
       "id": "src_evaluator_agt_installer_skillassessment_verdict",
       "community": 57,
@@ -2627,7 +2667,7 @@
       "label": ".to_agt_evidence()",
       "file_type": "code",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L73",
+      "source_location": "L77",
       "_origin": "ast",
       "id": "src_evaluator_agt_installer_skillassessment_to_agt_evidence",
       "community": 57,
@@ -2637,7 +2677,7 @@
       "label": ".summary()",
       "file_type": "code",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L80",
+      "source_location": "L84",
       "_origin": "ast",
       "id": "src_evaluator_agt_installer_skillassessment_summary",
       "community": 57,
@@ -2647,7 +2687,7 @@
       "label": "DivergencePluginInstaller",
       "file_type": "code",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L87",
+      "source_location": "L91",
       "_origin": "ast",
       "id": "src_evaluator_agt_installer_divergenceplugininstaller",
       "community": 57,
@@ -2667,7 +2707,7 @@
       "label": ".__init__()",
       "file_type": "code",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L88",
+      "source_location": "L92",
       "_origin": "ast",
       "id": "src_evaluator_agt_installer_divergenceplugininstaller_init",
       "community": 57,
@@ -2697,17 +2737,37 @@
       "label": ".assess()",
       "file_type": "code",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L96",
+      "source_location": "L103",
       "_origin": "ast",
       "id": "src_evaluator_agt_installer_divergenceplugininstaller_assess",
       "community": 57,
       "norm_label": ".assess()"
     },
     {
+      "label": ".assessments()",
+      "file_type": "code",
+      "source_file": "src/evaluator/agt_installer.py",
+      "source_location": "L118",
+      "_origin": "ast",
+      "id": "src_evaluator_agt_installer_divergenceplugininstaller_assessments",
+      "community": 57,
+      "norm_label": ".assessments()"
+    },
+    {
+      "label": ".request_install()",
+      "file_type": "code",
+      "source_file": "src/evaluator/agt_installer.py",
+      "source_location": "L121",
+      "_origin": "ast",
+      "id": "src_evaluator_agt_installer_divergenceplugininstaller_request_install",
+      "community": 57,
+      "norm_label": ".request_install()"
+    },
+    {
       "label": ".approve()",
       "file_type": "code",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L110",
+      "source_location": "L141",
       "_origin": "ast",
       "id": "src_evaluator_agt_installer_divergenceplugininstaller_approve",
       "community": 57,
@@ -2717,7 +2777,7 @@
       "label": ".install()",
       "file_type": "code",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L117",
+      "source_location": "L148",
       "_origin": "ast",
       "id": "src_evaluator_agt_installer_divergenceplugininstaller_install",
       "community": 57,
@@ -2737,9 +2797,9 @@
       "label": "Install stopped: the skill's behaviour diverged from its description and needs a",
       "file_type": "rationale",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L43",
+      "source_location": "L47",
       "_origin": "ast",
-      "id": "src_evaluator_agt_installer_rationale_43",
+      "id": "src_evaluator_agt_installer_rationale_47",
       "community": 57,
       "norm_label": "install stopped: the skill's behaviour diverged from its description and needs a"
     },
@@ -2747,9 +2807,9 @@
       "label": "One sandbox trial run: its AGT audit entries and the sandbox's OS events.",
       "file_type": "rationale",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L53",
+      "source_location": "L57",
       "_origin": "ast",
-      "id": "src_evaluator_agt_installer_rationale_53",
+      "id": "src_evaluator_agt_installer_rationale_57",
       "community": 57,
       "norm_label": "one sandbox trial run: its agt audit entries and the sandbox's os events."
     },
@@ -2757,19 +2817,29 @@
       "label": "Score the skill's trial runs against the description in its registry manifest.",
       "file_type": "rationale",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L97",
+      "source_location": "L104",
       "_origin": "ast",
-      "id": "src_evaluator_agt_installer_rationale_97",
+      "id": "src_evaluator_agt_installer_rationale_104",
       "community": 57,
       "norm_label": "score the skill's trial runs against the description in its registry manifest."
+    },
+    {
+      "label": "Option B: one install request = sandbox trial -> Divergence -> AGT install.",
+      "file_type": "rationale",
+      "source_file": "src/evaluator/agt_installer.py",
+      "source_location": "L123",
+      "_origin": "ast",
+      "id": "src_evaluator_agt_installer_rationale_123",
+      "community": 57,
+      "norm_label": "option b: one install request = sandbox trial -> divergence -> agt install."
     },
     {
       "label": "A human reviewer accepts a flagged skill after reading the evidence.",
       "file_type": "rationale",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L111",
+      "source_location": "L142",
       "_origin": "ast",
-      "id": "src_evaluator_agt_installer_rationale_111",
+      "id": "src_evaluator_agt_installer_rationale_142",
       "community": 57,
       "norm_label": "a human reviewer accepts a flagged skill after reading the evidence."
     },
@@ -2777,9 +2847,9 @@
       "label": "Divergence first, then AGT's own install checks (signature, dependencies, import",
       "file_type": "rationale",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L118",
+      "source_location": "L149",
       "_origin": "ast",
-      "id": "src_evaluator_agt_installer_rationale_118",
+      "id": "src_evaluator_agt_installer_rationale_149",
       "community": 57,
       "norm_label": "divergence first, then agt's own install checks (signature, dependencies, import"
     },
@@ -2790,7 +2860,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_evaluator_divergence_evaluator",
-      "community": 11,
+      "community": 13,
       "norm_label": "divergence_evaluator.py"
     },
     {
@@ -2800,7 +2870,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "src_evaluator_divergence_evaluator_divergenceresult",
-      "community": 59,
+      "community": 57,
       "norm_label": "divergenceresult"
     },
     {
@@ -2810,7 +2880,7 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "src_evaluator_divergence_evaluator_divergenceresult_to_dict",
-      "community": 59,
+      "community": 57,
       "norm_label": ".to_dict()"
     },
     {
@@ -2820,7 +2890,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "src_evaluator_divergence_evaluator_divergenceresult_to_json",
-      "community": 59,
+      "community": 57,
       "norm_label": ".to_json()"
     },
     {
@@ -2830,7 +2900,7 @@
       "source_location": "L61",
       "_origin": "ast",
       "id": "src_evaluator_divergence_evaluator_divergenceresult_to_agt_evidence",
-      "community": 59,
+      "community": 57,
       "norm_label": ".to_agt_evidence()"
     },
     {
@@ -2840,7 +2910,7 @@
       "source_location": "L67",
       "_origin": "ast",
       "id": "src_evaluator_divergence_evaluator_reasoning",
-      "community": 11,
+      "community": 13,
       "norm_label": "_reasoning()"
     },
     {
@@ -2850,7 +2920,7 @@
       "source_location": "L91",
       "_origin": "ast",
       "id": "src_evaluator_divergence_evaluator_divergenceevaluator",
-      "community": 15,
+      "community": 13,
       "norm_label": "divergenceevaluator"
     },
     {
@@ -2860,7 +2930,7 @@
       "source_location": "L100",
       "_origin": "ast",
       "id": "src_evaluator_divergence_evaluator_divergenceevaluator_init",
-      "community": 10,
+      "community": 13,
       "norm_label": ".__init__()"
     },
     {
@@ -2870,7 +2940,7 @@
       "source_location": "L105",
       "_origin": "ast",
       "id": "src_evaluator_divergence_evaluator_divergenceevaluator_evaluate",
-      "community": 59,
+      "community": 13,
       "norm_label": ".evaluate()"
     },
     {
@@ -2880,7 +2950,7 @@
       "source_location": "L115",
       "_origin": "ast",
       "id": "src_evaluator_divergence_evaluator_divergenceevaluator_evaluate_batch",
-      "community": 59,
+      "community": 13,
       "norm_label": ".evaluate_batch()"
     },
     {
@@ -2890,7 +2960,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_evaluator_divergence_evaluator_rationale_1",
-      "community": 11,
+      "community": 13,
       "norm_label": "divergenceevaluator \u2014 the agt-pattern evaluator wrapping the full pipeline.  bui"
     },
     {
@@ -2900,7 +2970,7 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "src_evaluator_divergence_evaluator_rationale_58",
-      "community": 59,
+      "community": 57,
       "norm_label": "deterministic json (sorted keys), like promptdefensereport.to_json()."
     },
     {
@@ -2910,7 +2980,7 @@
       "source_location": "L62",
       "_origin": "ast",
       "id": "src_evaluator_divergence_evaluator_rationale_62",
-      "community": 59,
+      "community": 57,
       "norm_label": "the result as evidence for agt's policy decision (divergence does not decide it)"
     },
     {
@@ -2920,7 +2990,7 @@
       "source_location": "L69",
       "_origin": "ast",
       "id": "src_evaluator_divergence_evaluator_rationale_69",
-      "community": 11,
+      "community": 13,
       "norm_label": "plain-language explanation built from the same numbers that made the verdict."
     },
     {
@@ -2930,7 +3000,7 @@
       "source_location": "L92",
       "_origin": "ast",
       "id": "src_evaluator_divergence_evaluator_rationale_92",
-      "community": 15,
+      "community": 13,
       "norm_label": "wraps pipeline steps 1-6: encode description, enrich + encode trace,     cosine"
     },
     {
@@ -2940,7 +3010,7 @@
       "source_location": "L107",
       "_origin": "ast",
       "id": "src_evaluator_divergence_evaluator_rationale_107",
-      "community": 59,
+      "community": 13,
       "norm_label": "score one skill run.          audit_log: agt auditentry objects/dicts, or an alr"
     },
     {
@@ -2950,8 +3020,218 @@
       "source_location": "L116",
       "_origin": "ast",
       "id": "src_evaluator_divergence_evaluator_rationale_116",
-      "community": 59,
+      "community": 13,
       "norm_label": "evaluate() for many (description, audit_log[, os_events]) runs, encoding in one"
+    },
+    {
+      "label": "trial_runner.py",
+      "file_type": "code",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_evaluator_trial_runner",
+      "community": 57,
+      "norm_label": "trial_runner.py"
+    },
+    {
+      "label": "TrialError",
+      "file_type": "code",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L45",
+      "_origin": "ast",
+      "id": "src_evaluator_trial_runner_trialerror",
+      "community": 57,
+      "norm_label": "trialerror"
+    },
+    {
+      "label": "RuntimeError",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "runtimeerror",
+      "community": 13,
+      "norm_label": "runtimeerror"
+    },
+    {
+      "label": "Trial",
+      "file_type": "code",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L50",
+      "_origin": "ast",
+      "id": "src_evaluator_trial_runner_trial",
+      "community": 57,
+      "norm_label": "trial"
+    },
+    {
+      "label": "load_trial_runs()",
+      "file_type": "code",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L57",
+      "_origin": "ast",
+      "id": "src_evaluator_trial_runner_load_trial_runs",
+      "community": 57,
+      "norm_label": "load_trial_runs()"
+    },
+    {
+      "label": "Path",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "src_evaluator_trial_runner_py_path",
+      "community": 57,
+      "norm_label": "path"
+    },
+    {
+      "label": "_modes()",
+      "file_type": "code",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L77",
+      "_origin": "ast",
+      "id": "src_evaluator_trial_runner_modes",
+      "community": 57,
+      "norm_label": "_modes()"
+    },
+    {
+      "label": "CapturedTraceRunner",
+      "file_type": "code",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L81",
+      "_origin": "ast",
+      "id": "src_evaluator_trial_runner_capturedtracerunner",
+      "community": 57,
+      "norm_label": "capturedtracerunner"
+    },
+    {
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L84",
+      "_origin": "ast",
+      "id": "src_evaluator_trial_runner_capturedtracerunner_init",
+      "community": 57,
+      "norm_label": ".__init__()"
+    },
+    {
+      "label": ".run()",
+      "file_type": "code",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L87",
+      "_origin": "ast",
+      "id": "src_evaluator_trial_runner_capturedtracerunner_run",
+      "community": 57,
+      "norm_label": ".run()"
+    },
+    {
+      "label": "LimaTrialRunner",
+      "file_type": "code",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L92",
+      "_origin": "ast",
+      "id": "src_evaluator_trial_runner_limatrialrunner",
+      "community": 57,
+      "norm_label": "limatrialrunner"
+    },
+    {
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L103",
+      "_origin": "ast",
+      "id": "src_evaluator_trial_runner_limatrialrunner_init",
+      "community": 57,
+      "norm_label": ".__init__()"
+    },
+    {
+      "label": "._call()",
+      "file_type": "code",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L109",
+      "_origin": "ast",
+      "id": "src_evaluator_trial_runner_limatrialrunner_call",
+      "community": 57,
+      "norm_label": "._call()"
+    },
+    {
+      "label": "._shell()",
+      "file_type": "code",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L121",
+      "_origin": "ast",
+      "id": "src_evaluator_trial_runner_limatrialrunner_shell",
+      "community": 57,
+      "norm_label": "._shell()"
+    },
+    {
+      "label": "._copy()",
+      "file_type": "code",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L125",
+      "_origin": "ast",
+      "id": "src_evaluator_trial_runner_limatrialrunner_copy",
+      "community": 57,
+      "norm_label": "._copy()"
+    },
+    {
+      "label": ".run()",
+      "file_type": "code",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L129",
+      "_origin": "ast",
+      "id": "src_evaluator_trial_runner_limatrialrunner_run",
+      "community": 57,
+      "norm_label": ".run()"
+    },
+    {
+      "label": "Trial runners: get the observed behaviour Divergence needs BEFORE a skill is ins",
+      "file_type": "rationale",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_evaluator_trial_runner_rationale_1",
+      "community": 57,
+      "norm_label": "trial runners: get the observed behaviour divergence needs before a skill is ins"
+    },
+    {
+      "label": "The sandbox trial could not be run or its output could not be read.",
+      "file_type": "rationale",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L46",
+      "_origin": "ast",
+      "id": "src_evaluator_trial_runner_rationale_46",
+      "community": 57,
+      "norm_label": "the sandbox trial could not be run or its output could not be read."
+    },
+    {
+      "label": "TrialRuns for every mode with a captured result, recorded in `audit_log`, parity",
+      "file_type": "rationale",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L59",
+      "_origin": "ast",
+      "id": "src_evaluator_trial_runner_rationale_59",
+      "community": 57,
+      "norm_label": "trialruns for every mode with a captured result, recorded in `audit_log`, parity"
+    },
+    {
+      "label": "Option A: trial runs already captured under `traces_root` (same layout as data/r",
+      "file_type": "rationale",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L82",
+      "_origin": "ast",
+      "id": "src_evaluator_trial_runner_rationale_82",
+      "community": 57,
+      "norm_label": "option a: trial runs already captured under `traces_root` (same layout as data/r"
+    },
+    {
+      "label": "Option B: run the skill's trial in the sealed Lima VM, automatically, per instal",
+      "file_type": "rationale",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L93",
+      "_origin": "ast",
+      "id": "src_evaluator_trial_runner_rationale_93",
+      "community": 57,
+      "norm_label": "option b: run the skill's trial in the sealed lima vm, automatically, per instal"
     },
     {
       "label": "__init__.py",
@@ -2970,7 +3250,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_experiments_exp1_baseline_comparison",
-      "community": 4,
+      "community": 15,
       "norm_label": "exp1_baseline_comparison.py"
     },
     {
@@ -2980,7 +3260,7 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "src_experiments_exp1_baseline_comparison_group",
-      "community": 4,
+      "community": 15,
       "norm_label": "_group()"
     },
     {
@@ -2990,7 +3270,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "src_experiments_exp1_baseline_comparison_calibrated",
-      "community": 4,
+      "community": 15,
       "norm_label": "_calibrated()"
     },
     {
@@ -3000,7 +3280,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_experiments_exp1_baseline_comparison_py_ndarray",
-      "community": 4,
+      "community": 15,
       "norm_label": "ndarray"
     },
     {
@@ -3010,7 +3290,7 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "src_experiments_exp1_baseline_comparison_run_systems",
-      "community": 4,
+      "community": 15,
       "norm_label": "run_systems()"
     },
     {
@@ -3020,7 +3300,7 @@
       "source_location": "L110",
       "_origin": "ast",
       "id": "src_experiments_exp1_baseline_comparison_summarise",
-      "community": 4,
+      "community": 15,
       "norm_label": "summarise()"
     },
     {
@@ -3030,7 +3310,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_experiments_exp1_baseline_comparison_py_dataframe",
-      "community": 4,
+      "community": 15,
       "norm_label": "dataframe"
     },
     {
@@ -3040,7 +3320,7 @@
       "source_location": "L130",
       "_origin": "ast",
       "id": "src_experiments_exp1_baseline_comparison_within_mode_auc",
-      "community": 4,
+      "community": 15,
       "norm_label": "within_mode_auc()"
     },
     {
@@ -3050,7 +3330,7 @@
       "source_location": "L141",
       "_origin": "ast",
       "id": "src_experiments_exp1_baseline_comparison_main",
-      "community": 4,
+      "community": 15,
       "norm_label": "main()"
     },
     {
@@ -3060,7 +3340,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_experiments_exp1_baseline_comparison_rationale_1",
-      "community": 4,
+      "community": 15,
       "norm_label": "experiment 1: baseline comparison + mcnemar's test. build order item 12.  compar"
     },
     {
@@ -3070,7 +3350,7 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "src_experiments_exp1_baseline_comparison_rationale_54",
-      "community": 4,
+      "community": 15,
       "norm_label": "logistic regression fitted on the calibration split, as notebook 06 did for the"
     },
     {
@@ -3080,7 +3360,7 @@
       "source_location": "L60",
       "_origin": "ast",
       "id": "src_experiments_exp1_baseline_comparison_rationale_60",
-      "community": 4,
+      "community": 15,
       "norm_label": "score every system on the test runs. returns (per-run predictions, divergence re"
     },
     {
@@ -3090,7 +3370,7 @@
       "source_location": "L111",
       "_origin": "ast",
       "id": "src_experiments_exp1_baseline_comparison_rationale_111",
-      "community": 4,
+      "community": 15,
       "norm_label": "one row per system: point metrics, group-bootstrap 95% cis, mcnemar vs divergenc"
     },
     {
@@ -3100,7 +3380,7 @@
       "source_location": "L131",
       "_origin": "ast",
       "id": "src_experiments_exp1_baseline_comparison_rationale_131",
-      "community": 4,
+      "community": 15,
       "norm_label": "auc inside each execution mode, which removes the mode confound (pos rate differ"
     },
     {
@@ -3120,7 +3400,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "src_experiments_exp1b_skill_level_skill_predictions",
-      "community": 4,
+      "community": 6,
       "norm_label": "skill_predictions()"
     },
     {
@@ -3130,7 +3410,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_experiments_exp1b_skill_level_py_dataframe",
-      "community": 4,
+      "community": 6,
       "norm_label": "dataframe"
     },
     {
@@ -3170,7 +3450,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "src_experiments_exp1b_skill_level_rationale_32",
-      "community": 4,
+      "community": 6,
       "norm_label": "one row per skill: max score and any-flag verdict for every system."
     },
     {
@@ -3180,7 +3460,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_experiments_exp1c_llm_judge",
-      "community": 4,
+      "community": 14,
       "norm_label": "exp1c_llm_judge.py"
     },
     {
@@ -3190,7 +3470,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "src_experiments_exp1c_llm_judge_run_judge",
-      "community": 4,
+      "community": 14,
       "norm_label": "run_judge()"
     },
     {
@@ -3200,7 +3480,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_experiments_exp1c_llm_judge_py_dataframe",
-      "community": 4,
+      "community": 14,
       "norm_label": "dataframe"
     },
     {
@@ -3210,7 +3490,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "src_experiments_exp1c_llm_judge_main",
-      "community": 4,
+      "community": 14,
       "norm_label": "main()"
     },
     {
@@ -3220,7 +3500,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_experiments_exp1c_llm_judge_rationale_1",
-      "community": 4,
+      "community": 14,
       "norm_label": "experiment 1c: the llm-as-judge baseline, on the held-out test split.  local oll"
     },
     {
@@ -3230,7 +3510,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_experiments_exp1d_capability_overlap",
-      "community": 4,
+      "community": 14,
       "norm_label": "exp1d_capability_overlap.py"
     },
     {
@@ -3240,7 +3520,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "src_experiments_exp1d_capability_overlap_main",
-      "community": 4,
+      "community": 14,
       "norm_label": "main()"
     },
     {
@@ -3250,7 +3530,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_experiments_exp1d_capability_overlap_rationale_1",
-      "community": 4,
+      "community": 14,
       "norm_label": "experiment 1d: capability-overlap baseline on the locked test split.  adds src/b"
     },
     {
@@ -3260,7 +3540,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_experiments_exp2_ablation",
-      "community": 4,
+      "community": 11,
       "norm_label": "exp2_ablation.py"
     },
     {
@@ -3280,7 +3560,7 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "src_experiments_exp2_ablation_flag_matrix",
-      "community": 4,
+      "community": 11,
       "norm_label": "flag_matrix()"
     },
     {
@@ -3290,7 +3570,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_experiments_exp2_ablation_py_ndarray",
-      "community": 4,
+      "community": 11,
       "norm_label": "ndarray"
     },
     {
@@ -3300,7 +3580,7 @@
       "source_location": "L60",
       "_origin": "ast",
       "id": "src_experiments_exp2_ablation_calibrate",
-      "community": 4,
+      "community": 11,
       "norm_label": "calibrate()"
     },
     {
@@ -3310,7 +3590,7 @@
       "source_location": "L66",
       "_origin": "ast",
       "id": "src_experiments_exp2_ablation_main",
-      "community": 4,
+      "community": 11,
       "norm_label": "main()"
     },
     {
@@ -3320,7 +3600,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_experiments_exp2_ablation_rationale_1",
-      "community": 4,
+      "community": 11,
       "norm_label": "experiment 2: ablation study. build order item 13.  removes or swaps one compone"
     },
     {
@@ -3370,7 +3650,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_experiments_exp3_attack_type_breakdown",
-      "community": 19,
+      "community": 16,
       "norm_label": "exp3_attack_type_breakdown.py"
     },
     {
@@ -3380,7 +3660,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "src_experiments_exp3_attack_type_breakdown_taxonomy",
-      "community": 19,
+      "community": 16,
       "norm_label": "taxonomy()"
     },
     {
@@ -3390,7 +3670,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_experiments_exp3_attack_type_breakdown_py_dataframe",
-      "community": 19,
+      "community": 16,
       "norm_label": "dataframe"
     },
     {
@@ -3400,7 +3680,7 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "src_experiments_exp3_attack_type_breakdown_cell_metrics",
-      "community": 19,
+      "community": 16,
       "norm_label": "cell_metrics()"
     },
     {
@@ -3410,7 +3690,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_experiments_exp3_attack_type_breakdown_py_ndarray",
-      "community": 19,
+      "community": 16,
       "norm_label": "ndarray"
     },
     {
@@ -3420,7 +3700,7 @@
       "source_location": "L68",
       "_origin": "ast",
       "id": "src_experiments_exp3_attack_type_breakdown_cv_predictions",
-      "community": 19,
+      "community": 16,
       "norm_label": "cv_predictions()"
     },
     {
@@ -3430,7 +3710,7 @@
       "source_location": "L85",
       "_origin": "ast",
       "id": "src_experiments_exp3_attack_type_breakdown_breakdown",
-      "community": 19,
+      "community": 16,
       "norm_label": "breakdown()"
     },
     {
@@ -3440,7 +3720,7 @@
       "source_location": "L100",
       "_origin": "ast",
       "id": "src_experiments_exp3_attack_type_breakdown_main",
-      "community": 19,
+      "community": 16,
       "norm_label": "main()"
     },
     {
@@ -3450,7 +3730,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_experiments_exp3_attack_type_breakdown_rationale_1",
-      "community": 19,
+      "community": 16,
       "norm_label": "experiment 3: attack-type breakdown. build order item 14.  performance broken do"
     },
     {
@@ -3460,7 +3740,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "src_experiments_exp3_attack_type_breakdown_rationale_45",
-      "community": 19,
+      "community": 16,
       "norm_label": "one row per run: the cells it belongs to. benign / wild runs get their own cell"
     },
     {
@@ -3470,7 +3750,7 @@
       "source_location": "L69",
       "_origin": "ast",
       "id": "src_experiments_exp3_attack_type_breakdown_rationale_69",
-      "community": 19,
+      "community": 16,
       "norm_label": "out-of-fold divergence probability for every run (cached; ~6 min to build)."
     },
     {
@@ -3480,7 +3760,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_experiments_exp4_embedding_model_comparison",
-      "community": 4,
+      "community": 11,
       "norm_label": "exp4_embedding_model_comparison.py"
     },
     {
@@ -3490,7 +3770,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "src_experiments_exp4_embedding_model_comparison_main",
-      "community": 4,
+      "community": 11,
       "norm_label": "main()"
     },
     {
@@ -3500,7 +3780,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_experiments_exp4_embedding_model_comparison_rationale_1",
-      "community": 4,
+      "community": 11,
       "norm_label": "experiment 4: embedding model comparison (core, per the apu csda guideline: buil"
     },
     {
@@ -4080,7 +4360,7 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "src_preprocessing_structural_flags_external",
-      "community": 13,
+      "community": 0,
       "norm_label": "_external()"
     },
     {
@@ -4090,7 +4370,7 @@
       "source_location": "L81",
       "_origin": "ast",
       "id": "src_preprocessing_structural_flags_observed",
-      "community": 13,
+      "community": 0,
       "norm_label": "_observed()"
     },
     {
@@ -4100,7 +4380,7 @@
       "source_location": "L127",
       "_origin": "ast",
       "id": "src_preprocessing_structural_flags_structuralflags",
-      "community": 11,
+      "community": 0,
       "norm_label": "structuralflags"
     },
     {
@@ -4110,7 +4390,7 @@
       "source_location": "L136",
       "_origin": "ast",
       "id": "src_preprocessing_structural_flags_structuralflags_as_list",
-      "community": 11,
+      "community": 0,
       "norm_label": ".as_list()"
     },
     {
@@ -4120,7 +4400,7 @@
       "source_location": "L139",
       "_origin": "ast",
       "id": "src_preprocessing_structural_flags_structuralflags_raised",
-      "community": 11,
+      "community": 0,
       "norm_label": ".raised()"
     },
     {
@@ -4150,7 +4430,7 @@
       "source_location": "L75",
       "_origin": "ast",
       "id": "src_preprocessing_structural_flags_rationale_75",
-      "community": 13,
+      "community": 0,
       "norm_label": "a real, public, non-infrastructure host (rejects command lines cut mid-url)."
     },
     {
@@ -4160,7 +4440,7 @@
       "source_location": "L82",
       "_origin": "ast",
       "id": "src_preprocessing_structural_flags_rationale_82",
-      "community": 13,
+      "community": 0,
       "norm_label": "what the trace did, in the categories the flags compare against."
     },
     {
@@ -4170,7 +4450,7 @@
       "source_location": "L140",
       "_origin": "ast",
       "id": "src_preprocessing_structural_flags_rationale_140",
-      "community": 11,
+      "community": 0,
       "norm_label": "names of the flags that fired, for the evaluator's result object."
     },
     {
@@ -4480,7 +4760,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_calibrator",
-      "community": 11,
+      "community": 0,
       "norm_label": "test_calibrator.py"
     },
     {
@@ -4490,7 +4770,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "tests_test_calibrator_fitted",
-      "community": 11,
+      "community": 0,
       "norm_label": "fitted()"
     },
     {
@@ -4500,7 +4780,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "tests_test_calibrator_test_feature_row_order_matches_names",
-      "community": 11,
+      "community": 0,
       "norm_label": "test_feature_row_order_matches_names()"
     },
     {
@@ -4510,7 +4790,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "tests_test_calibrator_test_low_score_and_flags_mean_suspicious",
-      "community": 11,
+      "community": 0,
       "norm_label": "test_low_score_and_flags_mean_suspicious()"
     },
     {
@@ -4520,7 +4800,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "tests_test_calibrator_test_json_round_trip_is_exact_and_not_a_pickle",
-      "community": 11,
+      "community": 0,
       "norm_label": "test_json_round_trip_is_exact_and_not_a_pickle()"
     },
     {
@@ -4530,7 +4810,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_calibrator_rationale_1",
-      "community": 11,
+      "community": 0,
       "norm_label": "unit tests for the logistic calibration layer (build order item 9)."
     },
     {
@@ -4630,7 +4910,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_evaluator",
-      "community": 15,
+      "community": 6,
       "norm_label": "test_evaluator.py"
     },
     {
@@ -4640,7 +4920,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "tests_test_evaluator_fakeencoder",
-      "community": 15,
+      "community": 6,
       "norm_label": "fakeencoder"
     },
     {
@@ -4650,7 +4930,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "tests_test_evaluator_fakeencoder_encode",
-      "community": 15,
+      "community": 6,
       "norm_label": ".encode()"
     },
     {
@@ -4660,7 +4940,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "tests_test_evaluator_calibrator",
-      "community": 15,
+      "community": 6,
       "norm_label": "calibrator()"
     },
     {
@@ -4670,7 +4950,7 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "tests_test_evaluator_evaluator",
-      "community": 15,
+      "community": 6,
       "norm_label": "evaluator()"
     },
     {
@@ -4690,7 +4970,7 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "tests_test_evaluator_test_os_events_attach_after_their_entry",
-      "community": 16,
+      "community": 6,
       "norm_label": "test_os_events_attach_after_their_entry()"
     },
     {
@@ -4720,7 +5000,7 @@
       "source_location": "L82",
       "_origin": "ast",
       "id": "tests_test_evaluator_test_real_agt_log_reproduces_the_dataset_trace",
-      "community": 57,
+      "community": 6,
       "norm_label": "test_real_agt_log_reproduces_the_dataset_trace()"
     },
     {
@@ -4730,7 +5010,7 @@
       "source_location": "L100",
       "_origin": "ast",
       "id": "tests_test_evaluator_test_unmentioned_domain_is_flagged_and_explained",
-      "community": 15,
+      "community": 6,
       "norm_label": "test_unmentioned_domain_is_flagged_and_explained()"
     },
     {
@@ -4740,7 +5020,7 @@
       "source_location": "L108",
       "_origin": "ast",
       "id": "tests_test_evaluator_test_consistent_run_is_allowed",
-      "community": 15,
+      "community": 6,
       "norm_label": "test_consistent_run_is_allowed()"
     },
     {
@@ -4750,7 +5030,7 @@
       "source_location": "L116",
       "_origin": "ast",
       "id": "tests_test_evaluator_test_empty_trace_is_described_as_such",
-      "community": 15,
+      "community": 6,
       "norm_label": "test_empty_trace_is_described_as_such()"
     },
     {
@@ -4760,7 +5040,7 @@
       "source_location": "L121",
       "_origin": "ast",
       "id": "tests_test_evaluator_test_agt_evidence_and_json",
-      "community": 15,
+      "community": 6,
       "norm_label": "test_agt_evidence_and_json()"
     },
     {
@@ -4770,7 +5050,7 @@
       "source_location": "L129",
       "_origin": "ast",
       "id": "tests_test_evaluator_test_batch_matches_single",
-      "community": 15,
+      "community": 6,
       "norm_label": "test_batch_matches_single()"
     },
     {
@@ -4780,7 +5060,7 @@
       "source_location": "L137",
       "_origin": "ast",
       "id": "tests_test_evaluator_test_mcnemar_counts_disagreements",
-      "community": 15,
+      "community": 6,
       "norm_label": "test_mcnemar_counts_disagreements()"
     },
     {
@@ -4790,7 +5070,7 @@
       "source_location": "L145",
       "_origin": "ast",
       "id": "tests_test_evaluator_test_point_metrics_and_bootstrap",
-      "community": 4,
+      "community": 14,
       "norm_label": "test_point_metrics_and_bootstrap()"
     },
     {
@@ -4800,7 +5080,7 @@
       "source_location": "L154",
       "_origin": "ast",
       "id": "tests_test_evaluator_test_result_object_shape",
-      "community": 59,
+      "community": 6,
       "norm_label": "test_result_object_shape()"
     },
     {
@@ -4810,7 +5090,7 @@
       "source_location": "L163",
       "_origin": "ast",
       "id": "tests_test_evaluator_test_skill_level_is_flag_if_any_and_max_score",
-      "community": 4,
+      "community": 6,
       "norm_label": "test_skill_level_is_flag_if_any_and_max_score()"
     },
     {
@@ -4820,7 +5100,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_evaluator_rationale_1",
-      "community": 15,
+      "community": 6,
       "norm_label": "unit tests for the agt adapter, divergenceevaluator (build order item 10) and th"
     },
     {
@@ -4830,7 +5110,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "tests_test_evaluator_rationale_25",
-      "community": 15,
+      "community": 6,
       "norm_label": "same vector for every text -> consistency score 1.0."
     },
     {
@@ -4840,7 +5120,7 @@
       "source_location": "L83",
       "_origin": "ast",
       "id": "tests_test_evaluator_rationale_83",
-      "community": 57,
+      "community": 6,
       "norm_label": "record_trial -> agt auditlog -> adapter must equal normalise(): the parity check"
     },
     {
@@ -4850,7 +5130,7 @@
       "source_location": "L155",
       "_origin": "ast",
       "id": "tests_test_evaluator_rationale_155",
-      "community": 59,
+      "community": 6,
       "norm_label": "the original stub test, kept: the v8 four-field shape still constructs on its ow"
     },
     {
@@ -4860,7 +5140,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_finetune_setfit",
-      "community": 19,
+      "community": 18,
       "norm_label": "test_finetune_setfit.py"
     },
     {
@@ -4870,7 +5150,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "tests_test_finetune_setfit_row",
-      "community": 19,
+      "community": 18,
       "norm_label": "row()"
     },
     {
@@ -4880,7 +5160,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "tests_test_finetune_setfit_test_label_direction",
-      "community": 19,
+      "community": 18,
       "norm_label": "test_label_direction()"
     },
     {
@@ -4890,7 +5170,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "tests_test_finetune_setfit_test_pairs_use_description_and_enriched_trace",
-      "community": 19,
+      "community": 18,
       "norm_label": "test_pairs_use_description_and_enriched_trace()"
     },
     {
@@ -4900,7 +5180,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "tests_test_finetune_setfit_test_text_function_is_swappable_for_the_ablation",
-      "community": 19,
+      "community": 18,
       "norm_label": "test_text_function_is_swappable_for_the_ablation()"
     },
     {
@@ -4910,7 +5190,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_finetune_setfit_rationale_1",
-      "community": 19,
+      "community": 18,
       "norm_label": "unit tests for the contrastive fine-tuning pairs (build order item 8).  the labe"
     },
     {
@@ -5460,7 +5740,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "tests_test_structural_flags_test_flags_raised_names",
-      "community": 11,
+      "community": 0,
       "norm_label": "test_flags_raised_names()"
     },
     {
@@ -5772,6 +6052,196 @@
       "id": "tests_test_trace_to_text_rationale_1",
       "community": 3,
       "norm_label": "unit tests for trace-to-text conversion (flat baseline + enriched).  write these"
+    },
+    {
+      "label": "test_trial_runner.py",
+      "file_type": "code",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_test_trial_runner",
+      "community": 57,
+      "norm_label": "test_trial_runner.py"
+    },
+    {
+      "label": "_skill()",
+      "file_type": "code",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L29",
+      "_origin": "ast",
+      "id": "tests_test_trial_runner_skill",
+      "community": 57,
+      "norm_label": "_skill()"
+    },
+    {
+      "label": "_packed_traces()",
+      "file_type": "code",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L37",
+      "_origin": "ast",
+      "id": "tests_test_trial_runner_packed_traces",
+      "community": 57,
+      "norm_label": "_packed_traces()"
+    },
+    {
+      "label": "FakeLima",
+      "file_type": "code",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L49",
+      "_origin": "ast",
+      "id": "tests_test_trial_runner_fakelima",
+      "community": 57,
+      "norm_label": "fakelima"
+    },
+    {
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L52",
+      "_origin": "ast",
+      "id": "tests_test_trial_runner_fakelima_init",
+      "community": 57,
+      "norm_label": ".__init__()"
+    },
+    {
+      "label": ".__call__()",
+      "file_type": "code",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L56",
+      "_origin": "ast",
+      "id": "tests_test_trial_runner_fakelima_call",
+      "community": 57,
+      "norm_label": ".__call__()"
+    },
+    {
+      "label": ".shell_scripts()",
+      "file_type": "code",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L75",
+      "_origin": "ast",
+      "id": "tests_test_trial_runner_fakelima_shell_scripts",
+      "community": 57,
+      "norm_label": ".shell_scripts()"
+    },
+    {
+      "label": "test_lima_runner_drives_the_vm_and_loads_traces()",
+      "file_type": "code",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L79",
+      "_origin": "ast",
+      "id": "tests_test_trial_runner_test_lima_runner_drives_the_vm_and_loads_traces",
+      "community": 57,
+      "norm_label": "test_lima_runner_drives_the_vm_and_loads_traces()"
+    },
+    {
+      "label": "test_vm_not_running_is_a_clear_error()",
+      "file_type": "code",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L99",
+      "_origin": "ast",
+      "id": "tests_test_trial_runner_test_vm_not_running_is_a_clear_error",
+      "community": 57,
+      "norm_label": "test_vm_not_running_is_a_clear_error()"
+    },
+    {
+      "label": "test_sandbox_failure_surfaces()",
+      "file_type": "code",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L105",
+      "_origin": "ast",
+      "id": "tests_test_trial_runner_test_sandbox_failure_surfaces",
+      "community": 57,
+      "norm_label": "test_sandbox_failure_surfaces()"
+    },
+    {
+      "label": "test_rejects_non_skill_and_unsafe_names()",
+      "file_type": "code",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L111",
+      "_origin": "ast",
+      "id": "tests_test_trial_runner_test_rejects_non_skill_and_unsafe_names",
+      "community": 57,
+      "norm_label": "test_rejects_non_skill_and_unsafe_names()"
+    },
+    {
+      "label": "test_captured_runner_is_option_a()",
+      "file_type": "code",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L119",
+      "_origin": "ast",
+      "id": "tests_test_trial_runner_test_captured_runner_is_option_a",
+      "community": 57,
+      "norm_label": "test_captured_runner_is_option_a()"
+    },
+    {
+      "label": "_installer()",
+      "file_type": "code",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L127",
+      "_origin": "ast",
+      "id": "tests_test_trial_runner_installer",
+      "community": 57,
+      "norm_label": "_installer()"
+    },
+    {
+      "label": "test_request_install_runs_trial_then_escalates()",
+      "file_type": "code",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L136",
+      "_origin": "ast",
+      "id": "tests_test_trial_runner_test_request_install_runs_trial_then_escalates",
+      "community": 57,
+      "norm_label": "test_request_install_runs_trial_then_escalates()"
+    },
+    {
+      "label": "test_request_install_allows_and_installs()",
+      "file_type": "code",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L149",
+      "_origin": "ast",
+      "id": "tests_test_trial_runner_test_request_install_allows_and_installs",
+      "community": 57,
+      "norm_label": "test_request_install_allows_and_installs()"
+    },
+    {
+      "label": "test_request_install_needs_runner_and_known_skill()",
+      "file_type": "code",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L155",
+      "_origin": "ast",
+      "id": "tests_test_trial_runner_test_request_install_needs_runner_and_known_skill",
+      "community": 57,
+      "norm_label": "test_request_install_needs_runner_and_known_skill()"
+    },
+    {
+      "label": "Option B: an install request runs the sandbox trial itself (Lima is faked here).",
+      "file_type": "rationale",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_test_trial_runner_rationale_1",
+      "community": 57,
+      "norm_label": "option b: an install request runs the sandbox trial itself (lima is faked here)."
+    },
+    {
+      "label": "What demo_trial.sh packs: <mode>_out/results/candidate/<folder>.json.",
+      "file_type": "rationale",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "tests_test_trial_runner_rationale_38",
+      "community": 57,
+      "norm_label": "what demo_trial.sh packs: <mode>_out/results/candidate/<folder>.json."
+    },
+    {
+      "label": "Stands in for subprocess.run(['limactl', ...]); records every call.",
+      "file_type": "rationale",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L50",
+      "_origin": "ast",
+      "id": "tests_test_trial_runner_rationale_50",
+      "community": 57,
+      "norm_label": "stands in for subprocess.run(['limactl', ...]); records every call."
     },
     {
       "label": "batch_run.py",
@@ -7571,7 +8041,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "sandbox/demo_pipeline.py",
-      "source_location": "L72",
+      "source_location": "L59",
       "weight": 1.0,
       "source": "sandbox_demo_pipeline",
       "target": "sandbox_demo_pipeline_main",
@@ -7581,7 +8051,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "sandbox/demo_pipeline.py",
-      "source_location": "L50",
+      "source_location": "L49",
       "weight": 1.0,
       "source": "sandbox_demo_pipeline",
       "target": "sandbox_demo_pipeline_plugin_name",
@@ -7591,7 +8061,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "sandbox/demo_pipeline.py",
-      "source_location": "L54",
+      "source_location": "L53",
       "weight": 1.0,
       "source": "sandbox_demo_pipeline",
       "target": "sandbox_demo_pipeline_trial_runs",
@@ -7638,39 +8108,6 @@
       "source_location": "L42",
       "weight": 1.0,
       "source": "sandbox_demo_pipeline",
-      "target": "src_evaluator_agt_adapter",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "sandbox/demo_pipeline.py",
-      "source_location": "L42",
-      "weight": 1.0,
-      "source": "sandbox_demo_pipeline",
-      "target": "src_evaluator_agt_adapter_check_parity",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "sandbox/demo_pipeline.py",
-      "source_location": "L42",
-      "weight": 1.0,
-      "source": "sandbox_demo_pipeline",
-      "target": "src_evaluator_agt_adapter_record_trial",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "sandbox/demo_pipeline.py",
-      "source_location": "L43",
-      "weight": 1.0,
-      "source": "sandbox_demo_pipeline",
       "target": "src_evaluator_agt_installer",
       "confidence_score": 1.0
     },
@@ -7679,7 +8116,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "sandbox/demo_pipeline.py",
-      "source_location": "L43",
+      "source_location": "L42",
       "weight": 1.0,
       "source": "sandbox_demo_pipeline",
       "target": "src_evaluator_agt_installer_divergenceescalation",
@@ -7690,10 +8127,21 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "sandbox/demo_pipeline.py",
-      "source_location": "L43",
+      "source_location": "L42",
       "weight": 1.0,
       "source": "sandbox_demo_pipeline",
       "target": "src_evaluator_agt_installer_divergenceplugininstaller",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/demo_pipeline.py",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "sandbox_demo_pipeline",
+      "target": "src_evaluator_trial_runner",
       "confidence_score": 1.0
     },
     {
@@ -7704,7 +8152,7 @@
       "source_location": "L43",
       "weight": 1.0,
       "source": "sandbox_demo_pipeline",
-      "target": "src_evaluator_agt_installer_trialrun",
+      "target": "src_evaluator_trial_runner_load_trial_runs",
       "confidence_score": 1.0
     },
     {
@@ -7722,7 +8170,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "sandbox/demo_pipeline.py",
-      "source_location": "L97",
+      "source_location": "L84",
       "weight": 1.0,
       "source": "sandbox_demo_pipeline_main",
       "target": "sandbox_demo_pipeline_plugin_name",
@@ -7731,88 +8179,12 @@
     {
       "relation": "calls",
       "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "sandbox/demo_pipeline.py",
-      "source_location": "L62",
-      "weight": 1.0,
-      "source": "sandbox_demo_pipeline_trial_runs",
-      "target": "sandbox_demo_pipeline_plugin_name",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "sandbox/demo_pipeline.py",
-      "source_location": "L100",
-      "weight": 1.0,
-      "source": "sandbox_demo_pipeline_main",
-      "target": "sandbox_demo_pipeline_trial_runs",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "sandbox/demo_pipeline.py",
       "source_location": "L55",
       "weight": 1.0,
-      "source": "sandbox_demo_pipeline_rationale_55",
-      "target": "sandbox_demo_pipeline_trial_runs",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "sandbox/demo_pipeline.py",
-      "source_location": "L54",
-      "weight": 1.0,
       "source": "sandbox_demo_pipeline_trial_runs",
-      "target": "sandbox_demo_pipeline_py_auditlog",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "sandbox/demo_pipeline.py",
-      "source_location": "L54",
-      "weight": 1.0,
-      "source": "sandbox_demo_pipeline_trial_runs",
-      "target": "sandbox_demo_pipeline_py_path",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "sandbox/demo_pipeline.py",
-      "source_location": "L64",
-      "weight": 1.0,
-      "source": "sandbox_demo_pipeline_trial_runs",
-      "target": "src_evaluator_agt_adapter_check_parity",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "sandbox/demo_pipeline.py",
-      "source_location": "L62",
-      "weight": 1.0,
-      "source": "sandbox_demo_pipeline_trial_runs",
-      "target": "src_evaluator_agt_adapter_record_trial",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "sandbox/demo_pipeline.py",
-      "source_location": "L68",
-      "weight": 1.0,
-      "source": "sandbox_demo_pipeline_trial_runs",
-      "target": "src_evaluator_agt_installer_trialrun",
+      "target": "sandbox_demo_pipeline_plugin_name",
       "confidence_score": 1.0
     },
     {
@@ -7823,6 +8195,60 @@
       "source_location": "L87",
       "weight": 1.0,
       "source": "sandbox_demo_pipeline_main",
+      "target": "sandbox_demo_pipeline_trial_runs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/demo_pipeline.py",
+      "source_location": "L54",
+      "weight": 1.0,
+      "source": "sandbox_demo_pipeline_rationale_54",
+      "target": "sandbox_demo_pipeline_trial_runs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/demo_pipeline.py",
+      "source_location": "L53",
+      "weight": 1.0,
+      "source": "sandbox_demo_pipeline_trial_runs",
+      "target": "sandbox_demo_pipeline_py_auditlog",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/demo_pipeline.py",
+      "source_location": "L53",
+      "weight": 1.0,
+      "source": "sandbox_demo_pipeline_trial_runs",
+      "target": "sandbox_demo_pipeline_py_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/demo_pipeline.py",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "sandbox_demo_pipeline_trial_runs",
+      "target": "src_evaluator_trial_runner_load_trial_runs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/demo_pipeline.py",
+      "source_location": "L74",
+      "weight": 1.0,
+      "source": "sandbox_demo_pipeline_main",
       "target": "sandbox_demo_pipeline_py_auditlog",
       "confidence_score": 1.0
     },
@@ -7831,7 +8257,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "sandbox/demo_pipeline.py",
-      "source_location": "L95",
+      "source_location": "L82",
       "weight": 1.0,
       "source": "sandbox_demo_pipeline_main",
       "target": "src_data_loader_parse_skill_md",
@@ -7842,7 +8268,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "sandbox/demo_pipeline.py",
-      "source_location": "L89",
+      "source_location": "L76",
       "weight": 1.0,
       "source": "sandbox_demo_pipeline_main",
       "target": "src_evaluator_agt_installer_divergenceplugininstaller",
@@ -7852,7 +8278,7 @@
       "relation": "defines",
       "confidence": "EXTRACTED",
       "source_file": "sandbox/demo_trial.sh",
-      "source_location": "L23",
+      "source_location": "L26",
       "weight": 1.0,
       "source": "sandbox_demo_trial",
       "target": "sandbox_demo_trial_dvg_msb_root",
@@ -7978,6 +8404,201 @@
       "weight": 1.0,
       "source": "sandbox_direct_exec_run_direct_read_ids",
       "target": "sandbox_direct_exec_run_direct_py_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/install_skill.py",
+      "source_location": "L54",
+      "weight": 1.0,
+      "source": "sandbox_install_skill",
+      "target": "sandbox_install_skill_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/install_skill.py",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "sandbox_install_skill",
+      "target": "sandbox_install_skill_plugin_name",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/install_skill.py",
+      "source_location": "L41",
+      "weight": 1.0,
+      "source": "sandbox_install_skill",
+      "target": "src_config",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/install_skill.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "sandbox_install_skill",
+      "target": "src_data_loader",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/install_skill.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "sandbox_install_skill",
+      "target": "src_data_loader_parse_skill_md",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/install_skill.py",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "sandbox_install_skill",
+      "target": "src_evaluator_agt_installer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/install_skill.py",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "sandbox_install_skill",
+      "target": "src_evaluator_agt_installer_divergenceescalation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/install_skill.py",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "sandbox_install_skill",
+      "target": "src_evaluator_agt_installer_divergenceplugininstaller",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/install_skill.py",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "sandbox_install_skill",
+      "target": "src_evaluator_trial_runner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/install_skill.py",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "sandbox_install_skill",
+      "target": "src_evaluator_trial_runner_capturedtracerunner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/install_skill.py",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "sandbox_install_skill",
+      "target": "src_evaluator_trial_runner_limatrialrunner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/install_skill.py",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "sandbox_install_skill",
+      "target": "src_evaluator_trial_runner_trialerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/install_skill.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "sandbox_install_skill_rationale_1",
+      "target": "sandbox_install_skill",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/install_skill.py",
+      "source_location": "L70",
+      "weight": 1.0,
+      "source": "sandbox_install_skill_main",
+      "target": "sandbox_install_skill_plugin_name",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/install_skill.py",
+      "source_location": "L69",
+      "weight": 1.0,
+      "source": "sandbox_install_skill_main",
+      "target": "src_data_loader_parse_skill_md",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/install_skill.py",
+      "source_location": "L84",
+      "weight": 1.0,
+      "source": "sandbox_install_skill_main",
+      "target": "src_evaluator_agt_installer_divergenceplugininstaller",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/install_skill.py",
+      "source_location": "L74",
+      "weight": 1.0,
+      "source": "sandbox_install_skill_main",
+      "target": "src_evaluator_trial_runner_capturedtracerunner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "sandbox/install_skill.py",
+      "source_location": "L76",
+      "weight": 1.0,
+      "source": "sandbox_install_skill_main",
+      "target": "src_evaluator_trial_runner_limatrialrunner",
       "confidence_score": 1.0
     },
     {
@@ -9736,7 +10357,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L34",
+      "source_location": "L38",
       "weight": 1.0,
       "source": "src_evaluator_agt_installer",
       "target": "src_config",
@@ -9750,6 +10371,17 @@
       "source_location": "L31",
       "weight": 1.0,
       "source": "src_evaluator_divergence_evaluator",
+      "target": "src_config",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner",
       "target": "src_config",
       "confidence_score": 1.0
     },
@@ -10021,6 +10653,17 @@
       "source": "tests_test_control_sets_test_proxy_sheet_has_only_positive_runs",
       "target": "src_data_control_sets_build_proxy_labelling_sheet",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/data/control_sets.py",
+      "source_location": "L76",
+      "weight": 1.0,
+      "source": "src_data_control_sets_build_swapped_description_set",
+      "target": "runtimeerror"
     },
     {
       "relation": "rationale_for",
@@ -14694,6 +15337,17 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner",
+      "target": "src_evaluator_agt_adapter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "src/experiments/exp1_baseline_comparison.py",
       "source_location": "L29",
       "weight": 1.0,
@@ -14996,6 +15650,28 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner",
+      "target": "src_evaluator_agt_adapter_record_trial",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L67",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_load_trial_runs",
+      "target": "src_evaluator_agt_adapter_record_trial",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "tests/test_evaluator.py",
       "source_location": "L14",
       "weight": 1.0,
@@ -15039,6 +15715,28 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner",
+      "target": "src_evaluator_agt_adapter_check_parity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L69",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_load_trial_runs",
+      "target": "src_evaluator_agt_adapter_check_parity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "tests/test_evaluator.py",
       "source_location": "L14",
       "weight": 1.0,
@@ -15061,7 +15759,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L42",
+      "source_location": "L46",
       "weight": 1.0,
       "source": "src_evaluator_agt_installer",
       "target": "src_evaluator_agt_installer_divergenceescalation",
@@ -15071,7 +15769,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L87",
+      "source_location": "L91",
       "weight": 1.0,
       "source": "src_evaluator_agt_installer",
       "target": "src_evaluator_agt_installer_divergenceplugininstaller",
@@ -15081,7 +15779,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L60",
+      "source_location": "L64",
       "weight": 1.0,
       "source": "src_evaluator_agt_installer",
       "target": "src_evaluator_agt_installer_skillassessment",
@@ -15091,7 +15789,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L52",
+      "source_location": "L56",
       "weight": 1.0,
       "source": "src_evaluator_agt_installer",
       "target": "src_evaluator_agt_installer_trialrun",
@@ -15102,7 +15800,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L35",
+      "source_location": "L39",
       "weight": 1.0,
       "source": "src_evaluator_agt_installer",
       "target": "src_evaluator_divergence_evaluator",
@@ -15113,7 +15811,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L35",
+      "source_location": "L39",
       "weight": 1.0,
       "source": "src_evaluator_agt_installer",
       "target": "src_evaluator_divergence_evaluator_divergenceevaluator",
@@ -15124,7 +15822,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L35",
+      "source_location": "L39",
       "weight": 1.0,
       "source": "src_evaluator_agt_installer",
       "target": "src_evaluator_divergence_evaluator_divergenceresult",
@@ -15144,6 +15842,17 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner",
+      "target": "src_evaluator_agt_installer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "tests/test_agt_installer.py",
       "source_location": "L14",
       "weight": 1.0,
@@ -15152,10 +15861,21 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner",
+      "target": "src_evaluator_agt_installer",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L42",
+      "source_location": "L46",
       "weight": 1.0,
       "source": "src_evaluator_agt_installer_divergenceescalation",
       "target": "marketplaceerror",
@@ -15165,7 +15885,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L45",
+      "source_location": "L49",
       "weight": 1.0,
       "source": "src_evaluator_agt_installer_divergenceescalation",
       "target": "src_evaluator_agt_installer_divergenceescalation_init",
@@ -15175,7 +15895,7 @@
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L35",
+      "source_location": "L39",
       "weight": 0.8,
       "source": "src_evaluator_agt_installer_divergenceescalation",
       "target": "src_evaluator_divergence_evaluator_divergenceevaluator",
@@ -15185,7 +15905,7 @@
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L35",
+      "source_location": "L39",
       "weight": 0.8,
       "source": "src_evaluator_agt_installer_divergenceescalation",
       "target": "src_evaluator_divergence_evaluator_divergenceresult",
@@ -15196,7 +15916,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L123",
+      "source_location": "L154",
       "weight": 1.0,
       "source": "src_evaluator_agt_installer_divergenceplugininstaller_install",
       "target": "src_evaluator_agt_installer_divergenceescalation",
@@ -15206,9 +15926,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L43",
+      "source_location": "L47",
       "weight": 1.0,
-      "source": "src_evaluator_agt_installer_rationale_43",
+      "source": "src_evaluator_agt_installer_rationale_47",
       "target": "src_evaluator_agt_installer_divergenceescalation",
       "confidence_score": 1.0
     },
@@ -15235,11 +15955,43 @@
       "target": "src_evaluator_agt_installer_divergenceescalation"
     },
     {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner",
+      "target": "src_evaluator_agt_installer_divergenceescalation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L19",
+      "weight": 0.8,
+      "source": "tests_test_trial_runner_fakelima",
+      "target": "src_evaluator_agt_installer_divergenceescalation",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L139",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_test_request_install_runs_trial_then_escalates",
+      "target": "src_evaluator_agt_installer_divergenceescalation"
+    },
+    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L99",
+      "source_location": "L106",
       "weight": 1.0,
       "source": "src_evaluator_agt_installer_divergenceplugininstaller_assess",
       "target": "marketplaceerror",
@@ -15250,7 +16002,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L121",
+      "source_location": "L152",
       "weight": 1.0,
       "source": "src_evaluator_agt_installer_divergenceplugininstaller_install",
       "target": "marketplaceerror",
@@ -15261,7 +16013,18 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L47",
+      "source_location": "L129",
+      "weight": 1.0,
+      "source": "src_evaluator_agt_installer_divergenceplugininstaller_request_install",
+      "target": "marketplaceerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/agt_installer.py",
+      "source_location": "L51",
       "weight": 1.0,
       "source": "src_evaluator_agt_installer_divergenceescalation_init",
       "target": "src_evaluator_agt_installer_divergenceplugininstaller_init",
@@ -15272,7 +16035,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L48",
+      "source_location": "L52",
       "weight": 1.0,
       "source": "src_evaluator_agt_installer_divergenceescalation_init",
       "target": "src_evaluator_agt_installer_skillassessment_summary",
@@ -15283,7 +16046,7 @@
       "context": "generic_arg",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L96",
+      "source_location": "L103",
       "weight": 1.0,
       "source": "src_evaluator_agt_installer_divergenceplugininstaller_assess",
       "target": "src_evaluator_agt_installer_trialrun",
@@ -15293,9 +16056,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L53",
+      "source_location": "L57",
       "weight": 1.0,
-      "source": "src_evaluator_agt_installer_rationale_53",
+      "source": "src_evaluator_agt_installer_rationale_57",
       "target": "src_evaluator_agt_installer_trialrun",
       "confidence_score": 1.0
     },
@@ -15303,7 +16066,7 @@
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L35",
+      "source_location": "L39",
       "weight": 0.8,
       "source": "src_evaluator_agt_installer_trialrun",
       "target": "src_evaluator_divergence_evaluator_divergenceevaluator",
@@ -15313,10 +16076,72 @@
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L35",
+      "source_location": "L39",
       "weight": 0.8,
       "source": "src_evaluator_agt_installer_trialrun",
       "target": "src_evaluator_divergence_evaluator_divergenceresult",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner",
+      "target": "src_evaluator_agt_installer_trialrun",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L37",
+      "weight": 0.8,
+      "source": "src_evaluator_trial_runner_capturedtracerunner",
+      "target": "src_evaluator_agt_installer_trialrun",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L37",
+      "weight": 0.8,
+      "source": "src_evaluator_trial_runner_limatrialrunner",
+      "target": "src_evaluator_agt_installer_trialrun",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L73",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_load_trial_runs",
+      "target": "src_evaluator_agt_installer_trialrun",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L37",
+      "weight": 0.8,
+      "source": "src_evaluator_trial_runner_trial",
+      "target": "src_evaluator_agt_installer_trialrun",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L37",
+      "weight": 0.8,
+      "source": "src_evaluator_trial_runner_trialerror",
+      "target": "src_evaluator_agt_installer_trialrun",
       "confidence_score": 0.5
     },
     {
@@ -15368,40 +16193,21 @@
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L96",
+      "source_location": "L103",
       "weight": 1.0,
       "source": "src_evaluator_agt_installer_divergenceplugininstaller_assess",
       "target": "src_evaluator_agt_installer_skillassessment",
       "confidence_score": 1.0
     },
     {
-      "relation": "method",
+      "relation": "references",
+      "context": "generic_arg",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L66",
+      "source_location": "L118",
       "weight": 1.0,
-      "source": "src_evaluator_agt_installer_skillassessment",
-      "target": "src_evaluator_agt_installer_skillassessment_caught_by",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L80",
-      "weight": 1.0,
-      "source": "src_evaluator_agt_installer_skillassessment",
-      "target": "src_evaluator_agt_installer_skillassessment_summary",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L73",
-      "weight": 1.0,
-      "source": "src_evaluator_agt_installer_skillassessment",
-      "target": "src_evaluator_agt_installer_skillassessment_to_agt_evidence",
+      "source": "src_evaluator_agt_installer_divergenceplugininstaller_assessments",
+      "target": "src_evaluator_agt_installer_skillassessment",
       "confidence_score": 1.0
     },
     {
@@ -15411,6 +16217,36 @@
       "source_location": "L70",
       "weight": 1.0,
       "source": "src_evaluator_agt_installer_skillassessment",
+      "target": "src_evaluator_agt_installer_skillassessment_caught_by",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/agt_installer.py",
+      "source_location": "L84",
+      "weight": 1.0,
+      "source": "src_evaluator_agt_installer_skillassessment",
+      "target": "src_evaluator_agt_installer_skillassessment_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/agt_installer.py",
+      "source_location": "L77",
+      "weight": 1.0,
+      "source": "src_evaluator_agt_installer_skillassessment",
+      "target": "src_evaluator_agt_installer_skillassessment_to_agt_evidence",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/agt_installer.py",
+      "source_location": "L74",
+      "weight": 1.0,
+      "source": "src_evaluator_agt_installer_skillassessment",
       "target": "src_evaluator_agt_installer_skillassessment_verdict",
       "confidence_score": 1.0
     },
@@ -15418,7 +16254,7 @@
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L35",
+      "source_location": "L39",
       "weight": 0.8,
       "source": "src_evaluator_agt_installer_skillassessment",
       "target": "src_evaluator_divergence_evaluator_divergenceevaluator",
@@ -15428,7 +16264,7 @@
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L35",
+      "source_location": "L39",
       "weight": 0.8,
       "source": "src_evaluator_agt_installer_skillassessment",
       "target": "src_evaluator_divergence_evaluator_divergenceresult",
@@ -15439,7 +16275,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L105",
+      "source_location": "L112",
       "weight": 1.0,
       "source": "src_evaluator_agt_installer_divergenceplugininstaller_assess",
       "target": "src_evaluator_agt_installer_skillassessment_to_agt_evidence",
@@ -15449,7 +16285,7 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L87",
+      "source_location": "L91",
       "weight": 1.0,
       "source": "src_evaluator_agt_installer_divergenceplugininstaller",
       "target": "plugininstaller",
@@ -15459,7 +16295,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L110",
+      "source_location": "L141",
       "weight": 1.0,
       "source": "src_evaluator_agt_installer_divergenceplugininstaller",
       "target": "src_evaluator_agt_installer_divergenceplugininstaller_approve",
@@ -15469,7 +16305,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L96",
+      "source_location": "L103",
       "weight": 1.0,
       "source": "src_evaluator_agt_installer_divergenceplugininstaller",
       "target": "src_evaluator_agt_installer_divergenceplugininstaller_assess",
@@ -15479,7 +16315,17 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L88",
+      "source_location": "L118",
+      "weight": 1.0,
+      "source": "src_evaluator_agt_installer_divergenceplugininstaller",
+      "target": "src_evaluator_agt_installer_divergenceplugininstaller_assessments",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/agt_installer.py",
+      "source_location": "L92",
       "weight": 1.0,
       "source": "src_evaluator_agt_installer_divergenceplugininstaller",
       "target": "src_evaluator_agt_installer_divergenceplugininstaller_init",
@@ -15489,17 +16335,27 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L117",
+      "source_location": "L148",
       "weight": 1.0,
       "source": "src_evaluator_agt_installer_divergenceplugininstaller",
       "target": "src_evaluator_agt_installer_divergenceplugininstaller_install",
       "confidence_score": 1.0
     },
     {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/agt_installer.py",
+      "source_location": "L121",
+      "weight": 1.0,
+      "source": "src_evaluator_agt_installer_divergenceplugininstaller",
+      "target": "src_evaluator_agt_installer_divergenceplugininstaller_request_install",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L35",
+      "source_location": "L39",
       "weight": 0.8,
       "source": "src_evaluator_agt_installer_divergenceplugininstaller",
       "target": "src_evaluator_divergence_evaluator_divergenceevaluator",
@@ -15509,7 +16365,7 @@
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L35",
+      "source_location": "L39",
       "weight": 0.8,
       "source": "src_evaluator_agt_installer_divergenceplugininstaller",
       "target": "src_evaluator_divergence_evaluator_divergenceresult",
@@ -15538,11 +16394,43 @@
       "target": "src_evaluator_agt_installer_divergenceplugininstaller"
     },
     {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner",
+      "target": "src_evaluator_agt_installer_divergenceplugininstaller",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L19",
+      "weight": 0.8,
+      "source": "tests_test_trial_runner_fakelima",
+      "target": "src_evaluator_agt_installer_divergenceplugininstaller",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L132",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_installer",
+      "target": "src_evaluator_agt_installer_divergenceplugininstaller",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L88",
+      "source_location": "L92",
       "weight": 1.0,
       "source": "src_evaluator_agt_installer_divergenceplugininstaller_init",
       "target": "src_evaluator_agt_installer_py_auditlog",
@@ -15553,7 +16441,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L88",
+      "source_location": "L92",
       "weight": 1.0,
       "source": "src_evaluator_agt_installer_divergenceplugininstaller_init",
       "target": "src_evaluator_agt_installer_py_path",
@@ -15564,7 +16452,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L88",
+      "source_location": "L92",
       "weight": 1.0,
       "source": "src_evaluator_agt_installer_divergenceplugininstaller_init",
       "target": "src_evaluator_divergence_evaluator_divergenceevaluator",
@@ -15575,19 +16463,31 @@
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L117",
+      "source_location": "L148",
       "weight": 1.0,
       "source": "src_evaluator_agt_installer_divergenceplugininstaller_install",
       "target": "src_evaluator_agt_installer_py_path",
       "confidence_score": 1.0
     },
     {
-      "relation": "rationale_for",
+      "relation": "references",
+      "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L97",
+      "source_location": "L121",
       "weight": 1.0,
-      "source": "src_evaluator_agt_installer_rationale_97",
+      "source": "src_evaluator_agt_installer_divergenceplugininstaller_request_install",
+      "target": "src_evaluator_agt_installer_py_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/agt_installer.py",
+      "source_location": "L138",
+      "weight": 1.0,
+      "source": "src_evaluator_agt_installer_divergenceplugininstaller_request_install",
       "target": "src_evaluator_agt_installer_divergenceplugininstaller_assess",
       "confidence_score": 1.0
     },
@@ -15595,9 +16495,40 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L111",
+      "source_location": "L104",
       "weight": 1.0,
-      "source": "src_evaluator_agt_installer_rationale_111",
+      "source": "src_evaluator_agt_installer_rationale_104",
+      "target": "src_evaluator_agt_installer_divergenceplugininstaller_assess",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/agt_installer.py",
+      "source_location": "L139",
+      "weight": 1.0,
+      "source": "src_evaluator_agt_installer_divergenceplugininstaller_request_install",
+      "target": "src_evaluator_agt_installer_divergenceplugininstaller_install",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/agt_installer.py",
+      "source_location": "L123",
+      "weight": 1.0,
+      "source": "src_evaluator_agt_installer_rationale_123",
+      "target": "src_evaluator_agt_installer_divergenceplugininstaller_request_install",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/agt_installer.py",
+      "source_location": "L142",
+      "weight": 1.0,
+      "source": "src_evaluator_agt_installer_rationale_142",
       "target": "src_evaluator_agt_installer_divergenceplugininstaller_approve",
       "confidence_score": 1.0
     },
@@ -15605,9 +16536,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/evaluator/agt_installer.py",
-      "source_location": "L118",
+      "source_location": "L149",
       "weight": 1.0,
-      "source": "src_evaluator_agt_installer_rationale_118",
+      "source": "src_evaluator_agt_installer_rationale_149",
       "target": "src_evaluator_agt_installer_divergenceplugininstaller_install",
       "confidence_score": 1.0
     },
@@ -16095,6 +17026,633 @@
       "weight": 1.0,
       "source": "src_evaluator_divergence_evaluator_rationale_116",
       "target": "src_evaluator_divergence_evaluator_divergenceevaluator_evaluate_batch",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner",
+      "target": "src_evaluator_trial_runner_capturedtracerunner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L92",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner",
+      "target": "src_evaluator_trial_runner_limatrialrunner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L57",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner",
+      "target": "src_evaluator_trial_runner_load_trial_runs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L77",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner",
+      "target": "src_evaluator_trial_runner_modes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner",
+      "target": "src_evaluator_trial_runner_trial",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner",
+      "target": "src_evaluator_trial_runner_trialerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_rationale_1",
+      "target": "src_evaluator_trial_runner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner",
+      "target": "src_evaluator_trial_runner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L113",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_limatrialrunner_call",
+      "target": "src_evaluator_trial_runner_trialerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L132",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_limatrialrunner_run",
+      "target": "src_evaluator_trial_runner_trialerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L71",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_load_trial_runs",
+      "target": "src_evaluator_trial_runner_trialerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_rationale_46",
+      "target": "src_evaluator_trial_runner_trialerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_trialerror",
+      "target": "runtimeerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner",
+      "target": "src_evaluator_trial_runner_trialerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "source": "tests_test_trial_runner_fakelima",
+      "target": "src_evaluator_trial_runner_trialerror",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L113",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_test_rejects_non_skill_and_unsafe_names",
+      "target": "src_evaluator_trial_runner_trialerror"
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L107",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_test_sandbox_failure_surfaces",
+      "target": "src_evaluator_trial_runner_trialerror"
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L101",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_test_vm_not_running_is_a_clear_error",
+      "target": "src_evaluator_trial_runner_trialerror"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L87",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_capturedtracerunner_run",
+      "target": "src_evaluator_trial_runner_trial",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L129",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_limatrialrunner_run",
+      "target": "src_evaluator_trial_runner_trial",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L57",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_load_trial_runs",
+      "target": "src_evaluator_trial_runner_trial",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L88",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_capturedtracerunner_run",
+      "target": "src_evaluator_trial_runner_load_trial_runs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L173",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_limatrialrunner_run",
+      "target": "src_evaluator_trial_runner_load_trial_runs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L57",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_load_trial_runs",
+      "target": "src_evaluator_trial_runner_py_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L59",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_rationale_59",
+      "target": "src_evaluator_trial_runner_load_trial_runs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner",
+      "target": "src_evaluator_trial_runner_load_trial_runs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L124",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_test_captured_runner_is_option_a",
+      "target": "src_evaluator_trial_runner_load_trial_runs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L84",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_capturedtracerunner_init",
+      "target": "src_evaluator_trial_runner_py_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L87",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_capturedtracerunner_run",
+      "target": "src_evaluator_trial_runner_py_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L103",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_limatrialrunner_init",
+      "target": "src_evaluator_trial_runner_py_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L129",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_limatrialrunner_run",
+      "target": "src_evaluator_trial_runner_py_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L89",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_capturedtracerunner_run",
+      "target": "src_evaluator_trial_runner_modes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L173",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_limatrialrunner_run",
+      "target": "src_evaluator_trial_runner_modes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L84",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_capturedtracerunner",
+      "target": "src_evaluator_trial_runner_capturedtracerunner_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L87",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_capturedtracerunner",
+      "target": "src_evaluator_trial_runner_capturedtracerunner_run",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L82",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_rationale_82",
+      "target": "src_evaluator_trial_runner_capturedtracerunner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner",
+      "target": "src_evaluator_trial_runner_capturedtracerunner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "source": "tests_test_trial_runner_fakelima",
+      "target": "src_evaluator_trial_runner_capturedtracerunner",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L122",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_test_captured_runner_is_option_a",
+      "target": "src_evaluator_trial_runner_capturedtracerunner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L109",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_limatrialrunner",
+      "target": "src_evaluator_trial_runner_limatrialrunner_call",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L125",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_limatrialrunner",
+      "target": "src_evaluator_trial_runner_limatrialrunner_copy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L103",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_limatrialrunner",
+      "target": "src_evaluator_trial_runner_limatrialrunner_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L129",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_limatrialrunner",
+      "target": "src_evaluator_trial_runner_limatrialrunner_run",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L121",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_limatrialrunner",
+      "target": "src_evaluator_trial_runner_limatrialrunner_shell",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L93",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_rationale_93",
+      "target": "src_evaluator_trial_runner_limatrialrunner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner",
+      "target": "src_evaluator_trial_runner_limatrialrunner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "source": "tests_test_trial_runner_fakelima",
+      "target": "src_evaluator_trial_runner_limatrialrunner",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_test_lima_runner_drives_the_vm_and_loads_traces",
+      "target": "src_evaluator_trial_runner_limatrialrunner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L112",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_test_rejects_non_skill_and_unsafe_names",
+      "target": "src_evaluator_trial_runner_limatrialrunner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L150",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_test_request_install_allows_and_installs",
+      "target": "src_evaluator_trial_runner_limatrialrunner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L160",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_test_request_install_needs_runner_and_known_skill",
+      "target": "src_evaluator_trial_runner_limatrialrunner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L138",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_test_request_install_runs_trial_then_escalates",
+      "target": "src_evaluator_trial_runner_limatrialrunner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L106",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_test_sandbox_failure_surfaces",
+      "target": "src_evaluator_trial_runner_limatrialrunner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L100",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_test_vm_not_running_is_a_clear_error",
+      "target": "src_evaluator_trial_runner_limatrialrunner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L126",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_limatrialrunner_copy",
+      "target": "src_evaluator_trial_runner_limatrialrunner_call",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L138",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_limatrialrunner_run",
+      "target": "src_evaluator_trial_runner_limatrialrunner_call",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L122",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_limatrialrunner_shell",
+      "target": "src_evaluator_trial_runner_limatrialrunner_call",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L141",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_limatrialrunner_run",
+      "target": "src_evaluator_trial_runner_limatrialrunner_shell",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/evaluator/trial_runner.py",
+      "source_location": "L150",
+      "weight": 1.0,
+      "source": "src_evaluator_trial_runner_limatrialrunner_run",
+      "target": "src_evaluator_trial_runner_limatrialrunner_copy",
       "confidence_score": 1.0
     },
     {
@@ -19717,6 +21275,17 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner",
+      "target": "tests_test_evaluator",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
@@ -19810,6 +21379,28 @@
       "source_location": "L101",
       "weight": 1.0,
       "source": "tests_test_evaluator_test_unmentioned_domain_is_flagged_and_explained",
+      "target": "tests_test_evaluator_evaluator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner",
+      "target": "tests_test_evaluator_evaluator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L133",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_installer",
       "target": "tests_test_evaluator_evaluator",
       "confidence_score": 1.0
     },
@@ -20167,6 +21758,17 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner",
+      "target": "tests_test_normalise_trace",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
@@ -20273,6 +21875,28 @@
       "source_location": "L66",
       "weight": 1.0,
       "source": "tests_test_normalise_trace_test_tool_order_and_attribution",
+      "target": "tests_test_normalise_trace_result",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner",
+      "target": "tests_test_normalise_trace_result",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_packed_traces",
       "target": "tests_test_normalise_trace_result",
       "confidence_score": 1.0
     },
@@ -21223,6 +22847,406 @@
       "weight": 1.0,
       "source": "tests_test_trace_to_text_test_skill_name_never_reaches_the_text",
       "target": "tests_test_trace_to_text_ev",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L49",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner",
+      "target": "tests_test_trial_runner_fakelima",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L127",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner",
+      "target": "tests_test_trial_runner_installer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner",
+      "target": "tests_test_trial_runner_packed_traces",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner",
+      "target": "tests_test_trial_runner_skill",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L119",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner",
+      "target": "tests_test_trial_runner_test_captured_runner_is_option_a",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L79",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner",
+      "target": "tests_test_trial_runner_test_lima_runner_drives_the_vm_and_loads_traces",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L111",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner",
+      "target": "tests_test_trial_runner_test_rejects_non_skill_and_unsafe_names",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L149",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner",
+      "target": "tests_test_trial_runner_test_request_install_allows_and_installs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L155",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner",
+      "target": "tests_test_trial_runner_test_request_install_needs_runner_and_known_skill",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L136",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner",
+      "target": "tests_test_trial_runner_test_request_install_runs_trial_then_escalates",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L105",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner",
+      "target": "tests_test_trial_runner_test_sandbox_failure_surfaces",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L99",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner",
+      "target": "tests_test_trial_runner_test_vm_not_running_is_a_clear_error",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_rationale_1",
+      "target": "tests_test_trial_runner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L82",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_test_lima_runner_drives_the_vm_and_loads_traces",
+      "target": "tests_test_trial_runner_skill",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L116",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_test_rejects_non_skill_and_unsafe_names",
+      "target": "tests_test_trial_runner_skill",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L151",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_test_request_install_allows_and_installs",
+      "target": "tests_test_trial_runner_skill",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L157",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_test_request_install_needs_runner_and_known_skill",
+      "target": "tests_test_trial_runner_skill",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L140",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_test_request_install_runs_trial_then_escalates",
+      "target": "tests_test_trial_runner_skill",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L108",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_test_sandbox_failure_surfaces",
+      "target": "tests_test_trial_runner_skill",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L102",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_test_vm_not_running_is_a_clear_error",
+      "target": "tests_test_trial_runner_skill",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L70",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_fakelima_call",
+      "target": "tests_test_trial_runner_packed_traces",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_rationale_38",
+      "target": "tests_test_trial_runner_packed_traces",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L120",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_test_captured_runner_is_option_a",
+      "target": "tests_test_trial_runner_packed_traces",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_fakelima",
+      "target": "tests_test_trial_runner_fakelima_call",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_fakelima",
+      "target": "tests_test_trial_runner_fakelima_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L75",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_fakelima",
+      "target": "tests_test_trial_runner_fakelima_shell_scripts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_rationale_50",
+      "target": "tests_test_trial_runner_fakelima",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L80",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_test_lima_runner_drives_the_vm_and_loads_traces",
+      "target": "tests_test_trial_runner_fakelima",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L112",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_test_rejects_non_skill_and_unsafe_names",
+      "target": "tests_test_trial_runner_fakelima",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L150",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_test_request_install_allows_and_installs",
+      "target": "tests_test_trial_runner_fakelima",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L158",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_test_request_install_needs_runner_and_known_skill",
+      "target": "tests_test_trial_runner_fakelima",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L138",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_test_request_install_runs_trial_then_escalates",
+      "target": "tests_test_trial_runner_fakelima",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L106",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_test_sandbox_failure_surfaces",
+      "target": "tests_test_trial_runner_fakelima",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L100",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_test_vm_not_running_is_a_clear_error",
+      "target": "tests_test_trial_runner_fakelima",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L92",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_test_lima_runner_drives_the_vm_and_loads_traces",
+      "target": "tests_test_trial_runner_fakelima_shell_scripts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L150",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_test_request_install_allows_and_installs",
+      "target": "tests_test_trial_runner_installer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L157",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_test_request_install_needs_runner_and_known_skill",
+      "target": "tests_test_trial_runner_installer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_trial_runner.py",
+      "source_location": "L138",
+      "weight": 1.0,
+      "source": "tests_test_trial_runner_test_request_install_runs_trial_then_escalates",
+      "target": "tests_test_trial_runner_installer",
       "confidence_score": 1.0
     },
     {
@@ -22857,5 +24881,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "2db71a6948e3076999a3ef3b6421d0af5acf62e6"
+  "built_at_commit": "643788f44b1c308375a80bfe1b629c6d3967b0df"
 }

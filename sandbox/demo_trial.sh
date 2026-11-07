@@ -6,6 +6,9 @@
 #   agent      -> default image, Stage 2 model (only with --with-agent; costs a little)
 # Output: ~/dvg/demo_out/{direct_out,instructed_out,batch_out}/results/<label>/<skill>.json,
 # the same layout as data/raw/traces/, then packed to /tmp/demo_out.tgz.
+# Option B (src/evaluator/trial_runner.py) sets DVG_DEMO_OUT / DVG_DEMO_PACK so each
+# install request gets its own fresh output folder: the runners resume from
+# summary.csv, so a reused folder would silently skip the new trial.
 #
 # In the VM:
 #   source ~/dvg/.venv/bin/activate && cd ~/dvg/MalSkillBench
@@ -21,7 +24,8 @@ WITH_AGENT="${2:-}"
 DVG=~/dvg
 MSB="$DVG/MalSkillBench"
 export DVG_MSB_ROOT="$MSB"   # the runners default to the Mac layout (vendor/MalSkillBench)
-OUT="$DVG/demo_out"
+OUT="${DVG_DEMO_OUT:-$DVG/demo_out}"
+PACK="${DVG_DEMO_PACK:-/tmp/demo_out.tgz}"
 SKILL_DIR="$MSB/Dataset/Skills/$ID"
 [ -d "$SKILL_DIR" ] || { echo "no such skill: $SKILL_DIR"; exit 1; }
 
@@ -48,5 +52,5 @@ if [ "$WITH_AGENT" = "--with-agent" ]; then
 fi
 
 rm -f "$IDS"
-tar -czf /tmp/demo_out.tgz -C "$OUT" .
-echo "packed $OUT -> /tmp/demo_out.tgz"
+tar -czf "$PACK" -C "$OUT" .
+echo "packed $OUT -> $PACK"
