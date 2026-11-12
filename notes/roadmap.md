@@ -69,21 +69,21 @@ your core dataset. `Structure.md` §2 now says this (updated 2026-10-21).
   suffix (`__CI_B4`) only marks duplicates and isn't the label source; most
   generated samples have no suffix. WILD samples only carry an author. **Exclude
   the 27 TEST samples** from the dataset. Parser: `load_inventory()` in `vendor/pilot_run.py`
-  (move it into `src/data/loader.py` in Stage 3)
+  (move it into `divergence/data/loader.py` in Stage 3)
 - EDA notebook: class balance, taxonomy coverage, trace length
 
 **Stage 3 progress (2026-10-21)**
-- [x] `src/preprocessing/normalise_trace.py`: tool calls are the ordered backbone;
+- [x] `divergence/preprocessing/normalise_trace.py`: tool calls are the ordered backbone;
       strace effects attributed to the bash call through the process tree
       (95.5 % of bash calls matched); agent text and OpenCode's own activity dropped
-- [x] `src/data/outcome.py`: behaviour signals + provisional outcome (replaces
+- [x] `divergence/data/outcome.py`: behaviour signals + provisional outcome (replaces
       batch_run.py's heuristic, which counted `pip`/`diff` as "ran skill code")
-- [x] `src/data/loader.py` -> `data/processed/samples.jsonl` (2,003 runs; strips the
+- [x] `divergence/data/loader.py` -> `data/processed/samples.jsonl` (2,003 runs; strips the
       generator marker found in 888 malicious SKILL.md files and 0 benign ones)
-- [x] `src/data/splitter.py`: group_key + identical-description union-find,
+- [x] `divergence/data/splitter.py`: group_key + identical-description union-find,
       StratifiedGroupKFold -> 802 / 400 / 800, leakage check passes; 1 run
       excluded (no description)
-- [x] `src/data/review_sheet.py` -> `data/processed/review/` (181 rows: 71 A, 110 B)
+- [x] `divergence/data/review_sheet.py` -> `data/processed/review/` (181 rows: 71 A, 110 B)
 - [x] tests: 26 pass
 - [ ] **Hand review (you)** -> final labels -> decide the positive class
 - [ ] EDA notebook

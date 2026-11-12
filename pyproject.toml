@@ -1,3 +1,48 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "divergence-agt"
+version = "0.1.0"
+description = "Intent-behaviour consistency scoring for AI agent skills: a pre-install check that extends the Agent Governance Toolkit (AGT) marketplace installer. Research prototype."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Celine Khaw" }]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Security",
+]
+# Runtime only: what the evaluator, the AGT installer extension and the CLI import.
+dependencies = [
+    "numpy>=1.26",
+    "scikit-learn>=1.4",
+    "sentence-transformers>=3.0",
+    "transformers>=4.41,<5",          # setfit 1.1.x breaks on transformers 5.x
+    "huggingface_hub>=0.23",
+    "pyyaml>=6.0",
+    "agent-governance-toolkit-core==4.1.0",   # pinned: AGT renames packages between releases
+]
+
+[project.optional-dependencies]
+# Everything needed to reproduce the research (training, experiments, notebooks)
+research = [
+    "pandas>=2.2",
+    "setfit>=1.1",
+    "statsmodels>=0.14",
+    "jupyter",
+    "matplotlib>=3.8",
+    "seaborn>=0.13",
+]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+divergence = "divergence.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["divergence*"]
+
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["tests"]

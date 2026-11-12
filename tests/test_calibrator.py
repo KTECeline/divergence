@@ -4,8 +4,8 @@ import json
 
 import numpy as np
 
-from src.calibration.logistic_calibrator import FEATURES, LogisticCalibrator, feature_row
-from src.preprocessing.structural_flags import StructuralFlags
+from divergence.calibration.logistic_calibrator import FEATURES, LogisticCalibrator, feature_row
+from divergence.preprocessing.structural_flags import StructuralFlags
 
 
 def fitted():

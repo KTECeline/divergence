@@ -38,7 +38,7 @@ divergence/
 │   │   └── traces/                     # Phase 1: sandbox evidence JSON per skill (batch_run.py output)
 │   └── supplementary/                  # Phase 2: OpenClaw/AGT captured traces
 │
-├── src/
+├── divergence/
 │   ├── __init__.py
 │   ├── config.py                       # paths, model names, thresholds, seeds
 │   │
@@ -187,20 +187,20 @@ This mirrors AGT's own `PromptDefenseEvaluator` shape (`.score`, `.missing`, `.c
 ## 6. Build order (Phase 1, MalSkillBench only)
 
 - [ ] **1. Environment setup** — repo skeleton, `requirements.txt` (sentence-transformers, setfit, scikit-learn, pandas, docker sdk if needed later)
-- [ ] **2. Data loader** (`src/data/loader.py`) — parse MalSkillBench into your schema (description, trace, label, taxonomy tags)
+- [ ] **2. Data loader** (`divergence/data/loader.py`) — parse MalSkillBench into your schema (description, trace, label, taxonomy tags)
 - [ ] **3. Data understanding EDA** (`notebooks/01_data_understanding.ipynb`) — class balance (3,944 malicious / 4,000 benign), taxonomy distribution across the 108 cells, sample trace inspection
-- [ ] **4. Data splitter** (`src/data/splitter.py`) — fine-tune / calibration / held-out test, no leakage
-- [ ] **5. Trace-to-text conversion** (`src/preprocessing/trace_to_text.py`) — enriched rule-based template; this is your biggest engineering task, build + test iteratively in `notebooks/03_trace_to_text_enriched.ipynb`
-- [ ] **6. Structural flag rules** (`src/preprocessing/structural_flags.py`) — three boolean flags, test against hand-crafted cases in `notebooks/04_structural_flags.ipynb`
+- [ ] **4. Data splitter** (`divergence/data/splitter.py`) — fine-tune / calibration / held-out test, no leakage
+- [ ] **5. Trace-to-text conversion** (`divergence/preprocessing/trace_to_text.py`) — enriched rule-based template; this is your biggest engineering task, build + test iteratively in `notebooks/03_trace_to_text_enriched.ipynb`
+- [ ] **6. Structural flag rules** (`divergence/preprocessing/structural_flags.py`) — three boolean flags, test against hand-crafted cases in `notebooks/04_structural_flags.ipynb`
 - [ ] **7. Pretrained-only pipeline** (encoder + similarity, no fine-tune yet) — confirm end-to-end run works; this is your safety net
-- [ ] **8. SetFit fine-tune** (`src/embedding/finetune_setfit.py`) — run on fine-tune split, save model, log loss curve
-- [ ] **9. Calibration layer** (`src/calibration/logistic_calibrator.py`) — fit on calibration split
-- [x] **10. DivergenceEvaluator class** (`src/evaluator/divergence_evaluator.py`) — wraps steps 1–6 into the AGT-pattern `.evaluate()` interface
+- [ ] **8. SetFit fine-tune** (`divergence/embedding/finetune_setfit.py`) — run on fine-tune split, save model, log loss curve
+- [ ] **9. Calibration layer** (`divergence/calibration/logistic_calibrator.py`) — fit on calibration split
+- [x] **10. DivergenceEvaluator class** (`divergence/evaluator/divergence_evaluator.py`) — wraps steps 1–6 into the AGT-pattern `.evaluate()` interface
 - [x] **11. Baselines** — AGT-only, behaviour-only, text-only, LLM-as-judge (all non-trained; text-only is TF-IDF + LR, necessarily trained). LLM-as-judge = local Ollama, 3 models (exp1c); capability overlap (exp1d)
 - [x] **12. Experiment 1** (+ 1b skill-level, 1c LLM-as-judge) — baseline comparison + McNemar's test, held-out test split only
 - [x] **13. Experiment 2 / 2b** — ablations (structural flags, trace enrichment, fine-tuning delta) — done (exp2_ablation_results.csv, exp2b_finetune_delta.csv, exp2b_text_delta.csv)
 - [x] **14. Experiment 3** — attack-type breakdown across taxonomy — done (exp3_attack_breakdown.csv: A. locked test split, B. all runs 5-fold CV)
-- [x] **15. Experiment 5** — control experiments (`src/data/control_sets.py` + `exp5_control_experiments.py`): proxy-validity hand-labelling, swapped-description (benign, inconsistent), disclosed-payload (malicious, consistent) — 5b/5c done (exp5_controls.csv); 5a sheet built (data/processed/controls/proxy_labelling_sheet.csv), awaiting hand labels
+- [x] **15. Experiment 5** — control experiments (`divergence/data/control_sets.py` + `exp5_control_experiments.py`): proxy-validity hand-labelling, swapped-description (benign, inconsistent), disclosed-payload (malicious, consistent) — 5b/5c done (exp5_controls.csv); 5a sheet built (data/processed/controls/proxy_labelling_sheet.csv), awaiting hand labels
 - [x] **16. Experiment 6** — held-out generalisation: leave-one-behaviour-class-out + cross attack vector (Code Injection ↔ Prompt Injection, Mixed excluded) — done (exp6_holdout.csv; 16 fresh models on pooled runs, main model untouched)
 - [x] **17. Experiment 4** (core, APU guideline) — embedding model comparison — done (exp4_embedding_models.csv)
 - [ ] **18. Tests** — unit tests for trace-to-text and structural flags especially (these are your custom logic, most likely to have edge-case bugs)

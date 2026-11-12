@@ -1,6 +1,6 @@
 """LLM-as-judge baseline: prompt formatting and answer parsing (no model needed)."""
 
-from src.baselines.llm_as_judge import MAX_LINES, format_trace, parse
+from divergence.baselines.llm_as_judge import MAX_LINES, format_trace, parse
 
 
 def test_parse_valid_and_broken_answers():

@@ -2,8 +2,8 @@
 
 import pytest
 
-from src.data.schema import SkillSample
-from src.data.splitter import assign_splits, check_no_leakage, leakage_groups
+from divergence.data.schema import SkillSample
+from divergence.data.splitter import assign_splits, check_no_leakage, leakage_groups
 
 
 def _s(i, group, desc, label=0, vector=None):

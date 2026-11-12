@@ -6,7 +6,7 @@
 #   agent      -> default image, Stage 2 model (only with --with-agent; costs a little)
 # Output: ~/dvg/demo_out/{direct_out,instructed_out,batch_out}/results/<label>/<skill>.json,
 # the same layout as data/raw/traces/, then packed to /tmp/demo_out.tgz.
-# Option B (src/evaluator/trial_runner.py) sets DVG_DEMO_OUT / DVG_DEMO_PACK so each
+# Option B (divergence/evaluator/trial_runner.py) sets DVG_DEMO_OUT / DVG_DEMO_PACK so each
 # install request gets its own fresh output folder: the runners resume from
 # summary.csv, so a reused folder would silently skip the new trial.
 #

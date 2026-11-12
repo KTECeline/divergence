@@ -2,7 +2,7 @@
 
 import numpy as np
 
-from src.embedding.similarity import consistency_score, consistency_scores
+from divergence.embedding.similarity import consistency_score, consistency_scores
 
 
 def test_score_range_endpoints():

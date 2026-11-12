@@ -4,7 +4,7 @@ Cover hand-crafted cases for each of the three flags as the rules are
 developed.
 """
 
-from src.preprocessing.structural_flags import StructuralFlags, compute_structural_flags
+from divergence.preprocessing.structural_flags import StructuralFlags, compute_structural_flags
 
 
 def ev(action, target, status="ok"):

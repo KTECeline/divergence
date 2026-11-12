@@ -4,7 +4,7 @@ The label direction is the easy bug here: label 1 means INCONSISTENT, so its
 pair must be trained towards cosine 0, never 1.
 """
 
-from src.embedding.finetune_setfit import pair_dataset
+from divergence.embedding.finetune_setfit import pair_dataset
 
 
 def row(label, desc="Get weather forecasts.", trace=None):

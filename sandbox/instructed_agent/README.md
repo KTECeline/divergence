@@ -70,7 +70,7 @@ aligned agent. Only the model and the trigger prompt differ.
 5. Transfer `instructed_out/` to the Mac the same way as Stage 2 (setup_notes Step K).
 
 ## After transfer
-A loader (`src/data/loader_instructed.py`, built when the data lands) turns these
+A loader (`divergence/data/loader_instructed.py`, built when the data lands) turns these
 into samples with `execution_mode="agent_instructed"`, using the normal agent
 outcome rules (these ARE agent runs, with tool calls). Then: compare how many of
 the 361 now show a payload, and feed the confirmed positives into the review.

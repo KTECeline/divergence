@@ -37,10 +37,10 @@ from agentmesh.marketplace.manifest import PluginManifest, PluginType  # noqa: E
 from agentmesh.marketplace.registry import PluginRegistry  # noqa: E402
 from agentmesh.marketplace.signing import PluginSigner  # noqa: E402
 
-from src.config import DATA_DIR, RESULTS_DIR, SKILLS_DIR  # noqa: E402
-from src.data.loader import parse_skill_md  # noqa: E402
-from src.evaluator.agt_installer import DivergenceEscalation, DivergencePluginInstaller  # noqa: E402
-from src.evaluator.trial_runner import load_trial_runs  # noqa: E402
+from divergence.config import DATA_DIR, RESULTS_DIR, SKILLS_DIR  # noqa: E402
+from divergence.data.loader import parse_skill_md  # noqa: E402
+from divergence.evaluator.agt_installer import DivergenceEscalation, DivergencePluginInstaller  # noqa: E402
+from divergence.evaluator.trial_runner import load_trial_runs  # noqa: E402
 
 AUTHOR = "demo-publisher"
 DEMO_DIR = RESULTS_DIR / "demo"

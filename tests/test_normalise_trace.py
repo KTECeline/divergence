@@ -4,7 +4,7 @@ Hand-built results in the DockerSandbox format: the agent's tool calls plus
 strace-derived process / file / network events.
 """
 
-from src.preprocessing.normalise_trace import (
+from divergence.preprocessing.normalise_trace import (
     attribution_coverage, normalise, parse_execve_argv, strace_unescape,
 )
 

@@ -34,7 +34,7 @@ INetSim logs then proves what left the container.
 - `entrypoint_direct.sh` — runs every `scripts/*.py` and `*.sh` the skill ships,
   each from its own dir, under one `strace -f`, with per-script and overall
   timeouts. Writes the same evidence files the agent entrypoint does, so
-  `sandbox.py._collect_evidence` and `src/preprocessing/normalise_trace.py` read
+  `sandbox.py._collect_evidence` and `divergence/preprocessing/normalise_trace.py` read
   it unchanged. `normalise()` detects "no tool calls" and builds the action list
   from the strace events alone (ordered by pid).
 - `run_direct.py` — driver. Reuses `DockerSandbox` (same containment + evidence),

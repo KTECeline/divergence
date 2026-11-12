@@ -11,7 +11,7 @@ from agentmesh.marketplace.manifest import PluginManifest, PluginType  # noqa: E
 from agentmesh.marketplace.registry import PluginRegistry  # noqa: E402
 from agentmesh.marketplace.signing import PluginSigner  # noqa: E402
 
-from src.evaluator.agt_installer import DivergenceEscalation, DivergencePluginInstaller, TrialRun  # noqa: E402
+from divergence.evaluator.agt_installer import DivergenceEscalation, DivergencePluginInstaller, TrialRun  # noqa: E402
 from tests.test_evaluator import DESC, EXFIL, evaluator  # noqa: E402
 
 QUIET = [{"seq": 0, "step": 0, "source": "tool", "tool": "write", "action": "file_write",

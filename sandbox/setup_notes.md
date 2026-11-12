@@ -69,7 +69,7 @@ evaluators**. `PromptDefenseEvaluator` is called by user code, and the per-tool-
 (`pre_execute`, `before_tool_call`) gate single calls at runtime, not a whole skill before install.
 `agentmesh.marketplace.installer.PluginInstaller.install()` runs a fixed list: Ed25519 signature →
 dependencies → manifest write → static AST scan for restricted imports. So Divergence is integrated as
-`src/evaluator/agt_installer.py::DivergencePluginInstaller(PluginInstaller)`: `install()` requires a
+`divergence/evaluator/agt_installer.py::DivergencePluginInstaller(PluginInstaller)`: `install()` requires a
 Divergence assessment of the skill's trial runs, raises `DivergenceEscalation` (AGT decision
 `escalate`) on FLAG until `approve()`, then calls AGT's own `install()` unchanged. Report wording:
 "extends AGT's marketplace installer", not "registered as an AGT evaluator". AGT has no OpenCode

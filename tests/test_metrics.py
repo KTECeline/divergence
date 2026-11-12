@@ -1,6 +1,6 @@
 import numpy as np
 
-from src.evaluation.metrics import paired_auc_delta_ci
+from divergence.evaluation.metrics import paired_auc_delta_ci
 
 
 def test_paired_delta_is_zero_for_identical_scores():

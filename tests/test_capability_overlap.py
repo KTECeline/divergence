@@ -1,4 +1,4 @@
-from src.baselines import capability_overlap
+from divergence.baselines import capability_overlap
 
 CRED_READ = [{"action": "file_read", "target": "/home/user/.aws/credentials", "status": "ok"}]
 

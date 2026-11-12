@@ -1,6 +1,6 @@
 """Unit tests for observed-behaviour signals and provisional outcomes."""
 
-from src.data.outcome import provisional_outcome, signals, skill_script_execs
+from divergence.data.outcome import provisional_outcome, signals, skill_script_execs
 
 
 def _execve(argv):

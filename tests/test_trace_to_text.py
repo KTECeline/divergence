@@ -4,7 +4,7 @@ Write these AS the conversion rules are developed, not at the end — this is
 original logic and the most likely source of edge-case bugs.
 """
 
-from src.preprocessing.trace_to_text import trace_to_enriched_text, trace_to_flat_text
+from divergence.preprocessing.trace_to_text import trace_to_enriched_text, trace_to_flat_text
 
 
 def ev(action, target, status="ok", step=1):

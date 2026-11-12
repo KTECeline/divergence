@@ -1,6 +1,6 @@
 """Unit tests for SKILL.md parsing and split-group keys."""
 
-from src.data.loader import group_key, parse_skill_md, split_frontmatter
+from divergence.data.loader import group_key, parse_skill_md, split_frontmatter
 
 
 def test_normal_frontmatter():

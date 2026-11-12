@@ -2,7 +2,7 @@
 
 import csv
 
-from src.data.control_sets import build_proxy_labelling_sheet, build_swapped_description_set
+from divergence.data.control_sets import build_proxy_labelling_sheet, build_swapped_description_set
 
 
 def rows(n):
