@@ -10,7 +10,7 @@ label error (should be negative) or out of scope (should be excluded, like the
 reply-only B10-B15 runs). This page asks that one question per row, before the
 labels are merged into one dataset.
 
-Run:  python -m divergence.data.review_sheet_recheck
+Run:  python -m divergence.labelling.review_sheet_recheck
 """
 
 import csv
@@ -18,10 +18,10 @@ import json
 from pathlib import Path
 
 from divergence.config import (
-    DIRECT_SAMPLES_PATH, INSTRUCTED_SAMPLES_PATH, PROJECT_ROOT, REVIEW_DIR, SAMPLES_PATH,
+    DIRECT_SAMPLES_PATH, INSTRUCTED_SAMPLES_PATH, LABELS_DIR, REVIEW_DIR, SAMPLES_PATH,
     SPLIT_ASSIGNMENT_PATH,
 )
-from divergence.data import review_sheet, review_sheet_instructed
+from divergence.labelling import review_sheet, review_sheet_instructed
 from divergence.data.loader import load_samples
 
 SHEET_PATH = REVIEW_DIR / "recheck_review_sheet.csv"
@@ -31,9 +31,9 @@ TEMPLATE_PATH = Path(__file__).parent / "templates" / "review_recheck.html"
 POSITIVE = {"payload_attempted", "payload_confirmed", "partial_blocked"}
 # mode -> (exported labels, samples, row builder). Direct and instructed share a row shape.
 MODES = {
-    "agent": (PROJECT_ROOT / "review_labels.csv", SAMPLES_PATH, review_sheet._row),
-    "direct": (PROJECT_ROOT / "review_labels_direct.csv", DIRECT_SAMPLES_PATH, review_sheet_instructed._row),
-    "instructed": (PROJECT_ROOT / "review_labels_instructed.csv", INSTRUCTED_SAMPLES_PATH, review_sheet_instructed._row),
+    "agent": (LABELS_DIR / "review_labels.csv", SAMPLES_PATH, review_sheet._row),
+    "direct": (LABELS_DIR / "review_labels_direct.csv", DIRECT_SAMPLES_PATH, review_sheet_instructed._row),
+    "instructed": (LABELS_DIR / "review_labels_instructed.csv", INSTRUCTED_SAMPLES_PATH, review_sheet_instructed._row),
 }
 COLUMNS = [
     "mode", "sample_id", "split", "dataset_label", "attack_vector", "behaviour_class",

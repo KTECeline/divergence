@@ -19,7 +19,7 @@ import pandas as pd
 
 from divergence.calibration.logistic_calibrator import FLAG_THRESHOLD
 from divergence.config import RESULTS_DIR
-from divergence.evaluation.metrics import mcnemar_test, paired_auc_delta_ci, point_metrics
+from divergence.metrics import mcnemar_test, paired_auc_delta_ci, point_metrics
 
 
 def main() -> None:

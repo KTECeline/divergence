@@ -7,9 +7,9 @@ harmful step. This page asks that one question for every POSITIVE test run
 listed in proxy_labelling_sheet.csv (written by exp5_control_experiments).
 
 The sheet itself is never edited: re-running Exp 5 rewrites it blank. Labels
-export to review_labels_proxy.csv in the project root, like the other slices.
+export to labels/review_labels_proxy.csv, like the other slices.
 
-Run:  python -m divergence.data.review_sheet_proxy
+Run:  python -m divergence.labelling.review_sheet_proxy
 """
 
 import csv
@@ -18,7 +18,7 @@ from pathlib import Path
 
 from divergence.config import REVIEW_DIR, SKILLS_DIR
 from divergence.data.control_sets import CONTROLS_DIR
-from divergence.data.review_sheet import BEHAVIOURS, suspicious_lines
+from divergence.labelling.review_sheet import BEHAVIOURS, suspicious_lines
 
 SOURCE_PATH = CONTROLS_DIR / "proxy_labelling_sheet.csv"
 PAGE_PATH = REVIEW_DIR / "review_proxy.html"

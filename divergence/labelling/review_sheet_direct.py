@@ -11,7 +11,7 @@ payloads the rule missed.
 The reviewer answers one question per row: is this a real payload? Labels and
 the local page are in data/processed/review/ (review_direct.html).
 
-Run:  python -m divergence.data.review_sheet_direct
+Run:  python -m divergence.labelling.review_sheet_direct
 """
 
 import csv
@@ -22,7 +22,7 @@ from divergence.config import (
     DIRECT_SAMPLES_PATH, RANDOM_SEED, REVIEW_DIR, SKILLS_DIR, SPLIT_ASSIGNMENT_PATH,
 )
 from divergence.data.loader import load_samples
-from divergence.data.review_sheet import BEHAVIOURS, suspicious_lines
+from divergence.labelling.review_sheet import BEHAVIOURS, suspicious_lines
 from pathlib import Path
 
 SHEET_PATH = REVIEW_DIR / "direct_review_sheet.csv"

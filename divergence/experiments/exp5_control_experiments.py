@@ -32,7 +32,7 @@ from divergence.baselines.llm_as_judge import LLMJudge
 from divergence.config import RANDOM_SEED, RESULTS_DIR, VERDICT_FLAG
 from divergence.data.control_sets import (build_disclosed_payload_set, build_proxy_labelling_sheet,
                                    build_swapped_description_set)
-from divergence.data.merge_labels import load_labelled_dataset
+from divergence.labelling.merge_labels import load_labelled_dataset
 from divergence.evaluator.divergence_evaluator import DivergenceEvaluator
 from divergence.preprocessing.structural_flags import compute_structural_flags
 

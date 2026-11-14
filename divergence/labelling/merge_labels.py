@@ -12,10 +12,10 @@ target and joins it to its description, trace and frozen split:
                  the agent's suspicion, a shortcut), reply-only payloads
                  (no actions), environment blocks, no execution, errors, unsure.
 
-The Type-A recheck (review_labels_recheck.csv) overrides the original label of
+The Type-A recheck (labels/review_labels_recheck.csv) overrides the original label of
 the 13 positives that had no action signal.
 
-Run:  python -m divergence.data.merge_labels
+Run:  python -m divergence.labelling.merge_labels
 """
 
 import collections
@@ -23,27 +23,27 @@ import csv
 import json
 
 from divergence.config import (
-    DIRECT_SAMPLES_PATH, INSTRUCTED_SAMPLES_PATH, PROCESSED_DIR, PROJECT_ROOT, SAMPLES_PATH,
+    DIRECT_SAMPLES_PATH, INSTRUCTED_SAMPLES_PATH, PROCESSED_DIR, LABELS_DIR, SAMPLES_PATH,
     SPLIT_ASSIGNMENT_PATH,
 )
 from divergence.data.loader import load_samples
 
 LABELLED_DATASET_PATH = PROCESSED_DIR / "labelled_dataset.jsonl"
-RECHECK_PATH = PROJECT_ROOT / "review_labels_recheck.csv"
+RECHECK_PATH = LABELS_DIR / "review_labels_recheck.csv"
 
 # mode -> (exported labels, samples, reviewed_outcome -> unified label; missing = excluded)
 MODES = {
-    "agent": (PROJECT_ROOT / "review_labels.csv", SAMPLES_PATH, {
+    "agent": (LABELS_DIR / "review_labels.csv", SAMPLES_PATH, {
         "payload_attempted": 1,
         "task_attempted": 0, "inspected_only": 0,
         # excluded: declined_security, payload_in_reply_only, blocked_env, error
     }),
-    "direct": (PROJECT_ROOT / "review_labels_direct.csv", DIRECT_SAMPLES_PATH, {
+    "direct": (LABELS_DIR / "review_labels_direct.csv", DIRECT_SAMPLES_PATH, {
         "payload_confirmed": 1, "partial_blocked": 1,
         "ran_clean": 0, "payload_incidental": 0,
         # excluded: no_execution, unsure
     }),
-    "instructed": (PROJECT_ROOT / "review_labels_instructed.csv", INSTRUCTED_SAMPLES_PATH, {
+    "instructed": (LABELS_DIR / "review_labels_instructed.csv", INSTRUCTED_SAMPLES_PATH, {
         "payload_confirmed": 1, "partial_blocked": 1,
         "ran_clean": 0, "payload_incidental": 0,
         # excluded: refused_or_unavailable, unsure, blank

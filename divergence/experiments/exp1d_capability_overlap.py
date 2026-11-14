@@ -14,8 +14,8 @@ import pandas as pd
 
 from divergence.baselines import capability_overlap
 from divergence.config import RESULTS_DIR
-from divergence.data.merge_labels import load_labelled_dataset
-from divergence.evaluation.metrics import group_bootstrap_ci, mcnemar_test, paired_auc_delta_ci, point_metrics
+from divergence.labelling.merge_labels import load_labelled_dataset
+from divergence.metrics import group_bootstrap_ci, mcnemar_test, paired_auc_delta_ci, point_metrics
 from divergence.experiments.exp1_baseline_comparison import MAIN
 
 NAME = "Capability overlap (declared vs observed)"

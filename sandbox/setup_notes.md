@@ -2,7 +2,7 @@
 
 **Do not start until Phase 1 experiments (Exp 1, 2, 2b, 3) are producing trusted results.**
 
-Checklist (from Structure.md §7):
+Checklist (from notes/archive/Structure.md §7):
 - [ ] Set up OpenClaw + AGT sandbox
 - [ ] **Pin and record the exact AGT version** (packages have been renamed mid-2026, e.g. `agent-os-kernel` → `agent-governance-toolkit-core`)
 - [ ] Capture supplementary skill traces → `data/supplementary/`

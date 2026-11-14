@@ -24,7 +24,7 @@ Writes results/exp1_skill_level.csv and results/exp1_skill_predictions.csv.
 import pandas as pd
 
 from divergence.config import RESULTS_DIR
-from divergence.evaluation.metrics import group_bootstrap_ci, mcnemar_test, point_metrics
+from divergence.metrics import group_bootstrap_ci, mcnemar_test, point_metrics
 from divergence.experiments.exp1_baseline_comparison import MAIN, ROLES
 
 

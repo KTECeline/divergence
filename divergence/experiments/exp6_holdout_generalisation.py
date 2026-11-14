@@ -38,7 +38,7 @@ from sklearn.model_selection import StratifiedGroupKFold
 from divergence.baselines import behaviour_only
 from divergence.calibration.logistic_calibrator import FLAG_THRESHOLD, LogisticCalibrator, feature_row
 from divergence.config import PRETRAINED_EMBEDDING_MODEL, RANDOM_SEED, RESULTS_DIR
-from divergence.data.merge_labels import load_labelled_dataset
+from divergence.labelling.merge_labels import load_labelled_dataset
 from divergence.embedding.finetune_setfit import finetune, score
 from divergence.preprocessing.structural_flags import compute_structural_flags
 

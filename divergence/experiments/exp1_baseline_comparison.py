@@ -22,10 +22,10 @@ from divergence.baselines import agt_only, behaviour_only
 from divergence.baselines.text_only import TextOnlyBaseline
 from divergence.calibration.logistic_calibrator import FLAG_THRESHOLD, feature_row
 from divergence.config import RANDOM_SEED, RESULTS_DIR, VERDICT_FLAG
-from divergence.data.merge_labels import load_labelled_dataset
+from divergence.labelling.merge_labels import load_labelled_dataset
 from divergence.embedding.encoder import Encoder
 from divergence.embedding.similarity import consistency_scores
-from divergence.evaluation.metrics import group_bootstrap_ci, mcnemar_test, point_metrics
+from divergence.metrics import group_bootstrap_ci, mcnemar_test, point_metrics
 from divergence.evaluator.agt_adapter import agt_visible
 from divergence.evaluator.divergence_evaluator import DivergenceEvaluator
 from divergence.preprocessing.structural_flags import compute_structural_flags

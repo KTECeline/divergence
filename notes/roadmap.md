@@ -22,7 +22,7 @@ MalSkillBench ships **skills** (`SKILL.md` + scripts), not **traces**.
 `Logs/` is empty and no strace or audit output is included. The "behaviour"
 half of every (description, behaviour) pair has to be produced by running the
 skills in the VM sandbox. So the sandbox isn't a Phase 2 extra: it produces
-your core dataset. `Structure.md` §2 now says this (updated 2026-10-21).
+your core dataset. `notes/archive/Structure.md` §2 now says this (updated 2026-10-21).
 
 ## Stages (CRISP-DM phase in brackets)
 
@@ -83,7 +83,7 @@ your core dataset. `Structure.md` §2 now says this (updated 2026-10-21).
 - [x] `divergence/data/splitter.py`: group_key + identical-description union-find,
       StratifiedGroupKFold -> 802 / 400 / 800, leakage check passes; 1 run
       excluded (no description)
-- [x] `divergence/data/review_sheet.py` -> `data/processed/review/` (181 rows: 71 A, 110 B)
+- [x] `divergence/labelling/review_sheet.py` -> `data/processed/review/` (181 rows: 71 A, 110 B)
 - [x] tests: 26 pass
 - [ ] **Hand review (you)** -> final labels -> decide the positive class
 - [ ] EDA notebook

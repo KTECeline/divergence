@@ -13,6 +13,8 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 IS_DEV_CHECKOUT = (PROJECT_ROOT / "pyproject.toml").is_file() and (PROJECT_ROOT / "divergence").is_dir()
 
 DATA_DIR = PROJECT_ROOT / "data"
+# Hand-review label CSVs exported from the review sheets (committed: they are the ground truth)
+LABELS_DIR = PROJECT_ROOT / "labels"
 RAW_MALSKILLBENCH_DIR = DATA_DIR / "raw" / "malskillbench"
 PROCESSED_DIR = DATA_DIR / "processed"
 ENRICHED_TRACES_DIR = PROCESSED_DIR / "enriched_traces"

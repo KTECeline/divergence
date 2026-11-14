@@ -8,7 +8,7 @@ Each run has a **dataset label** (MalSkillBench says the skill is malicious or b
 2. The filter starts on **Priority A** (71 rows). Do these first.
 3. For each run, read top to bottom, then press a label button or the number key 1–7. Add a note when you're unsure.
 4. Labels save in that browser automatically, so you can stop and come back. Use the same browser each time.
-5. When done (or at any break), click **Export labels (CSV)** and put the downloaded `review_labels.csv` in this folder.
+5. When done (or at any break), click **Export labels (CSV)** and put the downloaded `review_labels.csv` in `labels/` at the project root.
 
 ## The labels
 | key | value | use when |
@@ -44,7 +44,7 @@ One labeller is a stated limitation. If a second person labels 20 of the A rows 
 
 ## Direct-execution review (second slice)
 `review_direct.html` validates the **direct-mode** runs (the skill's own code, no
-agent). Built by `python -m src.data.review_sheet_direct`. It answers one question
+agent). Built by `python -m divergence.labelling.review_sheet_direct`. It answers one question
 per row: **is the rule-flagged payload real?** Its labels save under a *separate*
 browser key, so it never clashes with the agent review above; export is
 `review_labels_direct.csv`.
@@ -70,7 +70,7 @@ Rebuild this slice after re-running direct mode, so it reflects the final data.
 signal**: no skill script run, sensitive path, persistence write, DNS lookup, web
 fetch or network connect (2 agent, 11 instructed). Divergence only sees actions,
 so each must either show the harmful step in the trace or leave the positive
-class. Built by `python -m src.data.review_sheet_recheck`; export is
+class. Built by `python -m divergence.labelling.review_sheet_recheck`; export is
 `review_labels_recheck.csv`, which overrides the original label at merge time.
 
 | key | value | use when |
@@ -87,9 +87,9 @@ class. Built by `python -m src.data.review_sheet_recheck`; export is
 does the skill's **description** already disclose the harmful step seen in the
 trace? The POS label says harm happened; this checks that it was also
 *undisclosed*, which is what makes it divergence. Built by
-`python -m src.data.review_sheet_proxy` from
+`python -m divergence.labelling.review_sheet_proxy` from
 `data/processed/controls/proxy_labelling_sheet.csv`; export is
-`review_labels_proxy.csv` (put it in the project root). Re-running Exp 5 rewrites
+`review_labels_proxy.csv` (put it in `labels/`). Re-running Exp 5 rewrites
 the source sheet blank, so labels live only in the export.
 
 | key | value | use when |

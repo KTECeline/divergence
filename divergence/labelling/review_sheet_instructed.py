@@ -12,7 +12,7 @@ rows; instead priority B samples the `commands_only` runs (the agent ran but
 tripped nothing — did the rule miss a payload?) and includes every refusal
 (did the compliant prompt still get declined?).
 
-Run:  python -m divergence.data.review_sheet_instructed
+Run:  python -m divergence.labelling.review_sheet_instructed
 """
 
 import csv
@@ -24,7 +24,7 @@ from divergence.config import (
     INSTRUCTED_SAMPLES_PATH, RANDOM_SEED, REVIEW_DIR, SKILLS_DIR, SPLIT_ASSIGNMENT_PATH,
 )
 from divergence.data.loader import load_samples
-from divergence.data.review_sheet import BEHAVIOURS, suspicious_lines
+from divergence.labelling.review_sheet import BEHAVIOURS, suspicious_lines
 
 SHEET_PATH = REVIEW_DIR / "instructed_review_sheet.csv"
 PAGE_PATH = REVIEW_DIR / "review_instructed.html"

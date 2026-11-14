@@ -26,9 +26,9 @@ from sklearn.metrics import roc_auc_score
 
 from divergence.calibration.logistic_calibrator import FLAG_THRESHOLD, LogisticCalibrator
 from divergence.config import RESULTS_DIR
-from divergence.data.merge_labels import load_labelled_dataset
+from divergence.labelling.merge_labels import load_labelled_dataset
 from divergence.embedding.finetune_setfit import finetune, score
-from divergence.evaluation.metrics import group_bootstrap_ci, mcnemar_test, point_metrics
+from divergence.metrics import group_bootstrap_ci, mcnemar_test, point_metrics
 from divergence.experiments.exp1_baseline_comparison import MAIN
 from divergence.experiments.exp6_holdout_generalisation import features
 

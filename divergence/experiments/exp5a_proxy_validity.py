@@ -5,7 +5,7 @@ research question is about divergence: behaviour the description does NOT
 declare. 5a checks that gap by hand. Every positive test run (55) was labelled
 `discloses_harmful_behaviour` = no / partial / yes: does the skill's own
 description tell a user about the harmful step seen in its actions?
-(Labels: review_labels_proxy.csv, exported from data/processed/review/review_proxy.html.)
+(Labels: labels/review_labels_proxy.csv, exported from data/processed/review/review_proxy.html.)
 
 Analysis, fixed before looking at the verdicts. Reads saved predictions only:
 nothing is fitted, no model or judge is called, the test split is not re-scored.
@@ -29,11 +29,11 @@ import pandas as pd
 from scipy.stats import fisher_exact
 from statsmodels.stats.proportion import proportion_confint
 
-from divergence.config import PROJECT_ROOT, RESULTS_DIR
+from divergence.config import LABELS_DIR, RESULTS_DIR
 from divergence.data.control_sets import CONTROLS_DIR
-from divergence.evaluation.metrics import group_bootstrap_ci, point_metrics
+from divergence.metrics import group_bootstrap_ci, point_metrics
 
-LABELS_PATH = PROJECT_ROOT / "review_labels_proxy.csv"
+LABELS_PATH = LABELS_DIR / "review_labels_proxy.csv"
 SHEET_PATH = CONTROLS_DIR / "proxy_labelling_sheet.csv"
 JUDGE = "qwen2.5:7b"
 SYSTEMS = {  # name -> (score column, verdict column), from the saved Exp 1 predictions

@@ -8,7 +8,7 @@ import json
 import numpy as np
 
 from divergence.calibration.logistic_calibrator import LogisticCalibrator
-from divergence.evaluation.metrics import group_bootstrap_ci, mcnemar_test, point_metrics
+from divergence.metrics import group_bootstrap_ci, mcnemar_test, point_metrics
 from agentmesh.governance.audit import AuditLog
 
 from divergence.evaluator.agt_adapter import (agt_visible, check_parity, from_agt_audit_log, record_trial,

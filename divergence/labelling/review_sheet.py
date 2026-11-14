@@ -10,7 +10,7 @@ a B sample is then applied to the rest of its bucket.
 The reviewer fills `reviewed_outcome` (see data/processed/review/README.md).
 The agent's final text is shown to the reviewer only; it is never model input.
 
-Run:  python -m divergence.data.review_sheet
+Run:  python -m divergence.labelling.review_sheet
 """
 
 import csv

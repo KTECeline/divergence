@@ -12,7 +12,7 @@ description is semantically consistent with its observed action trace, using:
 4. Structural red-flag rules (`flag_unmentioned_domain`, `flag_credential_access`, `flag_undeclared_action_type`)
 5. Logistic regression calibration combining both signals into a final verdict
 
-See [Structure.md](Structure.md) for the full architecture and build plan.
+See **Project layout** below for where each part lives. The original build plan is archived in `notes/archive/Structure.md`.
 
 ## Use it as an AGT plugin
 
@@ -77,13 +77,33 @@ Phase 1 uses **MalSkillBench** (Guo et al., 2026) — place the raw, unmodified 
 
 ## Project layout
 
-- `divergence/` — the installable package: pipeline source (data loading, preprocessing, embedding, calibration, evaluator, baselines, experiments), `cli.py` (the `divergence` command), `model_store.py` (where the trained model is loaded from)
-- `notebooks/` — EDA and iterative development notebooks
-- `data/` — raw / processed / supplementary datasets (not committed)
-- `models/` — saved fine-tuned embedding model and calibration model
-- `results/` — experiment outputs and figures
-- `sandbox/` — Phase 2 OpenClaw/AGT integration (do not touch until Phase 1 experiments are stable)
-- `tests/` — unit tests (trace-to-text and structural flags especially)
+```
+divergence/                 the pip package
+├── cli.py                  `divergence evaluate | install`
+├── config.py               all paths and constants
+├── model_store.py          finds the trained model (local folder or Hugging Face)
+├── metrics.py              AUC, bootstrap CIs, McNemar (used by experiments + tests)
+│
+│   ── the shipped pipeline (runs on every skill) ──
+├── preprocessing/          1 normalise_trace  ->  2 trace_to_text  ->  4 structural_flags
+├── embedding/              3 encoder + similarity (consistency score); finetune_setfit (training)
+├── calibration/            5 logistic_calibrator (score + flags -> probability -> FLAG/ALLOW)
+├── evaluator/              DivergenceEvaluator, DivergencePluginInstaller (AGT), trial runners
+│
+│   ── research only (how the model and the report numbers were made) ──
+├── data/                   build run samples from MalSkillBench + traces, leakage-safe splits
+├── labelling/              hand-review sheets, merge_labels -> 308-run labelled dataset
+├── baselines/              comparison models for Chapter 5
+└── experiments/            exp1 ... exp6, one script per report experiment
+
+labels/                     hand-review label CSVs (the ground truth, committed)
+notebooks/                  01-07: step-by-step walkthrough of the pipeline (imports divergence/)
+sandbox/                    sealed VM runners that executed the skills and captured traces
+tests/                      unit tests, one file per module (`pytest`)
+results/                    experiment CSVs (not committed) and figures
+notes/                      roadmap, citations; notes/archive/ = superseded planning docs
+data/, models/, vendor/     datasets, trained model, MalSkillBench (not committed)
+```
 
 ## Methodology
 

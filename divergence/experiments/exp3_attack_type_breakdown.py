@@ -31,7 +31,7 @@ from divergence.baselines import behaviour_only
 from divergence.calibration.logistic_calibrator import FLAG_THRESHOLD
 from divergence.config import PRETRAINED_EMBEDDING_MODEL, RANDOM_SEED, RESULTS_DIR
 from divergence.data.loader import load_inventory
-from divergence.data.merge_labels import load_labelled_dataset
+from divergence.labelling.merge_labels import load_labelled_dataset
 from divergence.experiments.exp1_baseline_comparison import MAIN
 from divergence.experiments.exp6_holdout_generalisation import CLASS_NAMES, group, train_and_predict
 
