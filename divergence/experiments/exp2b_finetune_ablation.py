@@ -1,4 +1,4 @@
-"""Experiment 2b: fine-tuning delta. Build order item 13.
+"""Experiment 2b: fine-tuning delta.
 
 Measures the improvement from SetFit-style fine-tuning over the pretrained
 encoder, for each trace text and with / without the structural flags. Reads

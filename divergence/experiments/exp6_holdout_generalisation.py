@@ -1,4 +1,4 @@
-"""Experiment 6: held-out category generalisation. Build order item 16.
+"""Experiment 6: held-out category generalisation.
 
 Tests whether the model learns divergence as a concept or memorises known
 attack vocabulary. Two settings:
@@ -103,7 +103,8 @@ def main() -> None:
     results, preds = [], []
     for setting, name, test_idx in held_out_folds(rows):
         test_groups = {group(rows[i]) for i in test_idx}
-        excluded = {"MIXED", name.split()[3]} if setting.startswith("6b") else set()
+        # name is "train CI -> test PI": the held-out vector is the last word
+        excluded = {"MIXED", name.split()[-1]} if setting.startswith("6b") else set()
         train = [r for i, r in enumerate(rows) if group(r) not in test_groups
                  and (r["behaviour_class"] != name if setting.startswith("6a") else r["attack_vector"] not in excluded)]
         print(f"{setting} {name}: train {len(train)}, test {len(test_idx)}", flush=True)

@@ -1,4 +1,4 @@
-"""Experiment 3: attack-type breakdown. Build order item 14.
+"""Experiment 3: attack-type breakdown.
 
 Performance broken down across the MalSkillBench taxonomy: attack vector
 (Code Injection / Prompt Injection / Mixed), behaviour class (B1-B15),

@@ -1,6 +1,6 @@
-"""Structural red-flag rules (pipeline Step 5, Option 2 — no ML).
+"""Structural red-flag rules (pipeline step 4; no ML).
 
-Build order item 6. Three boolean flags computed from the description +
+Three boolean flags computed from the description +
 trace pair, fed alongside cosine similarity into the calibration layer.
 Develop against hand-crafted cases in notebooks/04_structural_flags.ipynb,
 with unit tests in tests/test_structural_flags.py.

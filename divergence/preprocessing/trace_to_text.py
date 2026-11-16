@@ -1,6 +1,6 @@
-"""Enriched trace-to-text conversion (pipeline Step 2, Option 1).
+"""Enriched trace-to-text conversion (pipeline step 2).
 
-Build order item 5 — the biggest engineering task and an original
+The biggest engineering task and an original
 contribution. Converts a raw action trace into enriched natural-language
 text via rule-based templates. NOT a flat template: sensitive action types
 (e.g. sending data to an external, previously unseen domain; credential

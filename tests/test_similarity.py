@@ -1,4 +1,4 @@
-"""Unit tests for the cosine consistency score (pipeline Step 4)."""
+"""Unit tests for the cosine consistency score (pipeline step 3)."""
 
 import numpy as np
 

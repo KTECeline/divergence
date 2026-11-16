@@ -6,11 +6,15 @@ AGT-pattern evaluator (`DivergenceEvaluator`).
 A mostly-pretrained, lightly fine-tuned ML layer that scores whether a skill's declared
 description is semantically consistent with its observed action trace, using:
 
-1. Sentence-BERT embeddings (few-shot fine-tuned via SetFit)
+1. Trace normalisation (AGT audit log / sandbox result -> ordered action list)
 2. Enriched trace-to-text conversion
-3. Cosine similarity scoring
+3. Sentence-BERT embeddings of description and trace text, cosine similarity -> consistency score.
+   The encoder is fine-tuned SetFit-style (contrastive `CosineSimilarityLoss` on description-trace
+   pairs, via sentence-transformers; the `setfit` library itself is not used)
 4. Structural red-flag rules (`flag_unmentioned_domain`, `flag_credential_access`, `flag_undeclared_action_type`)
 5. Logistic regression calibration combining both signals into a final verdict
+
+The same step numbers are used in the project layout below and in the module docstrings.
 
 See **Project layout** below for where each part lives. The original build plan is archived in `notes/archive/Structure.md`.
 
@@ -25,8 +29,8 @@ pip install "git+https://github.com/KTECeline/divergence.git"     # Python 3.11+
 ```
 
 The trained model (fine-tuned encoder + calibrator) downloads from Hugging Face on first use
-([`KTECeline/divergence-minilm-l6`](https://huggingface.co/KTECeline/divergence-minilm-l6), pinned to the
-v0.1.0 commit; override with `DIVERGENCE_HF_REPO` / `DIVERGENCE_HF_REVISION`). For an offline copy, set `DIVERGENCE_MODEL_DIR` to a folder with the
+([`KTECeline/divergence-minilm-l6`](https://huggingface.co/KTECeline/divergence-minilm-l6), pinned to a fixed commit: the
+v0.1.0 weights; override with `DIVERGENCE_HF_REPO` / `DIVERGENCE_HF_REVISION`). For an offline copy, set `DIVERGENCE_MODEL_DIR` to a folder with the
 encoder files plus `calibration_model.json`.
 
 **1. Evaluate only (bring your own trace, nothing is executed):**
@@ -57,23 +61,43 @@ a sealed sandbox first. This needs the Lima VM sandbox described in `sandbox/set
 **Run untrusted skills only inside a Linux VM, never directly on Docker Desktop.** Use
 `--traces-root DIR` to assess trials captured earlier instead.
 
-Exit codes: 0 allow/installed, 1 flag/blocked, 3 sandbox trial failed, 4 model not found.
+Exit codes: 0 allow/installed, 1 flag/blocked (and nothing else), 2 invalid input (a trace,
+description or argument that cannot be read), 3 sandbox trial failed or produced no run, 4 model not
+found, 5 unexpected error, 6 blocked by AGT's own install checks (`divergence install` only; AGT's
+reason is printed). Codes 2 to 5 mean no verdict was produced: an unreadable trace is an error,
+never an ALLOW. A run with no observable actions is announced before the verdict ("nothing was
+observed during the trial; this is not evidence the skill is safe").
 Limits: only behaviour that fires during the trial is seen (time bombs and trigger-gated payloads
 are missed); an empty trace means "nothing observed", not "safe"; it measures intent–behaviour
 divergence, not maliciousness.
 
 ## Research setup (reproducing the experiments)
 
+Two dependency lists, for two purposes:
+
+| File | Versions | Use it to |
+|---|---|---|
+| `requirements.txt` | exact pins: the environment the reported results were produced on | reproduce the numbers in `results/` |
+| `pyproject.toml` | lower bounds only | use or develop the plugin with current libraries |
+
 ```bash
 python3.11 -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt          # or: pip install -e ".[research,dev]"
+
+# to reproduce the reported results:
+pip install -r requirements.txt
+pip install -e . --no-deps               # adds the `divergence` command without changing those versions
+
+# or, to use / develop the plugin (newer libraries; scores can differ in the last decimals):
+pip install -e ".[research,dev]"
 ```
 
 ## Dataset
 
-Phase 1 uses **MalSkillBench** (Guo et al., 2026) — place the raw, unmodified dataset in
-`data/raw/malskillbench/`. See the README in that folder.
+The pipeline uses **MalSkillBench** (Guo et al., 2026). Clone the raw, unmodified dataset into
+`vendor/MalSkillBench/` (the code reads skills from `vendor/MalSkillBench/Dataset/Skills/`;
+see `divergence/config.py`). The local patches applied for sandbox runs are in
+`sandbox/malskillbench_patches.diff`.
 
 ## Project layout
 
@@ -99,7 +123,7 @@ divergence/                 the pip package
 labels/                     hand-review label CSVs (the ground truth, committed)
 notebooks/                  01-07: step-by-step walkthrough of the pipeline (imports divergence/)
 sandbox/                    sealed VM runners that executed the skills and captured traces
-tests/                      unit tests, one file per module (`pytest`)
+tests/                      unit tests (`pytest`)
 results/                    experiment CSVs (not committed) and figures
 notes/                      roadmap, citations; notes/archive/ = superseded planning docs
 data/, models/, vendor/     datasets, trained model, MalSkillBench (not committed)

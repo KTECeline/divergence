@@ -28,7 +28,7 @@ SUFFIX_RE = re.compile(r"__(CI|PI|MIXED)_B\d+$")
 WILD_FAMILY_RE = re.compile(r"-[a-z0-9]{4,12}$")
 YAML_KEY_RE = re.compile(r"^[A-Za-z_][\w-]*:(\s|$)")
 # MalSkillBench's generator left "=== END ORIGINAL SKILL.md ===" (and BEGIN)
-# lines in 888 of 3,945 malicious SKILL.md files and in no benign one: a free
+# lines in 888 of 3,944 malicious SKILL.md files and in no benign one: a free
 # label giveaway for anything that reads the body. Stripped before parsing.
 GENERATOR_MARKER_RE = re.compile(r"^=== (?:BEGIN|END) ORIGINAL SKILL\.md.*===[ \t]*\n?", re.MULTILINE)
 

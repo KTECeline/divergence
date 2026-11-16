@@ -15,12 +15,8 @@ IS_DEV_CHECKOUT = (PROJECT_ROOT / "pyproject.toml").is_file() and (PROJECT_ROOT 
 DATA_DIR = PROJECT_ROOT / "data"
 # Hand-review label CSVs exported from the review sheets (committed: they are the ground truth)
 LABELS_DIR = PROJECT_ROOT / "labels"
-RAW_MALSKILLBENCH_DIR = DATA_DIR / "raw" / "malskillbench"
 PROCESSED_DIR = DATA_DIR / "processed"
-ENRICHED_TRACES_DIR = PROCESSED_DIR / "enriched_traces"
-STRUCTURAL_FLAGS_DIR = PROCESSED_DIR / "structural_flags"
 SPLITS_DIR = PROCESSED_DIR / "splits"
-SUPPLEMENTARY_DIR = DATA_DIR / "supplementary"  # Phase 2
 
 # MalSkillBench ships skills only; it lives under vendor/ next to its runner.
 MALSKILLBENCH_DIR = PROJECT_ROOT / "vendor" / "MalSkillBench"

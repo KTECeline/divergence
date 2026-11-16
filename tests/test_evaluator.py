@@ -146,7 +146,7 @@ def test_point_metrics_and_bootstrap():
     y = np.array([0, 0, 1, 1] * 5)
     s = np.array([0.1, 0.2, 0.8, 0.9] * 5)
     m = point_metrics(y, s, (s >= 0.5).astype(int), s)
-    assert m["AUC"] == 1.0 and m["F1"] == 1.0 and m["false_alarm_rate"] == 0.0
+    assert m["AUC"] == 1.0 and m["PR_AUC"] == 1.0 and m["F1"] == 1.0 and m["false_alarm_rate"] == 0.0
     ci = group_bootstrap_ci(y, s, (s >= 0.5).astype(int), np.arange(20) // 2, n_boot=200)
     assert ci["AUC"][0] <= ci["AUC"][1] == 1.0
 

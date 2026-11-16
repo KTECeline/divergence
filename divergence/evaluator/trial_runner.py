@@ -64,7 +64,10 @@ def load_trial_runs(traces_root: Path, label: str, folder: str, modes: list[str]
         f = Path(traces_root) / MODE_DIRS[mode] / "results" / label / f"{folder}.json"
         if not f.exists():
             continue
-        result = json.loads(f.read_text(encoding="utf-8"))
+        try:
+            result = json.loads(f.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, UnicodeDecodeError) as e:
+            raise TrialError(f"trial result {f} is not readable JSON: {e}") from e
         entries, os_events = record_trial(audit_log, f"did:dvg:trial:{mode}:{agent_name}", result,
                                           trace_id=f"{label}/{folder}/{mode}")
         ok, msg = check_parity(result, entries, os_events)
@@ -86,8 +89,12 @@ class CapturedTraceRunner:
         self.traces_root, self.label, self.with_agent = Path(traces_root), label, with_agent
 
     def run(self, name: str, skill_dir: Path, audit_log) -> Trial:
-        return load_trial_runs(self.traces_root, self.label, Path(skill_dir).name,
-                               _modes(self.with_agent), audit_log, agent_name=name)
+        trial = load_trial_runs(self.traces_root, self.label, Path(skill_dir).name,
+                                _modes(self.with_agent), audit_log, agent_name=name)
+        if not trial.runs:
+            raise TrialError(f"no captured trial run for {self.label}/{Path(skill_dir).name} under {self.traces_root} "
+                             f"(looked in {', '.join(MODE_DIRS[m] for m in _modes(self.with_agent))})")
+        return trial
 
 
 class LimaTrialRunner:
@@ -179,4 +186,6 @@ class LimaTrialRunner:
         trial = load_trial_runs(local, CANDIDATE_LABEL, folder, _modes(self.with_agent), audit_log,
                                 agent_name=name)
         trial.log = log
+        if not trial.runs:
+            raise TrialError(f"the sandbox trial of {folder} produced no run result (see {local / 'sandbox_log.txt'})")
         return trial

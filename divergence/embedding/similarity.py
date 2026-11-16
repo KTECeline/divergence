@@ -1,5 +1,5 @@
 """Cosine similarity scoring between description and enriched-trace vectors
-(pipeline Step 4). Returns the semantic consistency score in [0, 1].
+(pipeline step 3). Returns the semantic consistency score in [0, 1].
 
 Cosine lies in [-1, 1]; it is rescaled as (1 + cos) / 2 rather than clipped,
 so the ordering of scores (all that ranking metrics and the calibration layer

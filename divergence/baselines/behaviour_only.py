@@ -1,4 +1,4 @@
-"""Baseline: behaviour-only (non-trained). Build order item 11.
+"""Baseline: behaviour-only (non-trained).
 
 Uses the observed action trace alone, ignoring the declared description: the
 same three structural rules, run with an EMPTY description, so every network

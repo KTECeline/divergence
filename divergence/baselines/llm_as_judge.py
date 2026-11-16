@@ -1,4 +1,4 @@
-"""Baseline: LLM-as-judge (non-trained). Build order item 11.
+"""Baseline: LLM-as-judge (non-trained).
 
 A local LLM (Ollama, free, runs on the host over already-captured traces, never
 in the sandbox) reads the same two inputs Divergence gets, the skill's

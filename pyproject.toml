@@ -19,7 +19,7 @@ dependencies = [
     "numpy>=1.26",
     "scikit-learn>=1.4",
     "sentence-transformers>=3.0",
-    "transformers>=4.41,<5",          # setfit 1.1.x breaks on transformers 5.x
+    "transformers>=4.41",
     "huggingface_hub>=0.23",
     "pyyaml>=6.0",
     "agent-governance-toolkit-core==4.1.0",   # pinned: AGT renames packages between releases
@@ -29,7 +29,9 @@ dependencies = [
 # Everything needed to reproduce the research (training, experiments, notebooks)
 research = [
     "pandas>=2.2",
-    "setfit>=1.1",
+    "datasets",                # SetFit-style fine-tuning uses sentence-transformers' trainer,
+    "accelerate>=0.20.3",      # which needs these two; the setfit library itself is not used
+    "requests",                # LLM-as-judge baseline and Exp 5c rewrites (local Ollama)
     "statsmodels>=0.14",
     "jupyter",
     "matplotlib>=3.8",

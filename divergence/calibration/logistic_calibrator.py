@@ -1,6 +1,6 @@
-"""Logistic regression calibration layer (pipeline Step 6).
+"""Logistic regression calibration layer (pipeline step 5).
 
-Build order item 9. Fit on the calibration split:
+Fit on the calibration split:
     logistic_regression([similarity, flag1, flag2, flag3])
     -> probability-of-suspicious -> ALLOW / FLAG verdict
 Saved to / loaded from models/calibration_model.json: plain weights, not a pickle,

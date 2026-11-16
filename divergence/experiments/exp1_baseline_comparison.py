@@ -1,4 +1,4 @@
-"""Experiment 1: baseline comparison + McNemar's test. Build order item 12.
+"""Experiment 1: baseline comparison + McNemar's test.
 
 Compares DivergenceEvaluator against the non-trained baselines (AGT-only,
 behaviour-only) plus text-only and a mode-only diagnostic, on the held-out
@@ -7,8 +7,8 @@ preview: score alone, flags alone, pretrained encoder, AGT-visible actions only)
 since they need the same frozen models. Writes results/exp1_results.csv and
 results/exp1_predictions.csv.
 
-LLM-as-judge is not included yet (divergence/baselines/llm_as_judge.py is a stub;
-it will run on local Ollama).
+LLM-as-judge is scored separately (exp1c_llm_judge.py, local Ollama) against the
+predictions this script saves.
 
 Nothing here is tuned on the test split: every model and threshold comes from
 the fine-tune / calibration splits.
@@ -118,7 +118,8 @@ def summarise(preds: pd.DataFrame, n_boot: int = 2000) -> pd.DataFrame:
         m = point_metrics(y, s, v, s if is_prob else None)
         ci = group_bootstrap_ci(y, s, v, groups, n_boot=n_boot)
         row = {"system": name, "role": role, **m,
-               "AUC_lo": ci["AUC"][0], "AUC_hi": ci["AUC"][1], "F1_lo": ci["F1"][0], "F1_hi": ci["F1"][1]}
+               "AUC_lo": ci["AUC"][0], "AUC_hi": ci["AUC"][1], "F1_lo": ci["F1"][0], "F1_hi": ci["F1"][1],
+               "PR_AUC_lo": ci["PR_AUC"][0], "PR_AUC_hi": ci["PR_AUC"][1]}
         if name != MAIN:
             t = mcnemar_test(y, preds[f"{MAIN}|verdict"].values, v)
             row.update({"divergence_right_only": t["A_right_B_wrong"], "baseline_right_only": t["A_wrong_B_right"],

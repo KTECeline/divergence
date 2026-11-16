@@ -1,29 +1,43 @@
-# Divergence — Phase 1 dependencies (MalSkillBench-only pipeline)
-# Python 3.11
+# Divergence — the exact environment the reported results were produced on (Python 3.11).
+# This file reproduces the reported results. For using or developing the plugin, install
+# with pyproject.toml instead (lower bounds only): pip install -e ".[research,dev]"
+#
+# Versions are the ones recorded in the trained model's own config
+# (models/finetuned_embedding/config_sentence_transformers.json: torch, transformers,
+# sentence-transformers) and the ones installed when every results file was re-checked on
+# 2026-11-14: with them, results/exp1_predictions.csv re-scores exactly and
+# models/calibration_model.json refits exactly from the calibration split.
 
-# Core ML pipeline
-# transformers pinned <5: setfit 1.1.x breaks on transformers 5.x
-# (removed transformers.training_args.default_logdir)
-transformers>=4.41,<5
-sentence-transformers>=3.0
-setfit>=1.1
-scikit-learn>=1.4
-pandas>=2.2
-numpy>=1.26
+# --- Anything below can change a score, so it is pinned ---------------------------------
+# Encoder: tokenisation, embeddings, fine-tuning
+torch==2.13.0
+transformers==4.57.6
+tokenizers==0.22.2
+sentence-transformers==5.6.1
+safetensors==0.8.0
+# Fine-tuning (divergence/embedding/finetune_setfit.py): SetFit-style, written with
+# sentence-transformers' own trainer, which needs these two. The setfit library is not used.
+datasets==5.0.0
+accelerate==1.14.0
+# Calibration (logistic regression), metrics, bootstrap, statistical tests
+numpy==2.4.6
+scipy==1.17.1
+scikit-learn==1.9.0
+statsmodels==0.14.6
+pandas==3.0.5
 
-# Statistics (McNemar's test for Experiment 1)
-statsmodels>=0.14
-
-# EDA / notebooks / figures
-jupyter
-matplotlib>=3.8
-seaborn>=0.13
-
-# Testing
-pytest>=8.0
-
-# AGT integration (DivergencePluginInstaller, audit log). Pinned: AGT renames packages between releases.
+# --- AGT integration (DivergencePluginInstaller, audit log) -----------------------------
+# Pinned: AGT renames packages between releases.
 agent-governance-toolkit-core==4.1.0
 
-# Phase 2 sandbox control (only inside the VM)
+# --- Does not affect scores: lower bounds only ------------------------------------------
+huggingface_hub>=0.23        # model download
+pyyaml>=6.0                  # SKILL.md frontmatter
+requests                     # LLM-as-judge baseline and Exp 5c rewrites (HTTP calls to local Ollama)
+jupyter                      # notebooks
+matplotlib>=3.8              # figures
+seaborn>=0.13
+pytest>=8.0                  # tests
+
+# Sandbox control (only inside the VM)
 # docker>=7.0

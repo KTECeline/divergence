@@ -1,4 +1,4 @@
-"""Experiment 5: inconsistency vs maliciousness controls. Build order item 15.
+"""Experiment 5: inconsistency vs maliciousness controls.
 
 Tests whether Divergence detects intent-behaviour divergence or just
 maliciousness. All on the held-out test split; nothing is fitted or tuned:
@@ -19,8 +19,19 @@ Systems: Divergence, the description-blind behaviour-only rules (unchanged by
 construction: the reference for "ignores the description"), and the strongest
 LLM judge (qwen2.5:7b).
 
+Run:  python -m divergence.experiments.exp5_control_experiments   (needs local Ollama)
 Writes results/exp5_controls.csv and results/exp5_control_predictions.csv.
+
+Correction (2026-11-14): the judge's cache key used to be `sample_id|mode|swap`,
+without the description. The 19 benign runs are in both swapped sets with different
+donor descriptions, so in "5b swapped (all negative runs)" they silently reused the
+answers given for the benign set's descriptions. The key now includes a hash of the
+description (judge_key); those 19 were re-judged and the files regenerated. Only the
+LLM-judge row of that one control changed; the files as they were are in
+results/archive/*_before_cache_fix.csv.
 """
+
+import hashlib
 
 import numpy as np
 import pandas as pd
@@ -39,13 +50,27 @@ from divergence.preprocessing.structural_flags import compute_structural_flags
 JUDGE = "qwen2.5:7b"
 
 
+def judge_key(r: dict, tag: str) -> str:
+    """Cache key for the judge's answer on one (description, trace) pair.
+
+    A control keeps the run's trace and changes its description, so the key carries a
+    hash of the description that is actually judged: the same run with another donor
+    description (it is in both swapped sets, with different donors) can never reuse an
+    answer given for a different text. Original descriptions keep the plain
+    `sample_id|mode` key, which is the one Exp 1c cached them under.
+    """
+    key = f"{r['sample_id']}|{r['mode']}"
+    if tag == "original":
+        return key
+    return f"{key}|{tag}|{hashlib.sha256(r['description'].encode('utf-8')).hexdigest()[:12]}"
+
+
 def score(rows: list[dict], evaluator: DivergenceEvaluator, judge: LLMJudge, tag: str) -> pd.DataFrame:
     """Every system's verdict on each (description, trace) pair."""
     results = evaluator.evaluate_batch([(r["description"], r["trace"]) for r in rows])
     out = []
     for r, res in zip(rows, results):
-        key = f"{r['sample_id']}|{r['mode']}" + ("" if tag == "original" else f"|{tag}")
-        j = judge.judge(key, r["description"], r["trace"])
+        j = judge.judge(judge_key(r, tag), r["description"], r["trace"])
         flags = compute_structural_flags(r["description"], r["trace"])
         out.append({"sample_id": r["sample_id"], "mode": r["mode"], "condition": tag,
                     "div_prob": res.probability, "div_consistency": res.consistency_score,

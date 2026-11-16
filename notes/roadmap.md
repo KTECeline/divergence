@@ -36,22 +36,25 @@ your core dataset. `notes/archive/Structure.md` §2 now says this (updated 2026-
 
 ### Stage 2 — Generate traces *(Data Understanding → Preparation)*
 - Write a batch runner (resumable; one JSON of evidence per skill)
-- Sample with stratification, not all 7,945: about **1,000 malicious spread across
+- Sample with stratification, not all 7,944: about **1,000 malicious spread across
   the taxonomy cells + 1,000 benign**. Estimated cost is about $5–15 (measure it in the pilot)
 - Use the `scripts/` split as a sampling dimension: only 568/4,000 benign and
-  1,707/3,945 malicious skills ship scripts. The rest are instructions-only, so
+  1,707/3,944 malicious skills ship scripts. The rest are instructions-only, so
   their trace shows the agent's behaviour, not code. Report results separately
   for the two groups
 - Log the outcome of every run: loaded / refused / timed out / error. The refusal
   rate is a finding in its own right; report it, don't hide it
 - Copy the evidence back to the Mac → `data/raw/traces/`
 - **Done when:** about 2,000 usable (description, trace, label, taxonomy) records exist.
-- **Done 2026-10-21.** 2,003 runs (1,003 malicious across all 108 cells + 179
+- **Done 2026-10-21.** 2,003 runs (1,003 malicious: 824 generated across all 108 cells + 179
   wild, 1,000 benign), 0 escapes, in `data/raw/traces/` (archive SHA-256 in
   setup_notes Step K). Provisional outcomes: malicious 358 proceeded / 519
   declined / 113 no execution; benign 720 attempted / 240 no execution;
   31 error_or_hang. Only ~36 % of malicious runs show the payload behaviour,
   so Stage 3 labels runs by what was observed.
+  *(These counts are from `batch_run.py`'s first heuristic, which over-counted "proceeded". The
+  rules that replaced it, `divergence/data/outcome.py`, give 739 of the 1,003 malicious runs as
+  `declined_security` and 33 runs as `error_or_hang`; see the Stage 3 key finding below.)*
 
 ### Stage 3 — Prepare the data *(Data Preparation)*
 - `loader.py`: SKILL.md description + evidence JSON → `schema.py` record

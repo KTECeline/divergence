@@ -1,7 +1,7 @@
 """Where the trained Divergence model comes from.
 
-The model is two files' worth of state: the fine-tuned sentence encoder (~88 MB)
-and the logistic-regression calibrator (a 4 KB JSON). They are not in git, so a
+The model is two files' worth of state: the fine-tuned sentence encoder (~91 MB)
+and the logistic-regression calibrator (a small JSON of five weights). They are not in git, so a
 pip-installed copy finds them in this order:
 
   1. DIVERGENCE_MODEL_DIR  a folder you point at (encoder files + calibration_model.json)
@@ -20,9 +20,9 @@ from pathlib import Path
 from divergence.config import CALIBRATION_MODEL_PATH, FINETUNED_EMBEDDING_DIR
 
 HF_MODEL_REPO = os.environ.get("DIVERGENCE_HF_REPO", "KTECeline/divergence-minilm-l6")
-# Pinned to the uploaded v0.1.0 commit (2026-11-07): the model behind the reported results.
+# Pinned to the commit of 2026-11-14: the v0.1.0 weights behind the reported results, with a corrected model card.
 # After retraining + re-uploading, move this pin to the new commit on purpose.
-HF_MODEL_REVISION = os.environ.get("DIVERGENCE_HF_REVISION", "e50efa630ea4ee6f8e5958217595e3dd700136d7")
+HF_MODEL_REVISION = os.environ.get("DIVERGENCE_HF_REVISION", "e700255872b410a8733af16ef02ebf7dfcaaeb66")
 CALIBRATION_FILE = "calibration_model.json"
 
 

@@ -1,6 +1,6 @@
 """DivergenceEvaluator — the AGT-pattern evaluator wrapping the full pipeline.
 
-Build order item 10. Follows the shape of AGT's own PromptDefenseEvaluator
+Follows the shape of AGT's own PromptDefenseEvaluator
 (`agent_compliance.prompt_defense`, AGT 4.1.0): a deterministic evaluator with
 `evaluate()` returning a report object that has `to_dict()` / `to_json()`.
 Cite this precedent in report section 2.4.3.4:
@@ -90,7 +90,7 @@ def _reasoning(probability: float, score: float, flags: StructuralFlags, text: s
 
 
 class DivergenceEvaluator:
-    """Wraps pipeline Steps 1-6: encode description, enrich + encode trace,
+    """Wraps the full pipeline: encode description, enrich + encode trace,
     cosine similarity, structural red-flag rules, logistic calibration.
 
     Loads the fine-tuned embedding model and calibration model once at

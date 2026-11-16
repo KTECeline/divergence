@@ -1,4 +1,4 @@
-"""Normalise one sandbox run into an ordered, AGT-style action list.
+"""Normalise one sandbox run into an ordered, AGT-style action list (pipeline step 1).
 
 Input: the DockerSandbox result JSON written by vendor/batch_run.py.
 Output: a list of actions, in the order the agent took them, each one a small

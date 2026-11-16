@@ -1,4 +1,4 @@
-"""Baseline: AGT-only (non-trained). Build order item 11.
+"""Baseline: AGT-only (non-trained).
 
 Decision from AGT's own governance signals alone, with no Divergence
 semantic-consistency layer.

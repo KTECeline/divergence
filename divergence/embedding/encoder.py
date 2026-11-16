@@ -1,6 +1,6 @@
-"""Sentence-BERT load + encode wrapper (pipeline Steps 1 and 3).
+"""Sentence-BERT load + encode wrapper (pipeline step 3).
 
-Build order item 7 (pretrained-only safety net), later reused with the
+Used directly as the pretrained-only safety net, and later with the
 SetFit-fine-tuned model from models/finetuned_embedding/.
 """
 

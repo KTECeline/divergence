@@ -23,12 +23,14 @@ divergence evaluate --skill-md SKILL.md --trace run.json
 ## Contents
 - Sentence encoder: `all-MiniLM-L6-v2` fine-tuned with `CosineSimilarityLoss` on
   (description, enriched trace text) pairs. 130 labelled runs, 12 epochs, seed 42.
+  This is SetFit-style contrastive fine-tuning written with sentence-transformers;
+  the `setfit` library is not used.
 - `calibration_model.json`: logistic regression over the consistency score and three
   structural red flags (unmentioned domain, credential access, undeclared action type).
   FLAG at probability ≥ 0.5.
 
-## Evaluation (held-out test split, 117 runs, used once)
-AUC 0.913 (95% CI 0.854–0.962), F1 0.804, false-alarm rate 0.10. See the repository for the
+## Evaluation (held-out test split, 117 runs; the model and the 0.5 cut-off were fixed before it was scored)
+AUC 0.913 (95% CI 0.854–0.962), F1 0.804, recall 0.75, false-alarm rate 0.10. See the repository for the
 baselines, ablations and control experiments.
 
 ## Intended use and limits

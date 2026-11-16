@@ -1,4 +1,4 @@
-"""Experiment 2: ablation study. Build order item 13.
+"""Experiment 2: ablation study.
 
 Removes or swaps one component at a time to measure what each contributes:
 

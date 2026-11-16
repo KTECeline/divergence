@@ -1,4 +1,4 @@
-"""Baseline: text-only. Build order item 11.
+"""Baseline: text-only.
 
 Uses the declared skill description alone, ignoring observed behaviour. A
 description cannot be judged "consistent" without behaviour, so this baseline
