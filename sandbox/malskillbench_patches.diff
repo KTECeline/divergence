@@ -1,9 +1,14 @@
 # MalSkillBench runner patches for the Divergence sealed sandbox.
+# Upstream: https://github.com/lxyeternal/MalSkillBench
 # Upstream commit: 06e083125d5ec5dd7a189dfedadfe587a70635b9 (Add citation to README)
-# Apply from vendor/MalSkillBench: git apply ../../sandbox/malskillbench_patches.diff
+# Apply from the MalSkillBench folder: git apply <path>/malskillbench_patches.diff
+# (sandbox/provision/provision_vm.sh does this automatically inside the VM.)
+# Complete as of 2026-11-16: includes the Stage 3 hooks (DVG_SANDBOX_IMAGE,
+# DVG_DIRECT_ENTRYPOINT). Upstream + this patch is byte-identical to the runner
+# that captured the dataset (sandbox.py sha256 4fd2818c7b01...).
 # Every change is also marked 'NOTE (patched)' in the source. See sandbox/setup_notes.md Step G.
 diff --git a/Core/verification/docker/Dockerfile b/Core/verification/docker/Dockerfile
-index 224fb0702f..844f94b5c9 100644
+index 224fb0702..844f94b5c 100644
 --- a/Core/verification/docker/Dockerfile
 +++ b/Core/verification/docker/Dockerfile
 @@ -3,7 +3,7 @@ FROM node:20-slim
@@ -16,10 +21,10 @@ index 224fb0702f..844f94b5c9 100644
      && rm -rf /var/lib/apt/lists/*
  
 diff --git a/Core/verification/sandbox.py b/Core/verification/sandbox.py
-index 8a975cbb9c..ece7bfaaba 100644
+index 8a975cbb9..c522dcb7f 100644
 --- a/Core/verification/sandbox.py
 +++ b/Core/verification/sandbox.py
-@@ -8,6 +8,7 @@ import json
+@@ -8,15 +8,45 @@ import json
  import logging
  import os
  import re
@@ -27,9 +32,14 @@ index 8a975cbb9c..ece7bfaaba 100644
  import subprocess
  import sys
  import tempfile
-@@ -16,7 +17,33 @@ from typing import Dict, List, Tuple
+ from pathlib import Path
+ from typing import Dict, List, Tuple
  
- DOCKER_IMAGE = "malskillbench/verification-sandbox"
+-DOCKER_IMAGE = "malskillbench/verification-sandbox"
++# NOTE (patched, Stage 3): image name overridable so the synthetic-user image
++# (dvg/sandbox-synthetic) can be used without touching the default. See
++# sandbox/direct_exec/README.md and sandbox/synthetic_user/README.md.
++DOCKER_IMAGE = os.environ.get("DVG_SANDBOX_IMAGE", "malskillbench/verification-sandbox")
  DOCKER_DIR = Path(__file__).parent / "docker"
 +# NOTE (patched): isolation for running malicious skills inside the dvg-lab VM.
 +# Upstream used --network host and passed the LLM API key into the container.
@@ -61,7 +71,7 @@ index 8a975cbb9c..ece7bfaaba 100644
  # Evidence scratch lives on the project disk (/home2 / sdb), NOT /tmp (sda).
  # Strace logs run 10-100 MB per skill; writing them to the system disk
  # contends with SSH/pty/other-users' home I/O and visibly degrades responsiveness.
-@@ -181,6 +208,20 @@ class DockerSandbox:
+@@ -181,6 +211,20 @@ class DockerSandbox:
          ) as tmp_dir:
              tmp_evidence = Path(tmp_dir) / "evidence"
              tmp_evidence.mkdir()
@@ -82,7 +92,7 @@ index 8a975cbb9c..ece7bfaaba 100644
              safe_name = re.sub(r"[^a-zA-Z0-9_.-]", "_", skill_dir.name)
              container_name = f"malskillbench_verify_{safe_name}"[:63]
  
-@@ -216,8 +257,12 @@ class DockerSandbox:
+@@ -216,8 +260,12 @@ class DockerSandbox:
                      json.dump(opencode_cfg, f)
                  provider_model = f"local-model/{self.model}"
              else:
@@ -97,7 +107,7 @@ index 8a975cbb9c..ece7bfaaba 100644
  
              result: Dict
              try:
-@@ -226,20 +271,30 @@ class DockerSandbox:
+@@ -226,20 +274,43 @@ class DockerSandbox:
                      "docker", "run", "--rm",
                      "--name", container_name,
                      "--label", f"malskillbench_run_id={run_id}",
@@ -121,6 +131,19 @@ index 8a975cbb9c..ece7bfaaba 100644
                      "--cpus", "2",
                  ]
 -                # Mount opencode.json for local model config
++                # Direct-execution mode (Stage 3): run the skill's own scripts
++                # under strace instead of launching the agent, to observe
++                # payload behaviour that agent refusals otherwise hide. The
++                # replacement entrypoint is mounted read-only and swapped in via
++                # --entrypoint; everything else (sealed network, cap-drop,
++                # evidence collection) is unchanged, so the result JSON is
++                # identical in shape to an agent run.
++                direct_entrypoint = os.environ.get("DVG_DIRECT_ENTRYPOINT")
++                if direct_entrypoint:
++                    cmd.extend([
++                        "-v", f"{Path(direct_entrypoint).resolve()}:/entrypoint_direct.sh:ro",
++                        "--entrypoint", "/entrypoint_direct.sh",
++                    ])
 +                # Mount opencode.json for local model config.
 +                # NOTE (patched): the installed opencode-ai CLI (v1.18.9) reads
 +                # project-local config from <cwd>/.opencode/opencode.json, not
@@ -134,7 +157,7 @@ index 8a975cbb9c..ece7bfaaba 100644
                  cmd.append(DOCKER_IMAGE)
                  proc = subprocess.run(
                      cmd, capture_output=True, text=True,
-@@ -654,14 +709,13 @@ class DockerSandbox:
+@@ -654,14 +725,13 @@ class DockerSandbox:
      @staticmethod
      def _persist_runtime_logs(tmp_evidence: Path, skill_dir: Path, trigger_prompt: str) -> None:
          """

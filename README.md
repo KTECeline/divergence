@@ -57,7 +57,8 @@ except DivergenceEscalation as e:
 ```
 
 **3. Full pre-install check (`divergence install --skill-dir path/to/skill`):** runs the skill in
-a sealed sandbox first. This needs the Lima VM sandbox described in `sandbox/setup_notes.md`.
+a sealed sandbox first, so it works on a skill that has never been run. This needs the sandbox
+VM; the next section builds it with one command.
 **Run untrusted skills only inside a Linux VM, never directly on Docker Desktop.** Use
 `--traces-root DIR` to assess trials captured earlier instead.
 
@@ -70,6 +71,53 @@ observed during the trial; this is not evidence the skill is safe").
 Limits: only behaviour that fires during the trial is seen (time bombs and trigger-gated payloads
 are missed); an empty trace means "nothing observed", not "safe"; it measures intent–behaviour
 divergence, not maliciousness.
+
+## Check your own skill from scratch (build the sandbox)
+
+To check a skill of your own, from a folder with a `SKILL.md` to a verdict, you need the same
+sealed sandbox the dataset was captured in. One script builds it.
+
+**You need:** macOS or Linux, [Lima](https://lima-vm.io) 2.x (`brew install lima`), Python 3.11+,
+about 30 GiB of disk and 6 GiB of RAM for the VM, and an [OpenRouter](https://openrouter.ai) API
+key. Give the key a low credit limit (a few dollars): a skill cannot read the key, but it can
+spend credit through the proxy. A trial costs well under one US cent.
+
+```bash
+git clone https://github.com/KTECeline/divergence.git && cd divergence
+python3.11 -m venv .venv && .venv/bin/pip install -e .
+
+bash sandbox/setup_sandbox.sh          # asks for the OpenRouter key (input hidden); 10 to 20 minutes
+.venv/bin/divergence install --skill-dir path/to/your-skill
+```
+
+The clone is needed (not only `pip install`): the trial script and the sandbox files live in
+`sandbox/`.
+
+`setup_sandbox.sh` does this, and prints PASS or FAIL for each isolation check at the end:
+
+| Step | What is built | Why |
+|---|---|---|
+| 1 | A Lima VM `dvg-lab` (Ubuntu 24.04, **no shared folders**), from `sandbox/lima/dvg-lab.yaml` | A skill that escapes its container lands in a disposable VM that cannot read your files |
+| 2 | Docker Engine inside the VM | Containers never run on the host's Docker |
+| 3 | The MalSkillBench runner at a pinned commit, plus `sandbox/malskillbench_patches.diff` | The same runner that captured the dataset. Only the runner code is fetched, from its own repository; the dataset is not needed and is not redistributed here |
+| 4 | Sandbox images (`opencode-ai` pinned to 1.19.3) and the synthetic-user image | The skill runs beside fake files and fake secrets marked `DVGCANARY` |
+| 5 | A sealed Docker network, a fake internet (INetSim) and a fake DNS | No route to the real internet; an attack still gets answers, so its behaviour shows in the trace |
+| 6 | An LLM proxy that holds the API key | The key never enters a skill's container |
+| 7 | The trial runners and their Python environment | `divergence install` drives these over Lima's SSH connection |
+
+It is safe to re-run: finished steps are skipped. `--check` repeats the isolation checks,
+`--rekey` replaces the API key, `--vm NAME` uses another VM name (then pass `--vm NAME` to
+`divergence install` too). `limactl stop dvg-lab` stops the VM; `limactl delete dvg-lab` removes it.
+
+Each trial runs the skill in up to two modes: **direct** (the skill's own scripts under `strace`,
+no LLM, only if it ships scripts) and **instructed** (an agent follows the `SKILL.md`; this is
+the part that calls the LLM). `--with-agent` adds a third run with the dataset's aligned-agent
+model. The models are set in the VM under `~/dvg/MalSkillBench/Configs/`; to choose others, set
+`DVG_INSTRUCTED_MODEL` / `DVG_AGENT_MODEL` (OpenRouter model ids) when running `setup_sandbox.sh`.
+
+`sandbox/setup_notes.md` is the manual version of the same build, with the reason for every
+command and the problems met on the way. MalSkillBench's licence (academic research use) applies
+to your use of its runner.
 
 ## Research setup (reproducing the experiments)
 
@@ -122,7 +170,8 @@ divergence/                 the pip package
 
 labels/                     hand-review label CSVs (the ground truth, committed)
 notebooks/                  01-07: step-by-step walkthrough of the pipeline (imports divergence/)
-sandbox/                    sealed VM runners that executed the skills and captured traces
+sandbox/                    sealed VM runners that executed the skills and captured traces;
+                            setup_sandbox.sh builds the VM (lima/ template, provision/ in-VM script)
 tests/                      unit tests (`pytest`)
 results/                    experiment CSVs (not committed) and figures
 notes/                      roadmap, citations; notes/archive/ = superseded planning docs

@@ -1,0 +1,34 @@
+# Lima template for the Divergence sandbox VM.
+#
+# This is the VM that untrusted skills run in. It is created by
+# sandbox/setup_sandbox.sh; you can also start it by hand:
+#   limactl start --name dvg-lab --tty=false sandbox/lima/dvg-lab.yaml
+#
+# The settings match the VM the dataset was captured in (sandbox/setup_notes.md,
+# "Environment"): Ubuntu 24.04, 4 CPUs, 6 GiB RAM, 30 GiB disk, no shared folders.
+# Everything inside the VM (Docker, the sealed network, the fake internet, the
+# LLM proxy, the runners) is installed afterwards by sandbox/provision/provision_vm.sh.
+
+minimumLimaVersion: 2.0.0
+
+images:
+- location: "https://cloud-images.ubuntu.com/releases/noble/release/ubuntu-24.04-server-cloudimg-amd64.img"
+  arch: "x86_64"
+- location: "https://cloud-images.ubuntu.com/releases/noble/release/ubuntu-24.04-server-cloudimg-arm64.img"
+  arch: "aarch64"
+
+cpus: 4
+memory: "6GiB"
+disk: "30GiB"
+
+# SAFETY: no shared folders. The guest must not be able to read or write any
+# host file, because it runs untrusted (possibly malicious) skills. Files move
+# in and out only by explicit `limactl copy`. setup_sandbox.sh refuses a VM
+# that has a host folder mounted.
+mounts: []
+
+# Docker Engine is installed from Docker's apt repository by provision_vm.sh,
+# so Lima's own containerd/nerdctl is not needed.
+containerd:
+  system: false
+  user: false

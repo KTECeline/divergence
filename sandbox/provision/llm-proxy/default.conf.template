@@ -1,0 +1,14 @@
+# LLM egress proxy (setup_notes.md Step F). The only container with a route to
+# the real internet. It forwards /api/v1/ to OpenRouter and adds the API key
+# itself, so the key never enters a skill's container. Every other path is 403.
+# The nginx image fills in the key placeholder below from its environment at start.
+server {
+  listen 8080;
+  location /api/v1/ {
+    proxy_pass https://openrouter.ai/api/v1/;
+    proxy_ssl_server_name on;
+    proxy_set_header Host openrouter.ai;
+    proxy_set_header Authorization "Bearer ${OPENROUTER_API_KEY}";
+  }
+  location / { return 403; }
+}

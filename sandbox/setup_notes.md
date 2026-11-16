@@ -86,6 +86,14 @@ default MalSkillBench image (`sandbox/demo_trial.sh` does this).
 
 ## Sandbox build log
 
+> **Automated version (added 2026-11-16):** `bash sandbox/setup_sandbox.sh` rebuilds this
+> whole sandbox in a new VM with one command (VM from `sandbox/lima/dvg-lab.yaml`, then
+> `sandbox/provision/provision_vm.sh` runs Steps B to H inside it and repeats the isolation
+> checks). The log below is the original manual build and stays the record of *why* each
+> step exists. Differences in the automated build: MalSkillBench's runner is fetched from
+> upstream at the pinned commit and patched (Step A copied a local folder), only the runner
+> code is fetched (no dataset), and `opencode-ai` is pinned to 1.19.3.
+
 ### Why a VM (design rationale — for report §4.2 / §4.5)
 
 The trace-capture step executes real MalSkillBench malicious skills, so it needs

@@ -26,6 +26,8 @@ htmlcov/
 .env
 .env.*
 !.env.example
+# planted FAKE secrets (DVGCANARY) baked into the synthetic-user sandbox image; needed for a rebuild
+!sandbox/synthetic_user/workspace/project/.env
 
 # ---- Data (not committed — see README; keep folder READMEs) ----
 data/**

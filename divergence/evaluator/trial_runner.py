@@ -10,6 +10,7 @@ Two runners share the same interface, `run(name, skill_dir, audit_log) -> Trial`
   LimaTrialRunner      Option B. Drives the sealed Lima VM from the Mac: copies the
                        skill in, runs sandbox/demo_trial.sh (the SAME sandbox, images
                        and runners that built the dataset), copies the traces back.
+                       The VM is built by sandbox/setup_sandbox.sh (one command).
   CapturedTraceRunner  Option A / "bring your own trace". Reads trial runs that were
                        already captured (e.g. by running demo_trial.sh by hand).
 
@@ -122,7 +123,8 @@ class LimaTrialRunner:
         except subprocess.TimeoutExpired as e:
             raise TrialError(f"timed out after {timeout}s: {' '.join(args[:3])} ...") from e
         except FileNotFoundError as e:
-            raise TrialError(f"{self.limactl} not found: Option B needs Lima and the dvg-lab VM") from e
+            raise TrialError(f"{self.limactl} not found: Option B needs Lima and the sandbox VM "
+                             "(build it with `bash sandbox/setup_sandbox.sh` from a clone of the repo)") from e
         if p.returncode != 0:
             raise TrialError(f"command failed ({p.returncode}): {' '.join(args[:3])} ...\n"
                              f"{(p.stdout or '')[-2000:]}{(p.stderr or '')[-2000:]}")
@@ -141,16 +143,19 @@ class LimaTrialRunner:
         if not (skill_dir / "SKILL.md").is_file():
             raise TrialError(f"{skill_dir} is not a skill folder (no SKILL.md)")
         if not self.trial_script.is_file():
-            raise TrialError(f"trial script not found: {self.trial_script} (LimaTrialRunner needs the "
-                             "sandbox set up as in the repo's sandbox/setup_notes.md; pass trial_script=)")
+            raise TrialError(f"trial script not found: {self.trial_script} (LimaTrialRunner needs a clone of "
+                             "the repo and the sandbox built by sandbox/setup_sandbox.sh; pass trial_script=)")
         folder = skill_dir.name
         if not re.fullmatch(r"[A-Za-z0-9._-]+", folder):
             raise TrialError(f"unsafe skill folder name: {folder!r}")
         trial_id = f"{folder}-{time.strftime('%Y%m%d-%H%M%S')}"
 
         status = self._call([self.limactl, "list", "--format", "{{.Status}}", self.vm]).strip()
+        if not status:
+            raise TrialError(f"VM {self.vm} does not exist: build the sandbox with "
+                             "`bash sandbox/setup_sandbox.sh` (from a clone of the repo)")
         if status != "Running":
-            raise TrialError(f"VM {self.vm} is {status or 'missing'}: start it with `limactl start {self.vm}`")
+            raise TrialError(f"VM {self.vm} is {status}: start it with `limactl start {self.vm}`")
         home = self._shell('printf %s "$HOME"').strip()
         remote = f"{home}/dvg/trials/{trial_id}"
         skill_root = f"{home}/dvg/MalSkillBench/Dataset/Skills/{CANDIDATE_LABEL}/{folder}"

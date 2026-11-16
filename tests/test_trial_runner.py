@@ -102,6 +102,12 @@ def test_vm_not_running_is_a_clear_error(tmp_path):
         runner.run("md-tables", _skill(tmp_path), AuditLog())
 
 
+def test_missing_vm_points_to_the_setup_script(tmp_path):
+    runner = LimaTrialRunner(local_root=tmp_path, run=FakeLima(status=""))
+    with pytest.raises(TrialError, match="setup_sandbox.sh"):
+        runner.run("md-tables", _skill(tmp_path), AuditLog())
+
+
 def test_sandbox_failure_surfaces(tmp_path):
     runner = LimaTrialRunner(local_root=tmp_path, run=FakeLima(fail_on="demo_trial.sh"))
     with pytest.raises(TrialError, match="command failed"):
