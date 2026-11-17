@@ -24,6 +24,11 @@ Deliberately left out:
   * OpenCode's own activity (its LLM calls, model/npm lookups, library loads);
   * system noise: shared-library and interpreter reads, caches, /proc, /sys.
 
+DNS lookups come from the runner's `dns_domains` and, since 2026-11-17, also from the
+question name in the sandbox resolver's replies (_resolver_dns_names): the runner missed
+lookups made inside a program (glibc's resolver sends with sendmmsg), so an upload from a
+skill's own Python code lost its hostname. See notes/dns_fix/.
+
 Normalisation is factual: it does not decide what is sensitive. That is the
 job of structural_flags.py and trace_to_text.py (Stage 4).
 """
@@ -58,8 +63,8 @@ _QUOTED = re.compile(r'"((?:[^"\\]|\\.)*)(?:"(?:\.\.\.)?|$)')
 _INET = re.compile(r'sin6?_port=htons\((\d+)\).*?(?:inet_addr|inet_pton\(AF_INET6?)\("?([0-9a-fA-F.:]+)"?\)')
 
 
-def strace_unescape(s: str) -> str:
-    """Decode strace's C-style escapes (\\", \\n, \\350...) back to text."""
+def _strace_bytes(s: str) -> bytearray:
+    """strace's C-style escapes (\\", \\n, \\350, \\x0c...) back to the raw bytes."""
     out, i = bytearray(), 0
     simple = {"n": 10, "t": 9, "r": 13, "v": 11, "f": 12, "\\": 92, '"': 34}
     while i < len(s):
@@ -74,7 +79,55 @@ def strace_unescape(s: str) -> str:
             if nxt == "x" and re.match(r"[0-9a-fA-F]{2}", s[i + 2:i + 4]):
                 out.append(int(s[i + 2:i + 4], 16)); i += 4; continue
         out.extend(c.encode("utf-8")); i += 1
-    return out.decode("utf-8", errors="replace")
+    return out
+
+
+def strace_unescape(s: str) -> str:
+    """Decode strace's C-style escapes (\\", \\n, \\350...) back to text."""
+    return _strace_bytes(s).decode("utf-8", errors="replace")
+
+
+_DNS_NAME = re.compile(r"[a-z0-9_-]+(\.[a-z0-9_-]+)+")
+
+
+def dns_question(payload: bytes) -> str | None:
+    """The question name of a DNS message (12-byte header, then length-prefixed labels), or None.
+
+    Reverse lookups (*.arpa) are not names a skill chose to contact, so they are dropped."""
+    if len(payload) < 13:
+        return None
+    i, labels = 12, []
+    while True:
+        if i >= len(payload):
+            return None  # cut off before the name ended
+        n = payload[i]
+        if n == 0:
+            break
+        if n > 63 or i + 1 + n > len(payload):
+            return None  # compression pointer or truncated label: not a plain question name
+        labels.append(payload[i + 1:i + 1 + n].decode("ascii", errors="replace"))
+        i += 1 + n
+    name = ".".join(labels).lower()
+    if not _DNS_NAME.fullmatch(name) or name.endswith(".arpa"):
+        return None
+    return name
+
+
+_DNS_SYSCALLS = ("recvfrom", "recvmsg", "sendto", "sendmsg", "sendmmsg")
+
+
+def _resolver_dns_names(n: dict) -> list[str]:
+    """DNS names in one network event exchanged with the sandbox resolver on port 53.
+
+    The upstream runner reads names only from `sendto` queries and from the arguments of
+    curl/wget/ping/dig/host/nslookup. glibc's resolver, which Python and most in-process
+    network code use, sends with `sendmmsg`, so those lookups were missed; the resolver's
+    replies (`recvfrom`) carry the same question name and are captured."""
+    if n.get("syscall") not in _DNS_SYSCALLS or n.get("port") != 53 or n.get("address") not in SANDBOX_DNS:
+        return []
+    m = _QUOTED.search(n.get("args", ""))
+    name = dns_question(bytes(_strace_bytes(m.group(1)))) if m else None
+    return [name] if name else []
 
 
 def parse_execve_argv(args: str) -> list[str]:
@@ -238,7 +291,7 @@ def _os_events(result: dict, skip_exec_pids=frozenset(), drop_harness=False):
 
     for n in result.get("network_events") or []:
         pid = n.get("pid")
-        for d in n.get("dns_domains") or []:
+        for d in dict.fromkeys([*(n.get("dns_domains") or []), *_resolver_dns_names(n)]):
             yield pid, "dns_lookup", d, "ok"
         if n.get("syscall") not in ("connect", "sendto", "sendmsg"):
             continue

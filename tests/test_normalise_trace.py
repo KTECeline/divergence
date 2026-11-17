@@ -5,7 +5,7 @@ strace-derived process / file / network events.
 """
 
 from divergence.preprocessing.normalise_trace import (
-    attribution_coverage, normalise, parse_execve_argv, strace_unescape,
+    attribution_coverage, dns_question, normalise, parse_execve_argv, strace_unescape,
 )
 
 
@@ -134,3 +134,47 @@ def test_direct_mode_emits_actions_from_strace_without_tool_calls():
     assert "exfil.py" in targets
     # ordered by pid -> monotonic seq, steps grouped per pid
     assert [a["seq"] for a in actions] == list(range(len(actions)))
+
+
+# The resolver's reply as strace logged it in a live trial (2026-11-17): a skill's Python
+# script resolved collect.evil-c2.example with glibc, which the upstream runner missed.
+_DNS_REPLY_ARGS = (r'3<socket:[7320631]>, "\212r\205\200\0\1\0\1\0\0\0\1\7collect\7evil-c2\7example'
+                   r'\0\0\1\0\1\300\f\0\1\0\1\0\0\0\0\0\4\254\36\0\2\0\0)\4\320\0\0\0\0\0\0", 2048, 0, '
+                   r'{sa_family=AF_INET, sin_port=htons(53), sin_addr=inet_addr("127.0.0.11")}, [28 => 16]')
+
+
+def _dns_reply(pid="27", address="127.0.0.11", args=_DNS_REPLY_ARGS):
+    return {"pid": pid, "syscall": "recvfrom", "args": args, "return": 68, "port": 53, "address": address}
+
+
+def test_dns_question_parses_the_name_and_rejects_junk():
+    msg = b"\x8ar\x85\x80\x00\x01\x00\x01\x00\x00\x00\x01" + b"\x07collect\x07evil-c2\x07example\x00\x00\x01"
+    assert dns_question(msg) == "collect.evil-c2.example"
+    assert dns_question(msg[:20]) is None                                  # cut off mid-name
+    assert dns_question(b"\0" * 12 + b"\xc0\x0c") is None                  # compression pointer
+    assert dns_question(b"\0" * 12 + b"\x09localhost\x00") is None         # no dot: not a domain
+    rev = b"\0" * 12 + b"\x012\x010\x0230\x03172\x07in-addr\x04arpa\x00"
+    assert dns_question(rev) is None                                       # reverse lookup
+
+
+def _direct_result(network_events):
+    return {"agent_json": {},
+            "process_events": [_execve(27, ["/usr/bin/python3", "scripts/format_table.py"])],
+            "file_events": [], "network_events": network_events}
+
+
+def test_in_process_dns_lookup_is_recovered_from_the_resolver_reply():
+    actions = normalise(_direct_result([_dns_reply()]))
+    assert ("dns_lookup", "collect.evil-c2.example") in {(a["action"], a["target"]) for a in actions}
+
+
+def test_resolver_reply_and_runner_domain_give_one_lookup():
+    ev = _dns_reply()
+    ev["dns_domains"] = ["collect.evil-c2.example"]  # the runner already had it
+    lookups = [a for a in normalise(_direct_result([ev])) if a["action"] == "dns_lookup"]
+    assert [a["target"] for a in lookups] == ["collect.evil-c2.example"]
+
+
+def test_only_the_sandbox_resolver_counts():
+    elsewhere = _dns_reply(address="172.30.0.2")  # port 53 on another host is not the resolver
+    assert not [a for a in normalise(_direct_result([elsewhere])) if a["action"] == "dns_lookup"]
