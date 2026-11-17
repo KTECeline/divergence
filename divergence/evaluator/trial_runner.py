@@ -10,7 +10,7 @@ Two runners share the same interface, `run(name, skill_dir, audit_log) -> Trial`
   LimaTrialRunner      Option B. Drives the sealed Lima VM from the Mac: copies the
                        skill in, runs sandbox/demo_trial.sh (the SAME sandbox, images
                        and runners that built the dataset), copies the traces back.
-                       The VM is built by sandbox/setup_sandbox.sh (one command).
+                       The VM is built by `divergence setup-sandbox` (one command).
   CapturedTraceRunner  Option A / "bring your own trace". Reads trial runs that were
                        already captured (e.g. by running demo_trial.sh by hand).
 
@@ -33,15 +33,16 @@ import time
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from divergence.config import DATA_DIR, IS_DEV_CHECKOUT, PROJECT_ROOT
+from divergence.config import DATA_DIR, IS_DEV_CHECKOUT
 from divergence.evaluator.agt_adapter import check_parity, record_trial
 from divergence.evaluator.agt_installer import TrialRun
+from divergence.sandbox_files import trial_script
 
 MODE_DIRS = {"direct": "direct_out", "instructed": "instructed_out", "agent": "batch_out"}
 CANDIDATE_LABEL = "candidate"  # skills under install review; never a dataset label
 # in the repo, trials sit next to the dataset traces; a pip-installed copy writes to ./divergence_trials
 TRIALS_DIR = DATA_DIR / "raw" / "traces" / "trials" if IS_DEV_CHECKOUT else Path("divergence_trials")
-DEMO_TRIAL_SH = PROJECT_ROOT / "sandbox" / "demo_trial.sh"  # the VM-side trial script (repo only)
+DEMO_TRIAL_SH = trial_script()  # the VM-side trial script (repo copy, or the one bundled in the package)
 
 
 class TrialError(RuntimeError):
@@ -124,7 +125,7 @@ class LimaTrialRunner:
             raise TrialError(f"timed out after {timeout}s: {' '.join(args[:3])} ...") from e
         except FileNotFoundError as e:
             raise TrialError(f"{self.limactl} not found: Option B needs Lima and the sandbox VM "
-                             "(build it with `bash sandbox/setup_sandbox.sh` from a clone of the repo)") from e
+                             "(install Lima, then build the VM with `divergence setup-sandbox`)") from e
         if p.returncode != 0:
             raise TrialError(f"command failed ({p.returncode}): {' '.join(args[:3])} ...\n"
                              f"{(p.stdout or '')[-2000:]}{(p.stderr or '')[-2000:]}")
@@ -143,8 +144,8 @@ class LimaTrialRunner:
         if not (skill_dir / "SKILL.md").is_file():
             raise TrialError(f"{skill_dir} is not a skill folder (no SKILL.md)")
         if not self.trial_script.is_file():
-            raise TrialError(f"trial script not found: {self.trial_script} (LimaTrialRunner needs a clone of "
-                             "the repo and the sandbox built by sandbox/setup_sandbox.sh; pass trial_script=)")
+            raise TrialError(f"trial script not found: {self.trial_script} (the package is incomplete: "
+                             "reinstall divergence-agt, or pass trial_script=)")
         folder = skill_dir.name
         if not re.fullmatch(r"[A-Za-z0-9._-]+", folder):
             raise TrialError(f"unsafe skill folder name: {folder!r}")
@@ -153,7 +154,7 @@ class LimaTrialRunner:
         status = self._call([self.limactl, "list", "--format", "{{.Status}}", self.vm]).strip()
         if not status:
             raise TrialError(f"VM {self.vm} does not exist: build the sandbox with "
-                             "`bash sandbox/setup_sandbox.sh` (from a clone of the repo)")
+                             "`divergence setup-sandbox`")
         if status != "Running":
             raise TrialError(f"VM {self.vm} is {status}: start it with `limactl start {self.vm}`")
         home = self._shell('printf %s "$HOME"').strip()

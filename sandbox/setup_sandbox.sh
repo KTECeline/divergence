@@ -2,12 +2,14 @@
 # One-command setup of the Divergence sandbox: the sealed Linux VM that
 # `divergence install --skill-dir <your skill>` runs a skill in before install.
 #
-# Run on the host (macOS or Linux), from a clone of this repo:
+# Run on the host (macOS or Linux). After `pip install divergence-agt` (the package
+# bundles this script and the files it copies), or from a clone of the repo:
 #
-#   bash sandbox/setup_sandbox.sh              # create the VM "dvg-lab" and build everything
-#   bash sandbox/setup_sandbox.sh --check      # re-run the isolation checks only
-#   bash sandbox/setup_sandbox.sh --rekey      # replace the OpenRouter key held by the proxy
-#   bash sandbox/setup_sandbox.sh --vm NAME    # use another VM name
+#   divergence setup-sandbox                   # create the VM "dvg-lab" and build everything
+#   divergence setup-sandbox --check           # re-run the isolation checks only
+#   divergence setup-sandbox --rekey           # replace the OpenRouter key held by the proxy
+#   divergence setup-sandbox --vm NAME         # use another VM name
+#   (in a clone, `bash sandbox/setup_sandbox.sh ...` does the same)
 #
 # Needs: Lima 2.x (`brew install lima`), about 30 GiB of disk and 6 GiB of RAM
 # for the VM, and an OpenRouter API key (asked for, input hidden; or export
@@ -16,7 +18,7 @@
 #
 # What it does (the manual version, with the reasons, is sandbox/setup_notes.md):
 #   1. creates the VM from sandbox/lima/dvg-lab.yaml (Ubuntu 24.04, no shared folders)
-#   2. copies this repo's sandbox files into it (one archive over Lima's SSH; nothing is mounted)
+#   2. copies the sandbox files into it (one archive over Lima's SSH; nothing is mounted)
 #   3. runs sandbox/provision/provision_vm.sh inside it: Docker Engine, the pinned
 #      and patched MalSkillBench runner, the sandbox images, the sealed network,
 #      the fake internet + DNS, the LLM proxy, the runners and their Python env
@@ -36,7 +38,7 @@ while [ $# -gt 0 ]; do
     --vm)    VM="${2:?--vm needs a name}"; shift 2 ;;
     --rekey) REKEY=1; shift ;;
     --check) CHECK_ONLY=1; shift ;;
-    -h|--help) sed -n '2,28p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
+    -h|--help) sed -n '2,30p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
     *) echo "unknown option: $1 (try --help)" >&2; exit 2 ;;
   esac
 done
@@ -56,7 +58,7 @@ command -v limactl >/dev/null 2>&1 || die "limactl not found. Install Lima first
 # ---- 1. the VM
 status="$(limactl list --format '{{.Status}}' "$VM" 2>/dev/null || true)"
 if [ "$CHECK_ONLY" = 1 ]; then
-  [ "$status" = "Running" ] || die "VM $VM is ${status:-missing}; run this script without --check first"
+  [ "$status" = "Running" ] || die "VM $VM is ${status:-missing}; run 'divergence setup-sandbox' without --check first"
 elif [ -z "$status" ]; then
   say "Creating the VM $VM (downloads Ubuntu 24.04; a few minutes)"
   limactl start --name "$VM" --tty=false "$HERE/lima/dvg-lab.yaml"
@@ -77,7 +79,7 @@ say "Copying the sandbox files into the VM"
 for f in sandbox/provision/provision_vm.sh sandbox/malskillbench_patches.diff sandbox/demo_trial.sh \
          sandbox/direct_exec/entrypoint_direct.sh sandbox/instructed_agent/run_instructed.py \
          sandbox/synthetic_user/Dockerfile vendor/batch_run.py vendor/pilot_run.py; do
-  [ -f "$REPO/$f" ] || die "missing $f: run this from a full clone of the repository"
+  [ -f "$REPO/$f" ] || die "missing $f: reinstall divergence-agt, or run this from a full clone of the repository"
 done
 tmp="$(mktemp -d)"
 trap 'rm -rf "$tmp"' EXIT

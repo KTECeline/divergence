@@ -104,7 +104,7 @@ def test_vm_not_running_is_a_clear_error(tmp_path):
 
 def test_missing_vm_points_to_the_setup_script(tmp_path):
     runner = LimaTrialRunner(local_root=tmp_path, run=FakeLima(status=""))
-    with pytest.raises(TrialError, match="setup_sandbox.sh"):
+    with pytest.raises(TrialError, match="divergence setup-sandbox"):
         runner.run("md-tables", _skill(tmp_path), AuditLog())
 
 

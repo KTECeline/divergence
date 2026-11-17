@@ -45,11 +45,20 @@ have_image()     { docker image inspect "$1" >/dev/null 2>&1; }
 have_container() { docker container inspect "$1" >/dev/null 2>&1; }
 ensure_running() { [ "$(docker container inspect -f '{{.State.Running}}' "$1")" = "true" ] || docker start "$1" >/dev/null; }
 
-apt_update() {  # the Ubuntu mirrors sometimes answer 403 for a moment on a fresh VM: retry
-  local n
-  for n in 1 2 3 4 5; do
+apt_update() {
+  # Some networks (campus or office firewalls) refuse apt over plain HTTP with a
+  # 403 "application control" page, while HTTPS works. Seen on 2026-11-16. So:
+  # try as configured, then switch Ubuntu's own mirrors to HTTPS, then retry.
+  local n src=/etc/apt/sources.list.d/ubuntu.sources
+  sudo apt-get update -qq && return 0
+  if [ -f "$src" ] && grep -q 'http://[a-z.]*ubuntu\.com' "$src"; then
+    info "apt was refused over HTTP; switching Ubuntu's mirrors to HTTPS (backup: $src.http)"
+    sudo cp "$src" "$src.http"
+    sudo sed -i 's#http://\([a-z.]*ubuntu\.com\)#https://\1#g' "$src"
+  fi
+  for n in 1 2 3; do
     sudo apt-get update -qq && return 0
-    info "apt-get update failed (attempt $n of 5); retrying in 15 s"
+    info "apt-get update failed (retry $n of 3); waiting 15 s"
     sleep 15
   done
   die "apt-get update keeps failing: check the VM's internet access and re-run"
@@ -121,6 +130,21 @@ phase_build() {
   require_vm
   docker info >/dev/null 2>&1 || die "docker is not usable by $USER yet (run the 'system' phase, then restart the VM)"
   mkdir -p "$DVG"
+
+  # The image builds run apt inside Docker over plain HTTP. Some networks (campus
+  # or office firewalls) refuse exactly that with a 403 page; say so up front
+  # instead of failing in the middle of a build. Seen on 2026-11-16.
+  if ! { have_image "$BASE_IMAGE" && have_image dvg/inetsim:latest; }; then
+    local probe
+    probe="$(curl -s -o /dev/null -m 15 -w '%{http_code}' -A 'Debian APT-HTTP/1.3 (2.6.1)' \
+             http://deb.debian.org/debian/dists/bookworm/InRelease || true)"
+    if [ "$probe" = "403" ]; then
+      die "this network refuses package downloads (apt over HTTP is answered 403, usually a
+campus or office firewall). The sandbox images cannot be built here. Connect the
+host to another network (home Wi-Fi or a phone hotspot) and re-run divergence setup-sandbox;
+finished steps are kept."
+    fi
+  fi
 
   # -- Step C: the MalSkillBench runner, pinned + patched (code only, no dataset)
   if [ -f "$MSB/Core/verification/sandbox.py" ]; then
@@ -196,7 +220,7 @@ phase_build() {
   else
     step "Starting the fake internet (inetsim at $IP_INETSIM)"
     mkdir -p "$DVG/inetsim" && cp "$SRC/sandbox/provision/inetsim/Dockerfile" "$DVG/inetsim/"
-    docker build -q -t dvg/inetsim "$DVG/inetsim" >/dev/null
+    have_image dvg/inetsim:latest || docker build -q -t dvg/inetsim "$DVG/inetsim" >/dev/null
     docker run -d --name inetsim --restart unless-stopped --network "$NET" --ip "$IP_INETSIM" dvg/inetsim >/dev/null
   fi
   if have_container fakedns; then
@@ -204,7 +228,7 @@ phase_build() {
   else
     step "Starting the fake DNS (fakedns at $IP_DNS)"
     mkdir -p "$DVG/fakedns" && cp "$SRC/sandbox/provision/fakedns/Dockerfile" "$DVG/fakedns/"
-    docker build -q -t dvg/fakedns "$DVG/fakedns" >/dev/null
+    have_image dvg/fakedns:latest || docker build -q -t dvg/fakedns "$DVG/fakedns" >/dev/null
     docker run -d --name fakedns --restart unless-stopped --network "$NET" --ip "$IP_DNS" dvg/fakedns >/dev/null
   fi
 
@@ -307,7 +331,7 @@ phase_check() {
   # 4. the key held by the proxy works (the request below sends no key itself)
   code="$(in_sealed -o /dev/null -w '%{http_code}' http://llm-proxy:8080/api/v1/key 2>/dev/null || true)"
   if [ "$code" = "200" ]; then ok "OpenRouter accepts the key held by the proxy"
-  else bad "OpenRouter answered '$code' through the proxy: the key is missing or invalid. Re-run setup_sandbox.sh --rekey"; fi
+  else bad "OpenRouter answered '$code' through the proxy: the key is missing or invalid. Re-run 'divergence setup-sandbox --rekey'"; fi
 
   if [ "$failed" = 0 ]; then printf '\nSandbox ready.\n'; else printf '\nSandbox NOT ready: fix the FAIL lines above.\n' >&2; exit 1; fi
 }

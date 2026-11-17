@@ -70,3 +70,32 @@ def test_cli_parses_both_commands():
     assert p.parse_args(["evaluate", "--description", "x", "--trace", "t.json"]).command == "evaluate"
     a = p.parse_args(["install", "--skill-dir", "s", "--traces-root", "c"])
     assert a.command == "install" and a.vm == "dvg-lab"
+
+
+def test_sandbox_bundle_files_exist_in_repo():
+    from divergence.sandbox_files import BUNDLE, sandbox_root, setup_script, trial_script
+    root = sandbox_root()
+    for rel in BUNDLE:
+        assert (root / rel).exists(), rel                   # setup.py would fail the build otherwise
+    assert setup_script().is_file() and trial_script().is_file()
+
+
+def test_setup_sandbox_command_passes_options(monkeypatch):
+    import subprocess
+
+    from divergence import cli
+    seen = {}
+
+    class Done:
+        returncode = 0
+
+    def fake_run(argv, **kw):
+        seen["argv"] = argv
+        return Done()
+    monkeypatch.setattr(subprocess, "run", fake_run)
+    assert cli.main(["setup-sandbox", "--vm", "lab2", "--check"]) == cli.EXIT_OK
+    assert seen["argv"][0] == "bash" and seen["argv"][1].endswith("sandbox/setup_sandbox.sh")
+    assert seen["argv"][2:] == ["--vm", "lab2", "--check"]
+
+    Done.returncode = 1
+    assert cli.main(["setup-sandbox"]) == cli.EXIT_TRIAL

@@ -4,11 +4,14 @@
                         trace you already have (no sandbox, nothing executed)
   divergence install    Option B: one install request -> sandbox trial -> Divergence
                         -> AGT install, or escalate to a human
+  divergence setup-sandbox   one time: build the sealed Lima VM that `install` runs
+                        skills in (needs Lima and an OpenRouter key)
 
 Examples:
   divergence evaluate --skill-md path/to/SKILL.md --trace run.json
   divergence evaluate --description "Formats markdown tables" --trace agt_audit_log.json \\
                       --os-events os_events.json
+  divergence setup-sandbox                                # once; 10 to 20 minutes
   divergence install --skill-dir path/to/skill            # needs the Lima sandbox
   divergence install --skill-dir path/to/skill --traces-root captured/   # trials captured earlier
 
@@ -20,7 +23,7 @@ Exit codes (1 means FLAG and nothing else, so a script can rely on it):
   0  ALLOW / installed
   1  FLAG / blocked (evaluate: only with --fail-on-flag)
   2  invalid input: a trace, description or argument that cannot be read. No verdict.
-  3  the sandbox trial failed or produced no run. No verdict.
+  3  the sandbox trial failed or produced no run, or setup-sandbox failed. No verdict.
   4  the trained model wasn't found
   5  unexpected error. No verdict. (DIVERGENCE_DEBUG=1 shows the traceback.)
   6  install only: blocked by AGT's own install checks (signature, dependencies,
@@ -257,6 +260,30 @@ def cmd_install(args) -> int:
     return code
 
 
+def cmd_setup_sandbox(args) -> int:
+    """Run the bundled sandbox/setup_sandbox.sh; it talks to the terminal itself (hidden key prompt)."""
+    import shutil
+    import subprocess
+
+    from divergence.sandbox_files import setup_script
+    script = setup_script()
+    if not script.is_file():
+        raise InputError(f"sandbox setup script not found at {script}: reinstall divergence-agt")
+    if shutil.which("bash") is None:
+        raise InputError("bash not found: the sandbox setup needs macOS or Linux")
+    argv = ["bash", str(script), "--vm", args.vm]
+    if args.check:
+        argv.append("--check")
+    if args.rekey:
+        argv.append("--rekey")
+    rc = subprocess.run(argv).returncode  # inherits stdin/stdout so the key prompt works
+    if rc != 0:
+        print(f"divergence: sandbox setup failed (exit {rc}); re-run it to resume, finished steps are skipped",
+              file=sys.stderr)
+        return EXIT_TRIAL
+    return EXIT_OK
+
+
 def build_parser() -> argparse.ArgumentParser:
     ap = argparse.ArgumentParser(prog="divergence", description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -283,6 +310,12 @@ def build_parser() -> argparse.ArgumentParser:
     ins.add_argument("--label", help="label folder under --traces-root (default: candidate)")
     ins.add_argument("--out", type=Path, help="where to write the report and AGT audit log")
     ins.set_defaults(func=cmd_install)
+
+    st = sub.add_parser("setup-sandbox", help="one time: build the sealed Lima VM that `install` uses")
+    st.add_argument("--vm", default="dvg-lab", help="name of the Lima VM to create or check")
+    st.add_argument("--check", action="store_true", help="only re-run the isolation checks")
+    st.add_argument("--rekey", action="store_true", help="replace the OpenRouter key held by the proxy")
+    st.set_defaults(func=cmd_setup_sandbox)
     return ap
 
 

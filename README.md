@@ -20,6 +20,9 @@ See **Project layout** below for where each part lives. The original build plan 
 
 ## Use it as an AGT plugin
 
+**New here? Follow [INSTALL.md](INSTALL.md)**: requirements, installation and a step-by-step
+demo, from nothing to a verdict on a skill.
+
 Divergence is a pip-installable add-on for the Agent Governance Toolkit (AGT 4.1.0). It is a
 **research prototype**: it extends AGT's marketplace installer with a pre-install check, and is
 not part of Microsoft's AGT distribution.
@@ -75,7 +78,8 @@ divergence, not maliciousness.
 ## Check your own skill from scratch (build the sandbox)
 
 To check a skill of your own, from a folder with a `SKILL.md` to a verdict, you need the same
-sealed sandbox the dataset was captured in. One script builds it.
+sealed sandbox the dataset was captured in. One command builds it; the files it needs ship
+inside the pip package, so no clone is needed.
 
 **You need:** macOS or Linux, [Lima](https://lima-vm.io) 2.x (`brew install lima`), Python 3.11+,
 about 30 GiB of disk and 6 GiB of RAM for the VM, and an [OpenRouter](https://openrouter.ai) API
@@ -83,17 +87,15 @@ key. Give the key a low credit limit (a few dollars): a skill cannot read the ke
 spend credit through the proxy. A trial costs well under one US cent.
 
 ```bash
-git clone https://github.com/KTECeline/divergence.git && cd divergence
-python3.11 -m venv .venv && .venv/bin/pip install -e .
+pip install "git+https://github.com/KTECeline/divergence.git"
 
-bash sandbox/setup_sandbox.sh          # asks for the OpenRouter key (input hidden); 10 to 20 minutes
-.venv/bin/divergence install --skill-dir path/to/your-skill
+divergence setup-sandbox                        # once: asks for the OpenRouter key (input hidden); 10 to 20 minutes
+divergence install --skill-dir path/to/your-skill
 ```
 
-The clone is needed (not only `pip install`): the trial script and the sandbox files live in
-`sandbox/`.
-
-`setup_sandbox.sh` does this, and prints PASS or FAIL for each isolation check at the end:
+`divergence setup-sandbox` runs `sandbox/setup_sandbox.sh`, which the package carries a copy of
+(under `divergence/_sandbox/`, with the runners, the VM template and the image definitions). In a
+clone, `bash sandbox/setup_sandbox.sh` does the same. It does this, and prints PASS or FAIL for each isolation check at the end:
 
 | Step | What is built | Why |
 |---|---|---|
@@ -107,13 +109,13 @@ The clone is needed (not only `pip install`): the trial script and the sandbox f
 
 It is safe to re-run: finished steps are skipped. `--check` repeats the isolation checks,
 `--rekey` replaces the API key, `--vm NAME` uses another VM name (then pass `--vm NAME` to
-`divergence install` too). `limactl stop dvg-lab` stops the VM; `limactl delete dvg-lab` removes it.
+`divergence install` too); all three work as `divergence setup-sandbox --check` and so on. `limactl stop dvg-lab` stops the VM; `limactl delete dvg-lab` removes it.
 
 Each trial runs the skill in up to two modes: **direct** (the skill's own scripts under `strace`,
 no LLM, only if it ships scripts) and **instructed** (an agent follows the `SKILL.md`; this is
 the part that calls the LLM). `--with-agent` adds a third run with the dataset's aligned-agent
 model. The models are set in the VM under `~/dvg/MalSkillBench/Configs/`; to choose others, set
-`DVG_INSTRUCTED_MODEL` / `DVG_AGENT_MODEL` (OpenRouter model ids) when running `setup_sandbox.sh`.
+`DVG_INSTRUCTED_MODEL` / `DVG_AGENT_MODEL` (OpenRouter model ids) when running `divergence setup-sandbox`.
 
 `sandbox/setup_notes.md` is the manual version of the same build, with the reason for every
 command and the problems met on the way. MalSkillBench's licence (academic research use) applies

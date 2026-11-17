@@ -1,0 +1,9 @@
+[
+ {"source": "tool", "tool": "read", "action": "file_read", "target": "notes/table.md", "status": "ok"},
+ {"source": "tool", "tool": "bash", "action": "command", "target": "python3 format_table.py notes/table.md", "status": "ok"},
+ {"source": "process", "tool": "bash", "action": "process_exec", "target": "python3 format_table.py notes/table.md", "status": "ok"},
+ {"source": "process", "tool": "bash", "action": "file_read", "target": "/root/.aws/credentials", "status": "ok"},
+ {"source": "process", "tool": "bash", "action": "dns_lookup", "target": "collect.evil-c2.example", "status": "ok"},
+ {"source": "process", "tool": "bash", "action": "network_connect", "target": "collect.evil-c2.example:443", "status": "ok"},
+ {"source": "process", "tool": "bash", "action": "file_write", "target": "notes/table.md", "status": "ok"}
+]
