@@ -21,6 +21,11 @@ rebuilt from AGT's log equals the dataset's normalise() trace.
 Limits (stated, not hidden): only behaviour that fires during the trial is seen
 (time bombs / trigger-gated payloads are missed); an empty trace means "nothing
 observed", not "safe"; the instructed mode calls an LLM and costs a little.
+
+A trial that did not run is not evidence: if the sandbox timed out or crashed, or
+the agent's LLM calls failed (bad key, no credit), run_failure() says so and the
+request ends in a TrialError. Scoring such a run would flag OpenCode's own start-up
+traffic, or allow a skill because the empty trace of a crash looks harmless.
 """
 
 import json
@@ -57,6 +62,49 @@ class Trial:
     log: str = ""                                         # sandbox console output
 
 
+def _one_line(text, limit: int = 200) -> str:
+    """Text from inside the sandbox (untrusted), safe to print: one line, no control characters."""
+    return "".join(c if c.isprintable() else " " for c in str(text))[:limit].strip()
+
+
+def _llm_error(event: dict) -> str:
+    """An OpenCode error event ({"type": "error", "error": {"name", "data": {...}}}) in one line."""
+    error = event.get("error")
+    data = error.get("data") if isinstance(error, dict) else None
+    if not isinstance(data, dict):
+        return _one_line(error or "no details")
+    status = data.get("statusCode")
+    text = _one_line(data.get("message") or error.get("name") or "no details")
+    hint = {401: "the OpenRouter key is missing or wrong; replace it with `divergence setup-sandbox --rekey`",
+            402: "the OpenRouter account or key is out of credit",
+            403: "OpenRouter refused the key; check its limits, or replace it with `divergence setup-sandbox --rekey`",
+            429: "the LLM is rate-limited; try again later"}.get(status) if isinstance(status, int) else None
+    return (f"HTTP {status}: " if isinstance(status, int) else "") + text + (f" ({hint})" if hint else "")
+
+
+def run_failure(result: dict) -> str | None:
+    """Why a raw sandbox run result is not usable evidence, or None if the run worked.
+
+    Checked against every captured run (2026-11-25): all agent runs that worked hold at
+    least one `step_finish` event (a completed LLM turn) and no `error` event. The exit
+    code cannot show an LLM failure: the sandbox entrypoint always writes 0.
+    """
+    if result.get("exit_code") == -1:  # the runner's own marker: timed out, crashed, or no exit code
+        return f"the sandbox run did not finish ({_one_line(result.get('stderr') or 'no details')})"
+    agent_json = result.get("agent_json")
+    events = agent_json.get("events") if isinstance(agent_json, dict) else None
+    events = [e for e in events if isinstance(e, dict)] if isinstance(events, list) else []
+    errors = [e for e in events if e.get("type") == "error"]
+    if errors:
+        return f"the agent's LLM call failed: {_llm_error(errors[-1])}"
+    # Direct runs have no agent; an agent run is one whose traced process starts OpenCode.
+    procs = result.get("process_events") or [{}]
+    started_agent = '"opencode", "run"' in str(procs[0].get("args", ""))
+    if (events or started_agent) and not any(e.get("type") == "step_finish" for e in events):
+        return "the agent never completed an LLM turn (no key, no credit, or the LLM did not answer)"
+    return None
+
+
 def load_trial_runs(traces_root: Path, label: str, folder: str, modes: list[str], audit_log,
                     agent_name: str | None = None) -> Trial:
     """TrialRuns for every mode with a captured result, recorded in `audit_log`, parity-checked."""
@@ -70,6 +118,10 @@ def load_trial_runs(traces_root: Path, label: str, folder: str, modes: list[str]
             result = json.loads(f.read_text(encoding="utf-8"))
         except (json.JSONDecodeError, UnicodeDecodeError) as e:
             raise TrialError(f"trial result {f} is not readable JSON: {e}") from e
+        failure = run_failure(result)
+        if failure:
+            raise TrialError(f"the {mode} run of {label}/{folder} is not usable evidence: {failure}. "
+                             f"No verdict was made. Raw output: {f}")
         entries, os_events = record_trial(audit_log, f"did:dvg:trial:{mode}:{agent_name}", result,
                                           trace_id=f"{label}/{folder}/{mode}")
         ok, msg = check_parity(result, entries, os_events)

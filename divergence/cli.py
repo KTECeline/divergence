@@ -23,7 +23,8 @@ Exit codes (1 means FLAG and nothing else, so a script can rely on it):
   0  ALLOW / installed
   1  FLAG / blocked (evaluate: only with --fail-on-flag)
   2  invalid input: a trace, description or argument that cannot be read. No verdict.
-  3  the sandbox trial failed or produced no run, or setup-sandbox failed. No verdict.
+  3  the sandbox trial failed or produced no run (timeout, or the agent's LLM calls
+     failed: bad key, no credit), or setup-sandbox failed. No verdict.
   4  the trained model wasn't found
   5  unexpected error. No verdict. (DIVERGENCE_DEBUG=1 shows the traceback.)
   6  install only: blocked by AGT's own install checks (signature, dependencies,
@@ -110,6 +111,7 @@ def load_trace(path: Path) -> list:
     trace shape. The entries themselves are checked by the evaluator's adapter
     (TraceFormatError), which also covers traces passed in from Python.
     """
+    from divergence.evaluator.trial_runner import run_failure
     from divergence.preprocessing.normalise_trace import normalise
     data = _read_json(path, "trace file")
     if isinstance(data, dict) and "entries" in data:  # AuditLog.export()
@@ -121,6 +123,9 @@ def load_trace(path: Path) -> list:
             raise InputError(f"trace file {path}: the JSON object is neither an AGT AuditLog export (no 'entries') "
                              f"nor a sandbox run result (none of {', '.join(RAW_RESULT_KEYS)})")
         _check_raw_result(data, path)
+        failure = run_failure(data)
+        if failure:
+            raise InputError(f"trace file {path} is not usable evidence: {failure}")
         try:
             return normalise(data)
         except Exception as e:  # a result file whose inner structure is not the sandbox's

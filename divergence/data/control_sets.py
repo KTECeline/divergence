@@ -78,9 +78,15 @@ def build_swapped_description_set(rows: list[dict], seed: int) -> list[dict]:
              "donor": rows[j]["sample_id"], "control": "swapped"} for r, j in zip(rows, perm)]
 
 
+# Output cap (added 2026-11-17): at temperature 0 llama3.1:8b looped forever on one run
+# (wallet-tracker-bf3bs, instructed), repeating a command list. 600 tokens is far above any
+# finished rewrite (longest 179 words), so it changes no other output; it only stops a loop.
+REWRITE_MAX_TOKENS = 600
+
+
 def _rewrite(description: str, trace: list[dict]) -> str:
     r = requests.post(OLLAMA_URL, timeout=600, json={
-        "model": REWRITER_MODEL, "stream": False, "options": OPTIONS,
+        "model": REWRITER_MODEL, "stream": False, "options": {**OPTIONS, "num_predict": REWRITE_MAX_TOKENS},
         "messages": [{"role": "user", "content": REWRITE_PROMPT.format(
             description=description, actions=format_trace(trace),
             hosts=", ".join(_observed(trace)["hosts"]) or "(none)")}]})

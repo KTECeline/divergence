@@ -299,3 +299,14 @@ def test_two_installs_in_the_same_second_get_separate_run_folders(tmp_path, caps
     assert sorted(d.name for d in (tmp_path / "out").iterdir()) == [
         "md-tables-20261114-120000", "md-tables-20261114-120000-2", "md-tables-20261114-120000-3"]
     assert all((d / "install_report.json").is_file() for d in (tmp_path / "out").iterdir())
+
+
+def test_failed_agent_run_gives_no_verdict_from_either_command(tmp_path, capsys, monkeypatch, fake_model, captured):
+    from tests.test_trial_runner import _llm_error_event, _run
+    failed = tmp_path / "traces" / "instructed_out" / "results" / "candidate" / f"{FOLDER}.json"
+    failed.write_text(json.dumps(_run([_llm_error_event()])))
+    _fake_installer_model(monkeypatch, 50.0)
+    for argv, code in ((captured, 3), (["evaluate", "--description", DESC, "--trace", str(failed)], 2)):
+        assert cli.main(argv) == code
+        out, err = capsys.readouterr()
+        assert "HTTP 401" in err and "FLAG" not in out and "ALLOW" not in out

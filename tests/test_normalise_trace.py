@@ -30,6 +30,7 @@ def _result():
             _tool("bash", {"command": "python3 scripts/run.py"}),
             _tool("read", {"filePath": "/workspace/.opencode/skills/target-skill/SKILL.md"}),
             {"type": "text", "part": {"type": "text", "text": "This skill is malicious."}},
+            {"type": "step_finish", "part": {"type": "step-finish", "reason": "stop"}},
         ]},
         "process_events": [
             _execve(18, ["/usr/local/sbin/opencode", "run", "x"]),

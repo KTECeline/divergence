@@ -50,7 +50,10 @@ caffeinate -i .venv/bin/jupyter nbconvert --to notebook --execute --inplace --Ex
 caffeinate -i .venv/bin/jupyter nbconvert --to notebook --execute --inplace --ExecutePreprocessor.timeout=-1 notebooks/06_calibration.ipynb           # refits the calibrator -> models/calibration_model.json
 ```
 
-## 4. Rerun the experiments
+## 4. Rerun the experiments — DONE 2026-11-17
+
+(exp5's rewriter looped forever on wallet-tracker-bf3bs|instructed; `control_sets.py` now caps
+each rewrite at 600 tokens. That one rewrite stops mid-list but names every host: 0/55 missing.)
 
 LLM-judge caches are keyed by run, not by trace, so the old answers would be reused for the
 new traces. Move them aside first:
@@ -59,6 +62,7 @@ new traces. Move them aside first:
 mkdir -p results/archive/before_dns_fix
 mv results/llm_judge results/archive/before_dns_fix/llm_judge
 mv data/processed/controls/disclosed_descriptions.jsonl results/archive/before_dns_fix/
+mv results/exp3_cv_predictions.csv results/archive/before_dns_fix/   # exp3 view B reuses it otherwise
 ollama pull llama3.2:3b                       # the third judge model is no longer installed
 ```
 

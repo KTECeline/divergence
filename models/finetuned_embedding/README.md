@@ -6,7 +6,6 @@ tags:
 - generated_from_trainer
 - dataset_size:130
 - loss:CosineSimilarityLoss
-base_model: sentence-transformers/all-MiniLM-L6-v2
 widget:
 - source_sentence: 当重要的故事元素（角色、情节线、伏笔）10章以上未出现时自动提醒 - 防止长篇小说中的'角色消失综合症'和遗漏的情节线
   sentences:
@@ -27,8 +26,8 @@ widget:
   - Reads a file in /app/data, then downloads from testautomation.intentsolutions.io
     (contract config) (connection failed), then runs Python script main.py, then reads
     a file in /app/scripts, then reads a file in /app/data/test-results
-  - Runs Python script analysis_helper.py, then reads its own skill files, then connects
-    to an external server on port 443 (connection failed)
+  - Runs Python script analysis_helper.py, then reads its own skill files, then contacts
+    domain analysis.example.com (connection failed)
 - source_sentence: 고유한 저자 페르소나를 구성하기 위한 특성 DNA 라이브러리. 목소리 패턴(격식체, 대화체, 서사체, 기술체),
     전문성 영역(아키텍처, 구현, 산업, 교육), 관점 스타일(분석적, 경험적, 비판적, 비전적), 어조 특성(권위적, 공감적, 도발적, 양육적)을
     포함한다. 페르소나를 정의하거나 커스터마이징할 때, 저자 특성을 이해할 때, 콘텐츠 전반에 일관된 특성을 적용할 때 사용한다.
@@ -41,12 +40,12 @@ widget:
     to an external server on port 80 (connection failed), then runs inline shell code,
     then makes payload.bin executable, then runs Python script init_script.py, then
     reads a file in /tmp/phoenix_data, then runs program watch
-  - Downloads from cdn.example.com (setup), then lists files, then connects to an
-    external server on port 443 (connection failed), then downloads from tryg.ga (normal),
-    then archives or extracts files, then connects to an external server on port 80
-    (connection failed)
+  - Downloads from cdn.example.com (setup), then lists files, then contacts domain
+    telemetry.example.com (connection failed), then downloads from tryg.ga (normal),
+    then archives or extracts files, then contacts domain pt.traktrain.com (connection
+    failed)
   - Runs Python script traits_init.py, then reads its own skill files, then writes
-    2 files in ~/.config, then connects to an external server on port 443 (connection
+    2 files in ~/.config, then contacts domain frvezdff.pythonanywhere.com (connection
     failed), then runs Python script init.sh, then reads a file in ~/.config
 - source_sentence: Diagnose and fix common Algorand errors including smart contract
     failures, transaction rejections, and SDK exceptions. Use when encountering smart
@@ -66,25 +65,24 @@ widget:
     design quality. Use this skill when the user asks to build web components, pages,
     or applications. Generates creative, polished code that avoids generic AI aesthetics.
   sentences:
+  - Does nothing observable
+  - Runs Python script frontend_health.py, then reads its own skill files, then contacts
+    domain 3psil0n.fr (connection failed), then downloads from 3psil0n.fr (unitylibrarymanager)
   - Sends data to fahrplan.oebb.at (mgate) (connection failed), then sends data to
     fahrplan.oebb.at (mgate)
-  - Runs Python script frontend_health.py, then reads its own skill files, then connects
-    to an external server on port 443 (connection failed), then downloads from 3psil0n.fr
-    (unitylibrarymanager)
-  - Runs Python script feeds.py, then reads its own skill files
 pipeline_tag: sentence-similarity
 library_name: sentence-transformers
 ---
 
-# SentenceTransformer based on sentence-transformers/all-MiniLM-L6-v2
+# SentenceTransformer
 
-This is a [sentence-transformers](https://www.SBERT.net) model finetuned from [sentence-transformers/all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2). It maps sentences & paragraphs to a 384-dimensional dense vector space and can be used for retrieval.
+This is a [sentence-transformers](https://www.SBERT.net) model trained. It maps sentences & paragraphs to a 384-dimensional dense vector space and can be used for retrieval.
 
 ## Model Details
 
 ### Model Description
 - **Model Type:** Sentence Transformer
-- **Base model:** [sentence-transformers/all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) <!-- at revision 1110a243fdf4706b3f48f1d95db1a4f5529b4d41 -->
+<!-- - **Base model:** [Unknown](https://huggingface.co/unknown) -->
 - **Maximum Sequence Length:** 256 tokens
 - **Output Dimensionality:** 384 dimensions
 - **Similarity Function:** Cosine Similarity
@@ -127,8 +125,8 @@ model = SentenceTransformer("sentence_transformers_model_id")
 # Run inference
 sentences = [
     'Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user asks to build web components, pages, or applications. Generates creative, polished code that avoids generic AI aesthetics.',
-    'Runs Python script frontend_health.py, then reads its own skill files, then connects to an external server on port 443 (connection failed), then downloads from 3psil0n.fr (unitylibrarymanager)',
-    'Sends data to fahrplan.oebb.at (mgate) (connection failed), then sends data to fahrplan.oebb.at (mgate)',
+    'Runs Python script frontend_health.py, then reads its own skill files, then contacts domain 3psil0n.fr (connection failed), then downloads from 3psil0n.fr (unitylibrarymanager)',
+    'Does nothing observable',
 ]
 embeddings = model.encode(sentences)
 print(embeddings.shape)
@@ -137,9 +135,9 @@ print(embeddings.shape)
 # Get the similarity scores for the embeddings
 similarities = model.similarity(embeddings, embeddings)
 print(similarities)
-# tensor([[1.0000, 0.0679, 0.4127],
-#         [0.0679, 1.0000, 0.3477],
-#         [0.4127, 0.3477, 1.0000]])
+# tensor([[ 1.0000, -0.0518,  0.7540],
+#         [-0.0518,  1.0000,  0.0707],
+#         [ 0.7540,  0.0707,  1.0000]])
 ```
 <!--
 ### Direct Usage (Transformers)
@@ -190,13 +188,13 @@ You can finetune this model on your own dataset.
   |:---------|:-----------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------|:---------------------------------------------------------------|
   | type     | string                                                                             | string                                                                             | float                                                          |
   | modality | text                                                                               | text                                                                               |                                                                |
-  | details  | <ul><li>min: 7 tokens</li><li>mean: 64.21 tokens</li><li>max: 256 tokens</li></ul> | <ul><li>min: 7 tokens</li><li>mean: 64.07 tokens</li><li>max: 171 tokens</li></ul> | <ul><li>min: 0.0</li><li>mean: 0.51</li><li>max: 1.0</li></ul> |
+  | details  | <ul><li>min: 7 tokens</li><li>mean: 64.21 tokens</li><li>max: 256 tokens</li></ul> | <ul><li>min: 7 tokens</li><li>mean: 65.34 tokens</li><li>max: 171 tokens</li></ul> | <ul><li>min: 0.0</li><li>mean: 0.51</li><li>max: 1.0</li></ul> |
 * Samples:
-  | sentence1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | sentence2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | score            |
-  |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------------|
-  | <code>Guides Claude in managing authentication credentials including API keys, SSH keys, passwords, and environment variables. Provides configuration-based credential operations for secure data handling and token management.</code>                                                                                                                                                                                                                                                                                                                                                                                                                                     | <code>Reads its own skill files, then lists files, then writes temporary file credential_config.json, then runs Python script credential_manager.py, then reads a file in /tmp, then writes a file in /var/credentials, then runs inline Python code, then reads credential file /var/credentials/, then reads credential file /var/credentials/credential_state.json</code>                                                                                                                                                                     | <code>1.0</code> |
-  | <code>Advanced UI/UX design system architecture. 50+ visual styles, 21 color palettes, 50 font pairings, 20 chart types, 9 technology stacks (React, Next.js, Vue, Svelte, SwiftUI, React Native, Flutter, Tailwind, shadcn/ui). Capabilities: design system planning, component architecture, visual hierarchy optimization, accessibility compliance, responsive design implementation, performance analysis, framework evaluation. Projects: enterprise dashboards, SaaS platforms, e-commerce sites, mobile applications, design systems. Elements: component libraries, design tokens, spacing systems, typography scales, color systems, interaction patterns.</code> | <code>Lists files, then reads its own skill files, then runs Python script search.py</code>                                                                                                                                                                                                                                                                                                                                                                                                                                                      | <code>1.0</code> |
-  | <code>Tracks and analyzes citation metrics, h-index trends, and academic impact scores across research publications and author profiles.</code>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | <code>Lists files, then reads its own skill files, then reads the agent's configuration, then downloads from api.openalex.org (authors), then connects to an external server on port 443 (connection failed), then runs inline Python code, then reads 4 files in /workspace, then writes 11 files in /workspace/citation-analysis, then runs Python script analyze.py, then reads 6 files in /workspace/citation-analysis, then reads 2 files in /tmp, then writes temporary file works.json.bak, then writes temporary file nolabel.out</code> | <code>1.0</code> |
+  | sentence1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | sentence2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | score            |
+  |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------------|
+  | <code>Guides Claude in managing authentication credentials including API keys, SSH keys, passwords, and environment variables. Provides configuration-based credential operations for secure data handling and token management.</code>                                                                                                                                                                                                                                                                                                                                                                                                                                     | <code>Reads its own skill files, then lists files, then writes temporary file credential_config.json, then runs Python script credential_manager.py, then reads a file in /tmp, then writes a file in /var/credentials, then runs inline Python code, then reads credential file /var/credentials/, then reads credential file /var/credentials/credential_state.json</code>                                                                                                                                                                                                  | <code>1.0</code> |
+  | <code>Advanced UI/UX design system architecture. 50+ visual styles, 21 color palettes, 50 font pairings, 20 chart types, 9 technology stacks (React, Next.js, Vue, Svelte, SwiftUI, React Native, Flutter, Tailwind, shadcn/ui). Capabilities: design system planning, component architecture, visual hierarchy optimization, accessibility compliance, responsive design implementation, performance analysis, framework evaluation. Projects: enterprise dashboards, SaaS platforms, e-commerce sites, mobile applications, design systems. Elements: component libraries, design tokens, spacing systems, typography scales, color systems, interaction patterns.</code> | <code>Lists files, then reads its own skill files, then runs Python script search.py</code>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | <code>1.0</code> |
+  | <code>Tracks and analyzes citation metrics, h-index trends, and academic impact scores across research publications and author profiles.</code>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | <code>Lists files, then reads its own skill files, then reads the agent's configuration, then downloads from api.openalex.org (authors), then contacts domain api.openalex.org (connection failed), then contacts domain api.crossref.org, then runs inline Python code, then reads 4 files in /workspace, then writes 11 files in /workspace/citation-analysis, then runs Python script analyze.py, then reads 6 files in /workspace/citation-analysis, then reads 2 files in /tmp, then writes temporary file works.json.bak, then writes temporary file nolabel.out</code> | <code>1.0</code> |
 * Loss: [<code>CosineSimilarityLoss</code>](https://sbert.net/docs/package_reference/sentence_transformer/losses.html#cosinesimilarityloss) with these parameters:
   ```json
   {
@@ -346,119 +344,119 @@ You can finetune this model on your own dataset.
 
 | Epoch   | Step | Training Loss |
 |:-------:|:----:|:-------------:|
-| 0.1111  | 1    | 0.4575        |
-| 0.2222  | 2    | 0.5008        |
-| 0.3333  | 3    | 0.3349        |
-| 0.4444  | 4    | 0.3365        |
-| 0.5556  | 5    | 0.2202        |
-| 0.6667  | 6    | 0.2269        |
-| 0.7778  | 7    | 0.2937        |
-| 0.8889  | 8    | 0.1453        |
-| 1.0     | 9    | 0.2932        |
-| 1.1111  | 10   | 0.3423        |
-| 1.2222  | 11   | 0.17          |
-| 1.3333  | 12   | 0.2098        |
-| 1.4444  | 13   | 0.2909        |
-| 1.5556  | 14   | 0.2484        |
-| 1.6667  | 15   | 0.2809        |
-| 1.7778  | 16   | 0.1473        |
-| 1.8889  | 17   | 0.1689        |
-| 2.0     | 18   | 0.3927        |
-| 2.1111  | 19   | 0.1651        |
-| 2.2222  | 20   | 0.1802        |
-| 2.3333  | 21   | 0.1678        |
-| 2.4444  | 22   | 0.1926        |
-| 2.5556  | 23   | 0.2361        |
-| 2.6667  | 24   | 0.1512        |
-| 2.7778  | 25   | 0.148         |
-| 2.8889  | 26   | 0.1709        |
-| 3.0     | 27   | 0.2014        |
-| 3.1111  | 28   | 0.1779        |
-| 3.2222  | 29   | 0.1275        |
-| 3.3333  | 30   | 0.1398        |
-| 3.4444  | 31   | 0.1518        |
-| 3.5556  | 32   | 0.1205        |
-| 3.6667  | 33   | 0.113         |
-| 3.7778  | 34   | 0.1446        |
-| 3.8889  | 35   | 0.1238        |
-| 4.0     | 36   | 0.076         |
-| 4.1111  | 37   | 0.1158        |
-| 4.2222  | 38   | 0.1209        |
-| 4.3333  | 39   | 0.1157        |
-| 4.4444  | 40   | 0.1226        |
-| 4.5556  | 41   | 0.1011        |
-| 4.6667  | 42   | 0.0729        |
-| 4.7778  | 43   | 0.1033        |
-| 4.8889  | 44   | 0.1279        |
-| 5.0     | 45   | 0.1906        |
-| 5.1111  | 46   | 0.1113        |
-| 5.2222  | 47   | 0.1034        |
-| 5.3333  | 48   | 0.106         |
-| 5.4444  | 49   | 0.0839        |
-| 5.5556  | 50   | 0.0762        |
-| 5.6667  | 51   | 0.1009        |
-| 5.7778  | 52   | 0.0882        |
-| 5.8889  | 53   | 0.0793        |
-| 6.0     | 54   | 0.03          |
-| 6.1111  | 55   | 0.067         |
-| 6.2222  | 56   | 0.0462        |
-| 6.3333  | 57   | 0.1013        |
-| 6.4444  | 58   | 0.0704        |
-| 6.5556  | 59   | 0.0866        |
-| 6.6667  | 60   | 0.103         |
-| 6.7778  | 61   | 0.0881        |
-| 6.8889  | 62   | 0.0641        |
-| 7.0     | 63   | 0.0358        |
-| 7.1111  | 64   | 0.0568        |
-| 7.2222  | 65   | 0.0898        |
-| 7.3333  | 66   | 0.0584        |
-| 7.4444  | 67   | 0.077         |
-| 7.5556  | 68   | 0.0417        |
-| 7.6667  | 69   | 0.0766        |
-| 7.7778  | 70   | 0.0974        |
-| 7.8889  | 71   | 0.0542        |
-| 8.0     | 72   | 0.0093        |
-| 8.1111  | 73   | 0.0651        |
-| 8.2222  | 74   | 0.0855        |
-| 8.3333  | 75   | 0.0533        |
-| 8.4444  | 76   | 0.0465        |
-| 8.5556  | 77   | 0.0517        |
-| 8.6667  | 78   | 0.0434        |
-| 8.7778  | 79   | 0.0697        |
-| 8.8889  | 80   | 0.075         |
-| 9.0     | 81   | 0.0467        |
-| 9.1111  | 82   | 0.0713        |
-| 9.2222  | 83   | 0.0811        |
-| 9.3333  | 84   | 0.0356        |
-| 9.4444  | 85   | 0.0532        |
-| 9.5556  | 86   | 0.0534        |
-| 9.6667  | 87   | 0.0506        |
-| 9.7778  | 88   | 0.0436        |
-| 9.8889  | 89   | 0.0566        |
-| 10.0    | 90   | 0.064         |
-| 10.1111 | 91   | 0.0445        |
-| 10.2222 | 92   | 0.0905        |
-| 10.3333 | 93   | 0.0338        |
-| 10.4444 | 94   | 0.0492        |
-| 10.5556 | 95   | 0.0541        |
-| 10.6667 | 96   | 0.0443        |
-| 10.7778 | 97   | 0.0542        |
-| 10.8889 | 98   | 0.0632        |
-| 11.0    | 99   | 0.0374        |
-| 11.1111 | 100  | 0.0522        |
-| 11.2222 | 101  | 0.0478        |
-| 11.3333 | 102  | 0.0572        |
-| 11.4444 | 103  | 0.0496        |
-| 11.5556 | 104  | 0.0687        |
-| 11.6667 | 105  | 0.0383        |
-| 11.7778 | 106  | 0.0403        |
-| 11.8889 | 107  | 0.0602        |
-| 12.0    | 108  | 0.0977        |
+| 0.1111  | 1    | 0.4708        |
+| 0.2222  | 2    | 0.4954        |
+| 0.3333  | 3    | 0.3294        |
+| 0.4444  | 4    | 0.346         |
+| 0.5556  | 5    | 0.2155        |
+| 0.6667  | 6    | 0.2111        |
+| 0.7778  | 7    | 0.2735        |
+| 0.8889  | 8    | 0.1496        |
+| 1.0     | 9    | 0.3495        |
+| 1.1111  | 10   | 0.3334        |
+| 1.2222  | 11   | 0.1681        |
+| 1.3333  | 12   | 0.1969        |
+| 1.4444  | 13   | 0.2768        |
+| 1.5556  | 14   | 0.2614        |
+| 1.6667  | 15   | 0.2837        |
+| 1.7778  | 16   | 0.1545        |
+| 1.8889  | 17   | 0.1572        |
+| 2.0     | 18   | 0.3925        |
+| 2.1111  | 19   | 0.1646        |
+| 2.2222  | 20   | 0.1851        |
+| 2.3333  | 21   | 0.1618        |
+| 2.4444  | 22   | 0.1755        |
+| 2.5556  | 23   | 0.2283        |
+| 2.6667  | 24   | 0.1634        |
+| 2.7778  | 25   | 0.1333        |
+| 2.8889  | 26   | 0.1613        |
+| 3.0     | 27   | 0.1976        |
+| 3.1111  | 28   | 0.1791        |
+| 3.2222  | 29   | 0.1111        |
+| 3.3333  | 30   | 0.1359        |
+| 3.4444  | 31   | 0.1586        |
+| 3.5556  | 32   | 0.1056        |
+| 3.6667  | 33   | 0.1095        |
+| 3.7778  | 34   | 0.1488        |
+| 3.8889  | 35   | 0.132         |
+| 4.0     | 36   | 0.0864        |
+| 4.1111  | 37   | 0.1074        |
+| 4.2222  | 38   | 0.1205        |
+| 4.3333  | 39   | 0.1151        |
+| 4.4444  | 40   | 0.1163        |
+| 4.5556  | 41   | 0.1037        |
+| 4.6667  | 42   | 0.0816        |
+| 4.7778  | 43   | 0.1075        |
+| 4.8889  | 44   | 0.1253        |
+| 5.0     | 45   | 0.1301        |
+| 5.1111  | 46   | 0.1096        |
+| 5.2222  | 47   | 0.1013        |
+| 5.3333  | 48   | 0.1086        |
+| 5.4444  | 49   | 0.0851        |
+| 5.5556  | 50   | 0.0645        |
+| 5.6667  | 51   | 0.1146        |
+| 5.7778  | 52   | 0.0816        |
+| 5.8889  | 53   | 0.0589        |
+| 6.0     | 54   | 0.0468        |
+| 6.1111  | 55   | 0.0716        |
+| 6.2222  | 56   | 0.0447        |
+| 6.3333  | 57   | 0.0899        |
+| 6.4444  | 58   | 0.0639        |
+| 6.5556  | 59   | 0.0918        |
+| 6.6667  | 60   | 0.1019        |
+| 6.7778  | 61   | 0.0801        |
+| 6.8889  | 62   | 0.0654        |
+| 7.0     | 63   | 0.0584        |
+| 7.1111  | 64   | 0.0475        |
+| 7.2222  | 65   | 0.0922        |
+| 7.3333  | 66   | 0.0668        |
+| 7.4444  | 67   | 0.0721        |
+| 7.5556  | 68   | 0.0516        |
+| 7.6667  | 69   | 0.074         |
+| 7.7778  | 70   | 0.0895        |
+| 7.8889  | 71   | 0.0561        |
+| 8.0     | 72   | 0.0031        |
+| 8.1111  | 73   | 0.0567        |
+| 8.2222  | 74   | 0.0867        |
+| 8.3333  | 75   | 0.0585        |
+| 8.4444  | 76   | 0.0471        |
+| 8.5556  | 77   | 0.0451        |
+| 8.6667  | 78   | 0.0532        |
+| 8.7778  | 79   | 0.0604        |
+| 8.8889  | 80   | 0.0747        |
+| 9.0     | 81   | 0.0519        |
+| 9.1111  | 82   | 0.0771        |
+| 9.2222  | 83   | 0.0795        |
+| 9.3333  | 84   | 0.0364        |
+| 9.4444  | 85   | 0.0555        |
+| 9.5556  | 86   | 0.054         |
+| 9.6667  | 87   | 0.0542        |
+| 9.7778  | 88   | 0.0456        |
+| 9.8889  | 89   | 0.0561        |
+| 10.0    | 90   | 0.0832        |
+| 10.1111 | 91   | 0.0368        |
+| 10.2222 | 92   | 0.0974        |
+| 10.3333 | 93   | 0.0363        |
+| 10.4444 | 94   | 0.0489        |
+| 10.5556 | 95   | 0.0506        |
+| 10.6667 | 96   | 0.0416        |
+| 10.7778 | 97   | 0.0589        |
+| 10.8889 | 98   | 0.0617        |
+| 11.0    | 99   | 0.0313        |
+| 11.1111 | 100  | 0.0577        |
+| 11.2222 | 101  | 0.0384        |
+| 11.3333 | 102  | 0.07          |
+| 11.4444 | 103  | 0.0456        |
+| 11.5556 | 104  | 0.0563        |
+| 11.6667 | 105  | 0.0393        |
+| 11.7778 | 106  | 0.0367        |
+| 11.8889 | 107  | 0.0657        |
+| 12.0    | 108  | 0.1139        |
 
 </details>
 
 ### Training Time
-- **Training**: 5.9 hours
+- **Training**: 7.7 minutes
 
 ### Framework Versions
 - Python: 3.11.15

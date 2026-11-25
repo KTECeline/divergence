@@ -30,8 +30,19 @@ divergence evaluate --skill-md SKILL.md --trace run.json
   FLAG at probability ≥ 0.5.
 
 ## Evaluation (held-out test split, 117 runs; the model and the 0.5 cut-off were fixed before it was scored)
-AUC 0.913 (95% CI 0.854–0.962), F1 0.804, recall 0.75, false-alarm rate 0.10. See the repository for the
+AUC 0.932 (95% CI 0.877–0.975), F1 0.838, recall 0.80, false-alarm rate 0.10. See the repository for the
 baselines, ablations and control experiments.
+
+The calibrated verdict is decided by the unmentioned-domain flag: with these weights, no
+consistency score in the observed range changes FLAG to ALLOW or back. The consistency score
+moves the probability and the ranking (it is what lifts AUC), not the decision.
+
+## Version history
+- **v0.2.0**: retrained after a trace-capture fix. DNS names are now also read from the sandbox
+  resolver's replies, not only from command arguments, so hosts that a skill's own code looks up
+  (for example Python `urllib`) appear in the trace. This recovered 17 hosts in the dataset.
+  Before the fix the test results were AUC 0.913, F1 0.804, recall 0.75, false-alarm rate 0.10.
+- v0.1.0: first release.
 
 ## Intended use and limits
 - Research prototype; not a production security control.

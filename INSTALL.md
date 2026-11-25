@@ -283,7 +283,7 @@ output in `divergence_trials/`.
 | 0 | ALLOW: behaviour matches the description, skill installed |
 | 1 | FLAG: behaviour diverges from the description, install blocked |
 | 2 | Invalid input (a file or argument could not be read). No verdict |
-| 3 | The sandbox trial or the sandbox setup failed. No verdict |
+| 3 | The sandbox trial or the sandbox setup failed (for example a timeout, or the LLM refused the key). No verdict |
 | 4 | The model could not be found or downloaded |
 | 5 | Unexpected error. No verdict (set `DIVERGENCE_DEBUG=1` for details) |
 | 6 | Blocked by AGT's own install checks (for example a missing signature) |
@@ -318,6 +318,9 @@ output in `divergence_trials/`.
 | `pip` says Python is too old | Install Python 3.11+ and recreate the environment with `python3.11 -m venv divergence-env` |
 | `model not found` (exit 4) | The machine could not reach huggingface.co. Check your connection and retry |
 | `limactl not found` | Install Lima (Step 5) |
+| `the agent's LLM call failed: HTTP 401` or `403` (exit 3) | The OpenRouter key is missing, wrong or limited. Replace it: `divergence setup-sandbox --rekey` |
+| `the agent's LLM call failed: HTTP 402` (exit 3) | The OpenRouter account or key is out of credit. Add credit and run the install again |
+| `the sandbox run did not finish` (exit 3) | The skill ran past the time limit or the sandbox crashed. Run it again; the message names the raw output |
 | `VM dvg-lab does not exist` | Run `divergence setup-sandbox` (Step 6) |
 | `VM dvg-lab is Stopped` | `limactl start dvg-lab` |
 | Setup says the network refuses package downloads | Your network's firewall blocks them. Connect to home Wi-Fi or a phone hotspot and run `divergence setup-sandbox` again |
