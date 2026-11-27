@@ -57,10 +57,11 @@ Create a clean Python environment and install Divergence into it:
 ```bash
 python3.11 -m venv divergence-env      # or python3.12; plain python3 may be too old on macOS
 source divergence-env/bin/activate
-pip install "git+https://github.com/KTECeline/divergence.git"
+pip install divergence-agt
 ```
 
-This takes a few minutes and also installs AGT 4.1.0. Check it worked:
+This takes a few minutes and also installs AGT 4.1.0. (`divergence-agt` is the package on
+PyPI; for the newest code from GitHub use `pip install "git+https://github.com/KTECeline/divergence.git"`.) Check it worked:
 
 ```bash
 divergence --help

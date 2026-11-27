@@ -1,13 +1,15 @@
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=77"]   # SPDX licence string (PEP 639)
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "divergence-agt"
-version = "0.2.0"
+version = "0.2.1"
 description = "Intent-behaviour consistency scoring for AI agent skills: a pre-install check that extends the Agent Governance Toolkit (AGT) marketplace installer. Research prototype."
 readme = "README.md"
 requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [{ name = "Celine Khaw" }]
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -24,6 +26,10 @@ dependencies = [
     "pyyaml>=6.0",
     "agent-governance-toolkit-core==4.1.0",   # pinned: AGT renames packages between releases
 ]
+
+[project.urls]
+Homepage = "https://github.com/KTECeline/divergence"
+Model = "https://huggingface.co/KTECeline/divergence-minilm-l6"
 
 [project.optional-dependencies]
 # Everything needed to reproduce the research (training, experiments, notebooks)

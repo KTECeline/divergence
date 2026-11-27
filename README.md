@@ -20,7 +20,7 @@ See **Project layout** below for where each part lives. The original build plan 
 
 ## Use it as an AGT plugin
 
-**New here? Follow [INSTALL.md](INSTALL.md)**: requirements, installation and a step-by-step
+**New here? Follow [INSTALL.md](https://github.com/KTECeline/divergence/blob/main/INSTALL.md)**: requirements, installation and a step-by-step
 demo, from nothing to a verdict on a skill.
 
 Divergence is a pip-installable add-on for the Agent Governance Toolkit (AGT 4.1.0). It is a
@@ -28,7 +28,7 @@ Divergence is a pip-installable add-on for the Agent Governance Toolkit (AGT 4.1
 not part of Microsoft's AGT distribution.
 
 ```bash
-pip install "git+https://github.com/KTECeline/divergence.git"     # Python 3.11+, pulls in AGT 4.1.0
+pip install divergence-agt     # Python 3.11+, pulls in AGT 4.1.0 (latest code: pip install "git+https://github.com/KTECeline/divergence.git")
 ```
 
 The trained model (fine-tuned encoder + calibrator) downloads from Hugging Face on first use
@@ -87,7 +87,7 @@ key. Give the key a low credit limit (a few dollars): a skill cannot read the ke
 spend credit through the proxy. A trial costs well under one US cent.
 
 ```bash
-pip install "git+https://github.com/KTECeline/divergence.git"
+pip install divergence-agt
 
 divergence setup-sandbox                        # once: asks for the OpenRouter key (input hidden); 10 to 20 minutes
 divergence install --skill-dir path/to/your-skill
