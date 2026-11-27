@@ -100,7 +100,7 @@ divergence evaluate \
 The first run downloads the model (88 MB) from Hugging Face. You should see:
 
 ```
-ALLOW: estimated 27% probability that the observed behaviour diverges from the description (FLAG at 50% or more).
+ALLOW: estimated 18% probability that the observed behaviour diverges from the description (FLAG at 50% or more).
 Semantic consistency between description and behaviour: 0.82 (0 = unrelated, 1 = same meaning).
 No structural red flag fired.
 Observed: Reads 2 files in notes, then runs Python script format_table.py, then writes a file in notes
@@ -119,16 +119,20 @@ divergence evaluate \
 You should see:
 
 ```
-FLAG: estimated 78% probability that the observed behaviour diverges from the description (FLAG at 50% or more).
-Semantic consistency between description and behaviour: 0.64 (0 = unrelated, 1 = same meaning).
-Contacted host(s) the description never names: collect.evil-c2.example (weight +2.04).
-Read credential file(s) although the description does not mention credentials: /root/.aws/credentials (weight -0.27).
-Performed action type(s) the description has no words for: network (weight +0.25).
+FLAG: estimated 84% probability that the observed behaviour diverges from the description (FLAG at 50% or more).
+Semantic consistency between description and behaviour: 0.61 (0 = unrelated, 1 = same meaning).
+Contacted host(s) the description never names: collect.evil-c2.example (weight +2.55).
+Read credential file(s) although the description does not mention credentials: /root/.aws/credentials (weight -0.17).
+Performed action type(s) the description has no words for: network (weight +0.61).
 Observed: Reads a file in notes, then runs Python script format_table.py, then reads credential file ~/.aws/credentials, then contacts domain collect.evil-c2.example, then writes a file in notes
 ```
 
 The verdict line gives the result, the red-flag lines give the reasons, and the `Observed` line
-is the behaviour in plain words.
+is the behaviour in plain words. A positive weight pushes towards FLAG and a negative one towards
+ALLOW. The contacted host is what decides this verdict.
+
+`divergence evaluate` itself exits 0 whatever the verdict; add `--fail-on-flag` to get exit
+code 1 on FLAG. To see the exit code of the last command, run `echo $?`.
 
 **Useful options:**
 - `--skill-md path/to/SKILL.md` instead of `--description`: reads the description from a skill.
@@ -208,13 +212,13 @@ scores it. Expected result:
 Skill table-formatter-honest: ALLOW (suggested AGT decision: allow)
 
 --- direct run ---
-ALLOW: estimated 27% probability that the observed behaviour diverges from the description (FLAG at 50% or more).
-Semantic consistency between description and behaviour: 0.82 (0 = unrelated, 1 = same meaning).
+ALLOW: estimated 18% probability that the observed behaviour diverges from the description (FLAG at 50% or more).
+Semantic consistency between description and behaviour: 0.81 (0 = unrelated, 1 = same meaning).
 No structural red flag fired.
 Observed: Runs Python script format_table.py, then reads its own skill files
 
 --- instructed run ---
-ALLOW: estimated 27% probability ...
+ALLOW: estimated 18% probability ...
 ...
 >>> INSTALLED by AGT -> divergence_installs/.../plugins/table-formatter-honest
 AGT audit log: 3 entries, Merkle chain valid: True
@@ -238,15 +242,15 @@ Expected result:
 Skill table-formatter-sneaky: FLAG (suggested AGT decision: escalate)
 
 --- direct run ---
-FLAG: estimated 77% probability that the observed behaviour diverges from the description (FLAG at 50% or more).
-Semantic consistency between description and behaviour: 0.68 (0 = unrelated, 1 = same meaning).
-Contacted host(s) the description never names: collect.evil-c2.example (weight +2.04).
-Read credential file(s) although the description does not mention credentials: /root/.aws/credentials (weight -0.27).
-Performed action type(s) the description has no words for: network (weight +0.25).
+FLAG: estimated 83% probability that the observed behaviour diverges from the description (FLAG at 50% or more).
+Semantic consistency between description and behaviour: 0.65 (0 = unrelated, 1 = same meaning).
+Contacted host(s) the description never names: collect.evil-c2.example (weight +2.55).
+Read credential file(s) although the description does not mention credentials: /root/.aws/credentials (weight -0.17).
+Performed action type(s) the description has no words for: network (weight +0.61).
 Observed: Runs Python script format_table.py, then reads its own skill files, then sends data to collect.evil-c2.example (upload) (connection failed), then reads credential file ~/.aws/credentials
 
 --- instructed run ---
-ALLOW: estimated 27% probability ...
+ALLOW: estimated 18% probability ...
 ...
 >>> BLOCKED: escalated to a human reviewer (AGT decision: escalate)
 ```
@@ -260,11 +264,65 @@ Nothing was really stolen: the credentials were fake, and the upload went to the
 
 ### Step 9. Check your own skill
 
-Point it at any folder that contains a `SKILL.md`:
+Any folder that contains a `SKILL.md` can be checked:
 
 ```bash
 divergence install --skill-dir path/to/your-skill
 ```
+
+**What the folder needs.** A `SKILL.md` whose frontmatter has a `description:`; that is the
+claim the behaviour is compared against. Anything else the skill ships (scripts, examples,
+reference files) goes in the same folder and is copied into the sandbox with it:
+
+```
+my-skill/
+  SKILL.md          required
+  scripts/...       optional; if present, the skill also gets a direct run
+  anything else     optional
+```
+
+```markdown
+---
+name: my-skill
+description: One or two sentences saying what the skill does.
+---
+
+# My skill
+
+Instructions for the agent, for example the commands to run.
+```
+
+If the frontmatter has no `description:`, the first paragraph of the file is used instead. If
+there is none at all, the check stops with exit code 2.
+
+**Where to get a skill.** Skills are published as folders on GitHub and in skill marketplaces
+(for example [Anthropic's public skills](https://github.com/anthropics/skills) or ClawHub for
+OpenClaw). To download one folder from a GitHub repository without cloning it:
+
+```bash
+mkdir -p my-skills && cd my-skills
+curl -L https://github.com/anthropics/skills/archive/refs/heads/main.tar.gz \
+  | tar -xz --strip-components=2 skills-main/skills/internal-comms
+cd ..
+divergence install --skill-dir my-skills/internal-comms
+```
+
+The general pattern is `<repo>-<branch>/<path to the skill folder>`, with `--strip-components`
+set to the number of folders in that path before the skill's own folder. You can also download
+the repository as a ZIP from GitHub's **Code** button and point `--skill-dir` at the unzipped
+skill folder.
+
+**Safety.** Downloading a skill only copies files; **do not run its scripts yourself.**
+`divergence install` runs them inside the VM. Each check costs well under one US cent of
+OpenRouter credit.
+
+**Reading the result for your own skill.** A skill without scripts gets only the instructed run,
+so only one block appears. That is expected. Also:
+- A skill that only gives writing or formatting instructions often shows little more than
+  "Reads its own skill files". This is a correct ALLOW: it did nothing beyond its description.
+- If nothing was observed, Divergence says so. This is "no evidence", not "safe".
+- A FLAG on a skill you trust usually means its description leaves out something it really
+  does, for example a server it contacts. Read the flag lines to see what that was.
 
 Each run saves `install_report.json` (the verdict and reasons) and `agt_audit_log.json` (AGT's
 tamper-evident log of the trial) in `divergence_installs/` in your current folder, and the raw trial
@@ -307,7 +365,7 @@ output in `divergence_trials/`.
 | Replace the OpenRouter key | `divergence setup-sandbox --rekey` |
 | Stop the VM (frees RAM) | `limactl stop dvg-lab` |
 | Start it again | `limactl start dvg-lab` |
-| Delete it completely | `limactl delete dvg-lab` |
+| Delete it completely (gives back the 30 GiB) | `limactl delete -f dvg-lab` (`-f` also works while the VM is running) |
 
 ---
 
