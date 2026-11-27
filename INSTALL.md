@@ -1,95 +1,39 @@
-# Divergence: install and demo guide
+# Divergence: tester guide
 
-This guide takes you from nothing to a verdict on an AI agent skill. You do not need the
-research repository, the dataset or any knowledge of how Divergence works.
+Divergence checks whether an AI agent skill **does what its description says**. It runs the
+skill in a sealed sandbox, watches what it does, and blocks the install if the behaviour doesn't
+match the description.
 
-**What Divergence does:** you give it a skill (a folder with a `SKILL.md`). It runs the skill
-once in a sealed sandbox, records what the skill actually did, and compares that with what the
-skill's description says it does. If they don't match, the install is blocked and the reason is
-shown. It measures whether a skill does what it says, not whether it is malicious.
+It's a research prototype built on Microsoft's Agent Governance Toolkit (AGT 4.1.0).
 
-It is a **research prototype** that extends Microsoft's Agent Governance Toolkit (AGT 4.1.0).
-It is not part of Microsoft's AGT distribution.
-
-There are two levels. Do Part 1 first; it takes about 10 minutes and needs no sandbox.
-
-| | Part 1: score a trace | Part 2: check a real skill |
-|---|---|---|
-| What it does | Scores a recorded trace against a description | Runs the skill in a sandbox, then scores it |
-| Runs any skill code? | No | Yes, inside a sealed VM |
-| Needs | Python 3.11+ | Python 3.11+, Lima, an OpenRouter key, 30 GiB disk |
-| Time | About 10 minutes | About 30 minutes the first time, then about 1 minute per skill |
-| Cost | Free | Well under one US cent per skill (LLM calls) |
+- **Part 1** (10 min, free): score example traces. No sandbox needed.
+- **Part 2** (30 min the first time): check real skills in a sandbox VM.
 
 ---
 
-## Requirements
+## Part 1: score a trace
 
-### For Part 1 (scoring only)
+**You need:** macOS or Linux, Python 3.11+ (check with `python3 --version`), about 1.5 GB of free disk.
 
-| Requirement | Detail | How to check |
-|---|---|---|
-| macOS or Linux | Windows is untested | |
-| Python 3.11 or newer | Tested with 3.11 | `python3 --version` |
-| About 1.5 GB of free disk | The Python packages (PyTorch is most of it) plus the 88 MB model | |
-| Internet access | To download the packages and the model, once | |
-
-### For Part 2 (checking a real skill), in addition
-
-| Requirement | Detail | How to check |
-|---|---|---|
-| macOS or Linux | Windows is not supported (the sandbox needs Lima) | |
-| [Lima](https://lima-vm.io) 2.0 or newer | Runs the sandbox VM. macOS: `brew install lima` | `limactl --version` |
-| 30 GiB free disk, 6 GiB free RAM, 4 CPU cores | For the sandbox VM | |
-| An [OpenRouter](https://openrouter.ai) API key | One mode of the trial asks an LLM agent to follow the skill. Create a key at openrouter.ai, add a few US dollars of credit, and **set a low credit limit on the key** | |
-| A network that allows package downloads | Ubuntu and Docker packages are downloaded while the sandbox is built. Some campus and office firewalls block this; if so, use home Wi-Fi or a phone hotspot for the one-time setup | |
-
-On Linux, Lima also needs QEMU (`sudo apt install qemu-system`; see Lima's install page).
-
----
-
-## Part 1: install and score a trace (no sandbox)
-
-### Step 1. Install
-
-Create a clean Python environment and install Divergence into it:
+**1. Install**
 
 ```bash
-python3.11 -m venv divergence-env      # or python3.12; plain python3 may be too old on macOS
+python3.11 -m venv divergence-env
 source divergence-env/bin/activate
 pip install divergence-agt
-```
-
-This takes a few minutes and also installs AGT 4.1.0. (`divergence-agt` is the package on
-PyPI; for the newest code from GitHub use `pip install "git+https://github.com/KTECeline/divergence.git"`.) Check it worked:
-
-```bash
 divergence --help
 ```
 
-You should see the commands `evaluate`, `install` and `setup-sandbox`.
+You should see `evaluate`, `install` and `setup-sandbox`.
 
-### Step 2. Get the example files
+**2. Get the examples**
 
 ```bash
 curl -L https://github.com/KTECeline/divergence/archive/refs/heads/main.tar.gz \
   | tar -xz --strip-components=1 divergence-main/examples
 ```
 
-This creates an `examples/` folder with two traces and two skills:
-
-```
-examples/
-  traces/honest.json                   a run that only formats a table
-  traces/sneaky.json                   the same run, plus reading a credentials file and contacting a server
-  skills/table-formatter-honest/       a skill that does what it says        (for Part 2)
-  skills/table-formatter-sneaky/       a skill that also sends a secret away (for Part 2)
-```
-
-A trace is the list of actions a skill performed: files read and written, commands run,
-servers contacted.
-
-### Step 3. Score the honest trace
+**3. Score an honest trace**
 
 ```bash
 divergence evaluate \
@@ -97,18 +41,9 @@ divergence evaluate \
   --trace examples/traces/honest.json
 ```
 
-The first run downloads the model (88 MB) from Hugging Face. You should see:
+Expected: `ALLOW` (about 18%). The first run downloads an 88 MB model.
 
-```
-ALLOW: estimated 18% probability that the observed behaviour diverges from the description (FLAG at 50% or more).
-Semantic consistency between description and behaviour: 0.82 (0 = unrelated, 1 = same meaning).
-No structural red flag fired.
-Observed: Reads 2 files in notes, then runs Python script format_table.py, then writes a file in notes
-```
-
-### Step 4. Score the sneaky trace
-
-Same description, different behaviour:
+**4. Score a sneaky trace** (same description, but it also steals credentials)
 
 ```bash
 divergence evaluate \
@@ -116,284 +51,80 @@ divergence evaluate \
   --trace examples/traces/sneaky.json
 ```
 
-You should see:
+Expected: `FLAG` (about 84%), with reasons such as `Contacted host(s) the description never names: collect.evil-c2.example`.
 
-```
-FLAG: estimated 84% probability that the observed behaviour diverges from the description (FLAG at 50% or more).
-Semantic consistency between description and behaviour: 0.61 (0 = unrelated, 1 = same meaning).
-Contacted host(s) the description never names: collect.evil-c2.example (weight +2.55).
-Read credential file(s) although the description does not mention credentials: /root/.aws/credentials (weight -0.17).
-Performed action type(s) the description has no words for: network (weight +0.61).
-Observed: Reads a file in notes, then runs Python script format_table.py, then reads credential file ~/.aws/credentials, then contacts domain collect.evil-c2.example, then writes a file in notes
-```
-
-The verdict line gives the result, the red-flag lines give the reasons, and the `Observed` line
-is the behaviour in plain words. A positive weight pushes towards FLAG and a negative one towards
-ALLOW. The contacted host is what decides this verdict.
-
-`divergence evaluate` itself exits 0 whatever the verdict; add `--fail-on-flag` to get exit
-code 1 on FLAG. To see the exit code of the last command, run `echo $?`.
-
-**Useful options:**
-- `--skill-md path/to/SKILL.md` instead of `--description`: reads the description from a skill.
-- `--json`: prints the full result object instead of text.
-- `--fail-on-flag`: exits with code 1 on FLAG, for use in scripts and CI.
-
-`--trace` also accepts an exported AGT audit log (`{"entries": [...]}`), so if you already
-run AGT you can score your own agents' logs this way.
-
-Part 1 is complete. To check a skill that has never been run, continue to Part 2.
+Part 1 is done.
 
 ---
 
 ## Part 2: check a real skill in the sandbox
 
-A new skill has no trace yet, so Divergence must run it once. Because the skill may be
-malicious, it runs inside a sealed sandbox:
+**You also need:**
+- [Lima](https://lima-vm.io) 2.0+. On macOS run `brew install lima`. On Linux follow Lima's install page.
+- 30 GB of free disk, 6 GB of free RAM, 4 CPU cores
+- An [OpenRouter](https://openrouter.ai) API key with a few dollars of credit. **Set a low credit limit on the key.**
+- A network that allows downloads. If setup fails on campus Wi-Fi, use home Wi-Fi or a phone hotspot.
 
-- **A Linux VM with no shared folders**, so the skill cannot read your files.
-- **Fake secrets** (marked `DVGCANARY`) placed where real ones would be, so stealing them shows up in the trace.
-- **A fake internet with no route to the real one**, so nothing leaves the VM, but every connection attempt is recorded.
-- **An LLM proxy that holds your API key**, so the skill never sees the key.
-
-### Step 5. Install Lima
-
-macOS:
-
-```bash
-brew install lima
-limactl --version            # needs 2.0 or newer
-```
-
-Linux: follow https://lima-vm.io/docs/installation/.
-
-### Step 6. Build the sandbox (one time)
-
-With the Python environment from Step 1 still active:
+**5. Build the sandbox** (one time, 10–20 min)
 
 ```bash
 divergence setup-sandbox
 ```
 
-It asks for your OpenRouter API key. The input is hidden; paste the key and press Enter. To
-skip the prompt, run `export OPENROUTER_API_KEY=...` first.
+Paste your OpenRouter key when it asks (the key stays hidden as you type). At the end, **every line must say PASS**,
+followed by `Sandbox ready.` If something fails, run the same command again; it picks up where it stopped.
 
-This creates a VM named `dvg-lab` and builds everything inside it. It takes 10 to 20 minutes
-and downloads Ubuntu, Docker and the sandbox images. It ends with a list of checks:
-
-```
-   PASS  image malskillbench/verification-sandbox:latest
-   PASS  image dvg/sandbox-synthetic:latest
-   PASS  container inetsim is running
-   PASS  container fakedns is running
-   PASS  container llm-proxy is running
-   PASS  patched runner imports in the Python environment
-   PASS  no route from dvg-isolated to the real internet
-   PASS  any domain resolves to the fake internet (INetSim answered evil-c2.example)
-   PASS  LLM proxy refuses non-API paths (403)
-   PASS  OpenRouter accepts the key held by the proxy
-
-Sandbox ready.
-```
-
-**Every line must say PASS.** If one says FAIL, it says what to do. Running
-`divergence setup-sandbox` again resumes where it stopped and skips finished steps.
-
-### Step 7. Check the honest skill
+**6. Check the honest skill**
 
 ```bash
 divergence install --skill-dir examples/skills/table-formatter-honest
 ```
 
-This takes about a minute. It copies the skill into the VM, runs it, copies the trace back and
-scores it. Expected result:
+Expected: `ALLOW` and `>>> INSTALLED by AGT`.
 
-```
-Skill table-formatter-honest: ALLOW (suggested AGT decision: allow)
-
---- direct run ---
-ALLOW: estimated 18% probability that the observed behaviour diverges from the description (FLAG at 50% or more).
-Semantic consistency between description and behaviour: 0.81 (0 = unrelated, 1 = same meaning).
-No structural red flag fired.
-Observed: Runs Python script format_table.py, then reads its own skill files
-
---- instructed run ---
-ALLOW: estimated 18% probability ...
-...
->>> INSTALLED by AGT -> divergence_installs/.../plugins/table-formatter-honest
-AGT audit log: 3 entries, Merkle chain valid: True
-```
-
-The skill was run twice. The **direct** run executes the commands in its `SKILL.md` with no AI
-involved; the **instructed** run has an LLM agent follow the `SKILL.md`. Both matched the
-description, so AGT installed the skill (exit code 0).
-
-### Step 8. Check the sneaky skill
+**7. Check the sneaky skill**
 
 ```bash
 divergence install --skill-dir examples/skills/table-formatter-sneaky
 ```
 
-Its script formats the table as promised, then uploads `~/.aws/credentials` to a server its
-description never names.
-Expected result:
+Expected: `FLAG` and `>>> BLOCKED`. Nothing was actually stolen: the secrets are fake, and the
+sandbox's internet is fake too.
 
-```
-Skill table-formatter-sneaky: FLAG (suggested AGT decision: escalate)
+**8. Check your own skill** (optional)
 
---- direct run ---
-FLAG: estimated 83% probability that the observed behaviour diverges from the description (FLAG at 50% or more).
-Semantic consistency between description and behaviour: 0.65 (0 = unrelated, 1 = same meaning).
-Contacted host(s) the description never names: collect.evil-c2.example (weight +2.55).
-Read credential file(s) although the description does not mention credentials: /root/.aws/credentials (weight -0.17).
-Performed action type(s) the description has no words for: network (weight +0.61).
-Observed: Runs Python script format_table.py, then reads its own skill files, then sends data to collect.evil-c2.example (upload) (connection failed), then reads credential file ~/.aws/credentials
-
---- instructed run ---
-ALLOW: estimated 18% probability ...
-...
->>> BLOCKED: escalated to a human reviewer (AGT decision: escalate)
-```
-
-The direct run caught it, so the skill is blocked (exit code 1). A skill is flagged if **any**
-run flags it. Here the instructed run did not see the upload, which is why both runs are done.
-The numbers can differ slightly between runs, because the LLM agent does not act identically
-every time.
-
-Nothing was really stolen: the credentials were fake, and the upload went to the fake internet.
-
-### Step 9. Check your own skill
-
-Any folder that contains a `SKILL.md` can be checked:
+Any folder with a `SKILL.md` works:
 
 ```bash
 divergence install --skill-dir path/to/your-skill
 ```
 
-**What the folder needs.** A `SKILL.md` whose frontmatter has a `description:`; that is the
-claim the behaviour is compared against. Anything else the skill ships (scripts, examples,
-reference files) goes in the same folder and is copied into the sandbox with it:
+⚠️ **Never run a downloaded skill's scripts yourself.** Let `divergence install` run them inside the VM.
 
-```
-my-skill/
-  SKILL.md          required
-  scripts/...       optional; if present, the skill also gets a direct run
-  anything else     optional
-```
-
-```markdown
----
-name: my-skill
-description: One or two sentences saying what the skill does.
 ---
 
-# My skill
+## What the result means
 
-Instructions for the agent, for example the commands to run.
-```
+- **ALLOW** means the skill did only what its description says. It does **not** mean the skill is safe.
+- **FLAG** means the skill did something its description doesn't mention. It does **not** mean the skill is malicious.
 
-If the frontmatter has no `description:`, the first paragraph of the file is used instead. If
-there is none at all, the check stops with exit code 2.
-
-**Where to get a skill.** Skills are published as folders on GitHub and in skill marketplaces
-(for example [Anthropic's public skills](https://github.com/anthropics/skills) or ClawHub for
-OpenClaw). To download one folder from a GitHub repository without cloning it:
+## When you're done
 
 ```bash
-mkdir -p my-skills && cd my-skills
-curl -L https://github.com/anthropics/skills/archive/refs/heads/main.tar.gz \
-  | tar -xz --strip-components=2 skills-main/skills/internal-comms
-cd ..
-divergence install --skill-dir my-skills/internal-comms
+limactl stop dvg-lab          # pause the VM
+limactl delete -f dvg-lab     # delete it and free 30 GB
 ```
 
-The general pattern is `<repo>-<branch>/<path to the skill folder>`, with `--strip-components`
-set to the number of folders in that path before the skill's own folder. You can also download
-the repository as a ZIP from GitHub's **Code** button and point `--skill-dir` at the unzipped
-skill folder.
-
-**Safety.** Downloading a skill only copies files; **do not run its scripts yourself.**
-`divergence install` runs them inside the VM. Each check costs well under one US cent of
-OpenRouter credit.
-
-**Reading the result for your own skill.** A skill without scripts gets only the instructed run,
-so only one block appears. That is expected. Also:
-- A skill that only gives writing or formatting instructions often shows little more than
-  "Reads its own skill files". This is a correct ALLOW: it did nothing beyond its description.
-- If nothing was observed, Divergence says so. This is "no evidence", not "safe".
-- A FLAG on a skill you trust usually means its description leaves out something it really
-  does, for example a server it contacts. Read the flag lines to see what that was.
-
-Each run saves `install_report.json` (the verdict and reasons) and `agt_audit_log.json` (AGT's
-tamper-evident log of the trial) in `divergence_installs/` in your current folder, and the raw trial
-output in `divergence_trials/`.
-
-**Options:**
-- `--approve`: if the skill is flagged, show the human-approval path that installs it anyway.
-- `--with-agent`: add a third trial run with a safety-aligned agent model.
-- `--vm NAME`: use a sandbox VM with another name (create it with `divergence setup-sandbox --vm NAME`).
-
----
-
-## Reading the result
-
-| Exit code | Meaning |
-|---|---|
-| 0 | ALLOW: behaviour matches the description, skill installed |
-| 1 | FLAG: behaviour diverges from the description, install blocked |
-| 2 | Invalid input (a file or argument could not be read). No verdict |
-| 3 | The sandbox trial or the sandbox setup failed (for example a timeout, or the LLM refused the key). No verdict |
-| 4 | The model could not be found or downloaded |
-| 5 | Unexpected error. No verdict (set `DIVERGENCE_DEBUG=1` for details) |
-| 6 | Blocked by AGT's own install checks (for example a missing signature) |
-
-**What a verdict does not mean:**
-- **ALLOW is not "safe".** Only behaviour that happens during the one-minute trial is seen.
-  A payload that waits for a date, a trigger, or runs only at install time is missed.
-- **FLAG is not "malicious".** It means the skill did something its description does not
-  mention. A well-meaning skill with a vague description can be flagged.
-- If the trial observed no actions at all, Divergence says so before the verdict. That means
-  nothing was seen, not that the skill is safe.
-
----
-
-## Managing the sandbox
-
-| Task | Command |
-|---|---|
-| Re-run the safety checks | `divergence setup-sandbox --check` |
-| Replace the OpenRouter key | `divergence setup-sandbox --rekey` |
-| Stop the VM (frees RAM) | `limactl stop dvg-lab` |
-| Start it again | `limactl start dvg-lab` |
-| Delete it completely (gives back the 30 GiB) | `limactl delete -f dvg-lab` (`-f` also works while the VM is running) |
-
----
-
-## Troubleshooting
+## If something goes wrong
 
 | Problem | Fix |
 |---|---|
-| `divergence: command not found` | Activate the environment again: `source divergence-env/bin/activate` |
-| `pip` says Python is too old | Install Python 3.11+ and recreate the environment with `python3.11 -m venv divergence-env` |
-| `model not found` (exit 4) | The machine could not reach huggingface.co. Check your connection and retry |
-| `limactl not found` | Install Lima (Step 5) |
-| `the agent's LLM call failed: HTTP 401` or `403` (exit 3) | The OpenRouter key is missing, wrong or limited. Replace it: `divergence setup-sandbox --rekey` |
-| `the agent's LLM call failed: HTTP 402` (exit 3) | The OpenRouter account or key is out of credit. Add credit and run the install again |
-| `the sandbox run did not finish` (exit 3) | The skill ran past the time limit or the sandbox crashed. Run it again; the message names the raw output |
-| `VM dvg-lab does not exist` | Run `divergence setup-sandbox` (Step 6) |
+| `divergence: command not found` | `source divergence-env/bin/activate` |
+| Python too old | Install Python 3.11+ and redo step 1 |
+| `model not found` | Check your internet and retry |
+| `limactl not found` | Install Lima |
+| HTTP `401` / `403` | Wrong key: `divergence setup-sandbox --rekey` |
+| HTTP `402` | Out of credit: top up at openrouter.ai |
 | `VM dvg-lab is Stopped` | `limactl start dvg-lab` |
-| Setup says the network refuses package downloads | Your network's firewall blocks them. Connect to home Wi-Fi or a phone hotspot and run `divergence setup-sandbox` again |
-| FAIL: `OpenRouter answered '401'` | The key is wrong. Run `divergence setup-sandbox --rekey` |
-| FAIL: `OpenRouter answered '402'` | The key has no credit left. Add credit at openrouter.ai |
-
----
-
-## Safety notes
-
-- **Only check untrusted skills through `divergence install`**, which runs them inside the VM.
-  Never run an untrusted skill directly on your machine or on Docker Desktop.
-- The VM has no shared folders. Files move in and out only through Lima's copy command.
-- Your API key is stored only inside the proxy container in the VM. A skill cannot read it, but
-  it can spend credit through the proxy, so keep the key's credit limit low.
-- The sandbox is built from the MalSkillBench runner (Guo et al., 2026), fetched from its own
-  repository. Its licence (academic research use) applies to your use.
+| `VM dvg-lab does not exist` | Redo step 5 |
+| Anything else | Run it again. If it still fails, send me the full error message |

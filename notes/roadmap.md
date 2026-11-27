@@ -22,7 +22,7 @@ MalSkillBench ships **skills** (`SKILL.md` + scripts), not **traces**.
 `Logs/` is empty and no strace or audit output is included. The "behaviour"
 half of every (description, behaviour) pair has to be produced by running the
 skills in the VM sandbox. So the sandbox isn't a Phase 2 extra: it produces
-your core dataset. `notes/archive/Structure.md` §2 now says this (updated 2026-10-21).
+your core dataset.
 
 ## Stages (CRISP-DM phase in brackets)
 

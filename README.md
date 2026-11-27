@@ -16,7 +16,7 @@ description is semantically consistent with its observed action trace, using:
 
 The same step numbers are used in the project layout below and in the module docstrings.
 
-See **Project layout** below for where each part lives. The original build plan is archived in `notes/archive/Structure.md`.
+See **Project layout** below for where each part lives.
 
 ## Use it as an AGT plugin
 
@@ -176,7 +176,7 @@ sandbox/                    sealed VM runners that executed the skills and captu
                             setup_sandbox.sh builds the VM (lima/ template, provision/ in-VM script)
 tests/                      unit tests (`pytest`)
 results/                    experiment CSVs (not committed) and figures
-notes/                      roadmap, citations; notes/archive/ = superseded planning docs
+notes/                      roadmap, citations, DNS-fix redo notes
 data/, models/, vendor/     datasets, trained model, MalSkillBench (not committed)
 ```
 
