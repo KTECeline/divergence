@@ -99,6 +99,21 @@ Any folder with a `SKILL.md` works:
 divergence install --skill-dir path/to/your-skill
 ```
 
+**Where to find skills:**
+
+| Where | What's there |
+|---|---|
+| [Anthropic's skills](https://github.com/anthropics/skills) | Official examples. Start here; these should come back ALLOW |
+| [antigravity-awesome-skills](https://github.com/sickn33/antigravity-awesome-skills) | The biggest collection, about 2,700 skills |
+| [kodustech/awesome-agent-skills](https://github.com/kodustech/awesome-agent-skills) | Software engineering skills |
+| ClawHub | The OpenClaw marketplace. Community skills that nobody has vetted |
+| skills.sh | A directory ranked by install count |
+
+To use a skill from GitHub:
+1. Click **Code → Download ZIP** and unzip it.
+2. Find the folder that contains the skill's `SKILL.md`.
+3. Run `divergence install --skill-dir path/to/that-folder`.
+
 ⚠️ **Never run a downloaded skill's scripts yourself.** Let `divergence install` run them inside the VM.
 
 ---
