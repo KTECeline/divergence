@@ -99,3 +99,18 @@ def test_setup_sandbox_command_passes_options(monkeypatch):
 
     Done.returncode = 1
     assert cli.main(["setup-sandbox"]) == cli.EXIT_TRIAL
+
+
+def test_manifest_puts_every_sandbox_file_in_the_sdist():
+    """PyPI builds the wheel from the sdist: a BUNDLE path missing from MANIFEST.in breaks that build."""
+    from pathlib import Path
+    from divergence.sandbox_files import BUNDLE
+    root = Path(__file__).resolve().parent.parent
+    covered = set()
+    for line in (root / "MANIFEST.in").read_text().splitlines():
+        words = line.split("#", 1)[0].split()
+        if words[:1] == ["include"]:
+            covered.update(words[1:])
+        elif words[:1] == ["recursive-include"] and words[2:] == ["*"]:
+            covered.add(words[1])
+    assert [p for p in BUNDLE if p not in covered] == []

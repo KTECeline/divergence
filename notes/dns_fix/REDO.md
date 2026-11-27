@@ -88,7 +88,7 @@ caffeinate -i .venv/bin/jupyter nbconvert --to notebook --execute --inplace --Ex
 `proxy_labelling_sheet_labelled.csv` (the 5a hand labels) stays: it labels the skills'
 descriptions, which do not change.
 
-## 5. Check the fix on a live trial
+## 5. Check the fix on a live trial — DONE 2026-11-27 (fresh VM dvg-fresh: direct run names collect.evil-c2.example, FLAG 84%)
 
 ```bash
 .venv/bin/python -m pytest -q
@@ -104,7 +104,7 @@ Then compare old and new numbers:
 diff <(cut -d, -f1-6 ../divergence_before_dns_fix/results/exp1_results.csv) <(cut -d, -f1-6 results/exp1_results.csv)
 ```
 
-## 6. Release the new model (you)
+## 6. Release the new model (you) — DONE 2026-11-27 (HF commit 119d3d0f7fc0; pin moved, version 0.2.0; 11 files byte-identical to models/; a fresh download gives the same verdict and probability as models/ on all 308 runs)
 
 ```bash
 H=release/hf_bundle && rm -rf $H && mkdir -p $H

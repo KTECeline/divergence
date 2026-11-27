@@ -20,9 +20,10 @@ from pathlib import Path
 from divergence.config import CALIBRATION_MODEL_PATH, FINETUNED_EMBEDDING_DIR
 
 HF_MODEL_REPO = os.environ.get("DIVERGENCE_HF_REPO", "KTECeline/divergence-minilm-l6")
-# Pinned to the commit of 2026-11-14: the v0.1.0 weights behind the reported results, with a corrected model card.
+# Pinned to the commit of 2026-11-27: the v0.2.0 weights behind the reported results (retrained after the
+# DNS capture fix; files byte-identical to models/). The v0.1.0 weights are commit e700255872b4.
 # After retraining + re-uploading, move this pin to the new commit on purpose.
-HF_MODEL_REVISION = os.environ.get("DIVERGENCE_HF_REVISION", "e700255872b410a8733af16ef02ebf7dfcaaeb66")
+HF_MODEL_REVISION = os.environ.get("DIVERGENCE_HF_REVISION", "119d3d0f7fc031a523f17f653d3b15367adc357a")
 CALIBRATION_FILE = "calibration_model.json"
 
 

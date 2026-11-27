@@ -3,7 +3,7 @@
 import os
 from pathlib import Path
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 # Models are cached locally; without this, every model load first asks huggingface.co
 # for updates, and on a slow connection each load stalls on timeouts and retries

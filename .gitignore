@@ -63,3 +63,4 @@ graphify-out/
 .idea/
 .vscode/
 *.swp
+release/hf_bundle/

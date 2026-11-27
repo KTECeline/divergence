@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "divergence-agt"
-version = "0.1.0"
+version = "0.2.0"
 description = "Intent-behaviour consistency scoring for AI agent skills: a pre-install check that extends the Agent Governance Toolkit (AGT) marketplace installer. Research prototype."
 readme = "README.md"
 requires-python = ">=3.11"

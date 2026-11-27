@@ -33,7 +33,7 @@ pip install "git+https://github.com/KTECeline/divergence.git"     # Python 3.11+
 
 The trained model (fine-tuned encoder + calibrator) downloads from Hugging Face on first use
 ([`KTECeline/divergence-minilm-l6`](https://huggingface.co/KTECeline/divergence-minilm-l6), pinned to a fixed commit: the
-v0.1.0 weights; override with `DIVERGENCE_HF_REPO` / `DIVERGENCE_HF_REVISION`). For an offline copy, set `DIVERGENCE_MODEL_DIR` to a folder with the
+v0.2.0 weights, retrained after the DNS capture fix; override with `DIVERGENCE_HF_REPO` / `DIVERGENCE_HF_REVISION`). For an offline copy, set `DIVERGENCE_MODEL_DIR` to a folder with the
 encoder files plus `calibration_model.json`.
 
 **1. Evaluate only (bring your own trace, nothing is executed):**

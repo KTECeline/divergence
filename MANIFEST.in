@@ -1,0 +1,14 @@
+# What the source package (sdist) holds beyond the Python code.
+# setup.py copies the sandbox build files (divergence/sandbox_files.py: BUNDLE) into the
+# wheel, so they must be in the sdist too: pip builds a PyPI wheel from the sdist, not
+# from the repo. Keep this list in step with BUNDLE (tests/test_packaging.py checks it).
+include setup.py
+include sandbox/setup_sandbox.sh sandbox/malskillbench_patches.diff sandbox/demo_trial.sh
+recursive-include sandbox/lima *
+recursive-include sandbox/provision *
+recursive-include sandbox/direct_exec *
+recursive-include sandbox/instructed_agent *
+recursive-include sandbox/synthetic_user *
+include sandbox/synthetic_user/workspace/project/.env
+include vendor/batch_run.py vendor/pilot_run.py
+global-exclude __pycache__ *.py[co] .DS_Store
